@@ -61,8 +61,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Online.SignupActivity" />
-        <activity android:name=".AppIntros.SliderIntro"/>
+        <activity
+            android:name=".Online.SignupActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AppIntros.SliderIntro"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".Widgets.ButtonsWidgetProvider">
             <intent-filter>
@@ -73,6 +79,11 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
+
+        <activity
+            android:name=".Offline.OfflineActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

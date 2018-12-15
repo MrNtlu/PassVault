@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import es.dmoral.prefs.Prefs;
@@ -19,6 +20,7 @@ import android.preference.PreferenceManager;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -33,6 +35,7 @@ import com.mrntlu.PassVault.AppIntros.SliderIntro;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.MailVault;
+import com.mrntlu.PassVault.Offline.OfflineActivity;
 import com.mrntlu.PassVault.Offline.UserAccounts;
 import com.mrntlu.PassVault.Online.LoginActivity;
 
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     Dialog customMailDialog;
     Dialog fingerPrintDialog;
     AdView adView;
+    CardView onlineButton,offlineButton;
 
     ClassController classController;
 
@@ -112,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(new Intent(MainActivity.this, SliderIntro.class));
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -137,11 +139,13 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
 
-        mailAccountsButton =(Button)findViewById(R.id.vault);
+        /*mailAccountsButton =(Button)findViewById(R.id.vault);
         userAccountsButton =(Button)findViewById(R.id.bankVault);
         sendMail=(Button)findViewById(R.id.sendMail);
-        othersButton=(Button)findViewById(R.id.otherAccounts);
+        othersButton=(Button)findViewById(R.id.userAccounts);*/
         adView=(AdView)findViewById(R.id.adView);
+        onlineButton=findViewById(R.id.onlineButton);
+        offlineButton=findViewById(R.id.offlineButton);
 
         fingerPrintSwitch=findViewById(R.id.fingerPrintControl);
         fingerPrintButton=findViewById(R.id.fingerPrintButton);
@@ -187,8 +191,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        
+        onlineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        offlineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,OfflineActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        sendMail.setOnClickListener(new View.OnClickListener() {
+        /*sendMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customMailDialog=new Dialog(MainActivity.this);
@@ -220,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent=new Intent(MainActivity.this,OtherAccounts.class);
 //                startActivity(intent);
             }
-        });
+        });*/
     }
 
     private void setFingerPrint(){

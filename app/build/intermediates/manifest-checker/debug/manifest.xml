@@ -73,8 +73,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.mrntlu.PassVault.Online.SignupActivity" />
-        <activity android:name="com.mrntlu.PassVault.AppIntros.SliderIntro" />
+        <activity
+            android:name="com.mrntlu.PassVault.Online.SignupActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mrntlu.PassVault.AppIntros.SliderIntro"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <receiver android:name="com.mrntlu.PassVault.Widgets.ButtonsWidgetProvider" >
             <intent-filter>
@@ -86,16 +92,10 @@
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
 
-        <provider
-            android:name="com.crashlytics.android.CrashlyticsInitProvider"
-            android:authorities="com.mrntlu.PassVault.crashlyticsinitprovider"
-            android:exported="false"
-            android:initOrder="90" />
-        <provider
-            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-            android:authorities="com.mrntlu.PassVault.lifecycle-process"
-            android:exported="false"
-            android:multiprocess="true" />
+        <activity
+            android:name="com.mrntlu.PassVault.Offline.OfflineActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
@@ -179,6 +179,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <provider
+            android:name="com.crashlytics.android.CrashlyticsInitProvider"
+            android:authorities="com.mrntlu.PassVault.crashlyticsinitprovider"
+            android:exported="false"
+            android:initOrder="90" />
+        <provider
+            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:authorities="com.mrntlu.PassVault.lifecycle-process"
+            android:exported="false"
+            android:multiprocess="true" />
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"
             android:authorities="com.mrntlu.PassVault.com.android.tools.ir.server.InstantRunContentProvider"

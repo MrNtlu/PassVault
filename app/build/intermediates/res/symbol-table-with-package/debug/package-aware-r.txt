@@ -1169,6 +1169,7 @@ drawable ic_check_white_48dp
 drawable ic_checked
 drawable ic_clear_white_48dp
 drawable ic_close_button
+drawable ic_cloud
 drawable ic_email_black_24dp
 drawable ic_error_outline_white_48dp
 drawable ic_file_download_black_24dp
@@ -1181,13 +1182,12 @@ drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_protection
 drawable ic_search_black_24dp
 drawable ic_send_black_24dp
 drawable ic_share_black_24dp
-drawable ic_smartphone
 drawable ic_warning_outline_white
 drawable ic_warning_white_48dp
-drawable ic_world
 drawable lock
 drawable lockmidblue
 drawable mtrl_snackbar_background
@@ -1258,7 +1258,6 @@ id auto
 id back
 id background
 id bankAccounts
-id bankVault
 id barrier
 id beginning
 id blocking
@@ -1353,7 +1352,8 @@ id group_divider
 id groups
 id guideline10
 id guideline11
-id guideline4
+id guideline2
+id guideline3
 id guideline6
 id guideline7
 id home
@@ -1403,6 +1403,8 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id offlineButton
+id onlineButton
 id otherAccounts
 id otherAddButton
 id otherDesc
@@ -1457,7 +1459,6 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id sendButton
-id sendMail
 id shortcut
 id showCustom
 id showHome
@@ -1497,6 +1498,7 @@ id stretch
 id subjectMail
 id submenuarrow
 id submit_area
+id tabLayout
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1540,7 +1542,6 @@ id useLogo
 id userAccountSearchView
 id usernameEditText
 id usernameLayout
-id vault
 id view_offset_helper
 id view_pager
 id visible
@@ -1601,6 +1602,7 @@ layout activity_app_intro
 layout activity_login
 layout activity_mail_vault
 layout activity_main
+layout activity_offline
 layout activity_other_accounts
 layout activity_signup
 layout activity_user_accounts
@@ -1635,6 +1637,7 @@ layout dialog_mail_other
 layout dialog_send_as_mail
 layout dialog_set_fingerprint
 layout dialog_useraccounts
+layout fragment_mail_vault
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1713,7 +1716,6 @@ string appwidget_text
 string back4app_app_id
 string back4app_client_key
 string back4app_server_url
-string bankvault
 string bottom_sheet_behavior
 string cant_use_fingerprint
 string changepassword
@@ -1761,6 +1763,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string idmail
 string idmaillayout
@@ -1779,7 +1782,6 @@ string mailMe
 string mtrl_chip_close_icon_content_description
 string my_passwords
 string note
-string otherAccounts
 string others
 string pass
 string password
@@ -1808,6 +1810,7 @@ string status_bar_notification_info_overflow
 string subject
 string to
 string toast_message
+string userAccounts
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
