@@ -4,7 +4,7 @@
             "outputFile": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/57637fe4f2cc925027c599a18b91efc6/res/values-v16/values-v16.xml",
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/344ef2e322a318e8ca182945d2b0540a/res/values-v16/values-v16.xml",
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/4b1657feaa09631baacd2c0aa17c80ae/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

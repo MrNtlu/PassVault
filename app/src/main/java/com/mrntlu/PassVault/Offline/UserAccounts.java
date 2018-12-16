@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
-import com.mrntlu.PassVault.Adapters.UserAccountsRVAdapter;
+import com.mrntlu.PassVault.Offline.Adapters.UserAccountsRVAdapter;
 import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.R;
 

@@ -1,4 +1,4 @@
-#Sun Dec 16 01:17:44 EET 2018
+#Sun Dec 16 15:46:55 EET 2018
 path.1=classes.dex
 path.0=classes.dex
 renamed.10=classes11.dex
@@ -15,7 +15,7 @@ renamed.1=classes2.dex
 base.8=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/17
 renamed.0=classes.dex
 base.7=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/19
-base.6=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/21
+base.6=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/10
 base.5=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/12
 base.4=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/20
 base.3=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/14

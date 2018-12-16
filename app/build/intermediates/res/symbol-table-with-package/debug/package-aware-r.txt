@@ -1386,6 +1386,8 @@ id loginButton
 id logoImage
 id mailAccounts
 id mailSearchView
+id mailVaultRV
+id mailVaultSearch
 id main
 id masked
 id media_actions
@@ -2015,6 +2017,7 @@ style Base_Widget_MaterialComponents_TextInputLayout
 style CardView
 style CardView_Dark
 style CardView_Light
+style CustomTabLayout
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_MaterialComponents

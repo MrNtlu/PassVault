@@ -1,9 +1,14 @@
 package com.mrntlu.PassVault;
 
 import android.app.Application;
+import android.util.Log;
+
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class ParseApp extends Application {
 
@@ -18,14 +23,15 @@ public class ParseApp extends Application {
     https://www.youtube.com/watch?v=KWjF4_kpIkU
 
     Playlist: https://www.youtube.com/watch?v=ARpn-1FPNE4&list=PLrnPJCHvNZuDihTpkRs6SpZhqgBqPU118
-
-     https://github.com/paolorotolo/AppIntro
-     https://github.com/paolorotolo/AppIntro/wiki/How-to-Use
-     */
+    */
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().name("myrealm.realm").build();
+        Realm.setDefaultConfiguration(config);
+
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
@@ -40,5 +46,43 @@ public class ParseApp extends Application {
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
+
+        //TODO Save new object
+/*    ParseObject score=new ParseObject("Score");
+    score.put("username","burak");
+    score.put("score",55);
+    score.saveInBackground(new SaveCallback() {
+        @Override
+        public void done(ParseException e) {
+            if (e == null){
+                //OK
+                Log.i("Success", "done: success");
+            }else{
+                e.printStackTrace();
+            }
+        }
+    });*/
+
+        //TODO Query
+      /*ParseQuery<ParseObject> query=ParseQuery.getQuery("Score");
+      //query.getInBackground();
+      //query.where("username","burak"); where if
+      //query.setLimit(1);//Set how many should be displayed
+      query.whereGreaterThan("score",50);
+
+      query.findInBackground(new FindCallback<ParseObject>() {
+          @Override
+          public void done(List<ParseObject> objects, ParseException e) {
+              if (e==null){
+                  if (objects.size()>0){
+                      for (ParseObject object:objects){
+                          Log.i("object", "username: "+object.getString("username")+" score: "+object.getInt("score"));
+//                          object.put("score",object.getInt("score")+20);
+//                          object.saveInBackground();
+                      }
+                  }
+              }
+          }
+      });*/
     }
 }

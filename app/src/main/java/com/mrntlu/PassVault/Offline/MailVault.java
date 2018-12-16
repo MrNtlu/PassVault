@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
-import com.mrntlu.PassVault.Adapters.MailVaultRVAdapter;
+import com.mrntlu.PassVault.Offline.Adapters.MailVaultRVAdapter;
 import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.R;
 
@@ -62,7 +62,7 @@ public class MailVault extends AppCompatActivity {
         classController.loadCredentials(FileLocations.FILE2_NAME,idList);
         classController.loadCredentials(FileLocations.PASS2_FILE_NAME,passwordList);
 
-        mailVaultRVAdapter=new MailVaultRVAdapter(this,idList,passwordList,passBool);
+        //mailVaultRVAdapter=new MailVaultRVAdapter(this,idList,passwordList,passBool);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mailVaultRVAdapter);
@@ -163,8 +163,8 @@ public class MailVault extends AppCompatActivity {
     }
 
     private void reSetAdapter(ArrayList<String> idList, ArrayList<String> passwordList, ArrayList<Boolean> passBool,boolean isSearching){
-        mailVaultRVAdapter=new MailVaultRVAdapter(MailVault.this,idList,passwordList,passBool,isSearching);
-        recyclerView.setAdapter(mailVaultRVAdapter);
+        //mailVaultRVAdapter=new MailVaultRVAdapter(MailVault.this,idList,passwordList,passBool,isSearching);
+        //recyclerView.setAdapter(mailVaultRVAdapter);
         mailVaultRVAdapter.notifyDataSetChanged();
     }
 }

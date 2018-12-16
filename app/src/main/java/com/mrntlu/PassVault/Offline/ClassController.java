@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mrntlu.PassVault.MainActivity;
+import com.mrntlu.PassVault.Offline.Models.MailObject;
+import com.mrntlu.PassVault.Offline.Models.OthersObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,6 +27,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
+import io.realm.RealmObject;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -131,15 +136,22 @@ public class ClassController {
     public void loadCredentials(String FILE_NAME,ArrayList<String> list){
         FileInputStream fis=null;
         try {
-            fis=context.openFileInput(FILE_NAME);
-            InputStreamReader isr=new InputStreamReader(fis);
-            BufferedReader br=new BufferedReader(isr);
-            StringBuilder sb=new StringBuilder();
-            String text;
-            while ((text=br.readLine())!=null){
-                list.add(text);
+            File file=context.getFileStreamPath(FILE_NAME);
+            if (file.exists()) {
+                fis = context.openFileInput(FILE_NAME);
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader br = new BufferedReader(isr);
+                StringBuilder sb = new StringBuilder();
+                String text;
+                while ((text = br.readLine()) != null) {
+                    Log.d("info", "loadCredentials: "+text);
+                    list.add(text);
+                }
+                //deleteAllCredentials(FILE_NAME);
             }
-
+            else {
+                return;
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -152,6 +164,15 @@ public class ClassController {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    private void deleteAllCredentials(String FILE_NAME){
+        File dir=context.getFilesDir();
+        File file=new File(dir,FILE_NAME);
+        boolean deleted=file.delete();
+        if (deleted){
+            Toasty.success(context,"Deleted.",Toast.LENGTH_SHORT).show();
         }
     }
 
