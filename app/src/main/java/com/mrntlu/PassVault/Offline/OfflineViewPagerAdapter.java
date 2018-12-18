@@ -18,10 +18,10 @@ public class OfflineViewPagerAdapter extends FragmentStatePagerAdapter {
                 returnFragment=FragmentMailVault.newInstance();
                 break;
             case 1:
-                returnFragment=FragmentMailVault.newInstance();
+                returnFragment=FragmentUserAccounts.newInstance();
                 break;
             case 2:
-                returnFragment=FragmentMailVault.newInstance();
+                returnFragment=FragmentOtherAccounts.newInstance();
                 break;
             default:
                 return FragmentMailVault.newInstance();

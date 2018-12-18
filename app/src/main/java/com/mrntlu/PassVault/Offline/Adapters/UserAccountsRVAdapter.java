@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
+import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.R;
 
 import java.io.FileOutputStream;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAdapter.MyViewHolder> {
 
@@ -29,30 +32,25 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     FileOutputStream fos=null;
     FileOutputStream fosPass=null;
 
-    private ArrayList<String> idList;
-    private ArrayList<String> passwordList;
-    private ArrayList<String> descList;
+    private RealmResults<AccountsObject> userObjects;
     private ArrayList<Boolean> passBool;
-    ClassController classController;
-    ArrayList<ArrayList> arrayLists;
     private boolean isSearching=false;
 
-    public UserAccountsRVAdapter(Context context, final ArrayList<String> idList, final ArrayList<String> passwordList, final ArrayList<String> descList, final ArrayList<Boolean> passBool) {
+    Realm realm;
+    ClassController classController;
+    ArrayList<ArrayList> arrayLists;
+
+    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool) {
         this.context = context;
-        this.idList = idList;
-        this.passwordList = passwordList;
-        this.descList = descList;
+        this.userObjects=userObjects;
         this.passBool = passBool;
         classController=new ClassController(context);
         arrayLists=new ArrayList<ArrayList>() {{
-            add(passwordList);
-            add(idList);
-            add(passBool);
-            add(descList);}};
+            add(passBool); }};
     }
 
-    public UserAccountsRVAdapter(Context context, final ArrayList<String> idList, final ArrayList<String> passwordList, final ArrayList<String> descList, final ArrayList<Boolean> passBool,boolean isSearching) {
-        this(context,idList,passwordList,descList,passBool);
+    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool,boolean isSearching) {
+        this(context,userObjects,passBool);
         this.isSearching=isSearching;
     }
 
@@ -60,29 +58,30 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_useraccounts_cell,parent,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
+        realm=Realm.getDefaultInstance();
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.idText.setText(idList.get(position));
-        holder.descriptionText.setText(descList.get(position));
+        holder.idText.setText(userObjects.get(position).getIdMail());
+        holder.descriptionText.setText(userObjects.get(position).getDescription());
 
         if (isSearching) {
             holder.editButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.GONE);
         }
 
-        if (descList.size()!=passBool.size() && passBool.size()<descList.size()) {
+        if (userObjects.size()!=passBool.size() && passBool.size()<userObjects.size()) {
             passBool.add(false);
         }
 
-        classController.passwordInitHider(passBool,holder.passwordText,passwordList.get(position),position);
+        classController.passwordInitHider(passBool,holder.passwordText,userObjects.get(position).getPassword(),position);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                classController.copyToClipboard(passwordList.get(position));
+                classController.copyToClipboard(userObjects.get(position).getPassword());
                 return true;
             }
         });
@@ -90,7 +89,7 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                classController.passwordHider(passBool,holder.passwordText,passwordList.get(position),position);
+                classController.passwordHider(passBool,holder.passwordText,userObjects.get(position).getPassword(),position);
             }
         });
 
@@ -111,11 +110,17 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        classController.deleteFromArrays(arrayLists,position);
-
-                        classController.deleteCredentials(FileLocations.FILE_NAME,idList,fosPass);
-                        classController.deleteCredentials(FileLocations.PASS_FILE_NAME,passwordList,fosPass);
-                        classController.deleteCredentials(FileLocations.DES_FILE_NAME,descList,fosPass);
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                try{
+                                    passBool.remove(position);
+                                    userObjects.get(position).deleteFromRealm();
+                                }catch (NullPointerException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                         Toasty.success(context,"Deleted", Toast.LENGTH_SHORT).show();
                         notifyDataSetChanged();
                     }
@@ -133,7 +138,7 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
 
     @Override
     public int getItemCount() {
-        return idList.size();
+        return userObjects.size();
     }
 
     public void showPopup(View v,final int position){
@@ -148,33 +153,26 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         editClose=(Button)customDialog.findViewById(R.id.editClose);
         editDesc=(TextView)customDialog.findViewById(R.id.editDes);
 
-        editID.setText(idList.get(position));
-        editPassword.setText(passwordList.get(position));
-        editDesc.setText(descList.get(position));
+        editID.setText(userObjects.get(position).getIdMail());
+        editPassword.setText(userObjects.get(position).getPassword());
+        editDesc.setText(userObjects.get(position).getDescription());
 
         editAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!classController.isEmptyTextViews(new TextView[]{editID,editPassword,editDesc})){
-                    String id=editID.getText().toString();
-                    String password=editPassword.getText().toString();
-                    String desc=editDesc.getText().toString();
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            String id=editID.getText().toString();
+                            String password=editPassword.getText().toString();
+                            String desc=editDesc.getText().toString();
+                            userObjects.get(position).setIdMail(id);
+                            userObjects.get(position).setPassword(password);
+                            userObjects.get(position).setDescription(desc);
+                        }
+                    });
 
-                    if (idList.size()!=position){
-                        idList.add(position+1,id);
-                        passwordList.add(position+1,password);
-                        descList.add(position+1,desc);
-                    }else{
-                        idList.add(id);
-                        passwordList.add(password);
-                        descList.add(desc);
-                    }
-
-                    classController.deleteFromArrays(arrayLists,position);
-
-                    classController.deleteCredentials(FileLocations.FILE_NAME,idList,fosPass);
-                    classController.deleteCredentials(FileLocations.PASS_FILE_NAME,passwordList,fosPass);
-                    classController.deleteCredentials(FileLocations.DES_FILE_NAME,descList,fosPass);
                     notifyDataSetChanged();
                     customDialog.dismiss();
                 }

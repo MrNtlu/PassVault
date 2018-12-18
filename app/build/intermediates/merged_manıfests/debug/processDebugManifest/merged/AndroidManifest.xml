@@ -29,6 +29,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <meta-data
             android:name="com.parse.SERVER_URL"
             android:value="@string/back4app_server_url" />
@@ -58,21 +62,23 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <!--
         <activity
-            android:name="com.mrntlu.PassVault.Offline.MailVault"
+            android:name=".Offline.MailVault"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.mrntlu.PassVault.Offline.UserAccounts"
+            android:name=".Offline.UserAccounts"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.mrntlu.PassVault.Offline.OtherAccounts"
+            android:name=".Offline.OtherAccounts"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        -->
         <activity
             android:name="com.mrntlu.PassVault.Online.SignupActivity"
             android:configChanges="orientation"
@@ -82,6 +88,11 @@
             android:name="com.mrntlu.PassVault.AppIntros.SliderIntro"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mrntlu.PassVault.Offline.OfflineActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <receiver android:name="com.mrntlu.PassVault.Widgets.ButtonsWidgetProvider" >
             <intent-filter>
@@ -92,12 +103,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
-
-        <activity
-            android:name="com.mrntlu.PassVault.Offline.OfflineActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

@@ -9,16 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.RealmResults;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mrntlu.PassVault.Offline.Adapters.MailVaultRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
-import com.mrntlu.PassVault.Offline.Viewmodels.MailVaultViewModel;
+import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
 import com.mrntlu.PassVault.R;
 import java.util.ArrayList;
 
@@ -29,12 +27,10 @@ public class FragmentMailVault extends Fragment {
     private RecyclerView recyclerView;
     private MailVaultRVAdapter mailVaultRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<Boolean>();
-    private MailVaultViewModel mailVaultViewModel;
+    private OfflineViewModel offlineViewModel;
 
     public static FragmentMailVault newInstance() {
         FragmentMailVault fragment = new FragmentMailVault();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
         return fragment;
     }
 
@@ -48,11 +44,11 @@ public class FragmentMailVault extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_mail_vault, container, false);
-        recyclerView=(RecyclerView)v.findViewById(R.id.mailVaultRV);
-        searchView=(SearchView)v.findViewById(R.id.mailVaultSearch);
-        mailVaultViewModel= ViewModelProviders.of(getActivity()).get(MailVaultViewModel.class);
-        mailVaultViewModel.init();
-        mailVaultViewModel.getMailObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<MailObject>>() {
+        recyclerView=(RecyclerView)v.findViewById(R.id.mailRV);
+        searchView=(SearchView)v.findViewById(R.id.mailSearch);
+        offlineViewModel = ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
+        offlineViewModel.initMailObjects();
+        offlineViewModel.getMailObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<MailObject>>() {
             @Override
             public void onChanged(RealmResults<MailObject> mailObjects) {
                 if (mailVaultRVAdapter==null){
@@ -64,18 +60,18 @@ public class FragmentMailVault extends Fragment {
         });
         initRecyclerView();
 
-        FloatingActionButton fab=(FloatingActionButton)getActivity().findViewById(R.id.addButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mailVaultViewModel.addMailObject("Test","test Password");
-            }
-        });
+//        FloatingActionButton fab=(FloatingActionButton)getActivity().findViewById(R.id.addButton);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                offlineViewModel.addMailObject("Test","test Password");
+//            }
+//        });
         return v;
     }
 
     private void initRecyclerView(){
-        mailVaultRVAdapter=new MailVaultRVAdapter(getContext(),mailVaultViewModel.getMailObjects().getValue(),passBool);
+        mailVaultRVAdapter=new MailVaultRVAdapter(getContext(), offlineViewModel.getMailObjects().getValue(),passBool);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mailVaultRVAdapter);

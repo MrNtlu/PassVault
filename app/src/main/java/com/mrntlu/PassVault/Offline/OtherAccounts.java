@@ -63,7 +63,7 @@ public class OtherAccounts extends AppCompatActivity {
         classController.loadCredentials(FileLocations.FILE3_NAME,descList);
         classController.loadCredentials(FileLocations.PASS3_FILE_NAME,passList);
 
-        othersRVAdapter=new OthersRVAdapter(this,descList,passList,passBool);
+        //othersRVAdapter=new OthersRVAdapter(this,descList,passList,passBool);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(othersRVAdapter);
@@ -141,7 +141,7 @@ public class OtherAccounts extends AppCompatActivity {
     }
 
     private void reSetAdapter(ArrayList<String> descList,ArrayList<String> passList,ArrayList<Boolean> passBool,boolean isSearching){
-        othersRVAdapter=new OthersRVAdapter(OtherAccounts.this,descList,passList,passBool,isSearching);
+        //othersRVAdapter=new OthersRVAdapter(OtherAccounts.this,descList,passList,passBool,isSearching);
         recyclerView.setAdapter(othersRVAdapter);
         othersRVAdapter.notifyDataSetChanged();
     }

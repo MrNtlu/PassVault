@@ -147,6 +147,7 @@ public class ClassController {
                     Log.d("info", "loadCredentials: "+text);
                     list.add(text);
                 }
+                //TODO
                 //deleteAllCredentials(FILE_NAME);
             }
             else {

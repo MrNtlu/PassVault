@@ -17,6 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <meta-data
             android:name="com.parse.SERVER_URL"
             android:value="@string/back4app_server_url" />
@@ -41,12 +44,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Online.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity
+        <!--<activity
             android:name=".Offline.MailVault"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
@@ -60,7 +64,7 @@
             android:name=".Offline.OtherAccounts"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" />-->
         <activity
             android:name=".Online.SignupActivity"
             android:configChanges="orientation"
@@ -70,6 +74,12 @@
             android:name=".AppIntros.SliderIntro"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Offline.OfflineActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
 
         <receiver android:name=".Widgets.ButtonsWidgetProvider">
             <intent-filter>
@@ -81,11 +91,7 @@
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
 
-        <activity
-            android:name=".Offline.OfflineActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+
     </application>
 
 </manifest>

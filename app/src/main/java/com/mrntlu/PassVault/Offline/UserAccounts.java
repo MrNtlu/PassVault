@@ -64,7 +64,7 @@ public class UserAccounts extends AppCompatActivity {
         classController.loadCredentials(FileLocations.FILE_NAME,idList);
         classController.loadCredentials(FileLocations.PASS_FILE_NAME,passwordList);
         classController.loadCredentials(FileLocations.DES_FILE_NAME,descList);
-        userAccountsRVAdapter=new UserAccountsRVAdapter(this,idList,passwordList,descList,passBool);
+        //userAccountsRVAdapter=new UserAccountsRVAdapter(this,idList,passwordList,descList,passBool);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
 
@@ -145,7 +145,7 @@ public class UserAccounts extends AppCompatActivity {
     }
 
     private void reSetAdapter(ArrayList<String> idList,ArrayList<String> passwordList,ArrayList<String> descList,ArrayList<Boolean> passBool,boolean isSearching){
-        userAccountsRVAdapter=new UserAccountsRVAdapter(UserAccounts.this,idList,passwordList,descList,passBool,isSearching);
+        //userAccountsRVAdapter=new UserAccountsRVAdapter(UserAccounts.this,idList,passwordList,descList,passBool,isSearching);
         recyclerView.setAdapter(userAccountsRVAdapter);
         userAccountsRVAdapter.notifyDataSetChanged();
     }

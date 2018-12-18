@@ -154,6 +154,7 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
         editPassword=(TextView)customDialog.findViewById(R.id.editpassword);
         editAdd=(Button)customDialog.findViewById(R.id.editAdd);
         editClose=(Button)customDialog.findViewById(R.id.editClose);
+
         editID.setText(mailObjects.get(position).getMail());
         editPassword.setText(mailObjects.get(position).getPassword());
 
@@ -170,7 +171,6 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
                             mailObjects.get(position).setMail(id);
                         }
                     });
-
                     notifyDataSetChanged();
                     customDialog.dismiss();
                 }

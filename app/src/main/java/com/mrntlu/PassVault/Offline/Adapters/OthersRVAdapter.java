@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
+import com.mrntlu.PassVault.Offline.Models.OthersObject;
+import com.mrntlu.PassVault.Offline.OtherAccounts;
 import com.mrntlu.PassVault.R;
 
 import java.io.FileOutputStream;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyViewHolder> {
 
@@ -31,28 +35,25 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
     FileOutputStream fos=null;
     FileOutputStream fosPass=null;
 
-    private ArrayList<String> descList;
-    private ArrayList<String> passList;
+    private RealmResults<OthersObject> otherObjects;
     private ArrayList<Boolean> passBool;
     ClassController classController;
     ArrayList<ArrayList> arrayLists;
+    Realm realm;
 
     private boolean isSearching=false;
 
-    public OthersRVAdapter(Context context, final ArrayList<String> descList, final ArrayList<String> passList, final ArrayList<Boolean> passBool) {
+    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool) {
         this.context = context;
-        this.descList = descList;
-        this.passList = passList;
+        this.otherObjects=otherObjects;
         this.passBool = passBool;
         classController=new ClassController(context);
         arrayLists=new ArrayList<ArrayList>() {{
-            add(passList);
-            add(descList);
             add(passBool); }};
     }
 
-    public OthersRVAdapter(Context context, final ArrayList<String> descList, final ArrayList<String> passList, final ArrayList<Boolean> passBool,boolean isSearching) {
-        this(context,descList,passList,passBool);
+    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool,boolean isSearching) {
+        this(context,otherObjects,passBool);
         this.isSearching=isSearching;
     }
 
@@ -60,28 +61,29 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_other_cell,parent,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
+        realm=Realm.getDefaultInstance();
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.idText.setText(descList.get(position));
+        holder.idText.setText(otherObjects.get(position).getDescription());
 
         if (isSearching) {
             holder.editButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.GONE);
         }
 
-        if (descList.size()!=passBool.size() && passBool.size()<descList.size()) {
+        if (otherObjects.size()!=passBool.size() && passBool.size()<otherObjects.size()) {
             passBool.add(false);
         }
 
-        classController.passwordInitHider(passBool,holder.passwordText,passList.get(position),position);
+        classController.passwordInitHider(passBool,holder.passwordText,otherObjects.get(position).getPassword(),position);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                classController.copyToClipboard(passList.get(position));
+                classController.copyToClipboard(otherObjects.get(position).getPassword());
                 return true;
             }
         });
@@ -89,7 +91,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                classController.passwordHider(passBool,holder.passwordText,passList.get(position),position);
+                classController.passwordHider(passBool,holder.passwordText,otherObjects.get(position).getPassword(),position);
             }
         });
 
@@ -110,10 +112,18 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        classController.deleteFromArrays(arrayLists,position);
-                        classController.deleteCredentials(FileLocations.FILE3_NAME,descList,fosPass);
-                        classController.deleteCredentials(FileLocations.PASS3_FILE_NAME,passList,fosPass);
-                        Toasty.success(context,"Deleted", Toast.LENGTH_SHORT).show();
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                try{
+                                    passBool.remove(position);
+                                    otherObjects.get(position).deleteFromRealm();
+                                }catch (NullPointerException e){
+                                    e.printStackTrace();
+                                    Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         notifyDataSetChanged();
                     }
                 });
@@ -131,7 +141,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return descList.size();
+        return otherObjects.size();
     }
 
     public void showPopup(View v,final int position){
@@ -145,27 +155,22 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         editAdd=(Button)customDialog.findViewById(R.id.editAdd);
         editClose=(Button)customDialog.findViewById(R.id.editClose);
 
-        editDesc.setText(descList.get(position));
-        editPassword.setText(passList.get(position));
+        editDesc.setText(otherObjects.get(position).getDescription());
+        editPassword.setText(otherObjects.get(position).getPassword());
 
         editAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!classController.isEmptyTextViews(new TextView[]{editDesc,editPassword})){
-                    String desc=editDesc.getText().toString();
-                    String password=editPassword.getText().toString();
-
-                    if (descList.size()!=position) {
-                        descList.add(position+1,desc);
-                        passList.add(position+1,password);
-                    }else{
-                        descList.add(desc);
-                        passList.add(password);
-                    }
-
-                    classController.deleteFromArrays(arrayLists,position);
-                    classController.deleteCredentials(FileLocations.FILE3_NAME,descList,fosPass);
-                    classController.deleteCredentials(FileLocations.PASS3_FILE_NAME,passList,fosPass);
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            String desc=editDesc.getText().toString();
+                            String password=editPassword.getText().toString();
+                            otherObjects.get(position).setDescription(desc);
+                            otherObjects.get(position).setPassword(password);
+                        }
+                    });
                     notifyDataSetChanged();
                     customDialog.dismiss();
                 }

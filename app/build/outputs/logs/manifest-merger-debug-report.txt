@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
 MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/e94c9fa68c5cd64248b9c856ca8b8e21/AndroidManifest.xml:2:1-10:12
 MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/9fd802fadfff20c467ee9de02cb7494c/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:2:1-11:12
@@ -73,20 +73,20 @@ MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/cache
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:45:1-56:12
 MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:2:1-13:12
 MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:22:1-33:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
 	package
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-91:12
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-97:12
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:11-69
@@ -153,7 +153,7 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:10:22-69
 application
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-89:19
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-95:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:22:5-20
@@ -234,134 +234,110 @@ MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/tra
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:19:9-40
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:13:9-33
+uses-library#org.apache.http.legacy
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:20:9-22:40
+	android:required
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:22:13-37
+	android:name
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:21:13-50
 meta-data#com.parse.SERVER_URL
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:20:9-22:59
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:23:9-25:59
 	android:value
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:22:13-56
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:25:13-56
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:21:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:24:13-48
 meta-data#com.parse.APPLICATION_ID
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:23:9-25:55
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:26:9-28:55
 	android:value
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:25:13-52
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:28:13-52
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:24:13-52
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:27:13-52
 meta-data#com.parse.CLIENT_KEY
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:26:9-28:59
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:29:9-31:59
 	android:value
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:28:13-56
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:31:13-56
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:27:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:30:13-48
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:29:9-31:70
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:32:9-34:70
 	android:value
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:31:13-67
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:34:13-67
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:30:13-69
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:33:13-69
 activity#com.mrntlu.PassVault.MainActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:33:9-43:20
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:36:9-46:20
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:36:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:39:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:37:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:40:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:35:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:38:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:34:13-41
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:37:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:38:13-42:29
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:41:13-45:29
 action#android.intent.action.MAIN
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:39:17-69
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:42:17-69
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:39:25-66
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:42:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:41:17-77
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:44:17-77
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:41:27-74
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:44:27-74
 activity#com.mrntlu.PassVault.Online.LoginActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:44:9-48:57
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:48:9-52:57
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:47:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:51:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:48:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:52:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:46:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:50:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:45:13-49
-activity#com.mrntlu.PassVault.Offline.MailVault
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:49:9-53:57
-	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:52:13-49
-	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:53:13-54
-	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:51:13-48
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:50:13-46
-activity#com.mrntlu.PassVault.Offline.UserAccounts
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:54:9-58:57
-	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:57:13-49
-	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:58:13-54
-	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:56:13-48
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:55:13-49
-activity#com.mrntlu.PassVault.Offline.OtherAccounts
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:59:9-63:57
-	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:62:13-49
-	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:63:13-54
-	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:61:13-48
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:60:13-50
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:49:13-49
 activity#com.mrntlu.PassVault.Online.SignupActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:64:9-68:56
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:68:9-72:56
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:67:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:71:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:68:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:72:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:66:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:70:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:65:13-50
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:69:13-50
 activity#com.mrntlu.PassVault.AppIntros.SliderIntro
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:69:9-72:52
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:73:9-76:52
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:72:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:76:13-49
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:71:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:75:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:70:13-50
-receiver#com.mrntlu.PassVault.Widgets.ButtonsWidgetProvider
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:74:9-82:20
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:74:19-64
-intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:75:13-77:29
-action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:76:17-84
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:76:25-81
-meta-data#android.appwidget.provider
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:79:13-81:67
-	android:resource
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:81:17-64
-	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:80:17-58
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:74:13-50
 activity#com.mrntlu.PassVault.Offline.OfflineActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:84:9-88:56
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:78:9-82:56
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:87:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:81:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:88:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:82:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:86:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:80:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:85:13-52
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:79:13-52
+receiver#com.mrntlu.PassVault.Widgets.ButtonsWidgetProvider
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:84:9-92:20
+	android:name
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:84:19-64
+intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:85:13-87:29
+action#android.appwidget.action.APPWIDGET_UPDATE
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:86:17-84
+	android:name
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:86:25-81
+meta-data#android.appwidget.provider
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:89:13-91:67
+	android:resource
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:91:17-64
+	android:name
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:90:17-58
 uses-sdk
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml

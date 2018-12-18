@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/adView"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/passvault_new_logo" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -43,9 +43,10 @@
         android:visibility="visible"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-7421130457283934/1657074752"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fingerPrintLayout"
@@ -53,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/side_button_white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
@@ -177,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.37" />
+        app:layout_constraintGuide_percent="0.335" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

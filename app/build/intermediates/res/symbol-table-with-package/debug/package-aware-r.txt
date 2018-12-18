@@ -1385,9 +1385,9 @@ id list_item
 id loginButton
 id logoImage
 id mailAccounts
+id mailRV
+id mailSearch
 id mailSearchView
-id mailVaultRV
-id mailVaultSearch
 id main
 id masked
 id media_actions
@@ -1412,6 +1412,8 @@ id otherAddButton
 id otherDesc
 id otherList
 id otherPassword
+id otherRV
+id otherSearch
 id otherSearchView
 id outline
 id packed
@@ -1542,6 +1544,8 @@ id unlabeled
 id up
 id useLogo
 id userAccountSearchView
+id userRV
+id userSearch
 id usernameEditText
 id usernameLayout
 id view_offset_helper
@@ -1640,6 +1644,8 @@ layout dialog_send_as_mail
 layout dialog_set_fingerprint
 layout dialog_useraccounts
 layout fragment_mail_vault
+layout fragment_other_accounts
+layout fragment_user_accounts
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
