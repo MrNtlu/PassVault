@@ -23,9 +23,9 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:icon="@mipmap/logonew"
+        android:icon="@mipmap/my_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/my_logo"
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
@@ -93,8 +93,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.mrntlu.PassVault.Offline.OfflineAddActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
-        <receiver android:name="com.mrntlu.PassVault.Widgets.ButtonsWidgetProvider" >
+        <!--
+        <receiver android:name=".Widgets.ButtonsWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -103,6 +109,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
+        -->
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

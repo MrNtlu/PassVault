@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.RealmResults;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class FragmentUserAccounts extends Fragment {
         v=inflater.inflate(R.layout.fragment_user_accounts, container, false);
         recyclerView=(RecyclerView)v.findViewById(R.id.userRV);
         searchView=(SearchView)v.findViewById(R.id.userSearch);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         mViewModel= ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
         mViewModel.initAccountObjects();
         mViewModel.getmUserObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<AccountsObject>>() {
@@ -57,22 +60,38 @@ public class FragmentUserAccounts extends Fragment {
         });
         initRecyclerView();
 
-//        FloatingActionButton fab=(FloatingActionButton)getActivity().findViewById(R.id.addButton);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                accountsViewModel.addAccountObject("Test Account","Test Accounts Object","My Desc.");
-//            }
-//        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b){
+                    initRecyclerView();
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                RealmResults<AccountsObject> searchAccount = mViewModel.searchAccountObject(s).getValue();
+                userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool);
+                recyclerView.setAdapter(userAccountsRVAdapter);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.trim().length()==0){
+                    initRecyclerView();
+                }
+                return false;
+            }
+        });
 
         return v;
     }
 
     private void initRecyclerView(){
-        //TODO View Model
         userAccountsRVAdapter=new UserAccountsRVAdapter(getContext(),mViewModel.getmUserObjects().getValue(),passBool);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(userAccountsRVAdapter);
     }
 }

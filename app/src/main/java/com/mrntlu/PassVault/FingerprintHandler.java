@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.InterstitialAd;
+
 import es.dmoral.prefs.Prefs;
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -25,6 +27,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     Button controlButton;
     Switch fingerPrintSwitch;
     CancellationSignal cancellationSignal;
+    InterstitialAd interstitalAd;
 
     public FingerprintHandler(Context context, TextView controlText, ImageView controlImage, Button controlButton,Switch fingerPrintSwitch,TextView fingerPrintText) {
         this.context = context;
@@ -35,7 +38,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         this.fingerPrintText=fingerPrintText;
     }
 
-    public FingerprintHandler(Context context, TextView controlText, Class activity, ImageView controlImage, Button controlButton,Switch fingerPrintSwitch,TextView fingerPrintText) {
+    public FingerprintHandler(Context context, TextView controlText, Class activity, ImageView controlImage, Button controlButton,Switch fingerPrintSwitch,TextView fingerPrintText,InterstitialAd interstitalAd) {
         this.context = context;
         this.controlText = controlText;
         this.activity = activity;
@@ -43,6 +46,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         this.controlButton = controlButton;
         this.fingerPrintSwitch = fingerPrintSwitch;
         this.fingerPrintText=fingerPrintText;
+        this.interstitalAd=interstitalAd;
     }
 
     public void startAuth(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject){
@@ -83,9 +87,14 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         if (b){
             controlImage.setImageDrawable(context.getDrawable(R.drawable.ic_checked));
             if (activity!=null){
-                Intent intent=new Intent(context,activity);
-                context.startActivity(intent);
-            }else{
+                if ((MainActivity.adCounter%4==1) && interstitalAd.isLoaded()){
+                    interstitalAd.show();
+                }else {
+                    Intent intent = new Intent(context, activity);
+                    context.startActivity(intent);
+                }
+            }
+            else{
                 if (Prefs.with(context).readInt(MainActivity.PREF_KEY)==0) {
                     fingerPrintSwitch.setChecked(true);
                     Prefs.with(context).writeInt(MainActivity.PREF_KEY, 1);

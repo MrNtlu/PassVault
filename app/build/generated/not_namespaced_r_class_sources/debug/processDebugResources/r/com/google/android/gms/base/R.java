@@ -62,36 +62,36 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int adjust_height = 0x7f08001f;
-        public static final int adjust_width = 0x7f080020;
-        public static final int auto = 0x7f080027;
-        public static final int dark = 0x7f080050;
-        public static final int icon_only = 0x7f080091;
-        public static final int light = 0x7f0800a0;
-        public static final int none = 0x7f0800b9;
-        public static final int standard = 0x7f080116;
-        public static final int wide = 0x7f080151;
+        public static final int adjust_height = 0x7f080020;
+        public static final int adjust_width = 0x7f080021;
+        public static final int auto = 0x7f080028;
+        public static final int dark = 0x7f080051;
+        public static final int icon_only = 0x7f080096;
+        public static final int light = 0x7f0800a5;
+        public static final int none = 0x7f0800be;
+        public static final int standard = 0x7f08011b;
+        public static final int wide = 0x7f080157;
     }
     public static final class string {
         private string() {}
 
-        public static final int common_google_play_services_enable_button = 0x7f0d003d;
-        public static final int common_google_play_services_enable_text = 0x7f0d003e;
-        public static final int common_google_play_services_enable_title = 0x7f0d003f;
-        public static final int common_google_play_services_install_button = 0x7f0d0040;
-        public static final int common_google_play_services_install_text = 0x7f0d0041;
-        public static final int common_google_play_services_install_title = 0x7f0d0042;
-        public static final int common_google_play_services_notification_channel_name = 0x7f0d0043;
-        public static final int common_google_play_services_notification_ticker = 0x7f0d0044;
-        public static final int common_google_play_services_unsupported_text = 0x7f0d0046;
-        public static final int common_google_play_services_update_button = 0x7f0d0047;
-        public static final int common_google_play_services_update_text = 0x7f0d0048;
-        public static final int common_google_play_services_update_title = 0x7f0d0049;
-        public static final int common_google_play_services_updating_text = 0x7f0d004a;
-        public static final int common_google_play_services_wear_update_text = 0x7f0d004b;
-        public static final int common_open_on_phone = 0x7f0d004c;
-        public static final int common_signin_button_text = 0x7f0d004d;
-        public static final int common_signin_button_text_long = 0x7f0d004e;
+        public static final int common_google_play_services_enable_button = 0x7f0e003d;
+        public static final int common_google_play_services_enable_text = 0x7f0e003e;
+        public static final int common_google_play_services_enable_title = 0x7f0e003f;
+        public static final int common_google_play_services_install_button = 0x7f0e0040;
+        public static final int common_google_play_services_install_text = 0x7f0e0041;
+        public static final int common_google_play_services_install_title = 0x7f0e0042;
+        public static final int common_google_play_services_notification_channel_name = 0x7f0e0043;
+        public static final int common_google_play_services_notification_ticker = 0x7f0e0044;
+        public static final int common_google_play_services_unsupported_text = 0x7f0e0046;
+        public static final int common_google_play_services_update_button = 0x7f0e0047;
+        public static final int common_google_play_services_update_text = 0x7f0e0048;
+        public static final int common_google_play_services_update_title = 0x7f0e0049;
+        public static final int common_google_play_services_updating_text = 0x7f0e004a;
+        public static final int common_google_play_services_wear_update_text = 0x7f0e004b;
+        public static final int common_open_on_phone = 0x7f0e004c;
+        public static final int common_signin_button_text = 0x7f0e004d;
+        public static final int common_signin_button_text_long = 0x7f0e004e;
     }
     public static final class styleable {
         private styleable() {}

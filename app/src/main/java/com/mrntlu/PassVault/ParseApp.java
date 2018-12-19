@@ -12,7 +12,7 @@ import io.realm.RealmConfiguration;
 
 public class ParseApp extends Application {
 
-    /*TODO Documentation
+    /*Documentation
     https://www.back4app.com/docs/platform/get-started/
     https://docs.parseplatform.org/android/guide
 
@@ -47,7 +47,7 @@ public class ParseApp extends Application {
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
 
-        //TODO Save new object
+        //Save new object
 /*    ParseObject score=new ParseObject("Score");
     score.put("username","burak");
     score.put("score",55);
@@ -63,7 +63,7 @@ public class ParseApp extends Application {
         }
     });*/
 
-        //TODO Query
+        //Query
       /*ParseQuery<ParseObject> query=ParseQuery.getQuery("Score");
       //query.getInBackground();
       //query.where("username","burak"); where if

@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import es.dmoral.prefs.Prefs;
-
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
@@ -20,36 +19,29 @@ import android.preference.PreferenceManager;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.mrntlu.PassVault.AppIntros.SliderIntro;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
-import com.mrntlu.PassVault.Offline.MailVault;
 import com.mrntlu.PassVault.Offline.OfflineActivity;
-import com.mrntlu.PassVault.Offline.UserAccounts;
 import com.mrntlu.PassVault.Online.LoginActivity;
-
 import java.security.KeyStore;
 import java.util.ArrayList;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button mailAccountsButton, userAccountsButton,sendMail,othersButton;
 
     private String userAccountsMailText;
 
@@ -61,12 +53,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> otherAccountID=new ArrayList<String>();
     private ArrayList<String> otherAccountPassword=new ArrayList<String>();
 
+    private Class activity;
+    private InterstitialAd interstitialAd;
+    public static int adCounter=0;
+
     Dialog customMailDialog;
     Dialog fingerPrintDialog;
     AdView adView;
     CardView onlineButton,offlineButton;
-
     ClassController classController;
+    ImageButton helpButton;
 
     //FingerPrint
     private FingerprintManager fingerprintManager;
@@ -94,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        MainActivity.adCounter++;
         if (adView != null) {
             adView.resume();
         }
@@ -116,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -138,11 +134,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
-
-        /*mailAccountsButton =(Button)findViewById(R.id.vault);
-        userAccountsButton =(Button)findViewById(R.id.bankVault);
-        sendMail=(Button)findViewById(R.id.sendMail);
-        othersButton=(Button)findViewById(R.id.userAccounts);*/
+        interstitialAd=new InterstitialAd(this);
+        //interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
+        //Todo Test
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        helpButton=(ImageButton)findViewById(R.id.helpButton);
         adView=(AdView)findViewById(R.id.adView);
         onlineButton=findViewById(R.id.onlineButton);
         offlineButton=findViewById(R.id.offlineButton);
@@ -203,16 +200,34 @@ public class MainActivity extends AppCompatActivity {
         onlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
+               fingerPrintDialog=new Dialog(MainActivity.this);
+               setFingerPrint(LoginActivity.class);
             }
         });
         
         offlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,OfflineActivity.class);
-                startActivity(intent);
+                fingerPrintDialog=new Dialog(MainActivity.this);
+                setFingerPrint(OfflineActivity.class);
+            }
+        });
+
+        interstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                if (activity!=null) {
+                    Intent intent = new Intent(MainActivity.this, activity);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SliderIntro.class));
             }
         });
 
@@ -223,28 +238,11 @@ public class MainActivity extends AppCompatActivity {
                 showMailPopup(v);
             }
         });
-
-        mailAccountsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fingerPrintDialog=new Dialog(MainActivity.this);
-                setFingerPrint(MailVault.class);
-            }
-        });
-        userAccountsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fingerPrintDialog=new Dialog(MainActivity.this);
-                setFingerPrint(UserAccounts.class);
-            }
-        });
         othersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fingerPrintDialog=new Dialog(MainActivity.this);
-                //TODO!!!!!! OTHERACCOUNTS!!!!!
                 setFingerPrint(LoginActivity.class);
-                //TODO !!!!!!!!!!!!!!!!!!!!!!!!!
 //                Intent intent=new Intent(MainActivity.this,OtherAccounts.class);
 //                startActivity(intent);
             }
@@ -255,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         this.setFingerPrint(null);
     }
 
-    private void setFingerPrint(Class activity){
+    private void setFingerPrint(final Class activity){
         Button controlButton;
         ImageView controlImage;
         TextView controlText,dialogTitle;
@@ -305,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
                         FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
                         FingerprintHandler fingerprintHandler;
                         if (activity != null) {
-                            fingerprintHandler = new FingerprintHandler(this, controlText, activity, controlImage, controlButton, fingerPrintSwitch, fingerPrintText);
+                            fingerprintHandler = new FingerprintHandler(this, controlText, activity, controlImage, controlButton, fingerPrintSwitch, fingerPrintText,interstitialAd);
                         } else {
                             fingerprintHandler = new FingerprintHandler(this, controlText, controlImage, controlButton, fingerPrintSwitch, fingerPrintText);
                         }
@@ -315,17 +313,23 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 controlText.setText(getString(R.string.cant_use_fingerprint));
             }
-        }else{
+        }
+        else{
             controlText.setText( getString(R.string.fingerprint_not_supported));
         }
 
         if (activity!=null){
+            this.activity=activity;
             if (Prefs.with(MainActivity.this).readInt(PREF_KEY)==1) {
                 dialogTitle.setText(getString(R.string.fingerprint_control));
                 fingerPrintDialog.show();
             }else{
-                Intent intent=new Intent(MainActivity.this,activity);
-                startActivity(intent);
+                if ((MainActivity.adCounter%4==1) && interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }else{
+                    Intent intent=new Intent(MainActivity.this,activity);
+                    startActivity(intent);
+                }
             }
         }else{
             fingerPrintDialog.show();
@@ -341,9 +345,7 @@ public class MainActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.M)
     private void generateKey() {
-
         try {
-
             keyStore = KeyStore.getInstance("AndroidKeyStore");
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
 
@@ -360,9 +362,7 @@ public class MainActivity extends AppCompatActivity {
             keyGenerator.generateKey();
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
 
     }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.mrntlu.PassVault.Offline.Adapters.MailVaultRVAdapter;
+import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
 import com.mrntlu.PassVault.R;
@@ -28,6 +29,7 @@ public class FragmentMailVault extends Fragment {
     private MailVaultRVAdapter mailVaultRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<Boolean>();
     private OfflineViewModel offlineViewModel;
+    public static OfflineViewModel staticViewModel;
 
     public static FragmentMailVault newInstance() {
         FragmentMailVault fragment = new FragmentMailVault();
@@ -46,7 +48,13 @@ public class FragmentMailVault extends Fragment {
         v=inflater.inflate(R.layout.fragment_mail_vault, container, false);
         recyclerView=(RecyclerView)v.findViewById(R.id.mailRV);
         searchView=(SearchView)v.findViewById(R.id.mailSearch);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         offlineViewModel = ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
+
+        staticViewModel=offlineViewModel;
+
         offlineViewModel.initMailObjects();
         offlineViewModel.getMailObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<MailObject>>() {
             @Override
@@ -60,30 +68,38 @@ public class FragmentMailVault extends Fragment {
         });
         initRecyclerView();
 
-//        FloatingActionButton fab=(FloatingActionButton)getActivity().findViewById(R.id.addButton);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                offlineViewModel.addMailObject("Test","test Password");
-//            }
-//        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b){
+                    initRecyclerView();
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                RealmResults<MailObject> searchMail=offlineViewModel.searchMailObject(s).getValue();
+                mailVaultRVAdapter=new MailVaultRVAdapter(getContext(),searchMail,passBool);
+                recyclerView.setAdapter(mailVaultRVAdapter);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.trim().length()==0){
+                    initRecyclerView();
+                }
+                return false;
+            }
+        });
+
         return v;
     }
 
     private void initRecyclerView(){
         mailVaultRVAdapter=new MailVaultRVAdapter(getContext(), offlineViewModel.getMailObjects().getValue(),passBool);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mailVaultRVAdapter);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 }

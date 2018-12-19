@@ -11,23 +11,28 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
+        android:src="@drawable/ic_add_black_24dp"
         app:backgroundTint="@color/white"
+        app:elevation="1dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_add_black_24dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        app:tabTextAppearance="@style/CustomTabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabMode="fixed" />
+        app:tabBackground="@color/flatblue"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/CustomTabLayout"
+        app:tabTextColor="@color/white"
+        android:elevation="3dp"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

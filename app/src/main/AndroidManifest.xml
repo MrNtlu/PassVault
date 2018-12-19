@@ -12,14 +12,15 @@
     <application
         android:name=".ParseApp"
         android:allowBackup="true"
-        android:icon="@mipmap/logonew"
+        android:icon="@mipmap/my_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/my_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <meta-data
             android:name="com.parse.SERVER_URL"
             android:value="@string/back4app_server_url" />
@@ -44,13 +45,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Online.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <!--<activity
+        <!--
+        <activity
             android:name=".Offline.MailVault"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
@@ -64,23 +65,29 @@
             android:name=".Offline.OtherAccounts"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />-->
+            android:windowSoftInputMode="stateHidden" />
+        -->
         <activity
             android:name=".Online.SignupActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AppIntros.SliderIntro"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Offline.OfflineActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity android:name=".Offline.OfflineAddActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
 
+        <!--
         <receiver android:name=".Widgets.ButtonsWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -90,6 +97,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/buttons_app_widget_info" />
         </receiver>
+        -->
 
 
     </application>
