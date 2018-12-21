@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +49,6 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         this.otherObjects=otherObjects;
         this.passBool = passBool;
         classController=new ClassController(context);
-        arrayLists=new ArrayList<ArrayList>() {{
-            add(passBool); }};
-    }
-
-    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool,boolean isSearching) {
-        this(context,otherObjects,passBool);
-        this.isSearching=isSearching;
     }
 
     @Override
@@ -119,12 +113,13 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
                                     passBool.remove(position);
                                     otherObjects.get(position).deleteFromRealm();
                                 }catch (NullPointerException e){
+                                    Toasty.error(context,"Error: "+e.getMessage(),Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
-                                    Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                        notifyDataSetChanged();
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position,getItemCount());
                     }
                 });
                 builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {

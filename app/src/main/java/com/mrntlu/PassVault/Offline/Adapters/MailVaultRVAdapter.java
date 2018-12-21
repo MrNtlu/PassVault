@@ -13,14 +13,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
+import com.mrntlu.PassVault.Offline.FragmentMailVault;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.R;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
@@ -47,14 +50,6 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
         this.mailObjects=mailObjects;
         this.passBool=passBool;
         classController=new ClassController(context);
-        arrayLists=new ArrayList<ArrayList>() {{
-            add(passBool); }};
-    }
-
-    public MailVaultRVAdapter(Context context,final RealmResults<MailObject> mailObjects, final ArrayList<Boolean> passBool,Boolean isSearching) {
-        this(context,mailObjects,passBool);
-        this.isSearching=isSearching;
-
     }
 
     @Override
@@ -119,13 +114,15 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
                                 try {
                                     passBool.remove(position);
                                     mailObjects.get(position).deleteFromRealm();
+                                    Snackbar snackbar=Snackbar.make();
                                 }catch (NullPointerException e){
                                     e.printStackTrace();
                                     Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                        notifyDataSetChanged();
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position,getItemCount());
                     }
                 });
                 builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
@@ -184,6 +181,13 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
             }
         });
         customDialog.show();
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        //TODO Detach memory leak test
+        Log.d("info", "onDetachedFromRecyclerView: detached");
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

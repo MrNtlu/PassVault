@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,13 +46,6 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         this.userObjects=userObjects;
         this.passBool = passBool;
         classController=new ClassController(context);
-        arrayLists=new ArrayList<ArrayList>() {{
-            add(passBool); }};
-    }
-
-    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool,boolean isSearching) {
-        this(context,userObjects,passBool);
-        this.isSearching=isSearching;
     }
 
     @Override
@@ -121,8 +115,9 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
                                 }
                             }
                         });
-                        Toasty.success(context,"Deleted", Toast.LENGTH_SHORT).show();
-                        notifyDataSetChanged();
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position,getItemCount());
+
                     }
                 });
                 builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {

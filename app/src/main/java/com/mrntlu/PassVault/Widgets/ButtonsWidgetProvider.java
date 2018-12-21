@@ -6,11 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
-
-import com.mrntlu.PassVault.Offline.MailVault;
-import com.mrntlu.PassVault.Offline.OtherAccounts;
 import com.mrntlu.PassVault.R;
-import com.mrntlu.PassVault.Offline.UserAccounts;
 
 public class ButtonsWidgetProvider extends AppWidgetProvider {
 
@@ -56,7 +52,7 @@ public class ButtonsWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equalsIgnoreCase(MAIL_VAULT)){
+        /*if (intent.getAction().equalsIgnoreCase(MAIL_VAULT)){
             Intent clickIntent=new Intent(context,MailVault.class);
             context.startActivity(clickIntent);
         }else if (intent.getAction().equalsIgnoreCase(USER_ACCOUNTS)){
@@ -65,7 +61,7 @@ public class ButtonsWidgetProvider extends AppWidgetProvider {
         }else if (intent.getAction().equalsIgnoreCase(OTHER_ACCOUNTS)){
             Intent clickIntent=new Intent(context,OtherAccounts.class);
             context.startActivity(clickIntent);
-        }
+        }*/
 
         super.onReceive(context, intent);
     }

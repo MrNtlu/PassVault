@@ -1,4 +1,4 @@
-#Wed Dec 19 23:48:28 EET 2018
+#Fri Dec 21 19:14:53 EET 2018
 base.0=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/6
 path.0=classes.dex
 renamed.0=classes.dex

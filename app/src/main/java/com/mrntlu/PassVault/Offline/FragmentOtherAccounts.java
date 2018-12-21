@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mrntlu.PassVault.Offline.Adapters.OthersRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
 import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
@@ -92,6 +94,21 @@ public class FragmentOtherAccounts extends Fragment {
             }
         });
 
+        final FloatingActionButton fab=(FloatingActionButton) getActivity().findViewById(R.id.addButton);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (fab!=null) {
+                    if (dy >= 1) {
+                        fab.animate().alpha(0.3f).setDuration(140);
+                    }else{
+                        fab.animate().alpha(1f).setDuration(140);
+                    }
+                }
+            }
+        });
+
         return v;
     }
 
@@ -100,4 +117,11 @@ public class FragmentOtherAccounts extends Fragment {
         recyclerView.setAdapter(othersRVAdapter);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mViewModel!=null){
+            mViewModel.closeRealm();
+        }
+    }
 }

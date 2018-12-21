@@ -132,4 +132,8 @@ public class OfflineViewModel extends AndroidViewModel {
     public LiveData<RealmResults<OthersObject>> getmOtherObjects() {
         return mOtherObjects;
     }
+
+    public void closeRealm(){
+        mRealm.close();
+    }
 }

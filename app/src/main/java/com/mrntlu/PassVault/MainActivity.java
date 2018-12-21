@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                 dialogTitle.setText(getString(R.string.fingerprint_control));
                 fingerPrintDialog.show();
             }else{
-                if ((MainActivity.adCounter%4==1) && interstitialAd.isLoaded()){
+                if ((MainActivity.adCounter%3==1) && interstitialAd.isLoaded()){
                     interstitialAd.show();
                 }else{
                     Intent intent=new Intent(MainActivity.this,activity);

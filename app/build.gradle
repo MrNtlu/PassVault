@@ -9,6 +9,7 @@ android {
         targetSdkVersion 28
         versionCode 13
         versionName "5.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -41,6 +42,7 @@ dependencies {
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
     implementation 'com.android.support:design:28.0.0'
     implementation 'io.realm:android-adapters:2.1.1'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     // Lifecycle components
     def lifecycle_version = "2.0.0"

@@ -35,6 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class ClassController {
 
     Context context;
+    String passHolder = "••••••••";
 
     public ClassController(Context context) {
         this.context = context;
@@ -61,16 +62,14 @@ public class ClassController {
 
     public void passwordHider(ArrayList<Boolean> passBool, TextView passwordText, String passString,int position){
         try {
-            if (!passBool.get(position)) {
-                passwordText.setText(passString);
-                passBool.set(position, true);
-            } else if (passBool.get(position)) {
-                String passHolder = "";
-                for (int i = 0; i < passString.length(); i++) {
-                    passHolder += "*";
+            if (position<passBool.size()) {
+                if (!passBool.get(position)) {
+                    passwordText.setText(passString);
+                    passBool.set(position, true);
+                } else if (passBool.get(position)) {
+                    passwordText.setText(passHolder);
+                    passBool.set(position, false);
                 }
-                passwordText.setText(passHolder);
-                passBool.set(position, false);
             }
         }catch (IndexOutOfBoundsException e){
             indexError(e);
@@ -79,14 +78,12 @@ public class ClassController {
 
     public void passwordInitHider(ArrayList<Boolean> passBool, TextView passwordText, String passString,int position){
         try {
-            String passHolder = "";
-            if (!passBool.get(position)) {
-                for (int i = 0; i < passString.length(); i++) {
-                    passHolder += "*";
+            if (position<passBool.size()) {
+                if (!passBool.get(position)) {
+                    passwordText.setText(passHolder);
+                } else {
+                    passwordText.setText(passString);
                 }
-                passwordText.setText(passHolder);
-            } else {
-                passwordText.setText(passString);
             }
         }catch (IndexOutOfBoundsException e){
             indexError(e);
@@ -166,22 +163,6 @@ public class ClassController {
                 }
             }
         }
-    }
-
-    private void deleteAllCredentials(String FILE_NAME){
-        File dir=context.getFilesDir();
-        File file=new File(dir,FILE_NAME);
-        boolean deleted=file.delete();
-        if (deleted){
-            Toasty.success(context,"Deleted.",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void deleteCredentials(String FILE_NAME,ArrayList<String> list,FileOutputStream fos){
-        File dir = context.getFilesDir();
-        File file = new File(dir,FILE_NAME);
-        boolean deleted = file.delete();
-        saveCredentials(list,fos,FILE_NAME);
     }
 
     public void addNewItem(TextView[] textViews,ArrayList[] arrayLists,FileOutputStream fos,String[] FILE_NAMES){

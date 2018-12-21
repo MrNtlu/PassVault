@@ -159,6 +159,11 @@ attr chipStrokeWidth
 attr chipStyle
 attr circleCrop
 attr circleRadius
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
+attr civ_fill_color
 attr closeIcon
 attr closeIconEnabled
 attr closeIconEndPadding
@@ -1173,6 +1178,8 @@ drawable ic_checked
 drawable ic_clear_white_48dp
 drawable ic_close_button
 drawable ic_cloud
+drawable ic_cloud_2
+drawable ic_database
 drawable ic_error_outline_white_48dp
 drawable ic_fingerprint_black_24dp
 drawable ic_help_black_24dp
@@ -1180,10 +1187,13 @@ drawable ic_info_outline_white_48dp
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_padlock
+drawable ic_padlock_1
 drawable ic_protection
 drawable ic_save_black_24dp
 drawable ic_search_black_24dp
 drawable ic_share_black_24dp
+drawable ic_vault
 drawable ic_warning_outline_white
 drawable ic_warning_white_48dp
 drawable mtrl_snackbar_background
@@ -1203,10 +1213,11 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable passvault_appwidget_preview
 drawable passvault_logo
+drawable passvault_logo_vector
 drawable passvault_new_logo
-drawable rounded_darkwhite
 drawable rounded_light_blue
 drawable rounded_red
+drawable rounded_theme
 drawable rounded_white
 drawable side_button_white
 drawable toast_frame
@@ -1351,6 +1362,7 @@ id ghost_view
 id gone
 id group_divider
 id groups
+id guideline
 id guideline10
 id guideline11
 id guideline2
@@ -1367,6 +1379,7 @@ id idInput
 id idText
 id ifRoom
 id image
+id imageView
 id indicator_container
 id info
 id invisible
@@ -2358,6 +2371,7 @@ styleable ButtonBarLayout allowStacking
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color civ_fill_color
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha

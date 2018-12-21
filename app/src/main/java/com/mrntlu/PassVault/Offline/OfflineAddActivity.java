@@ -34,13 +34,10 @@ public class OfflineAddActivity extends AppCompatActivity {
             Toasty.error(OfflineAddActivity.this,"Error Occured, Try again.",Toast.LENGTH_SHORT).show();
             finish();
         }
-
         if (objectID==1){
-            Log.d("info", "onCreate: girdi2");
             editText3.setVisibility(View.VISIBLE);
         }else if (objectID==2){
             editText.setHint("Description");
-            Log.d("info", "onCreate: girdi3");
         }
 
         toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -73,16 +70,24 @@ public class OfflineAddActivity extends AppCompatActivity {
 
     private void addRealmObject(){
         if (FragmentMailVault.staticViewModel!=null) {
-            switch (objectID) {
-                case 0:
-                    FragmentMailVault.staticViewModel.addMailObject("myMail", "mPassword");
-                    break;
-                case 1:
-                    FragmentMailVault.staticViewModel.addUserObject("myUser", "mPassword", "mDescriotn");
-                    break;
-                case 2:
-                    FragmentMailVault.staticViewModel.addOtherObject("myDescription", "mPassword");
-                    break;
+            if (!(editText.toString().trim().equals("") && editText2.toString().trim().equals(""))) {
+                switch (objectID) {
+                    case 0:
+                        FragmentMailVault.staticViewModel.addMailObject(editText.getText().toString(), editText2.getText().toString());
+                        break;
+                    case 1:
+                        if (!editText3.toString().trim().equals("")) {
+                            FragmentMailVault.staticViewModel.addUserObject(editText.getText().toString(), editText2.getText().toString(), editText3.getText().toString());
+                        }else{
+
+                        }
+                        break;
+                    case 2:
+                        FragmentMailVault.staticViewModel.addOtherObject(editText.getText().toString(), editText2.getText().toString());
+                        break;
+                }
+            }else{
+
             }
         }
         finish();

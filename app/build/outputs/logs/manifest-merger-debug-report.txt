@@ -4,75 +4,77 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/e94c9fa68c5cd64248b9c856ca8b8e21/AndroidManifest.xml:2:1-10:12
-MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/9fd802fadfff20c467ee9de02cb7494c/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:2:1-11:12
-MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:17:1-24:12
-MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/02658b0128b8e0856301e771682ae15c/AndroidManifest.xml:2:1-13:12
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/4b1657feaa09631baacd2c0aa17c80ae/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/f497bdbe3558ff55c949912b6ebd98e9/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/8c6f996cba174f082b2b867ecee773b6/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:17:1-34:12
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:17:1-55:12
-MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/a25b72d75bcafa955f7a92c632834a11/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:17:1-40:12
-MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/dbaf2283c3ae12217c59150009fb8fb6/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:17:1-42:12
-MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/55cd9083365b4bf0351c1b3ab721930a/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:17:1-30:12
-MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/6d2643638c55e903aaf15f9781023f71/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:17:1-59:12
-MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/b824b21c91b98f1ffc1bdffc9f80b623/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:2:1-17:12
-MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/fcd4a6484f7b32225c7ec0ef6d58bd08/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/24deca0d4691e73c8b24e09b4dbda369/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/cc30ca09d2eb5f438ff8c608d7524a79/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/d6cc94c97bba0d7981ba874e7d0185df/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/3bfe1f589dd158fdf5cdcd0da7072812/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/e0d52f66b0f53557dc89eae68995544c/AndroidManifest.xml:17:1-22:12
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:2:1-19:12
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:10:1-24:12
-MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/6561f3a96bc55983e62482bfb66fcecc/AndroidManifest.xml:2:1-10:12
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/2aeee9adc35612ee30e56cf1bfda65fa/AndroidManifest.xml:17:1-25:12
-MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/14e2ae5d7f6c3df38d708b3721581234/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/5ff4c75ad4ccae199bd040246625b5c4/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/0a77d3faa2dc7795307df3782111d946/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/c7daf565c20fa9d4784faae00b3b55bd/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/d35b86f49412465dab544ac4e42ab070/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/5be185e10693b2d0eed2ee816ac54a64/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/7d5c9758f3e603a131246f2de1417165/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/68673f1e7899500646f92ea5660768b9/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/d73bcf01f4c909c19b5e50d23050b6a5/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/74bbef9d20a3dfd754b07754ef7981ff/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/0106b201d75b1b2feffd3ba440c3c803/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/03ca8f2f3d7ab28b916737ccd22b4107/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/6a464d6ea9077850aade83964b6ce552/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/84f3edfbff85b839b524a66812945450/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/2a1ddb60cc48946ef7e630d6d64b9354/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/85e9cd79bc7c116325254af7da844e27/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/607c2be5765752a4902aa222fbe521c1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/40d0afbc4ca724b5248e49b49b859b86/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/e71168610c41fc1c30975fe418ce175c/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/c59208a8176db7616bb63a7b6fc94a7e/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/60963db910fad52f59fdf97d1ff34bac/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/cc0c1cc6be9816f9057f9f480a60f5aa/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/52fd61606a5d2604c905d975494ac079/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/412f9001c718a1e99c91a072a157cd83/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0688ae2c1640e4602ef156ad8ef9d97b/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/01251b87648f38bca7386247124db9b5/AndroidManifest.xml:17:1-25:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/97fdb093927daa2a6d3b8679fdcc6bbe/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/376d6e7f00daaf6fb35aa84877b83372/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/16f880b703fd8b77f2acc4079a9b5fc5/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/885e81c10fe9524ec34455abaadfe5e7/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/65e0761c1d0c3775aa8e7015a4bbb8dd/AndroidManifest.xml:2:1-9:12
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:2:1-13:12
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:45:1-56:12
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:2:1-13:12
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:22:1-33:12
+MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:2:1-10:12
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/b691d37dcfcebdaae7a9634daa321311/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/12fb21eb2e6e1f24a76a22d82b0922d7/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:17:1-34:12
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/f632f465dfdec01017d6720e9c43dd28/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/6edbdec03c106771d79708f3e5542aec/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/7b31081ae3329cea0b88c08be53d383e/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:17:1-30:12
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/e05a8d5f44c90eac3e99d3d51190aa8b/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/833acc7f30ceaefd1709a701fc16b5b8/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:2:1-17:12
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/662fbc139d98ede192670a2c0ea4e2ec/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/a083f28dc0b0eed770964dc9fb4d3106/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/83620b6ddab3b8e35100cea2791a3062/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:17:1-22:12
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:2:1-19:12
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:10:1-24:12
+MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:2:1-10:12
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:17:1-25:12
+MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/f8d96d284552952f9a9bcd7db68f5966/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/4bda204b3d6ffa2b2b165d83adb0c7bf/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/c209c95de3f639f6d83d39e898f4789f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/ff031433eb3ac171691c32a345bd071b/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/0a8a8b48ade01d27671e9371d0bfb485/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/69e928cb332125dfda3fb1874e849869/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/6f4d220e670e24292eba40a5b96930aa/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/5e4825d51eba37e400792bd7ba892899/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a8b3af289255f50b55d48389400efeed/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/fb05f693fe0d9c387a8a3e5dbb699cc0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/b9f5eb1604a4dd9538b704dcfac9db2d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/5c9043c2c4a18a3ec44f12c34f815c2d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/99af769db07a9e2f4f279036d2c6897d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/47725b242cef477c5157c7d298f72489/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/debec0d05ccbc2e271c519341e5052d7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/9af7a0f6cea87e1690b96fff754da6e5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/d0583a1d66414f4bf0e4ed7b26367b1e/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/c5b9eb20ea8f1a7ca2d465bee9d9548d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/ce6dfd342b24b280e3f284c2e7e296cf/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/87cbdde3fe64c44e119d2f9100e1aa01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/e5220ec5e8ee250b4e2e605ad68b60ca/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/06750ead6d21341af867dcaef2694e6a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/b66e54afeafdca0c592491ede104714c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/20c4e566789a831f10359dca403978e0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0311d9cf91067e0eeebff9b8cdfe8b8f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/ccd49ba49da036aea5d8c176029bf250/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/5237b81ea7de9b178354e12b6a37866e/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/cb63f7cc0e88985dbfce52c61b54b5b3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/a453863ffe9e82ea749ace6c82d26313/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/8f23a78358ab525d2cf2d487306ac58f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:2:1-13:12
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:45:1-56:12
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:2:1-13:12
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:22:1-33:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
@@ -92,48 +94,48 @@ INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidM
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:5:5-79
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:22:5-79
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:22:5-79
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:20:5-79
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:20:5-79
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:22:5-79
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:20:5-79
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:20:5-79
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:5:22-76
 uses-permission#android.permission.INTERNET
 ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:6:5-67
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:23:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:9:5-67
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:19:5-67
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:19:5-67
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:52:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:52:5-67
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:9:5-67
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:29:5-67
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:29:5-67
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:23:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:9:5-67
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:19:5-67
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:19:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:29:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:29:5-67
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:6:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
@@ -154,72 +156,74 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:10:22-69
 application
 ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-103:19
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:9:5-20
-MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:22:5-20
-MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/02658b0128b8e0856301e771682ae15c/AndroidManifest.xml:11:5-20
-MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/02658b0128b8e0856301e771682ae15c/AndroidManifest.xml:11:5-20
-MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/8c6f996cba174f082b2b867ecee773b6/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/8c6f996cba174f082b2b867ecee773b6/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:26:5-32:19
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:26:5-32:19
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:28:5-53:19
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:28:5-53:19
-MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/a25b72d75bcafa955f7a92c632834a11/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/a25b72d75bcafa955f7a92c632834a11/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:28:5-38:19
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:28:5-38:19
-MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/dbaf2283c3ae12217c59150009fb8fb6/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/dbaf2283c3ae12217c59150009fb8fb6/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:26:5-40:19
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:26:5-40:19
-MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/55cd9083365b4bf0351c1b3ab721930a/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/55cd9083365b4bf0351c1b3ab721930a/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:27:5-28:19
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:27:5-28:19
-MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/6d2643638c55e903aaf15f9781023f71/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/6d2643638c55e903aaf15f9781023f71/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:28:5-57:19
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:28:5-57:19
-MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/b824b21c91b98f1ffc1bdffc9f80b623/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/b824b21c91b98f1ffc1bdffc9f80b623/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:9:5-15:19
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:9:5-15:19
-MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/fcd4a6484f7b32225c7ec0ef6d58bd08/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/fcd4a6484f7b32225c7ec0ef6d58bd08/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/24deca0d4691e73c8b24e09b4dbda369/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/24deca0d4691e73c8b24e09b4dbda369/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/cc30ca09d2eb5f438ff8c608d7524a79/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/cc30ca09d2eb5f438ff8c608d7524a79/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:22:5-26:19
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:11:5-17:19
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:11:5-17:19
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:22:5-20
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:22:5-20
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/2aeee9adc35612ee30e56cf1bfda65fa/AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/2aeee9adc35612ee30e56cf1bfda65fa/AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:22:5-28:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:22:5-28:19
-MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:22:5-89
-MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:22:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/01251b87648f38bca7386247124db9b5/AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/01251b87648f38bca7386247124db9b5/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/65e0761c1d0c3775aa8e7015a4bbb8dd/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/65e0761c1d0c3775aa8e7015a4bbb8dd/AndroidManifest.xml:7:5-20
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:54:5-20
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:54:5-20
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:11:5-20
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:31:5-20
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:31:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:22:5-20
+MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:11:5-20
+MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:11:5-20
+MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/12fb21eb2e6e1f24a76a22d82b0922d7/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/12fb21eb2e6e1f24a76a22d82b0922d7/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:26:5-32:19
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:26:5-32:19
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/f632f465dfdec01017d6720e9c43dd28/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/f632f465dfdec01017d6720e9c43dd28/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/6edbdec03c106771d79708f3e5542aec/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/6edbdec03c106771d79708f3e5542aec/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/7b31081ae3329cea0b88c08be53d383e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/7b31081ae3329cea0b88c08be53d383e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:27:5-28:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:27:5-28:19
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/e05a8d5f44c90eac3e99d3d51190aa8b/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/e05a8d5f44c90eac3e99d3d51190aa8b/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/833acc7f30ceaefd1709a701fc16b5b8/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/833acc7f30ceaefd1709a701fc16b5b8/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/662fbc139d98ede192670a2c0ea4e2ec/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/662fbc139d98ede192670a2c0ea4e2ec/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/a083f28dc0b0eed770964dc9fb4d3106/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/a083f28dc0b0eed770964dc9fb4d3106/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:22:5-26:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:11:5-17:19
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:22:5-20
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:22:5-20
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/ccd49ba49da036aea5d8c176029bf250/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/ccd49ba49da036aea5d8c176029bf250/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:7:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:31:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:31:5-20
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:22:18-86
+		ADDED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:22:18-86
 	android:supportsRtl
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:18:9-35
 	android:label
@@ -336,148 +340,152 @@ uses-sdk
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
-MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/e94c9fa68c5cd64248b9c856ca8b8e21/AndroidManifest.xml:6:5-8:41
-MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/e94c9fa68c5cd64248b9c856ca8b8e21/AndroidManifest.xml:6:5-8:41
-MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/9fd802fadfff20c467ee9de02cb7494c/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/9fd802fadfff20c467ee9de02cb7494c/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/bddd7af95e99176c4d8639c1fceb7765/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/1b20a89567f8fd202042f4f3d12d74fe/AndroidManifest.xml:20:5-44
-MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/02658b0128b8e0856301e771682ae15c/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/02658b0128b8e0856301e771682ae15c/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/4b1657feaa09631baacd2c0aa17c80ae/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/4b1657feaa09631baacd2c0aa17c80ae/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/f497bdbe3558ff55c949912b6ebd98e9/AndroidManifest.xml:21:5-23:52
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/f497bdbe3558ff55c949912b6ebd98e9/AndroidManifest.xml:21:5-23:52
-MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/8c6f996cba174f082b2b867ecee773b6/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/8c6f996cba174f082b2b867ecee773b6/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/a25b72d75bcafa955f7a92c632834a11/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/a25b72d75bcafa955f7a92c632834a11/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/dbaf2283c3ae12217c59150009fb8fb6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/dbaf2283c3ae12217c59150009fb8fb6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/55cd9083365b4bf0351c1b3ab721930a/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/55cd9083365b4bf0351c1b3ab721930a/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/6d2643638c55e903aaf15f9781023f71/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/6d2643638c55e903aaf15f9781023f71/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/b824b21c91b98f1ffc1bdffc9f80b623/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/b824b21c91b98f1ffc1bdffc9f80b623/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/fcd4a6484f7b32225c7ec0ef6d58bd08/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/fcd4a6484f7b32225c7ec0ef6d58bd08/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/24deca0d4691e73c8b24e09b4dbda369/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/24deca0d4691e73c8b24e09b4dbda369/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/cc30ca09d2eb5f438ff8c608d7524a79/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/cc30ca09d2eb5f438ff8c608d7524a79/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/d6cc94c97bba0d7981ba874e7d0185df/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/d6cc94c97bba0d7981ba874e7d0185df/AndroidManifest.xml:20:5-44
-MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/3bfe1f589dd158fdf5cdcd0da7072812/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/3bfe1f589dd158fdf5cdcd0da7072812/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/e0d52f66b0f53557dc89eae68995544c/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/e0d52f66b0f53557dc89eae68995544c/AndroidManifest.xml:20:5-44
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:7:5-43
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:15:5-17:41
-MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/3137a50ffad6c8953d789559c81effc4/AndroidManifest.xml:15:5-17:41
-MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/6561f3a96bc55983e62482bfb66fcecc/AndroidManifest.xml:6:5-8:41
-MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/6561f3a96bc55983e62482bfb66fcecc/AndroidManifest.xml:6:5-8:41
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/2aeee9adc35612ee30e56cf1bfda65fa/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/2aeee9adc35612ee30e56cf1bfda65fa/AndroidManifest.xml:20:5-44
-MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/14e2ae5d7f6c3df38d708b3721581234/AndroidManifest.xml:5:5-43
-MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/14e2ae5d7f6c3df38d708b3721581234/AndroidManifest.xml:5:5-43
-MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/5ff4c75ad4ccae199bd040246625b5c4/AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/5ff4c75ad4ccae199bd040246625b5c4/AndroidManifest.xml:20:5-44
-MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/0a77d3faa2dc7795307df3782111d946/AndroidManifest.xml:20:5-44
-MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/0a77d3faa2dc7795307df3782111d946/AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/c7daf565c20fa9d4784faae00b3b55bd/AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/c7daf565c20fa9d4784faae00b3b55bd/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/d35b86f49412465dab544ac4e42ab070/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/d35b86f49412465dab544ac4e42ab070/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/5be185e10693b2d0eed2ee816ac54a64/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/5be185e10693b2d0eed2ee816ac54a64/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/7d5c9758f3e603a131246f2de1417165/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/7d5c9758f3e603a131246f2de1417165/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/68673f1e7899500646f92ea5660768b9/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/68673f1e7899500646f92ea5660768b9/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/d73bcf01f4c909c19b5e50d23050b6a5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/d73bcf01f4c909c19b5e50d23050b6a5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/74bbef9d20a3dfd754b07754ef7981ff/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/74bbef9d20a3dfd754b07754ef7981ff/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/0106b201d75b1b2feffd3ba440c3c803/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/0106b201d75b1b2feffd3ba440c3c803/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/03ca8f2f3d7ab28b916737ccd22b4107/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/03ca8f2f3d7ab28b916737ccd22b4107/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/6a464d6ea9077850aade83964b6ce552/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/6a464d6ea9077850aade83964b6ce552/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/84f3edfbff85b839b524a66812945450/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/84f3edfbff85b839b524a66812945450/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/2a1ddb60cc48946ef7e630d6d64b9354/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/2a1ddb60cc48946ef7e630d6d64b9354/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/85e9cd79bc7c116325254af7da844e27/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/85e9cd79bc7c116325254af7da844e27/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/607c2be5765752a4902aa222fbe521c1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/607c2be5765752a4902aa222fbe521c1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/40d0afbc4ca724b5248e49b49b859b86/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/40d0afbc4ca724b5248e49b49b859b86/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/e71168610c41fc1c30975fe418ce175c/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/e71168610c41fc1c30975fe418ce175c/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/02db6c6f05fb986ad35d94461a2307a9/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/c59208a8176db7616bb63a7b6fc94a7e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/c59208a8176db7616bb63a7b6fc94a7e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/60963db910fad52f59fdf97d1ff34bac/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/60963db910fad52f59fdf97d1ff34bac/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/cc0c1cc6be9816f9057f9f480a60f5aa/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/cc0c1cc6be9816f9057f9f480a60f5aa/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/52fd61606a5d2604c905d975494ac079/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/52fd61606a5d2604c905d975494ac079/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/412f9001c718a1e99c91a072a157cd83/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/412f9001c718a1e99c91a072a157cd83/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0688ae2c1640e4602ef156ad8ef9d97b/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0688ae2c1640e4602ef156ad8ef9d97b/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/01251b87648f38bca7386247124db9b5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/01251b87648f38bca7386247124db9b5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/97fdb093927daa2a6d3b8679fdcc6bbe/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/97fdb093927daa2a6d3b8679fdcc6bbe/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/376d6e7f00daaf6fb35aa84877b83372/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/376d6e7f00daaf6fb35aa84877b83372/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/16f880b703fd8b77f2acc4079a9b5fc5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/16f880b703fd8b77f2acc4079a9b5fc5/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/885e81c10fe9524ec34455abaadfe5e7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/885e81c10fe9524ec34455abaadfe5e7/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/65e0761c1d0c3775aa8e7015a4bbb8dd/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/65e0761c1d0c3775aa8e7015a4bbb8dd/AndroidManifest.xml:5:5-44
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/a6738afe7b0001cdf3f39e97016475eb/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:50:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/d9f6e78a1217aa394805f003e871404e/AndroidManifest.xml:50:5-43
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/c20da518322bcabb9ca94127a99a8b87/AndroidManifest.xml:7:5-43
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:27:5-43
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/03ed093660753e2e942ede209f4d9b07/AndroidManifest.xml:27:5-43
+MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:6:5-8:41
+MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:20:5-43
+MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:20:5-44
+MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/b691d37dcfcebdaae7a9634daa321311/AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/b691d37dcfcebdaae7a9634daa321311/AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/12fb21eb2e6e1f24a76a22d82b0922d7/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.6.aar/12fb21eb2e6e1f24a76a22d82b0922d7/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/f632f465dfdec01017d6720e9c43dd28/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-api-16.0.4.aar/f632f465dfdec01017d6720e9c43dd28/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/6edbdec03c106771d79708f3e5542aec/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-identifier-16.0.0.aar/6edbdec03c106771d79708f3e5542aec/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/7b31081ae3329cea0b88c08be53d383e/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-gass:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.1.2.aar/7b31081ae3329cea0b88c08be53d383e/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/e05a8d5f44c90eac3e99d3d51190aa8b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-base-16.0.5.aar/e05a8d5f44c90eac3e99d3d51190aa8b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/833acc7f30ceaefd1709a701fc16b5b8/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-stats-16.0.1.aar/833acc7f30ceaefd1709a701fc16b5b8/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/662fbc139d98ede192670a2c0ea4e2ec/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-17.0.1.aar/662fbc139d98ede192670a2c0ea4e2ec/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/a083f28dc0b0eed770964dc9fb4d3106/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-interop-16.0.1.aar/a083f28dc0b0eed770964dc9fb4d3106/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/83620b6ddab3b8e35100cea2791a3062/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/83620b6ddab3b8e35100cea2791a3062/AndroidManifest.xml:20:5-44
+MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:20:5-44
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:7:5-43
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:15:5-17:41
+MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:15:5-17:41
+MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:6:5-8:41
+MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:6:5-8:41
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:20:5-44
+MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/f8d96d284552952f9a9bcd7db68f5966/AndroidManifest.xml:5:5-43
+MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/f8d96d284552952f9a9bcd7db68f5966/AndroidManifest.xml:5:5-43
+MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/4bda204b3d6ffa2b2b165d83adb0c7bf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/4bda204b3d6ffa2b2b165d83adb0c7bf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/c209c95de3f639f6d83d39e898f4789f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-rc01.aar/c209c95de3f639f6d83d39e898f4789f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/ff031433eb3ac171691c32a345bd071b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/transition-1.0.0-rc01.aar/ff031433eb3ac171691c32a345bd071b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/0a8a8b48ade01d27671e9371d0bfb485/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/0a8a8b48ade01d27671e9371d0bfb485/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/69e928cb332125dfda3fb1874e849869/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/69e928cb332125dfda3fb1874e849869/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/6f4d220e670e24292eba40a5b96930aa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/6f4d220e670e24292eba40a5b96930aa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/5e4825d51eba37e400792bd7ba892899/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/5e4825d51eba37e400792bd7ba892899/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a8b3af289255f50b55d48389400efeed/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a8b3af289255f50b55d48389400efeed/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/fb05f693fe0d9c387a8a3e5dbb699cc0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/fb05f693fe0d9c387a8a3e5dbb699cc0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/b9f5eb1604a4dd9538b704dcfac9db2d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/b9f5eb1604a4dd9538b704dcfac9db2d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/5c9043c2c4a18a3ec44f12c34f815c2d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/5c9043c2c4a18a3ec44f12c34f815c2d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/99af769db07a9e2f4f279036d2c6897d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/99af769db07a9e2f4f279036d2c6897d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/47725b242cef477c5157c7d298f72489/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/47725b242cef477c5157c7d298f72489/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/debec0d05ccbc2e271c519341e5052d7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/debec0d05ccbc2e271c519341e5052d7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/9af7a0f6cea87e1690b96fff754da6e5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/9af7a0f6cea87e1690b96fff754da6e5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/d0583a1d66414f4bf0e4ed7b26367b1e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/d0583a1d66414f4bf0e4ed7b26367b1e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/c5b9eb20ea8f1a7ca2d465bee9d9548d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/c5b9eb20ea8f1a7ca2d465bee9d9548d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/ce6dfd342b24b280e3f284c2e7e296cf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/ce6dfd342b24b280e3f284c2e7e296cf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/87cbdde3fe64c44e119d2f9100e1aa01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/87cbdde3fe64c44e119d2f9100e1aa01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/e5220ec5e8ee250b4e2e605ad68b60ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/e5220ec5e8ee250b4e2e605ad68b60ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/06750ead6d21341af867dcaef2694e6a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/06750ead6d21341af867dcaef2694e6a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/b66e54afeafdca0c592491ede104714c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/b66e54afeafdca0c592491ede104714c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/20c4e566789a831f10359dca403978e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/20c4e566789a831f10359dca403978e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0311d9cf91067e0eeebff9b8cdfe8b8f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/0311d9cf91067e0eeebff9b8cdfe8b8f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/ccd49ba49da036aea5d8c176029bf250/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/ccd49ba49da036aea5d8c176029bf250/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/5237b81ea7de9b178354e12b6a37866e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/5237b81ea7de9b178354e12b6a37866e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/cb63f7cc0e88985dbfce52c61b54b5b3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/cb63f7cc0e88985dbfce52c61b54b5b3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/a453863ffe9e82ea749ace6c82d26313/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/a453863ffe9e82ea749ace6c82d26313/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/8f23a78358ab525d2cf2d487306ac58f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/8f23a78358ab525d2cf2d487306ac58f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:5:5-44
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:27:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:27:5-43
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/f497bdbe3558ff55c949912b6ebd98e9/AndroidManifest.xml:23:9-49
+		ADDED from [com.google.android.gms:play-services-ads:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-17.1.2.aar/b691d37dcfcebdaae7a9634daa321311/AndroidManifest.xml:23:9-49
 	android:targetSdkVersion
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
@@ -487,180 +495,180 @@ INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidM
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:24:5-68
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:25:5-68
-MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:25:5-68
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:25:5-68
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/43ca89fb0d3e1508bbe3dee686336e09/AndroidManifest.xml:25:5-68
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:24:5-68
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:24:5-68
+ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:24:5-68
 	android:name
-		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:24:22-65
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:24:22-65
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:27:9-31:19
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:29:9-35:19
+ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:27:9-31:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:29:9-35:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:31:13-37
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:31:13-37
 	android:name
-		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:27:18-89
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:27:18-89
 meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
-ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:28:13-30:85
+ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:28:13-30:85
 	android:value
-		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:30:17-82
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:30:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/a85bf1f7ac038e9344fbb1b0cf740715/AndroidManifest.xml:29:17-139
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-measurement-connector-impl-17.0.4.aar/9756aa73e41df3f341de2d19aa50ecc6/AndroidManifest.xml:29:17-139
 uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:26:5-110
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:26:5-110
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:26:5-110
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:26:5-110
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:26:5-110
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:26:5-110
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:26:22-107
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:26:22-107
 receiver#com.google.android.gms.measurement.AppMeasurementReceiver
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:29:9-33:20
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:29:9-33:20
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:31:13-35
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:31:13-35
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:32:13-37
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:30:13-85
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:30:13-85
 receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:34:9-42:20
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:29:9-37:20
-MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/1516c98c7de6e68ae14195ab417042c9/AndroidManifest.xml:29:9-37:20
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-impl-16.2.4.aar/c41686df88d03bdc45a188a54efd36dc/AndroidManifest.xml:29:9-37:20
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:36:13-35
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:36:13-35
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:37:13-36
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:37:13-36
 	android:permission
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:38:13-69
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:38:13-69
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:35:13-100
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:35:13-100
 intent-filter#action:name:com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:39:13-41:29
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:39:13-41:29
 action#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:40:17-79
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:40:17-79
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:40:25-76
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:40:25-76
 service#com.google.android.gms.measurement.AppMeasurementService
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:44:9-47:40
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:44:9-47:40
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:46:13-35
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:46:13-35
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:47:13-37
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:45:13-84
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:45:13-84
 service#com.google.android.gms.measurement.AppMeasurementJobService
-ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:48:9-52:72
+ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:48:9-52:72
 	android:enabled
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:50:13-35
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:50:13-35
 	android:exported
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:51:13-37
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:51:13-37
 	android:permission
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:52:13-69
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:52:13-69
 	android:name
-		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/90510341cc8f42a9f12d1b1bc4476fb1/AndroidManifest.xml:49:13-87
+		ADDED from [com.google.firebase:firebase-analytics:16.0.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-analytics-16.0.6.aar/808027a2ed564e42a4e38b80e1c30770/AndroidManifest.xml:49:13-87
 activity#com.google.android.gms.ads.AdActivity
-ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:29:9-33:64
+ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:29:9-33:64
 	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:32:13-37
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:32:13-37
 	android:configChanges
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:31:13-122
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:31:13-122
 	android:theme
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:33:13-61
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:33:13-61
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:30:13-65
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:30:13-65
 provider#com.google.android.gms.ads.MobileAdsInitProvider
-ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:35:9-39:39
+ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:35:9-39:39
 	android:authorities
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:37:13-73
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:37:13-73
 	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:38:13-37
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:38:13-37
 	android:initOrder
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:39:13-36
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:39:13-36
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/f2d41a7c20fe50bb47cc983e6369cab0/AndroidManifest.xml:36:13-76
+		ADDED from [com.google.android.gms:play-services-ads-lite:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-ads-lite-17.1.2.aar/03a0b4179a723e060ea1020287b58f4a/AndroidManifest.xml:36:13-76
 uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:26:5-82
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:26:5-82
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:26:22-79
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:26:22-79
 meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:32:13-34:85
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:32:13-34:85
 	android:value
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:34:17-82
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:34:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:33:17-96
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:33:17-96
 receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:37:9-44:20
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:37:9-44:20
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:39:13-36
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:39:13-36
 	android:permission
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:40:13-73
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:40:13-73
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:38:13-78
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:38:13-78
 intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:41:13-43:29
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:41:13-43:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:42:17-81
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:42:17-81
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:42:25-78
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:42:25-78
 service#com.google.firebase.iid.FirebaseInstanceIdService
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:50:9-56:19
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:50:9-56:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:52:13-36
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:52:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:51:13-77
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:51:13-77
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:53:13-55:29
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:53:13-55:29
 	android:priority
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:53:28-51
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:53:28-51
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:54:17-80
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:54:17-80
 	android:name
-		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/8bce37804dedf5dcaa354fa3fe4c87d6/AndroidManifest.xml:54:25-77
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:54:25-77
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:10:9-14:39
+ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:10:9-14:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:12:13-72
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:12:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:13:13-37
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:13:13-37
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:14:13-36
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:14:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/bfa87536431c2dbbfefe32d4555af933/AndroidManifest.xml:11:13-77
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-common-16.0.3.aar/c57a96ed446fd622719aa8d1af77130c/AndroidManifest.xml:11:13-77
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:23:9-26:75
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:23:9-26:75
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:25:13-37
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:25:13-37
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:26:13-72
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6d7cd6d7834ea9d19a39f79f90159913/AndroidManifest.xml:24:13-79
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/AndroidManifest.xml:24:13-79
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:23:9-25:69
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/0bd8a113951d47a2bdcbca66be6fa1d6/AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:24:13-58
 provider#com.crashlytics.android.CrashlyticsInitProvider
-ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:12:9-16:38
+ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:12:9-16:38
 	android:authorities
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:14:13-75
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:14:13-75
 	android:exported
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:15:13-37
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:15:13-37
 	android:initOrder
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:16:13-35
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:16:13-35
 	android:name
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/0a78dcfb0a97bd30c7198fc2657ef4f9/AndroidManifest.xml:13:13-75
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:13:13-75
 provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:23:9-27:43
+ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:23:9-27:43
 	android:authorities
-		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:25:13-69
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:25:13-69
 	android:multiprocess
-		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:27:13-40
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:27:13-40
 	android:exported
-		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:26:13-37
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/d08a57aea4bc634d4438200ba3eda3cb/AndroidManifest.xml:24:13-79
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:24:13-79
