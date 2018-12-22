@@ -1,17 +1,12 @@
 package com.mrntlu.PassVault.Offline.Repositories;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
-
 import java.util.ArrayList;
-
 import androidx.lifecycle.MutableLiveData;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class MailObjectRepository {

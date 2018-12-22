@@ -4,26 +4,19 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.mrntlu.PassVault.Offline.ClassController;
-import com.mrntlu.PassVault.Offline.FileLocations;
-import com.mrntlu.PassVault.Offline.FragmentMailVault;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.R;
-
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
@@ -40,7 +33,6 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
     private RealmResults<MailObject> mailObjects;
     private ArrayList<Boolean> passBool;
     ClassController classController;
-    ArrayList<ArrayList> arrayLists;
     Realm realm;
 
     private boolean isSearching=false;
@@ -63,6 +55,7 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.idText.setText(mailObjects.get(position).getMail());
+        classController.setColorImage(holder.idText.getText().toString(),holder.img);
 
         if (isSearching) {
             holder.editButton.setVisibility(View.GONE);
@@ -114,7 +107,6 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
                                 try {
                                     passBool.remove(position);
                                     mailObjects.get(position).deleteFromRealm();
-                                    Snackbar snackbar=Snackbar.make();
                                 }catch (NullPointerException e){
                                     e.printStackTrace();
                                     Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -183,19 +175,13 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
         customDialog.show();
     }
 
-    @Override
-    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView);
-        //TODO Detach memory leak test
-        Log.d("info", "onDetachedFromRecyclerView: detached");
-    }
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView idText;
         TextView passwordText;
         ImageButton deleteButton;
         ImageButton editButton;
+        ImageView img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -203,6 +189,7 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
             passwordText=(TextView)itemView.findViewById(R.id.passwordText);
             deleteButton=(ImageButton) itemView.findViewById(R.id.deleteButton);
             editButton=(ImageButton) itemView.findViewById(R.id.editButton);
+            img=itemView.findViewById(R.id.imageColor);
         }
     }
 }

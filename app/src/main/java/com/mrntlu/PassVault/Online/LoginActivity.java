@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import es.dmoral.toasty.Toasty;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.R;
@@ -40,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.constraintLayout);
         constraintLayout.setOnClickListener(null);
-        whyButton=(ImageButton)findViewById(R.id.whyButton);
         loginButton=(Button)findViewById(R.id.loginButton);
         signUpButton=(Button)findViewById(R.id.signUpButton);
         usernameLayout=(TextInputLayout)findViewById(R.id.usernameLayout);
@@ -59,16 +55,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        whyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO Show dialog that explains why you need to sign in/up
-            }
-        });
-
         ParseUser user=ParseUser.getCurrentUser();
         if (user!=null){
-            Log.d("info", "onCreate: "+user.getUsername()+" "+user.getEmail());
+            startActivity(new Intent(LoginActivity.this,OnlineActivity.class));
         }
     }
 
@@ -96,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e==null && user!=null){
-                    Log.d("info", "done: YAYYYYY Successfully logged in "+user.getUsername());
+                    startActivity(new Intent(LoginActivity.this,OnlineActivity.class));
                 }else if (e!=null){
                     Toasty.error(LoginActivity.this,"Invalid username/password.", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();

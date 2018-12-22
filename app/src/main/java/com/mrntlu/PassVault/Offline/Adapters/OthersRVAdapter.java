@@ -4,24 +4,19 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.mrntlu.PassVault.Offline.ClassController;
-import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
-import com.mrntlu.PassVault.Offline.OtherAccounts;
 import com.mrntlu.PassVault.R;
-
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
@@ -39,7 +34,6 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
     private RealmResults<OthersObject> otherObjects;
     private ArrayList<Boolean> passBool;
     ClassController classController;
-    ArrayList<ArrayList> arrayLists;
     Realm realm;
 
     private boolean isSearching=false;
@@ -62,6 +56,8 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.idText.setText(otherObjects.get(position).getDescription());
+
+        classController.setColorImage(holder.idText.getText().toString(),holder.img);
 
         if (isSearching) {
             holder.editButton.setVisibility(View.GONE);
@@ -187,6 +183,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         TextView passwordText;
         ImageButton deleteButton;
         ImageButton editButton;
+        ImageView img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -194,6 +191,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
             passwordText=(TextView)itemView.findViewById(R.id.passwordText);
             deleteButton=(ImageButton) itemView.findViewById(R.id.deleteButton);
             editButton=(ImageButton) itemView.findViewById(R.id.editButton);
+            img=itemView.findViewById(R.id.imageColor);
         }
     }
 }

@@ -3,16 +3,12 @@ package com.mrntlu.PassVault.Offline;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import io.realm.Realm;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.mrntlu.PassVault.MainActivity;
-import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.R;
 
 public class OfflineActivity extends AppCompatActivity {
@@ -54,6 +50,5 @@ public class OfflineActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

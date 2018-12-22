@@ -1130,7 +1130,6 @@ drawable appintro_indicator_dot_grey
 drawable appintro_indicator_dot_white
 drawable avd_hide_password
 drawable avd_show_password
-drawable background_2
 drawable background_gradient
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
@@ -1164,7 +1163,6 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_add_black_24dp
 drawable ic_add_black_48dp
-drawable ic_add_box_black_24dp
 drawable ic_appintro_arrow_back_white
 drawable ic_appintro_arrow_forward_white
 drawable ic_appintro_done_white
@@ -1172,28 +1170,29 @@ drawable ic_appintro_navigate_before_white
 drawable ic_appintro_navigate_next_white
 drawable ic_appintro_skip_white
 drawable ic_arrow_back_black_24dp
-drawable ic_arrow_back_yellow_24dp
 drawable ic_check_white_48dp
 drawable ic_checked
 drawable ic_clear_white_48dp
 drawable ic_close_button
 drawable ic_cloud
 drawable ic_cloud_2
-drawable ic_database
 drawable ic_error_outline_white_48dp
 drawable ic_fingerprint_black_24dp
+drawable ic_hastag
 drawable ic_help_black_24dp
 drawable ic_info_outline_white_48dp
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_padlock
-drawable ic_padlock_1
+drawable ic_padlock_pass
 drawable ic_protection
+drawable ic_review
 drawable ic_save_black_24dp
 drawable ic_search_black_24dp
 drawable ic_share_black_24dp
-drawable ic_vault
+drawable ic_user
+drawable ic_user_1
 drawable ic_warning_outline_white
 drawable ic_warning_white_48dp
 drawable mtrl_snackbar_background
@@ -1211,7 +1210,6 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
-drawable passvault_appwidget_preview
 drawable passvault_logo
 drawable passvault_logo_vector
 drawable passvault_new_logo
@@ -1254,7 +1252,6 @@ id adView
 id add
 id addButton
 id addMenuButton
-id addMenuConstraint
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1266,7 +1263,6 @@ id async
 id auto
 id back
 id background
-id bankAccounts
 id barrier
 id beginning
 id blocking
@@ -1279,7 +1275,6 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id button
 id buttonPanel
 id cancel_action
 id center
@@ -1291,7 +1286,6 @@ id chronometer
 id clicktoSee
 id clip_horizontal
 id clip_vertical
-id closeButton
 id collapseActionView
 id constraintLayout
 id container
@@ -1310,7 +1304,6 @@ id decor_content_parent
 id default_activity_button
 id deleteButton
 id deltaRelative
-id descInput
 id description
 id descriptionText
 id design_bottom_sheet
@@ -1375,11 +1368,12 @@ id homeAsUp
 id icon
 id icon_group
 id icon_only
-id idInput
 id idText
 id ifRoom
 id image
+id imageColor
 id imageView
+id imageView2
 id indicator_container
 id info
 id invisible
@@ -1395,15 +1389,13 @@ id line1
 id line3
 id linear
 id listMode
-id listView
 id list_item
 id loginButton
 id logoImage
-id mailAccounts
 id mailRV
 id mailSearch
-id mailSearchView
 id main
+id mainMenu
 id masked
 id media_actions
 id message
@@ -1422,14 +1414,8 @@ id notification_main_column
 id notification_main_column_container
 id offlineButton
 id onlineButton
-id otherAccounts
-id otherAddButton
-id otherDesc
-id otherList
-id otherPassword
 id otherRV
 id otherSearch
-id otherSearchView
 id outline
 id packed
 id parallax
@@ -1438,7 +1424,6 @@ id parentPanel
 id parentRelative
 id parent_matrix
 id passwordEditText
-id passwordInput
 id passwordLayout
 id passwordText
 id path
@@ -1482,6 +1467,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id signOut
 id signUpButton
 id signupMailLayout
 id signupMailText
@@ -1499,6 +1485,7 @@ id snackbar_text
 id snap
 id snapMargins
 id space
+id space2
 id spacer
 id spline
 id split_action_bar
@@ -1527,8 +1514,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView10
 id textView3
+id textView4
 id textView6
 id textView9
 id text_input_password_toggle
@@ -1559,15 +1546,14 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id userAccountSearchView
 id userRV
 id userSearch
+id userWelcomeText
 id usernameEditText
 id usernameLayout
 id view_offset_helper
 id view_pager
 id visible
-id whyButton
 id wide
 id withText
 id wrap
@@ -1622,13 +1608,11 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_app_intro
 layout activity_login
-layout activity_mail_vault
 layout activity_main
 layout activity_offline
 layout activity_offline_add
-layout activity_other_accounts
+layout activity_online
 layout activity_signup
-layout activity_user_accounts
 layout appintro_default_indicator
 layout appintro_fragment_intro
 layout appintro_fragment_intro2
@@ -1638,7 +1622,6 @@ layout appintro_intro_layout2
 layout appintro_progress_indicator
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
-layout buttons_app_widget
 layout custom_mail_cell
 layout custom_other_cell
 layout custom_useraccounts_cell
@@ -1688,7 +1671,6 @@ layout toast_layout
 menu add_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
-mipmap logonew
 mipmap my_logo
 string Passwords
 string abc_action_bar_home_description
@@ -2445,4 +2427,3 @@ styleable Variant constraints region_heightLessThan region_heightMoreThan region
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
-xml buttons_app_widget_info

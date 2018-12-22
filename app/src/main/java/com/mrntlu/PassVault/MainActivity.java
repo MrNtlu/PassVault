@@ -135,9 +135,8 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
         interstitialAd=new InterstitialAd(this);
-        //interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
-        //Todo Test
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
+        //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         interstitialAd.loadAd(new AdRequest.Builder().build());
         helpButton=(ImageButton)findViewById(R.id.helpButton);
         adView=(AdView)findViewById(R.id.adView);
@@ -231,22 +230,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*sendMail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customMailDialog=new Dialog(MainActivity.this);
-                showMailPopup(v);
-            }
-        });
-        othersButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fingerPrintDialog=new Dialog(MainActivity.this);
-                setFingerPrint(LoginActivity.class);
-//                Intent intent=new Intent(MainActivity.this,OtherAccounts.class);
-//                startActivity(intent);
-            }
-        });*/
     }
 
     private void setFingerPrint(){

@@ -4,24 +4,20 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.mrntlu.PassVault.Offline.ClassController;
-import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.R;
-
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -39,7 +35,6 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
 
     Realm realm;
     ClassController classController;
-    ArrayList<ArrayList> arrayLists;
 
     public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool) {
         this.context = context;
@@ -60,6 +55,8 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.idText.setText(userObjects.get(position).getIdMail());
         holder.descriptionText.setText(userObjects.get(position).getDescription());
+
+        classController.setColorImage(holder.descriptionText.getText().toString(),holder.img);
 
         if (isSearching) {
             holder.editButton.setVisibility(View.GONE);
@@ -190,6 +187,7 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         TextView passwordText;
         ImageButton deleteButton;
         ImageButton editButton;
+        ImageView img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -198,6 +196,7 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
             passwordText=(TextView)itemView.findViewById(R.id.passwordText);
             deleteButton=(ImageButton) itemView.findViewById(R.id.deleteButton);
             editButton=(ImageButton) itemView.findViewById(R.id.editButton);
+            img=(ImageView) itemView.findViewById(R.id.imageColor);
         }
     }
 }

@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import es.dmoral.toasty.Toasty;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
 import com.mrntlu.PassVault.R;
 
 public class OfflineAddActivity extends AppCompatActivity {
@@ -46,6 +43,7 @@ public class OfflineAddActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Save");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
     }
 
     @Override
@@ -70,13 +68,13 @@ public class OfflineAddActivity extends AppCompatActivity {
 
     private void addRealmObject(){
         if (FragmentMailVault.staticViewModel!=null) {
-            if (!(editText.toString().trim().equals("") && editText2.toString().trim().equals(""))) {
+            if (!(editText.getText().toString().trim().equals("") || editText2.getText().toString().trim().equals(""))) {
                 switch (objectID) {
                     case 0:
                         FragmentMailVault.staticViewModel.addMailObject(editText.getText().toString(), editText2.getText().toString());
                         break;
                     case 1:
-                        if (!editText3.toString().trim().equals("")) {
+                        if (!editText3.getText().toString().trim().equals("")) {
                             FragmentMailVault.staticViewModel.addUserObject(editText.getText().toString(), editText2.getText().toString(), editText3.getText().toString());
                         }else{
 
@@ -86,10 +84,11 @@ public class OfflineAddActivity extends AppCompatActivity {
                         FragmentMailVault.staticViewModel.addOtherObject(editText.getText().toString(), editText2.getText().toString());
                         break;
                 }
-            }else{
-
+                finish();
+            }
+            else{
+                Toasty.error(OfflineAddActivity.this,"Please don't leave anything empty!",Toast.LENGTH_SHORT).show();
             }
         }
-        finish();
     }
 }

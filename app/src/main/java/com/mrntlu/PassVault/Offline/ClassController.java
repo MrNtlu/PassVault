@@ -4,33 +4,20 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.SearchView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.mrntlu.PassVault.MainActivity;
-import com.mrntlu.PassVault.Offline.Models.MailObject;
-import com.mrntlu.PassVault.Offline.Models.OthersObject;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import es.dmoral.toasty.Toasty;
-import io.realm.Realm;
-import io.realm.RealmObject;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ClassController {
 
@@ -50,6 +37,17 @@ public class ClassController {
         }catch (Exception e){
             Toasty.error(context,"Error! Please try again",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+        }
+    }
+
+    public void setColorImage(String text, ImageView img){
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+        int color = generator.getRandomColor();
+        if (text!=null && img!=null) {
+            TextDrawable drawable = TextDrawable.builder()
+                    .buildRound(text.trim().substring(0, 1), color);
+
+            img.setImageDrawable(drawable);
         }
     }
 
@@ -90,12 +88,6 @@ public class ClassController {
         }
     }
 
-    public void deleteFromArrays(ArrayList<ArrayList> arrayLists, int position){
-        for (int i=0;i<arrayLists.size();i++){
-            arrayLists.get(i).remove(position);
-        }
-    }
-
     public boolean isEmptyTextViews(TextView[] textViews){
         for (int i=0;i<textViews.length;i++){
             if (textViews[i].getText().toString().trim().isEmpty()){
@@ -107,26 +99,12 @@ public class ClassController {
         return false;
     }
 
-    public void saveCredentials(ArrayList<String> list, FileOutputStream fosPass, String FILE_NAME){
-        String text="";
-        for (int i=0;i<list.size();i++){
-            text=text+list.get(i)+"\n";
-        }
-        try {
-            fosPass=context.openFileOutput(FILE_NAME,MODE_PRIVATE);
-            fosPass.write(text.getBytes());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (fosPass != null){
-                try {
-                    fosPass.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+    private void deleteAllCredentials(String FILE_NAME){
+        File dir=context.getFilesDir();
+        File file=new File(dir,FILE_NAME);
+        boolean deleted=file.delete();
+        if (deleted){
+            Toasty.success(context,"Deleted.",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -141,11 +119,9 @@ public class ClassController {
                 StringBuilder sb = new StringBuilder();
                 String text;
                 while ((text = br.readLine()) != null) {
-                    Log.d("info", "loadCredentials: "+text);
                     list.add(text);
                 }
-                //TODO Delete credentials
-                //deleteAllCredentials(FILE_NAME);
+                deleteAllCredentials(FILE_NAME);
             }
             else {
                 return;
@@ -162,46 +138,6 @@ public class ClassController {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    public void addNewItem(TextView[] textViews,ArrayList[] arrayLists,FileOutputStream fos,String[] FILE_NAMES){
-        for(int i=0;i<textViews.length;i++) {
-            arrayLists[i].add(textViews[i].getText().toString());
-            textViews[i].setText("");
-        }
-        for (int i=0;i<arrayLists.length;i++){
-            saveCredentials(arrayLists[i],fos,FILE_NAMES[i]);
-        }
-    }
-
-    public Set<Integer> searchInArrayList(ArrayList<String> array,String query){
-        Set<Integer> treeSet = new TreeSet<>();
-        for (String item:array){
-            if (item.toLowerCase().contains(query.toLowerCase())){
-                treeSet.add(array.indexOf(item));
-            }
-        }
-        return treeSet;
-    }
-
-    public void closeBtnVisib(int visibility, SearchView searchView, ConstraintLayout constraintLayout, ImageButton imageBtn){
-        if (visibility==0){
-            constraintLayout.setAlpha((float)0);
-            constraintLayout.animate().alpha(1).setDuration(320);
-
-            constraintLayout.setVisibility(View.VISIBLE);
-            imageBtn.setVisibility(View.GONE);
-            searchView.setVisibility(View.GONE);
-        }else if (visibility==1){
-            imageBtn.setAlpha((float)0);
-            searchView.setAlpha((float)0);
-            imageBtn.animate().alpha(1).setDuration(310);
-            searchView.animate().alpha(1).setDuration(310);
-
-            constraintLayout.setVisibility(View.GONE);
-            imageBtn.setVisibility(View.VISIBLE);
-            searchView.setVisibility(View.VISIBLE);
         }
     }
 }

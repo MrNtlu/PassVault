@@ -1,9 +1,6 @@
 package com.mrntlu.PassVault.Offline;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -11,12 +8,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.RealmResults;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mrntlu.PassVault.Offline.Adapters.OthersRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
@@ -33,6 +28,7 @@ public class FragmentOtherAccounts extends Fragment {
     private OthersRVAdapter othersRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<>();
     private OfflineViewModel mViewModel;
+    private FloatingActionButton fab;
 
     public static FragmentOtherAccounts newInstance() {
         FragmentOtherAccounts fragment = new FragmentOtherAccounts();
@@ -99,11 +95,19 @@ public class FragmentOtherAccounts extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (fab!=null) {
+                if (fab != null) {
                     if (dy >= 1) {
-                        fab.animate().alpha(0.3f).setDuration(140);
-                    }else{
-                        fab.animate().alpha(1f).setDuration(140);
+                        if (fab.getTranslationY()==0.0) {
+                            fab.animate().translationYBy(500).setDuration(150);
+                        }else{
+                            fab.setTranslationY(500f);
+                        }
+                    } else {
+                        if (fab.getTranslationY()==500.0) {
+                            fab.animate().translationYBy(-500).setDuration(150);
+                        }else{
+                            fab.setTranslationY(0f);
+                        }
                     }
                 }
             }
@@ -115,6 +119,14 @@ public class FragmentOtherAccounts extends Fragment {
     private void initRecyclerView(){
         othersRVAdapter=new OthersRVAdapter(getContext(),mViewModel.getmOtherObjects().getValue(),passBool);
         recyclerView.setAdapter(othersRVAdapter);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (fab!=null && fab.getTranslationY()!=0f){
+            fab.setTranslationY(0f);
+        }
     }
 
     @Override

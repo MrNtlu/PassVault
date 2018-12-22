@@ -1,22 +1,16 @@
 package com.mrntlu.PassVault.Offline.Viewmodels;
 
 import android.app.Application;
-import android.util.Log;
-
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
 import com.mrntlu.PassVault.Offline.Repositories.MailObjectRepository;
 import com.mrntlu.PassVault.Offline.Repositories.OthersRepository;
 import com.mrntlu.PassVault.Offline.Repositories.UserAccountsObjectRepository;
-
-import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;

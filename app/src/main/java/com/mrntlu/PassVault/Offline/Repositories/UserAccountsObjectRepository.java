@@ -1,12 +1,10 @@
 package com.mrntlu.PassVault.Offline.Repositories;
 
 import android.content.Context;
-
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import java.util.ArrayList;
-
 import androidx.lifecycle.MutableLiveData;
 import io.realm.Realm;
 import io.realm.RealmResults;

@@ -15,7 +15,7 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:src="@drawable/ic_add_black_48dp"
-        app:backgroundTint="@color/flatblue"
+        app:backgroundTint="@color/midnightblue"
         app:elevation="1dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,14 +26,15 @@
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabBackground="@color/flatblue"
+        app:tabBackground="@color/midnightblue"
+        app:tabIndicatorColor="@color/white"
         app:tabMode="fixed"
         app:tabTextAppearance="@style/CustomTabLayout"
-        app:tabTextColor="@color/white"
-        android:elevation="3dp"/>
+        app:tabTextColor="@color/white" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

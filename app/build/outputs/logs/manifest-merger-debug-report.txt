@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:2:1-10:12
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:2:1-11:12
@@ -37,6 +37,7 @@ MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:10:1-24:12
 MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:2:1-10:12
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.alirezaafkar:TextDrawable:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/TextDrawable-2.0.0.aar/0e88f79f57a73a870315c3e3703f98f1/AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:17:1-25:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/f8d96d284552952f9a9bcd7db68f5966/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0-rc01.aar/4bda204b3d6ffa2b2b165d83adb0c7bf/AndroidManifest.xml:17:1-22:12
@@ -75,20 +76,20 @@ MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/cache
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:45:1-56:12
 MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:2:1-13:12
 MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:22:1-33:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
-INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
+INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 	package
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-105:12
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 		INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:11-69
@@ -155,7 +156,7 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:10:22-69
 application
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-103:19
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-73:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:22:5-20
@@ -204,6 +205,8 @@ MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/b
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:22:5-20
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:9:5-20
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:9:5-20
+MERGED from [com.github.alirezaafkar:TextDrawable:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/TextDrawable-2.0.0.aar/0e88f79f57a73a870315c3e3703f98f1/AndroidManifest.xml:12:5-20
+MERGED from [com.github.alirezaafkar:TextDrawable:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/TextDrawable-2.0.0.aar/0e88f79f57a73a870315c3e3703f98f1/AndroidManifest.xml:12:5-20
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:22:5-28:19
@@ -299,43 +302,47 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:49:13-49
 activity#com.mrntlu.PassVault.Online.SignupActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:70:9-74:57
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:53:9-57:57
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:73:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:56:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:74:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:57:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:72:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:55:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:71:13-50
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:54:13-50
 activity#com.mrntlu.PassVault.AppIntros.SliderIntro
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:75:9-78:52
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:58:9-61:52
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:78:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:61:13-49
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:77:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:60:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:76:13-50
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:59:13-50
 activity#com.mrntlu.PassVault.Offline.OfflineActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:79:9-83:57
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:62:9-66:57
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:82:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:65:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:83:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:66:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:81:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:64:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:80:13-52
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:63:13-52
 activity#com.mrntlu.PassVault.Offline.OfflineAddActivity
-ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:85:9-88:56
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:67:9-71:57
 	android:screenOrientation
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:87:13-49
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:70:13-49
 	android:windowSoftInputMode
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:88:13-54
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:71:13-54
 	android:configChanges
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:86:13-48
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:69:13-48
 	android:name
-		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:85:19-61
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:68:13-55
+activity#com.mrntlu.PassVault.Online.OnlineActivity
+ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:72:9-68
+	android:name
+		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:72:19-56
 uses-sdk
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
@@ -406,6 +413,8 @@ MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transf
 MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:6:5-8:41
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:5:5-7:41
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.alirezaafkar:TextDrawable:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/TextDrawable-2.0.0.aar/0e88f79f57a73a870315c3e3703f98f1/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.alirezaafkar:TextDrawable:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/TextDrawable-2.0.0.aar/0e88f79f57a73a870315c3e3703f98f1/AndroidManifest.xml:8:5-10:41
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/cc3e3762a847be059132a3037964476f/AndroidManifest.xml:20:5-44
 MERGED from [com.getkeepsafe.relinker:relinker:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/relinker-1.3.0.aar/f8d96d284552952f9a9bcd7db68f5966/AndroidManifest.xml:5:5-43

@@ -104,8 +104,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multıdex_aapt_derıved_proguard_rules" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multıdex_maın_dex_lıst" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lınt_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manıfests" />
@@ -162,6 +160,7 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core-2.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-core-3.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.github.parse-community.Parse-SDK-Android:parse-1.18.5" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.alirezaafkar:TextDrawable-2.0.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-utils-1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite-17.1.2" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.0.0@jar" level="project" />
