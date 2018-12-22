@@ -38,10 +38,11 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
 
     private boolean isSearching=false;
 
-    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool) {
+    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool,Realm realm) {
         this.context = context;
         this.otherObjects=otherObjects;
         this.passBool = passBool;
+        this.realm=realm;
         classController=new ClassController(context);
     }
 
@@ -49,7 +50,6 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_other_cell,parent,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
-        realm=Realm.getDefaultInstance();
         return myViewHolder;
     }
 

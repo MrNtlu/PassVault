@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.Offline.Repositories;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.FileLocations;
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
@@ -47,6 +49,9 @@ public class UserAccountsObjectRepository {
                 }
             }
         });
+        if (mRealm!=null && !mRealm.isClosed()){
+            mRealm.close();
+        }
     }
 
 }

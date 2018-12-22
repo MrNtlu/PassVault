@@ -89,6 +89,9 @@ public class OfflineAddActivity extends AppCompatActivity {
             else{
                 Toasty.error(OfflineAddActivity.this,"Please don't leave anything empty!",Toast.LENGTH_SHORT).show();
             }
+        }else{
+            Toasty.error(OfflineAddActivity.this,"Error!",Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }

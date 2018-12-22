@@ -44,5 +44,8 @@ public class OthersRepository {
                 }
             }
         });
+        if (mRealm!=null && !mRealm.isClosed()){
+            mRealm.close();
+        }
     }
 }

@@ -37,10 +37,11 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
 
     private boolean isSearching=false;
 
-    public MailVaultRVAdapter(Context context, final RealmResults<MailObject> mailObjects, final ArrayList<Boolean> passBool) {
+    public MailVaultRVAdapter(Context context, final RealmResults<MailObject> mailObjects, final ArrayList<Boolean> passBool,Realm realm) {
         this.context = context;
         this.mailObjects=mailObjects;
         this.passBool=passBool;
+        this.realm=realm;
         classController=new ClassController(context);
     }
 
@@ -48,7 +49,6 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_mail_cell,parent,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
-        realm=Realm.getDefaultInstance();
         return myViewHolder;
     }
 

@@ -44,6 +44,8 @@ public class MailObjectRepository {
                 }
             }
         });
+        if (mRealm!=null && !mRealm.isClosed()){
+            mRealm.close();
+        }
     }
-
 }

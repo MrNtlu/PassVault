@@ -7,7 +7,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.realm.Realm;
 import io.realm.RealmResults;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +31,11 @@ public class FragmentUserAccounts extends Fragment {
     private ArrayList<Boolean> passBool=new ArrayList<Boolean>();
     private OfflineViewModel mViewModel;
     private FloatingActionButton fab;
+    private Realm realm;
 
-    public static FragmentUserAccounts newInstance() {
+    public static FragmentUserAccounts newInstance(Realm realm) {
         FragmentUserAccounts fragment = new FragmentUserAccounts();
+        fragment.realm=realm;
         return fragment;
     }
 
@@ -47,8 +52,9 @@ public class FragmentUserAccounts extends Fragment {
         searchView=(SearchView)v.findViewById(R.id.userSearch);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
         mViewModel= ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
-        mViewModel.initAccountObjects();
+        mViewModel.initAccountObjects(realm);
         mViewModel.getmUserObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<AccountsObject>>() {
             @Override
             public void onChanged(RealmResults<AccountsObject> accountsObjects) {
@@ -73,9 +79,11 @@ public class FragmentUserAccounts extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                RealmResults<AccountsObject> searchAccount = mViewModel.searchAccountObject(s).getValue();
-                userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool);
-                recyclerView.setAdapter(userAccountsRVAdapter);
+                if (realm!=null) {
+                    RealmResults<AccountsObject> searchAccount = mViewModel.searchAccountObject(s).getValue();
+                    userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool, realm);
+                    recyclerView.setAdapter(userAccountsRVAdapter);
+                }
                 return false;
             }
 
@@ -88,7 +96,7 @@ public class FragmentUserAccounts extends Fragment {
             }
         });
 
-        final FloatingActionButton fab=(FloatingActionButton) getActivity().findViewById(R.id.addButton);
+        fab=(FloatingActionButton) getActivity().findViewById(R.id.addButton);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -115,8 +123,14 @@ public class FragmentUserAccounts extends Fragment {
     }
 
     private void initRecyclerView(){
-        userAccountsRVAdapter=new UserAccountsRVAdapter(getContext(),mViewModel.getmUserObjects().getValue(),passBool);
-        recyclerView.setAdapter(userAccountsRVAdapter);
+        if (realm!=null) {
+            userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), mViewModel.getmUserObjects().getValue(), passBool, realm);
+            recyclerView.setAdapter(userAccountsRVAdapter);
+        }
+        else{
+            realm=Realm.getDefaultInstance();
+            initRecyclerView();
+        }
     }
 
     @Override
@@ -124,14 +138,6 @@ public class FragmentUserAccounts extends Fragment {
         super.onPause();
         if (fab!=null && fab.getTranslationY()!=0f){
             fab.setTranslationY(0f);
-        }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (mViewModel!=null){
-            mViewModel.closeRealm();
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 import io.realm.Realm;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -19,6 +20,7 @@ public class OfflineActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent=new Intent(OfflineActivity.this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -29,7 +31,8 @@ public class OfflineActivity extends AppCompatActivity {
         final TabLayout tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.addButton);
         realm=Realm.getDefaultInstance();
-        OfflineViewPagerAdapter adapter=new OfflineViewPagerAdapter(getSupportFragmentManager());
+
+        OfflineViewPagerAdapter adapter=new OfflineViewPagerAdapter(getSupportFragmentManager(),realm);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,5 +53,13 @@ public class OfflineActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (realm!=null && !realm.isClosed()) {
+            realm.close();
+        }
     }
 }

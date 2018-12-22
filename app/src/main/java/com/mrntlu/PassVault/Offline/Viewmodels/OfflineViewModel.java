@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.Offline.Viewmodels;
 
 import android.app.Application;
+import android.util.Log;
+
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
@@ -27,10 +29,13 @@ public class OfflineViewModel extends AndroidViewModel {
 
     public OfflineViewModel(@NonNull Application application) {
         super(application);
-        mRealm=Realm.getDefaultInstance();
+        //mRealm=Realm.getDefaultInstance();
     }
 
-    public void initMailObjects(){
+    public void initMailObjects(Realm realm){
+        if (realm!=null){
+            mRealm=realm;
+        }
         if (mMailObjects!=null){
             return;
         }
@@ -38,7 +43,10 @@ public class OfflineViewModel extends AndroidViewModel {
         mMailObjects=mRepo.getMailObjects();
     }
 
-    public void initAccountObjects(){
+    public void initAccountObjects(Realm realm){
+        if (realm!=null){
+            mRealm=realm;
+        }
         if (mUserObjects!=null){
             return;
         }
@@ -46,7 +54,10 @@ public class OfflineViewModel extends AndroidViewModel {
         mUserObjects=mUserRepo.getAccountsObjects();
     }
 
-    public void initOtherObjects(){
+    public void initOtherObjects(Realm realm){
+        if (realm!=null){
+            mRealm=realm;
+        }
         if (mOtherObjects!=null){
             return;
         }
@@ -125,9 +136,5 @@ public class OfflineViewModel extends AndroidViewModel {
 
     public LiveData<RealmResults<OthersObject>> getmOtherObjects() {
         return mOtherObjects;
-    }
-
-    public void closeRealm(){
-        mRealm.close();
     }
 }

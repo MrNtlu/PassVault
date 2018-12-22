@@ -103,9 +103,6 @@ public class ClassController {
         File dir=context.getFilesDir();
         File file=new File(dir,FILE_NAME);
         boolean deleted=file.delete();
-        if (deleted){
-            Toasty.success(context,"Deleted.",Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void loadCredentials(String FILE_NAME,ArrayList<String> list){

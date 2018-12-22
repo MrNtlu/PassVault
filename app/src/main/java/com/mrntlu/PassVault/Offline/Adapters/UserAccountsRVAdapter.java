@@ -36,10 +36,11 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     Realm realm;
     ClassController classController;
 
-    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool) {
+    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool,Realm realm) {
         this.context = context;
         this.userObjects=userObjects;
         this.passBool = passBool;
+        this.realm=realm;
         classController=new ClassController(context);
     }
 
@@ -47,7 +48,6 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_useraccounts_cell,parent,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
-        realm=Realm.getDefaultInstance();
         return myViewHolder;
     }
 
