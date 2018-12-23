@@ -1,7 +1,0 @@
-#Internal package file, do not edit.
-#Sat Dec 22 20:54:05 EET 2018
-0.baseType=DIRECTORY
-0.base=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
-0.path=crashlytics-build.properties
-0.set=ASSET
-count=1

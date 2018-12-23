@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mrntlu.PassVault.MainActivity;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout usernameLayout,passwordLayout;
     AppCompatEditText usernameEditText,passwordEditText;
     SignInUpController signInUpController;
+    ProgressBar progressBar;
 
     @Override
     public void onBackPressed() {
@@ -37,6 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.constraintLayout);
         constraintLayout.setOnClickListener(null);
+
+        ParseUser user=ParseUser.getCurrentUser();
+        if (user!=null){
+            startActivity(new Intent(LoginActivity.this,OnlineActivity.class));
+        }
+
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
         loginButton=(Button)findViewById(R.id.loginButton);
         signUpButton=(Button)findViewById(R.id.signUpButton);
         usernameLayout=(TextInputLayout)findViewById(R.id.usernameLayout);
@@ -54,11 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        ParseUser user=ParseUser.getCurrentUser();
-        if (user!=null){
-            startActivity(new Intent(LoginActivity.this,OnlineActivity.class));
-        }
     }
 
     private void editTextCompatConfigurations(){
@@ -80,14 +84,27 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void setWhileLoginClickable(Boolean bool){
+        loginButton.setClickable(bool);
+        signUpButton.setClickable(bool);
+    }
+
     private void loginUser(){
+        if (progressBar!=null){
+            progressBar.setVisibility(View.VISIBLE);
+            setWhileLoginClickable(false);
+        }
         ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e==null && user!=null){
+                    progressBar.setVisibility(View.GONE);
+                    setWhileLoginClickable(true);
                     startActivity(new Intent(LoginActivity.this,OnlineActivity.class));
                 }else if (e!=null){
-                    Toasty.error(LoginActivity.this,"Invalid username/password.", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    setWhileLoginClickable(true);
+                    Toasty.error(LoginActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }

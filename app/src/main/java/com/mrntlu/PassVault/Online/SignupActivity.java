@@ -3,10 +3,16 @@ package com.mrntlu.PassVault.Online;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import es.dmoral.toasty.Toasty;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.mrntlu.PassVault.R;
 import com.parse.ParseException;
@@ -19,6 +25,8 @@ public class SignupActivity extends AppCompatActivity {
     AppCompatEditText usernameEditText,emailText,passwordEditText,passwordConfirmText;
     SignInUpController signInUpController;
     Button registerButton;
+    ImageButton goBack;
+    ProgressBar progressBar;
 
     @Override
     public void onBackPressed() {
@@ -41,9 +49,18 @@ public class SignupActivity extends AppCompatActivity {
         passwordConfirmLayout=(TextInputLayout)findViewById(R.id.signupRepeatPasswordLayout);
         passwordConfirmText=(AppCompatEditText)findViewById(R.id.signupRepeatPasswordEditText);
         registerButton=(Button)findViewById(R.id.registerButton);
+        goBack=(ImageButton)findViewById(R.id.goBack);
+        progressBar=(ProgressBar)findViewById(R.id.signupProgress);
         signInUpController=new SignInUpController();
-
         editTextCompatConfigurations();
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SignupActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void editTextCompatConfigurations(){
@@ -82,7 +99,16 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    private void setWhileRegisterClickable(Boolean bool){
+        registerButton.setClickable(bool);
+        goBack.setClickable(bool);
+    }
+
     private void registerUser(){
+        if (progressBar!=null){
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        setWhileRegisterClickable(false);
         ParseUser user=new ParseUser();
         user.setUsername(usernameEditText.getText().toString());
         user.setPassword(passwordEditText.getText().toString());
@@ -92,10 +118,15 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e==null){
+                    progressBar.setVisibility(View.GONE);
+                    setWhileRegisterClickable(true);
                     Intent intent=new Intent(SignupActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }else{
+                    setWhileRegisterClickable(true);
+                    progressBar.setVisibility(View.GONE);
                     e.printStackTrace();
+                    Toasty.error(SignupActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });

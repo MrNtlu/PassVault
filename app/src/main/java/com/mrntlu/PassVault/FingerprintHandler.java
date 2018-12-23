@@ -87,7 +87,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         if (b){
             controlImage.setImageDrawable(context.getDrawable(R.drawable.ic_checked));
             if (activity!=null){
-                if ((MainActivity.adCounter%4==1) && interstitalAd.isLoaded()){
+                if ((MainActivity.adCounter%3==1) && interstitalAd.isLoaded()){
                     interstitalAd.show();
                 }else {
                     Intent intent = new Intent(context, activity);

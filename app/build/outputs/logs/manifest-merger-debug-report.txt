@@ -5,9 +5,8 @@ INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidM
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-75:12
 MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:2:1-10:12
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha3] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha3.aar/069b03324d720e4faa4b10781417e657/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/AndroidManifest.xml:17:1-22:12
@@ -157,8 +156,8 @@ ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidMani
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:10:22-69
 application
 ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:12:5-73:19
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha3] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha3.aar/069b03324d720e4faa4b10781417e657/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha3] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha3.aar/069b03324d720e4faa4b10781417e657/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:22:5-20
 MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:11:5-20
@@ -349,12 +348,10 @@ INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidM
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:6:5-8:41
 MERGED from [io.realm:realm-android-library:5.7.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-realm-android-library-5.7.0.aar/bd47b0092d3519c60f3c04091b9c33b0/AndroidManifest.xml:6:5-8:41
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:20:5-43
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/multidex-2.0.0.aar/3dc84c02b37f3714e5d9b1112578d155/AndroidManifest.xml:20:5-43
 MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.GrenderG:Prefs:1.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Prefs-1.3.aar/eaccee92022c01602297b0006b479bba/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha2.aar/54ce3f63375bf963ad410a13f0d9da11/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha3] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha3.aar/069b03324d720e4faa4b10781417e657/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha3] /Users/burak/.gradle/caches/transforms-1/files-1.1/constraintlayout-2.0.0-alpha3.aar/069b03324d720e4faa4b10781417e657/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0-rc01] /Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/AndroidManifest.xml:20:5-44
 MERGED from [com.github.paolorotolo:appintro:v5.1.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/AndroidManifest.xml:7:5-9:41

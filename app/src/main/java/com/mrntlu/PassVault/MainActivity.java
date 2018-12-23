@@ -113,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
+        interstitialAd=new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
+        //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        AdRequest adRequest = new AdRequest.Builder().build();
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -133,11 +140,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
-        interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
-        //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        interstitialAd.loadAd(new AdRequest.Builder().build());
         helpButton=(ImageButton)findViewById(R.id.helpButton);
         adView=(AdView)findViewById(R.id.adView);
         onlineButton=findViewById(R.id.onlineButton);
@@ -148,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         fingerPrintLayout=findViewById(R.id.fingerPrintLayout);
         fingerPrintText=findViewById(R.id.fingerPrintText);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
         adView.setAdListener(new AdListener(){

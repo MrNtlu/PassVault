@@ -7,30 +7,30 @@
     format="10"
     ir-eligibility="COMPATIBLE"
     plugin-version="3.2.1"
-    timestamp="1545509309948"
+    timestamp="1545582160756"
     token="-6543721296248309461"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="4398" />
+        duration="2259" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="44" />
+        duration="28" />
     <task
         name="verifier"
-        duration="6" />
+        duration="5" />
 
     <artifact
-        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1545504251740"
+        timestamp="1545579219685"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
@@ -71,29 +71,50 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_ADDED"
-        timestamp="1545506240056"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1545580607702"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1545508871453"
+        timestamp="1545581698123"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1545509309948"
+        timestamp="1545582160756"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
     </build>
 

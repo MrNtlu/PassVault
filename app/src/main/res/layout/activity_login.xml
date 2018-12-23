@@ -5,10 +5,10 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Online.LoginActivity"
-    android:background="@drawable/background_gradient">
+    tools:context=".Online.LoginActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameLayout"
@@ -17,10 +17,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:textColorHint="@color/white">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/usernameEditText"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="8dp"
-            android:hint="Email or Username"
+            android:hint="@string/email_or_username"
             android:inputType="text|textEmailAddress"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_white"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
         app:layout_constraintStart_toStartOf="@+id/passwordLayout"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:text="No account yet? Create one"
+        android:text="@string/no_account_yet_create_one"
         android:textAllCaps="false"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/loginButton"
@@ -89,6 +89,18 @@
         android:layout_marginTop="24dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_user_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

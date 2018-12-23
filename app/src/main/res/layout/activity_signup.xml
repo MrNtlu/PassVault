@@ -102,9 +102,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_white"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintEnd_toEndOf="@+id/signupRepeatPasswordLayout"
         app:layout_constraintStart_toStartOf="@+id/signupRepeatPasswordLayout"
         app:layout_constraintTop_toBottomOf="@+id/signupRepeatPasswordLayout" />
+
+    <ImageButton
+        android:id="@+id/goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+    <ProgressBar
+        android:id="@+id/signupProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/signupRepeatPasswordLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signupUsernameLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

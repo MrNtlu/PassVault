@@ -29,7 +29,6 @@ public class OfflineViewModel extends AndroidViewModel {
 
     public OfflineViewModel(@NonNull Application application) {
         super(application);
-        //mRealm=Realm.getDefaultInstance();
     }
 
     public void initMailObjects(Realm realm){
