@@ -3,6 +3,7 @@ package com.mrntlu.PassVault;
 import android.app.Application;
 import android.util.Log;
 
+import com.google.android.gms.ads.MobileAds;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
@@ -46,6 +47,8 @@ public class ParseApp extends Application {
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
+
+        MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
 
         //Save new object
 /*    ParseObject score=new ParseObject("Score");

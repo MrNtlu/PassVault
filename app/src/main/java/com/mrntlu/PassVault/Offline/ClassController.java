@@ -22,7 +22,7 @@ import es.dmoral.toasty.Toasty;
 public class ClassController {
 
     Context context;
-    String passHolder = "••••••••";
+    String passHolder = "••••••••••";
 
     public ClassController(Context context) {
         this.context = context;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Sync"
+        android:id="@+id/syncOnline"
+        android:icon="@drawable/ic_sync_black_24dp"
+        app:showAsAction="always"/>
+
+    <item android:title="@string/add"
+        android:id="@+id/addOnline"
+        android:icon="@drawable/ic_add_black_48dp"
+        app:showAsAction="always"/>
+
+
+</menu>

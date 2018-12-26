@@ -8,12 +8,12 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/layout/abc_action_bar_up_container.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
-    },
-    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/interpolator-v21_mtrl_linear_out_slow_in.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/interpolator-v21/mtrl_linear_out_slow_in.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_design_text_input_password_icon.xml.flat",
@@ -28,12 +28,12 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/color/mtrl_text_btn_text_color_selector.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color-v23_abc_tint_edittext.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color-v23/abc_tint_edittext.xml"
-    },
-    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_share_black_24dp.xml.flat",
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_share_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color-v23_abc_tint_edittext.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color-v23/abc_tint_edittext.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -48,20 +48,20 @@
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/mipmap-xxhdpi/my_logo.png"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_notification_template_part_time.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/res/layout/notification_template_part_time.xml"
-    },
-    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_appintro_fragment_intro2.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/res/layout/appintro_fragment_intro2.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_notification_template_part_time.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/res/layout/notification_template_part_time.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_layout.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -70,6 +70,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_passvault_logo_vector.png.flat",
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/passvault_logo_vector.png"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_cloud_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_cloud_black_24dp.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/animator_mtrl_btn_state_list_anim.xml.flat",
@@ -92,16 +96,16 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable/abc_btn_default_mtrl_shape.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_design_ic_visibility.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/drawable-xxxhdpi-v4/design_ic_visibility.png"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_000.png"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_switch_thumb_material_dark.xml.flat",
@@ -124,12 +128,16 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_abc_tint_default.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color/abc_tint_default.xml"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_fragment_password_generator.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/fragment_password_generator.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-mdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_abc_tint_default.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color/abc_tint_default.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -172,16 +180,16 @@
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/activity_signup.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color-v21_abc_btn_colored_borderless_text_material.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color-v21/abc_btn_colored_borderless_text_material.xml"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_navigation_empty_icon.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/drawable/navigation_empty_icon.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_navigation_empty_icon.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/drawable/navigation_empty_icon.xml"
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color-v21_abc_btn_colored_borderless_text_material.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color-v21/abc_btn_colored_borderless_text_material.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -228,12 +236,12 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable/abc_ratingbar_material.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_ic_check_white_48dp.png.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/res/drawable-hdpi-v4/ic_check_white_48dp.png"
-    },
-    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_ic_error_outline_white_48dp.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/res/drawable-xxxhdpi-v4/ic_error_outline_white_48dp.png"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_ic_check_white_48dp.png.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/res/drawable-hdpi-v4/ic_check_white_48dp.png"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -476,6 +484,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable/abc_seekbar_track_material.xml"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_dialog_online_add.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/dialog_online_add.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
     },
@@ -630,6 +642,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-mdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_more_vert_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_more_vert_black_24dp.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -788,6 +804,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/color/mtrl_bottom_nav_item_tint.xml"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_home_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_home_black_24dp.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_custom.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/c5b9eb20ea8f1a7ca2d465bee9d9548d/res/layout/notification_template_big_media_custom.xml"
     },
@@ -818,6 +838,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_abc_activity_chooser_view_list_item.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_header.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/header.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_mtrl_bottom_nav_colored_item_tint.xml.flat",
@@ -1340,6 +1364,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_settings_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_settings_black_24dp.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png"
     },
@@ -1480,6 +1508,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_fragment_online_storage.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/fragment_online_storage.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
     },
@@ -1514,6 +1546,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_abc_cab_background_top_material.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_rounded_gradient.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/rounded_gradient.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_search_black_24dp.xml.flat",
@@ -1852,6 +1888,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/layout/design_navigation_item_subheader.xml"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/menu_online_add_menu.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/menu/online_add_menu.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxhdpi-v4/abc_ic_star_black_36dp.png"
     },
@@ -2180,6 +2220,14 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-mdpi-v4/abc_popup_background_mtrl_mult.9.png"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_exit_to_app_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_custom_online_cell.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/custom_online_cell.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xhdpi-v4/abc_text_select_handle_middle_mtrl_dark.png"
     },
@@ -2268,6 +2316,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_sync_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_sync_black_24dp.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_mtrl_tabs_icon_color_selector_colored.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/color/mtrl_tabs_icon_color_selector_colored.xml"
     },
@@ -2304,6 +2356,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/f838da79cc3979f11fb589be28a71c6a/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/menu_online_cell_menu.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/menu/online_cell_menu.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_notification_template_big_media.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/c5b9eb20ea8f1a7ca2d465bee9d9548d/res/layout/notification_template_big_media.xml"
     },
@@ -2318,6 +2374,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_holo_dark.xml.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_menu_black_24dp.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_menu_black_24dp.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -2434,6 +2494,10 @@
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/layout_custom_other_cell.xml.flat",
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/layout/custom_other_cell.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/menu_navigation_drawer_menu.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/menu/navigation_drawer_menu.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",

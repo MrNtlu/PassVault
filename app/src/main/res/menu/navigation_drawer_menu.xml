@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:title="Main Menu"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:id="@+id/main_menu"/>
+        <item
+            android:title="Online Storage"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_cloud_black_24dp"
+            android:id="@+id/online_storage"/>
+
+    </group>
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:title="Settings"
+                app:showAsAction="always"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:id="@+id/settings"/>
+            <item
+                android:title="Log Out"
+                app:showAsAction="always"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:id="@+id/log_out"/>
+        </menu>
+    </item>
+</menu>

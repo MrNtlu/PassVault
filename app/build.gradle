@@ -7,8 +7,8 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 13
-        versionName "5.0"
+        versionCode 15
+        versionName "5.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -20,8 +20,7 @@ import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button loginButton,signUpButton;
-    ImageButton whyButton;
+    Button loginButton,signUpButton,forgetPassword;
     TextInputLayout usernameLayout,passwordLayout;
     AppCompatEditText usernameEditText,passwordEditText;
     SignInUpController signInUpController;
@@ -48,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         loginButton=(Button)findViewById(R.id.loginButton);
         signUpButton=(Button)findViewById(R.id.signUpButton);
+        forgetPassword=(Button)findViewById(R.id.forgetPassword);
         usernameLayout=(TextInputLayout)findViewById(R.id.usernameLayout);
         usernameEditText=(AppCompatEditText)findViewById(R.id.usernameEditText);
         passwordLayout=(TextInputLayout)findViewById(R.id.passwordLayout);
@@ -61,6 +61,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,SignupActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO Dialog ask for email
             }
         });
     }

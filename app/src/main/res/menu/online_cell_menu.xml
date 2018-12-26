@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Edit"
+        android:id="@+id/editMenu"
+        android:icon="@drawable/edit_button"
+        app:showAsAction="always"/>
+
+    <item android:title="Delete"
+        android:id="@+id/deleteMenu"
+        android:icon="@drawable/delete_button"
+        app:showAsAction="always"/>
+</menu>

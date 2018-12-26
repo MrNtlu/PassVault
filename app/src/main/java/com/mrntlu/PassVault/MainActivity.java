@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     Dialog customMailDialog;
     Dialog fingerPrintDialog;
-    AdView adView;
     CardView onlineButton,offlineButton;
     ClassController classController;
     ImageButton helpButton;
@@ -80,28 +79,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton fingerPrintButton;
 
     @Override
-    public void onPause() {
-        if (adView != null) {
-            adView.pause();
-        }
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
         MainActivity.adCounter++;
-        if (adView != null) {
-            adView.resume();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 
     @Override
@@ -113,12 +93,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
+
         interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
-        //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        //TODO interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         interstitialAd.loadAd(new AdRequest.Builder().build());
-        AdRequest adRequest = new AdRequest.Builder().build();
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -141,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         helpButton=(ImageButton)findViewById(R.id.helpButton);
-        adView=(AdView)findViewById(R.id.adView);
         onlineButton=findViewById(R.id.onlineButton);
         offlineButton=findViewById(R.id.offlineButton);
 
@@ -149,16 +127,6 @@ public class MainActivity extends AppCompatActivity {
         fingerPrintButton=findViewById(R.id.fingerPrintButton);
         fingerPrintLayout=findViewById(R.id.fingerPrintLayout);
         fingerPrintText=findViewById(R.id.fingerPrintText);
-
-        adView.loadAd(adRequest);
-
-        adView.setAdListener(new AdListener(){
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                adView.setVisibility(View.GONE);
-            }
-        });
 
         classController=new ClassController(this);
 
