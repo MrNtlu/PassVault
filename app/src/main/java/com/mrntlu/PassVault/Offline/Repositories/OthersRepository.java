@@ -31,6 +31,7 @@ public class OthersRepository {
     }
 
     private void setOtherObjects(){
+        //TODO Remove
         ClassController classController=new ClassController(context);
         classController.loadCredentials(FileLocations.FILE3_NAME,descriptionList);
         classController.loadCredentials(FileLocations.PASS3_FILE_NAME,passwordList);

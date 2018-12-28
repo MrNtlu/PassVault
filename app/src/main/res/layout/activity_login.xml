@@ -109,13 +109,16 @@
     <Button
         android:id="@+id/forgetPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
-        android:text="Forget Password?"
+        android:background="@drawable/rounded_red"
+        android:text="@string/forget_password"
         android:textAllCaps="false"
-        android:textSize="13sp"
+        android:textColor="@color/white"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -88,7 +88,7 @@ public class SignupActivity extends AppCompatActivity {
                     if (!passwordConfirmText.getText().toString().equals(passwordEditText.getText().toString())){
                         signInUpController.textErrorMessage("Passwords must be the same!",passwordConfirmLayout);
                     }
-                    if (!emailText.getText().toString().contains("@")){
+                    else if (!emailText.getText().toString().contains("@")){
                         signInUpController.textErrorMessage("Email is not valid.",emailLayout);
                     }
                     else{

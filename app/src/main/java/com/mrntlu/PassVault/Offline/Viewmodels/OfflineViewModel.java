@@ -65,6 +65,11 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void addMailObject(final String mail, final String password){
+        Boolean wasNull=false;
+        if (mRealm==null){
+            mRealm=Realm.getDefaultInstance();
+            wasNull=true;
+        }
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -75,9 +80,17 @@ public class OfflineViewModel extends AndroidViewModel {
         });
         RealmResults<MailObject> mailObjects=mMailObjects.getValue();
         mMailObjects.postValue(mailObjects);
+        if (wasNull){
+            mRealm.close();
+        }
     }
 
     public void addUserObject(final String mail, final String password,final String description){
+        Boolean wasNull=false;
+        if (mRealm==null){
+            mRealm=Realm.getDefaultInstance();
+            wasNull=true;
+        }
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -89,19 +102,30 @@ public class OfflineViewModel extends AndroidViewModel {
         });
         RealmResults<AccountsObject> accountObjects=mUserObjects.getValue();
         mUserObjects.postValue(accountObjects);
+        if (wasNull){
+            mRealm.close();
+        }
     }
 
     public void addOtherObject(final String description, final String password){
+        Boolean wasNull=false;
+        if (mRealm==null){
+            mRealm=Realm.getDefaultInstance();
+            wasNull=true;
+        }
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                OthersObject othersObject=realm.createObject(OthersObject.class);
+                OthersObject othersObject = realm.createObject(OthersObject.class);
                 othersObject.setDescription(description);
                 othersObject.setPassword(password);
             }
         });
-        RealmResults<OthersObject> otherObjects=mOtherObjects.getValue();
+        RealmResults<OthersObject> otherObjects = mOtherObjects.getValue();
         mOtherObjects.postValue(otherObjects);
+        if (wasNull){
+            mRealm.close();
+        }
     }
 
     public LiveData<RealmResults<MailObject>> searchMailObject(String mail){

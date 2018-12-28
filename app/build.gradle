@@ -7,8 +7,8 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 15
-        versionName "5.5"
+        versionCode 16
+        versionName "5.6"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,6 +44,7 @@ dependencies {
     implementation 'io.realm:android-adapters:2.1.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.alirezaafkar:TextDrawable:2.0.0'
+
     // Lifecycle components
     def lifecycle_version = "2.0.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

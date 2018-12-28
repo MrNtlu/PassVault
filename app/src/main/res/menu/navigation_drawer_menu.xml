@@ -12,19 +12,23 @@
             app:showAsAction="always"
             android:icon="@drawable/ic_cloud_black_24dp"
             android:id="@+id/online_storage"/>
-
+        <item
+            android:title="Password Generator"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_password_generator"
+            android:id="@+id/pass_generator"/>
     </group>
     <item android:title="Settings">
         <menu>
             <item
-                android:title="Settings"
+                android:title="Account Settings"
                 app:showAsAction="always"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:id="@+id/settings"/>
             <item
                 android:title="Log Out"
                 app:showAsAction="always"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:icon="@drawable/ic_log_out"
                 android:id="@+id/log_out"/>
         </menu>
     </item>

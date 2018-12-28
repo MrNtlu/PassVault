@@ -1,8 +1,14 @@
 package com.mrntlu.PassVault.Online;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,20 +36,21 @@ public class OnlineDialog {
     private List<ParseObject> parseObjects;
     private Context context;
     private OnlineViewModel viewModel;
-    private ProgressBar progressBar;
 
     public OnlineDialog(List<ParseObject> parseObjects, Context context,OnlineViewModel viewModel) {
         this.parseObjects = parseObjects;
         this.context = context;
         this.viewModel=viewModel;
         onlineDialog=new Dialog(context);
+        if (Build.VERSION.SDK_INT==21){
+            onlineDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
     }
 
     private void initDialog(){
         onlineDialog.setContentView(R.layout.dialog_online_add);
 
         colorImage=onlineDialog.findViewById(R.id.colorImage);
-
         titleEditText=onlineDialog.findViewById(R.id.titleEditText);
         usernameEditText=onlineDialog.findViewById(R.id.usernameEditText);
         passwordEditText=onlineDialog.findViewById(R.id.passwordEditText);
@@ -51,8 +58,6 @@ public class OnlineDialog {
         editButton=onlineDialog.findViewById(R.id.editButton);
         deleteButton=onlineDialog.findViewById(R.id.deleteButton);
         closeButton=onlineDialog.findViewById(R.id.closeButton);
-        progressBar=onlineDialog.findViewById(R.id.dialogProgress);
-
 
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getRandomColor();
@@ -60,11 +65,31 @@ public class OnlineDialog {
                 .buildRound("T", color);
 
         colorImage.setImageDrawable(drawable);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onlineDialog.dismiss();
+            }
+        });
+    }
+
+    public void searchDialog(final int position, final String title, final String username, final String password){
+        initDialog();
+        setModeChange(false);
+
+        titleEditText.setText(title);
+        usernameEditText.setText(username);
+        passwordEditText.setText(password);
+        noteEditText.setText(parseObjects.get(position).getString("Note"));
+
+        editButton.setVisibility(View.GONE);
+        deleteButton.setVisibility(View.GONE);
+
+        onlineDialog.show();
     }
 
     public void showAddDialog(){
-        //TODO Check if empty?
-
         initDialog();
         setModeChange(true);
 
@@ -74,39 +99,36 @@ public class OnlineDialog {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                viewModel.addOnlineObject(titleEditText.getText().toString(),usernameEditText.getText().toString(),passwordEditText.getText().toString(),noteEditText.getText().toString());
-                progressBar.setVisibility(View.GONE);
-                onlineDialog.dismiss();
-            }
-        });
-
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onlineDialog.dismiss();
+                if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
+                    Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
+                }else{
+                    viewModel.addOnlineObject(titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
+                    onlineDialog.dismiss();
+                }
             }
         });
 
         onlineDialog.show();
     }
 
-    public void showDialog(final int position, String title,String username){
-        //TODO Check if empty?
-
+    public void showDialog(final int position, final String title, final String username, final String password){
         initDialog();
 
         titleEditText.setText(title);
         usernameEditText.setText(username);
-        passwordEditText.setText(parseObjects.get(position).getString("Password"));
+        passwordEditText.setText(password);
         noteEditText.setText(parseObjects.get(position).getString("Note"));
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (editButton.getText().toString().toLowerCase().equals("save")){
-                    viewModel.editOnlineObject(position,titleEditText.getText().toString(),usernameEditText.getText().toString(),passwordEditText.getText().toString(),noteEditText.getText().toString());
-                    onlineDialog.dismiss();
+                    if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
+                        Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
+                    }else{
+                        viewModel.editOnlineObject(position, titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
+                        onlineDialog.dismiss();
+                    }
                 }
                 else if (editButton.getText().toString().toLowerCase().equals("edit")){
                     editButton.setText("Save");
@@ -120,12 +142,28 @@ public class OnlineDialog {
             @Override
             public void onClick(View view) {
                 if (deleteButton.getText().toString().toLowerCase().equals("delete")){
-                    progressBar.setVisibility(View.VISIBLE);
-                    viewModel.deleteOnlineObject(position);
-                    progressBar.setVisibility(View.GONE);
                     onlineDialog.dismiss();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Are You Sure?");
+                    builder.setMessage("Do you want to delete?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            viewModel.deleteOnlineObject(position);
+                        }
+                    });
+                    builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
                 }
                 else if (deleteButton.getText().toString().toLowerCase().equals("cancel")){
+                    titleEditText.setText(title);
+                    usernameEditText.setText(username);
+                    passwordEditText.setText(password);
                     deleteButton.setText("Delete");
                     editButton.setText("Edit");
                     setModeChange(false);
@@ -145,16 +183,23 @@ public class OnlineDialog {
 
     private void setModeChange(Boolean bool){
         titleEditText.setClickable(bool);
-        titleEditText.setFocusableInTouchMode(bool);
-        usernameEditText.setClickable(bool);
-        usernameEditText.setFocusableInTouchMode(bool);
-        passwordEditText.setClickable(bool);
-        passwordEditText.setFocusableInTouchMode(bool);
-        noteEditText.setClickable(bool);
-        noteEditText.setFocusableInTouchMode(bool);
+        titleEditText.setFocusable(bool);
         titleEditText.setCursorVisible(bool);
+        titleEditText.setFocusableInTouchMode(bool);
+
+        usernameEditText.setClickable(bool);
+        usernameEditText.setFocusable(bool);
         usernameEditText.setCursorVisible(bool);
+        usernameEditText.setFocusableInTouchMode(bool);
+
+        passwordEditText.setClickable(bool);
+        passwordEditText.setFocusable(bool);
         passwordEditText.setCursorVisible(bool);
+        passwordEditText.setFocusableInTouchMode(bool);
+
+        noteEditText.setClickable(bool);
+        noteEditText.setFocusable(bool);
         noteEditText.setCursorVisible(bool);
+        noteEditText.setFocusableInTouchMode(bool);
     }
 }

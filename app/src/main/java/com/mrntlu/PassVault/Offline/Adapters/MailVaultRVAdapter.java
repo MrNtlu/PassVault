@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -136,7 +138,9 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
     public void showPopup(View v,final int position){
         Button editAdd,editClose;
         final TextView editID,editPassword;
-
+        if (Build.VERSION.SDK_INT==21){
+            customDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
         customDialog.setContentView(R.layout.dialog_mail_other);
 
         editID=(TextView)customDialog.findViewById(R.id.editID);

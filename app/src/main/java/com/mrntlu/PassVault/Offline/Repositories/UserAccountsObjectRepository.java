@@ -34,6 +34,7 @@ public class UserAccountsObjectRepository {
     }
 
     private void setAccountsObjects(){
+        //TODO Remove
         ClassController classController=new ClassController(context);
         classController.loadCredentials(FileLocations.FILE_NAME,idMailList);
         classController.loadCredentials(FileLocations.PASS_FILE_NAME,passwordList);

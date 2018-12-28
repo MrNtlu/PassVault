@@ -53,7 +53,6 @@
         ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-7421130457283934/1657074752"
         ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -43,21 +44,10 @@ import javax.crypto.SecretKey;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String userAccountsMailText;
-
-    private ArrayList<String> idList=new ArrayList<String>();
-    private ArrayList<String> passwordList=new ArrayList<String>();
-    private ArrayList<String> descList=new ArrayList<String>();
-    private ArrayList<String> mailAccountID=new ArrayList<String>();
-    private ArrayList<String> mailAccountPassword=new ArrayList<String>();
-    private ArrayList<String> otherAccountID=new ArrayList<String>();
-    private ArrayList<String> otherAccountPassword=new ArrayList<String>();
-
     private Class activity;
     private InterstitialAd interstitialAd;
     public static int adCounter=0;
 
-    Dialog customMailDialog;
     Dialog fingerPrintDialog;
     CardView onlineButton,offlineButton;
     ClassController classController;
@@ -95,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         interstitialAd=new InterstitialAd(this);
-        //TODO interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
+        //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         interstitialAd.loadAd(new AdRequest.Builder().build());
 
         Thread thread = new Thread(new Runnable() {
@@ -209,7 +199,9 @@ public class MainActivity extends AppCompatActivity {
         Button controlButton;
         ImageView controlImage;
         TextView controlText,dialogTitle;
-
+        if (Build.VERSION.SDK_INT==21){
+            fingerPrintDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
         fingerPrintDialog.setContentView(R.layout.dialog_set_fingerprint);
         controlButton=fingerPrintDialog.findViewById(R.id.controlButton);
         controlImage=fingerPrintDialog.findViewById(R.id.controlImg);
@@ -343,61 +335,4 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException("Failed to init Cipher", e);
         }
     }
-
-    public void showMailPopup(View v){
-        Button sendMail;
-        final TextView mailSubject;
-
-        customMailDialog.setContentView(R.layout.dialog_send_as_mail);
-        sendMail=(Button)customMailDialog.findViewById(R.id.sendButton);
-        mailSubject=(TextView)customMailDialog.findViewById(R.id.subjectMail);
-        mailSubject.setText(getString(R.string.my_passwords));
-        sendMail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendMail(mailSubject.getText().toString());
-            }
-        });
-        customMailDialog.show();
-    }
-
-    private void sendMail(String mailSubject){
-        userAccountsMailText=" ";
-        Intent intent=new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_SUBJECT,mailSubject);
-
-        classController.loadCredentials(FileLocations.FILE_NAME,idList);
-        classController.loadCredentials(FileLocations.DES_FILE_NAME,descList);
-        classController.loadCredentials(FileLocations.PASS_FILE_NAME,passwordList);
-
-        classController.loadCredentials(FileLocations.FILE2_NAME,otherAccountID);
-        classController.loadCredentials(FileLocations.PASS2_FILE_NAME,otherAccountPassword);
-
-        classController.loadCredentials(FileLocations.FILE3_NAME,mailAccountID);
-        classController.loadCredentials(FileLocations.PASS3_FILE_NAME,mailAccountPassword);
-
-        if (idList.size()!=0) userAccountsMailText="Your Accounts:\n\n";
-        for (int i=0;i<idList.size();i++){
-            userAccountsMailText+="ID/Mail: "+idList.get(i)+"\n";
-            userAccountsMailText+="Password: "+passwordList.get(i)+"\n";
-            userAccountsMailText+="Description: "+descList.get(i)+"\n\n";
-        }
-
-        if (mailAccountID.size()!=0) userAccountsMailText+="User Accounts:\n\n" ;
-        for (int i=0;i<mailAccountID.size();i++){
-            userAccountsMailText+="ID/Mail: "+mailAccountID.get(i)+"\n";
-            userAccountsMailText+="Password: "+mailAccountPassword.get(i)+"\n\n";
-        }
-
-        if (otherAccountID.size()!=0) userAccountsMailText+="Other Accounts:\n\n" ;
-        for (int i=0;i<otherAccountID.size();i++){
-            userAccountsMailText+="Description: "+otherAccountID.get(i)+"\n";
-            userAccountsMailText+="Password: "+otherAccountPassword.get(i)+"\n\n";
-        }
-
-        intent.putExtra(Intent.EXTRA_TEXT,userAccountsMailText);
-        intent.setType("message/rfc822");
-        startActivity(Intent.createChooser(intent,"Choose Save Method"));
-    }
-
 }

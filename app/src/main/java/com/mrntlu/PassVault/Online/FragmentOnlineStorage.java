@@ -7,8 +7,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
+import es.dmoral.toasty.Toasty;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.Toast;
 import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.Online.Adapters.OnlineRVAdapter;
 import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
@@ -34,10 +33,17 @@ public class FragmentOnlineStorage extends Fragment {
     OnlineRVAdapter onlineRVAdapter;
     private OnlineViewModel viewModel;
     private OnlineDialog dialogClass;
+    private ProgressBar progressBar;
+    public static ProgressBar sProgressBar;
 
     public static FragmentOnlineStorage newInstance() {
         FragmentOnlineStorage fragment = new FragmentOnlineStorage();
         return fragment;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.online_add_menu,menu);
     }
 
     @Override
@@ -49,6 +55,7 @@ public class FragmentOnlineStorage extends Fragment {
                     return true;
                 case R.id.syncOnline:
                     initRecyclerView();
+                    Toasty.info(getContext(),"Synced.", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
                     return super.onOptionsItemSelected(item);
@@ -76,12 +83,14 @@ public class FragmentOnlineStorage extends Fragment {
         v=inflater.inflate(R.layout.fragment_online_storage, container, false);
         recyclerView=(RecyclerView)v.findViewById(R.id.onlineRecycler);
         searchView=(SearchView)v.findViewById(R.id.onlineSearch);
+        progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
+        sProgressBar=progressBar;
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         viewModel=ViewModelProviders.of(getActivity()).get(OnlineViewModel.class);
-        viewModel.initOnlineObjects();
+        viewModel.initOnlineObjects(progressBar);
 
         initRecyclerView();
 
@@ -108,8 +117,7 @@ public class FragmentOnlineStorage extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                //TODO hold before search position
-                onlineRVAdapter=new OnlineRVAdapter(viewModel.searchOnlineObjects(s).getValue(),getContext(),viewModel);
+                onlineRVAdapter=new OnlineRVAdapter(viewModel.searchOnlineObjects(s).getValue(),getContext(),viewModel,true);
                 recyclerView.setAdapter(onlineRVAdapter);
                 return false;
             }

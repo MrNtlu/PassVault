@@ -1,8 +1,10 @@
 package com.mrntlu.PassVault.Online.Viewmodels;
 
 import android.app.Application;
-import android.util.Log;
-
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+import com.mrntlu.PassVault.Online.FragmentOnlineStorage;
 import com.mrntlu.PassVault.Online.Repositories.OnlineRepository;
 import com.parse.DeleteCallback;
 import com.parse.ParseException;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import es.dmoral.toasty.Toasty;
 
 public class OnlineViewModel extends AndroidViewModel {
 
@@ -30,8 +33,8 @@ public class OnlineViewModel extends AndroidViewModel {
         mRepo=new OnlineRepository(user);
     }
 
-    public void initOnlineObjects(){
-        onlineObjects=mRepo.getOnlineObjects();
+    public void initOnlineObjects(ProgressBar progressBar){
+        onlineObjects=mRepo.getOnlineObjects(progressBar);
     }
 
     public void addOnlineObject(String title,String username,String password,String note){
@@ -41,7 +44,10 @@ public class OnlineViewModel extends AndroidViewModel {
         object.put("Username",username);
         object.put("Password",password);
         object.put("Note",note);
-        object.saveEventually(new SaveCallback() {
+        if (FragmentOnlineStorage.sProgressBar!=null) {
+            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        }
+        object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e==null){
@@ -49,7 +55,11 @@ public class OnlineViewModel extends AndroidViewModel {
                     array=onlineObjects.getValue();
                     onlineObjects.postValue(array);
                 }else{
+                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
+                }
+                if (FragmentOnlineStorage.sProgressBar!=null){
+                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -60,18 +70,30 @@ public class OnlineViewModel extends AndroidViewModel {
         onlineObjects.getValue().get(position).put("Username",username);
         onlineObjects.getValue().get(position).put("Password",password);
         onlineObjects.getValue().get(position).put("Note",note);
+        if (FragmentOnlineStorage.sProgressBar!=null){
+            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        }
         onlineObjects.getValue().get(position).saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e==null){
                     array=onlineObjects.getValue();
                     onlineObjects.postValue(array);
+                }else{
+                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                if (FragmentOnlineStorage.sProgressBar!=null){
+                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
                 }
             }
         });
     }
 
     public void deleteOnlineObject(final int position){
+        if (FragmentOnlineStorage.sProgressBar!=null){
+            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        }
         onlineObjects.getValue().get(position).deleteInBackground(new DeleteCallback() {
             @Override
             public void done(ParseException e) {
@@ -79,6 +101,12 @@ public class OnlineViewModel extends AndroidViewModel {
                     onlineObjects.getValue().remove(position);
                     array = onlineObjects.getValue();
                     onlineObjects.postValue(array);
+                }else{
+                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                if (FragmentOnlineStorage.sProgressBar!=null){
+                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -87,7 +115,7 @@ public class OnlineViewModel extends AndroidViewModel {
     public LiveData<ArrayList<ParseObject>> searchOnlineObjects(String search){
         MutableLiveData<ArrayList<ParseObject>> searchData=new MutableLiveData<>();
         searchData.setValue(mRepo.getSearchOnlineObject(search));
-        return  searchData;
+        return searchData;
     }
 
     public LiveData<ArrayList<ParseObject>> getOnlineObjects() {

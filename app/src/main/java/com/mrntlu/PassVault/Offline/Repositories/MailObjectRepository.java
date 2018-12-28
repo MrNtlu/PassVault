@@ -31,6 +31,7 @@ public class MailObjectRepository {
     }
 
     private void setMailObjects(){
+        //TODO Remove them
         ClassController classController=new ClassController(context);
         classController.loadCredentials(FileLocations.FILE2_NAME,idList);
         classController.loadCredentials(FileLocations.PASS2_FILE_NAME,passwordList);

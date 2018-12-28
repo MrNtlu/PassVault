@@ -1183,7 +1183,6 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
-drawable customshape
 drawable delete_button
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1194,6 +1193,7 @@ drawable design_snackbar_background
 drawable edit_button
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_account_circle_black_24dp
 drawable ic_add_black_24dp
 drawable ic_add_black_48dp
 drawable ic_appintro_arrow_back_white
@@ -1207,16 +1207,20 @@ drawable ic_check_white_48dp
 drawable ic_checked
 drawable ic_clear_white_48dp
 drawable ic_close_button
+drawable ic_close_white_36dp
 drawable ic_cloud
 drawable ic_cloud_2
 drawable ic_cloud_black_24dp
+drawable ic_content_copy_black_24dp
+drawable ic_description_black_24dp
+drawable ic_error_404
 drawable ic_error_outline_white_48dp
-drawable ic_exit_to_app_black_24dp
 drawable ic_fingerprint_black_24dp
 drawable ic_hastag
 drawable ic_help_black_24dp
 drawable ic_home_black_24dp
 drawable ic_info_outline_white_48dp
+drawable ic_log_out
 drawable ic_menu_black_24dp
 drawable ic_more_vert_black_24dp
 drawable ic_mtrl_chip_checked_black
@@ -1224,13 +1228,14 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_padlock
 drawable ic_padlock_pass
+drawable ic_password_generator
 drawable ic_protection
 drawable ic_review
 drawable ic_save_black_24dp
 drawable ic_search_black_24dp
 drawable ic_settings_black_24dp
-drawable ic_share_black_24dp
 drawable ic_sync_black_24dp
+drawable ic_turned_in_black_24dp
 drawable ic_user
 drawable ic_user_1
 drawable ic_warning_outline_white
@@ -1252,7 +1257,6 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable passvault_logo
 drawable passvault_logo_vector
-drawable passvault_new_logo
 drawable rounded_gradient
 drawable rounded_light_blue
 drawable rounded_red
@@ -1352,7 +1356,6 @@ id decelerate
 id decor_content_parent
 id default_activity_button
 id deleteButton
-id deleteMenu
 id deltaRelative
 id description
 id descriptionText
@@ -1361,7 +1364,6 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
-id dialogProgress
 id dialogTitle
 id dimensions
 id direct
@@ -1380,12 +1382,12 @@ id editButton
 id editClose
 id editDes
 id editID
-id editMenu
 id editText
 id editText2
 id editText3
 id edit_query
 id editpassword
+id emailSend
 id end
 id end_padder
 id enterAlways
@@ -1434,6 +1436,7 @@ id imageColor
 id imageView
 id imageView2
 id imageView3
+id imageView4
 id indicator_container
 id info
 id invisible
@@ -1491,7 +1494,9 @@ id parent
 id parentPanel
 id parentRelative
 id parent_matrix
+id pass_generator
 id passwordEditText
+id passwordHolder
 id passwordLayout
 id passwordText
 id path
@@ -1520,7 +1525,6 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
-id searchProgress
 id search_badge
 id search_bar
 id search_button
@@ -1574,7 +1578,6 @@ id startHorizontal
 id startVertical
 id status_bar_latest_event_content
 id stretch
-id subjectMail
 id submenuarrow
 id submit_area
 id syncOnline
@@ -1588,6 +1591,7 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id textView3
 id textView6
 id textView9
@@ -1628,7 +1632,6 @@ id usernameEditText
 id usernameLayout
 id usernameText
 id vertical
-id view
 id view_offset_helper
 id view_pager
 id visible
@@ -1754,7 +1757,6 @@ layout toast_layout
 menu add_menu
 menu navigation_drawer_menu
 menu online_add_menu
-menu online_cell_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap my_logo
@@ -1854,12 +1856,12 @@ string fingerprint_not_supported
 string fingerprint_permission_not_granted
 string fingerprint_place_your_finger
 string firebase_database_url
+string forget_password
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
-string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string idmail
 string idmaillayout

@@ -1,5 +1,8 @@
 package com.mrntlu.PassVault.Online.Repositories;
 
+import android.view.View;
+import android.widget.ProgressBar;
+
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -19,26 +22,35 @@ public class OnlineRepository {
         this.user=user;
     }
 
-    public MutableLiveData<ArrayList<ParseObject>> getOnlineObjects(){
-        setOnlineObjects();
+    public MutableLiveData<ArrayList<ParseObject>> getOnlineObjects(ProgressBar progressBar){
         MutableLiveData<ArrayList<ParseObject>> data=new MutableLiveData<>();
         data.setValue(parseObjects);
+        progressBar.setVisibility(View.VISIBLE);
+        setOnlineObjects(data,progressBar);
         return data;
     }
 
-    private void setOnlineObjects(){
+    private void setOnlineObjects(final MutableLiveData<ArrayList<ParseObject>> data, final ProgressBar progressBar){
+        if(parseObjects!=null && parseObjects.size()!=0) {
+            parseObjects.clear();
+        }
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Account");
         query.whereEqualTo("ParseUser",user.getUsername());
-        try {
-            parseObjects.addAll(query.find());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e==null){
+                    parseObjects.addAll(objects);
+                    data.postValue(parseObjects);
+                }else{
+                    e.printStackTrace();
+                }
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     public ArrayList<ParseObject> getSearchOnlineObject(String search){
-        //TODO Case insensitive
         final ArrayList<ParseObject> searchObjects=new ArrayList<>();
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Account");
         query.whereEqualTo("ParseUser",user.getUsername());
