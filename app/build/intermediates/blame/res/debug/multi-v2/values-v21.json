@@ -4,6 +4,25 @@
             "outputFile": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
             "map": [
                 {
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.1.0-alpha02.aar/72b97b860be255f51cc103a15cff28f4/res/values-v21/values-v21.xml",
+                    "from": {
+                        "startLines": "2,8,14,20,24",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,399,749,1099,1350",
+                        "endLines": "7,13,19,23,27",
+                        "endColumns": "10,10,10,10,10",
+                        "endOffsets": "394,744,1094,1345,1614"
+                    },
+                    "to": {
+                        "startLines": "287,293,299,313,317",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "20918,21262,21612,22472,22723",
+                        "endLines": "292,298,304,316,320",
+                        "endColumns": "10,10,10,10,10",
+                        "endOffsets": "21257,21607,21957,22718,22987"
+                    }
+                },
+                {
                     "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/2dbcd53cd445218baa11528107f2754a/res/values-v21/values-v21.xml",
                     "from": {
                         "startLines": "2,5",
@@ -71,31 +90,12 @@
                         "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,271,272,279,283,319,322",
+                        "startLines": "2,3,4,5,271,272,279,283,305,308",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,19756,19872,20329,20623,22631,22803",
-                        "endLines": "2,3,4,5,271,272,279,283,321,326",
+                        "startOffsets": "55,159,223,290,19756,19872,20329,20623,21962,22134",
+                        "endLines": "2,3,4,5,271,272,279,283,307,312",
                         "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,19867,19993,20450,20746,22798,23136"
-                    }
-                },
-                {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.0.0-rc01.aar/e0d16790a09f067647060d00fe656935/res/values-v21/values-v21.xml",
-                    "from": {
-                        "startLines": "2,10,18,26",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,484,910,1333",
-                        "endLines": "9,17,25,33",
-                        "endColumns": "10,10,10,10",
-                        "endOffsets": "479,905,1328,1763"
-                    },
-                    "to": {
-                        "startLines": "287,295,303,311",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "20918,21347,21773,22196",
-                        "endLines": "294,302,310,318",
-                        "endColumns": "10,10,10,10",
-                        "endOffsets": "21342,21768,22191,22626"
+                        "endOffsets": "154,218,285,349,19867,19993,20450,20746,22129,22467"
                     }
                 }
             ]

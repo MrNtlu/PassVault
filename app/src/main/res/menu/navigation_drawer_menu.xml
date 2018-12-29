@@ -3,33 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
         <item
-            android:title="Main Menu"
+            android:title="@string/main_menu"
             app:showAsAction="always"
             android:icon="@drawable/ic_home_black_24dp"
             android:id="@+id/main_menu"/>
         <item
-            android:title="Online Storage"
+            android:title="@string/online_storage"
             app:showAsAction="always"
             android:icon="@drawable/ic_cloud_black_24dp"
             android:id="@+id/online_storage"/>
         <item
-            android:title="Password Generator"
+            android:title="@string/password_generator"
             app:showAsAction="always"
-            android:icon="@drawable/ic_password_generator"
+            android:icon="@drawable/ic_key"
             android:id="@+id/pass_generator"/>
     </group>
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:title="Account Settings"
-                app:showAsAction="always"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:id="@+id/settings"/>
-            <item
-                android:title="Log Out"
-                app:showAsAction="always"
-                android:icon="@drawable/ic_log_out"
-                android:id="@+id/log_out"/>
-        </menu>
-    </item>
+    <group android:id="@+id/group" android:checkableBehavior="single">
+        <item
+            android:title="@string/log_out"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_log_out"
+            android:id="@+id/log_out"/>
+    </group>
 </menu>

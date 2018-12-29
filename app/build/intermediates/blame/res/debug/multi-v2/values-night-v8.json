@@ -12,6 +12,23 @@
                         "endColumns": "69,83,83,95,101,101,93",
                         "endOffsets": "120,204,288,384,486,588,682"
                     }
+                },
+                {
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.1.0-alpha02.aar/72b97b860be255f51cc103a15cff28f4/res/values-night-v8/values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,143,245,347,461,581,701",
+                        "endColumns": "87,101,101,113,119,119,111",
+                        "endOffsets": "138,240,342,456,576,696,808"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "687,775,877,979,1093,1213,1333",
+                        "endColumns": "87,101,101,113,119,119,111",
+                        "endOffsets": "770,872,974,1088,1208,1328,1440"
+                    }
                 }
             ]
         }

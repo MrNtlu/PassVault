@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
     private InterstitialAd interstitialAd;
     public static int adCounter=0;
 
-    Dialog fingerPrintDialog;
-    CardView onlineButton,offlineButton;
-    ClassController classController;
-    ImageButton helpButton;
+    private Dialog fingerPrintDialog;
+    private CardView onlineButton,offlineButton;
+    private ClassController classController;
+    private ImageButton helpButton,aboutUsButton;
 
     //FingerPrint
     private FingerprintManager fingerprintManager;
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         helpButton=(ImageButton)findViewById(R.id.helpButton);
         onlineButton=findViewById(R.id.onlineButton);
         offlineButton=findViewById(R.id.offlineButton);
+        aboutUsButton=findViewById(R.id.about_us_button);
 
         fingerPrintSwitch=findViewById(R.id.fingerPrintControl);
         fingerPrintButton=findViewById(R.id.fingerPrintButton);
@@ -189,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        aboutUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
+            }
+        });
     }
 
     private void setFingerPrint(){

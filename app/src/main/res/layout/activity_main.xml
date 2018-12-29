@@ -203,4 +203,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
+    <ImageButton
+        android:id="@+id/about_us_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_info_outline_black_24dp"
+        android:background="@drawable/reverse_side_button_rounded"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </ImageButton>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

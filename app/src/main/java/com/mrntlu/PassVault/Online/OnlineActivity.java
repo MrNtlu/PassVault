@@ -99,10 +99,6 @@ public class OnlineActivity extends AppCompatActivity {
                         fragment=FragmentPasswordGenerator.newInstance();
                         fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit();
                         break;
-                    case R.id.settings:
-                        fragment=FragmentPasswordGenerator.newInstance();
-                        fragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit();
-                        break;
                     case R.id.log_out:
                         ParseUser.logOutInBackground(new LogOutCallback() {
                             @Override
@@ -160,5 +156,6 @@ public class OnlineActivity extends AppCompatActivity {
             adView.destroy();
         }
     }
+
 
 }
