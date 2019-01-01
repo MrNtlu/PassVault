@@ -10,12 +10,7 @@ import android.widget.Toast;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.mrntlu.PassVault.MainActivity;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import es.dmoral.toasty.Toasty;
 
@@ -103,38 +98,5 @@ public class ClassController {
         File dir=context.getFilesDir();
         File file=new File(dir,FILE_NAME);
         boolean deleted=file.delete();
-    }
-
-    public void loadCredentials(String FILE_NAME,ArrayList<String> list){
-        FileInputStream fis=null;
-        try {
-            File file=context.getFileStreamPath(FILE_NAME);
-            if (file.exists()) {
-                fis = context.openFileInput(FILE_NAME);
-                InputStreamReader isr = new InputStreamReader(fis);
-                BufferedReader br = new BufferedReader(isr);
-                StringBuilder sb = new StringBuilder();
-                String text;
-                while ((text = br.readLine()) != null) {
-                    list.add(text);
-                }
-                deleteAllCredentials(FILE_NAME);
-            }
-            else {
-                return;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis!=null){
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }

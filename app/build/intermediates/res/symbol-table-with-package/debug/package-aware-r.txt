@@ -2077,7 +2077,6 @@ string google_play_games
 string google_play_store
 string google_plus
 string google_storage_bucket
-string hello_blank_fragment
 string help
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description

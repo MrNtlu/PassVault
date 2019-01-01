@@ -5,24 +5,23 @@
     build-mode="FULL"
     density="xxhdpi"
     format="10"
-    ir-eligibility="R_CLASS_CHANGE"
     plugin-version="3.2.1"
-    timestamp="1546100436139"
+    timestamp="1546336192905"
     token="-6543721296248309461"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="2722" />
+        duration="12017" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="130" />
+        duration="314" />
     <task
         name="verifier"
-        duration="69" />
+        duration="153" />
 
     <artifact
         location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
@@ -31,19 +30,19 @@
         location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
         type="SPLIT" />
     <artifact
         location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
         type="SPLIT" />
     <artifact
         location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
@@ -63,9 +62,8 @@
 
     <build
         build-mode="FULL"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1546100436139"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1546336192905"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
@@ -73,19 +71,19 @@
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
         <artifact
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
             location="/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/split-apk/debug/slices/slice_8.apk"

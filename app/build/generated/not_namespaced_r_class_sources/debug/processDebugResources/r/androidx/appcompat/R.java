@@ -818,8 +818,8 @@ public final class R {
         public static final int abc_shareactionprovider_share_with = 0x7f0e0025;
         public static final int abc_shareactionprovider_share_with_application = 0x7f0e0026;
         public static final int abc_toolbar_collapse_description = 0x7f0e0027;
-        public static final int search_menu_title = 0x7f0e00bc;
-        public static final int status_bar_notification_info_overflow = 0x7f0e00c4;
+        public static final int search_menu_title = 0x7f0e00bb;
+        public static final int status_bar_notification_info_overflow = 0x7f0e00c3;
     }
     public static final class style {
         private style() {}
