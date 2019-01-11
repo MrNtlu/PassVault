@@ -1,8 +1,10 @@
 package com.mrntlu.PassVault.Offline;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,14 +12,18 @@ import android.widget.Toast;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.mrntlu.PassVault.MainActivity;
-import java.io.File;
+import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
 import java.util.ArrayList;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
+import io.realm.RealmObject;
 
 public class ClassController {
 
-    Context context;
-    String passHolder = "••••••••••";
+    private Context context;
+    private String passHolder = "••••••••••";
 
     public ClassController(Context context) {
         this.context = context;
@@ -84,8 +90,8 @@ public class ClassController {
     }
 
     public boolean isEmptyTextViews(TextView[] textViews){
-        for (int i=0;i<textViews.length;i++){
-            if (textViews[i].getText().toString().trim().isEmpty()){
+        for (TextView textView : textViews) {
+            if (textView.getText().toString().trim().isEmpty()) {
                 Toasty.error(context, "Don't leave it empty!",
                         Toast.LENGTH_SHORT).show();
                 return true;
@@ -94,9 +100,41 @@ public class ClassController {
         return false;
     }
 
-    private void deleteAllCredentials(String FILE_NAME){
-        File dir=context.getFilesDir();
-        File file=new File(dir,FILE_NAME);
-        boolean deleted=file.delete();
+    public void adapterMoveOnlineButton(FragmentActivity fragmentActivity,String title,String id,String password){
+        if (fragmentActivity!=null) {
+            OnlineViewModel.addOnlineObject(fragmentActivity, title, id, password);
+        }
+    }
+
+    public void adapterDeleteButton(final Realm realm, final ArrayList<Boolean> passBool,final RealmObject object, final int position, final RecyclerView.Adapter adapter){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Are You Sure?");
+        builder.setMessage("Do you want to delete?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        try {
+                            passBool.remove(position);
+                            object.deleteFromRealm();
+                        }catch (NullPointerException e){
+                            e.printStackTrace();
+                            Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position,adapter.getItemCount());
+            }
+        });
+        builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

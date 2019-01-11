@@ -1498,6 +1498,7 @@ id decelerate
 id decor_content_parent
 id default_activity_button
 id deleteButton
+id deleteMenuButton
 id deltaRelative
 id description
 id descriptionText
@@ -1520,10 +1521,10 @@ id easeIn
 id easeInOut
 id easeOut
 id editAdd
-id editButton
 id editClose
 id editDes
 id editID
+id editMenuButton
 id editText
 id editText2
 id editText3
@@ -1614,9 +1615,11 @@ id main
 id main_menu
 id masked
 id media_actions
+id menuButton
 id message
 id middle
 id mini
+id moveMenuButton
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
@@ -1754,7 +1757,6 @@ id textSpacerNoTitle
 id textStart
 id textView3
 id textView6
-id textView9
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1923,6 +1925,7 @@ layout xab_each_action
 layout xab_each_link
 menu add_menu
 menu navigation_drawer_menu
+menu offline_menu
 menu online_add_menu
 mipmap ads
 mipmap android
@@ -2007,12 +2010,12 @@ string app_intro_next_button
 string app_intro_skip_button
 string app_name
 string appbar_scrolling_view_behavior
-string appwidget_text
 string back4app_app_id
 string back4app_client_key
 string back4app_server_url
 string bitbucket
 string bottom_sheet_behavior
+string cancel
 string cant_use_fingerprint
 string changelog
 string changepassword
@@ -2043,10 +2046,12 @@ string common_signin_button_text
 string common_signin_button_text_long
 string default_web_client_id
 string define_appintro
+string delete
 string description
 string descriptiontext
 string donate
 string dribbble
+string edit
 string email
 string email_or_username
 string enter
@@ -2110,10 +2115,12 @@ string mailExp
 string mailMe
 string main_menu
 string more_apps
+string move_to_online
 string mtrl_chip_close_icon_content_description
 string my_passwords
 string no_account_yet_create_one
 string note
+string notes
 string number
 string offline_storage
 string online_storage
@@ -2123,6 +2130,7 @@ string others
 string pass
 string password
 string password_generator
+string password_text
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -2156,9 +2164,11 @@ string status_bar_notification_info_overflow
 string subject
 string symbol
 string sync
+string title
 string to
 string toast_message
 string twitter
+string update
 string update_app
 string uri_add_contact
 string uri_facebook_app
@@ -2182,6 +2192,7 @@ string url_twitter_website
 string url_youtube_channel_website
 string url_youtube_user_website
 string userAccounts
+string username_mail
 string version
 string website
 string whastapp

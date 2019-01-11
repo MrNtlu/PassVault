@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         interstitialAd=new InterstitialAd(this);
         interstitialAd.setAdUnitId("ca-app-pub-7421130457283934/8564868078");
         //interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        //.addTestDevice("81B1F003EC9629C7F007F61B8C01C9F0")
         interstitialAd.loadAd(new AdRequest.Builder().build());
 
         Thread thread = new Thread(new Runnable() {
@@ -172,6 +173,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+                if (activity!=null) {
+                    Intent intent = new Intent(MainActivity.this, activity);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
                 if (activity!=null) {
                     Intent intent = new Intent(MainActivity.this, activity);
                     startActivity(intent);
@@ -274,6 +283,9 @@ public class MainActivity extends AppCompatActivity {
                 if ((MainActivity.adCounter%3==1) && interstitialAd.isLoaded()){
                     interstitialAd.show();
                 }else{
+                    if (MainActivity.adCounter%3==1 && MainActivity.adCounter!=0){
+                        MainActivity.adCounter--;
+                    }
                     Intent intent=new Intent(MainActivity.this,activity);
                     startActivity(intent);
                 }

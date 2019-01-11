@@ -428,6 +428,10 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color-v23/abc_tint_btn_checkable.xml"
     },
     {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/menu_offline_menu.xml.flat",
+        "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/menu/offline_menu.xml"
+    },
+    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/drawable-xxhdpi-v4/abc_ic_star_half_black_36dp.png"
     },
@@ -1956,12 +1960,12 @@
         "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.1.0-alpha02.aar/72b97b860be255f51cc103a15cff28f4/res/interpolator-v21/mtrl_fast_out_slow_in.xml"
     },
     {
-        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_light.xml.flat",
-        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color/abc_primary_text_material_light.xml"
-    },
-    {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_ic_info_outline_black_24dp.xml.flat",
         "source": "/Users/burak/AndroidStudioProjects/PassVault/app/src/main/res/drawable/ic_info_outline_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_light.xml.flat",
+        "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/color/abc_primary_text_material_light.xml"
     },
     {
         "merged": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/res/merged/debug/drawable_abc_switch_thumb_material.xml.flat",

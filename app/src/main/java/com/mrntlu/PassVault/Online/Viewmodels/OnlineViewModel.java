@@ -13,9 +13,11 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
 
 public class OnlineViewModel extends AndroidViewModel {
@@ -24,6 +26,7 @@ public class OnlineViewModel extends AndroidViewModel {
     private OnlineRepository mRepo;
     private ParseUser user;
     private ArrayList<ParseObject> array;
+    private ProgressBar progressBar;
 
     public OnlineViewModel(@NonNull Application application) {
         super(application);
@@ -34,7 +37,18 @@ public class OnlineViewModel extends AndroidViewModel {
     }
 
     public void initOnlineObjects(ProgressBar progressBar){
+        this.progressBar=progressBar;
         onlineObjects=mRepo.getOnlineObjects(progressBar);
+    }
+
+    public static void addOnlineObject(FragmentActivity fragmentActivity, String title, String username, String password){
+        OnlineViewModel onlineViewModel=ViewModelProviders.of(fragmentActivity).get(OnlineViewModel.class);
+        if (onlineViewModel.user!=null) {
+            Toasty.info(fragmentActivity.getApplicationContext(), "Trying to add...", Toast.LENGTH_SHORT).show();
+            onlineViewModel.addOnlineObject(title, username, password, "Added from Offline");
+        }else{
+            Toasty.error(fragmentActivity.getApplicationContext(),"Error! Please login to your online account.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void addOnlineObject(String title,String username,String password,String note){
@@ -44,22 +58,25 @@ public class OnlineViewModel extends AndroidViewModel {
         object.put("Username",username);
         object.put("Password",password);
         object.put("Note",note);
-        if (FragmentOnlineStorage.sProgressBar!=null) {
-            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        if (progressBar!=null) {
+            progressBar.setVisibility(View.VISIBLE);
         }
         object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e==null){
+                if (e==null && onlineObjects!=null){
                     onlineObjects.getValue().add(object);
                     array=onlineObjects.getValue();
                     onlineObjects.postValue(array);
-                }else{
+                }else if (e==null && onlineObjects==null){
+                    Toasty.success(getApplication().getApplicationContext(),"Successfully Added.",Toast.LENGTH_SHORT).show();
+                }
+                else{
                     Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                if (FragmentOnlineStorage.sProgressBar!=null){
-                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
+                if (progressBar!=null){
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -70,8 +87,8 @@ public class OnlineViewModel extends AndroidViewModel {
         onlineObjects.getValue().get(position).put("Username",username);
         onlineObjects.getValue().get(position).put("Password",password);
         onlineObjects.getValue().get(position).put("Note",note);
-        if (FragmentOnlineStorage.sProgressBar!=null){
-            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        if (progressBar!=null){
+            progressBar.setVisibility(View.VISIBLE);
         }
         onlineObjects.getValue().get(position).saveInBackground(new SaveCallback() {
             @Override
@@ -83,16 +100,16 @@ public class OnlineViewModel extends AndroidViewModel {
                     Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                if (FragmentOnlineStorage.sProgressBar!=null){
-                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
+                if (progressBar!=null){
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
     }
 
     public void deleteOnlineObject(final int position){
-        if (FragmentOnlineStorage.sProgressBar!=null){
-            FragmentOnlineStorage.sProgressBar.setVisibility(View.VISIBLE);
+        if (progressBar!=null){
+            progressBar.setVisibility(View.VISIBLE);
         }
         onlineObjects.getValue().get(position).deleteInBackground(new DeleteCallback() {
             @Override
@@ -105,8 +122,8 @@ public class OnlineViewModel extends AndroidViewModel {
                     Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                if (FragmentOnlineStorage.sProgressBar!=null){
-                    FragmentOnlineStorage.sProgressBar.setVisibility(View.GONE);
+                if (progressBar!=null){
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

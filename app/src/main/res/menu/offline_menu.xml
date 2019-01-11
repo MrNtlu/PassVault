@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/edit"
+        android:id="@+id/editMenuButton"
+        android:icon="@drawable/edit_button"
+        app:showAsAction="ifRoom"/>
+
+    <item android:title="@string/delete"
+        android:id="@+id/deleteMenuButton"
+        android:icon="@drawable/delete_button"
+        app:showAsAction="ifRoom"/>
+
+    <item android:title="@string/move_to_online"
+        android:id="@+id/moveMenuButton"
+        android:icon="@drawable/ic_sync_black_24dp"
+        app:showAsAction="ifRoom"/>
+</menu>

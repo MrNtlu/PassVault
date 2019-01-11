@@ -4,22 +4,17 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
 import com.mrntlu.PassVault.R;
-import com.parse.DeleteCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 
 import java.util.List;
@@ -55,7 +50,7 @@ public class OnlineDialog {
         usernameEditText=onlineDialog.findViewById(R.id.usernameEditText);
         passwordEditText=onlineDialog.findViewById(R.id.passwordEditText);
         noteEditText=onlineDialog.findViewById(R.id.notesEditText);
-        editButton=onlineDialog.findViewById(R.id.editButton);
+        editButton=onlineDialog.findViewById(R.id.menuButton);
         deleteButton=onlineDialog.findViewById(R.id.deleteButton);
         closeButton=onlineDialog.findViewById(R.id.closeButton);
 

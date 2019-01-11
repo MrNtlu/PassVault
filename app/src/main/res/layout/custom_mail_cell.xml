@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="2.7dp"
@@ -13,19 +12,18 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/editButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignStart="@+id/deleteButton"
+            android:id="@+id/menuButton"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_alignTop="@+id/passwordText"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/edit_button"
+            android:src="@drawable/ic_more_vert_black_24dp"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
+            app:layout_constraintTop_toTopOf="@+id/imageColor" />
 
         <TextView
             android:id="@+id/idText"
@@ -35,11 +33,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@+id/textView9"
             android:textAlignment="viewStart"
             android:textColor="@color/midnightblue"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:layout_constraintEnd_toStartOf="@+id/menuButton"
             app:layout_constraintStart_toEndOf="@+id/imageColor"
             app:layout_constraintTop_toTopOf="@+id/imageColor" />
 
@@ -55,24 +52,9 @@
             android:textColor="@color/midnightblue"
             android:textSize="15sp"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:layout_constraintEnd_toStartOf="@+id/menuButton"
             app:layout_constraintStart_toEndOf="@+id/imageColor"
             app:layout_constraintTop_toBottomOf="@+id/idText" />
-
-        <ImageButton
-            android:id="@+id/deleteButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignTop="@+id/idText"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/delete_button" />
 
         <Space
             android:id="@+id/space2"

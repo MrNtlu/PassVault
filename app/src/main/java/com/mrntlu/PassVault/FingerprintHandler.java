@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.google.android.gms.ads.InterstitialAd;
 
 import es.dmoral.prefs.Prefs;
@@ -22,12 +21,12 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     private Context context;
     private TextView controlText;
     TextView fingerPrintText;
-    Class activity=null;
-    ImageView controlImage;
+    private Class activity=null;
+    private ImageView controlImage;
     Button controlButton;
-    Switch fingerPrintSwitch;
-    CancellationSignal cancellationSignal;
-    InterstitialAd interstitalAd;
+    private Switch fingerPrintSwitch;
+    private CancellationSignal cancellationSignal;
+    private InterstitialAd interstitalAd;
 
     public FingerprintHandler(Context context, TextView controlText, ImageView controlImage, Button controlButton,Switch fingerPrintSwitch,TextView fingerPrintText) {
         this.context = context;

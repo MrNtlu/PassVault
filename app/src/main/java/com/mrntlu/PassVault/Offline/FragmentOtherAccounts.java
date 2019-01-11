@@ -82,7 +82,7 @@ public class FragmentOtherAccounts extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<OthersObject> searchOthers = mViewModel.searchOtherObject(s).getValue();
-                    othersRVAdapter = new OthersRVAdapter(getContext(), searchOthers, passBool, realm);
+                    othersRVAdapter = new OthersRVAdapter(getContext(), searchOthers, passBool, realm,getActivity());
                     recyclerView.setAdapter(othersRVAdapter);
                 }
                 return false;
@@ -128,7 +128,7 @@ public class FragmentOtherAccounts extends Fragment {
 
     private void initRecyclerView(){
         if (realm!=null) {
-            othersRVAdapter = new OthersRVAdapter(getContext(), mViewModel.getmOtherObjects().getValue(), passBool,realm);
+            othersRVAdapter = new OthersRVAdapter(getContext(), mViewModel.getmOtherObjects().getValue(), passBool,realm,getActivity());
             recyclerView.setAdapter(othersRVAdapter);
         }else{
             realm=Realm.getDefaultInstance();

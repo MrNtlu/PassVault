@@ -28,7 +28,7 @@ public class FragmentUserAccounts extends Fragment {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private UserAccountsRVAdapter userAccountsRVAdapter;
-    private ArrayList<Boolean> passBool=new ArrayList<Boolean>();
+    private ArrayList<Boolean> passBool=new ArrayList<>();
     private OfflineViewModel mViewModel;
     private FloatingActionButton fab;
     private Realm realm;
@@ -81,7 +81,7 @@ public class FragmentUserAccounts extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<AccountsObject> searchAccount = mViewModel.searchAccountObject(s).getValue();
-                    userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool, realm);
+                    userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool, realm,getActivity());
                     recyclerView.setAdapter(userAccountsRVAdapter);
                 }
                 return false;
@@ -124,7 +124,7 @@ public class FragmentUserAccounts extends Fragment {
 
     private void initRecyclerView(){
         if (realm!=null) {
-            userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), mViewModel.getmUserObjects().getValue(), passBool, realm);
+            userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), mViewModel.getmUserObjects().getValue(), passBool, realm,getActivity());
             recyclerView.setAdapter(userAccountsRVAdapter);
         }
         else{

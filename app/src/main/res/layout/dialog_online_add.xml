@@ -54,7 +54,7 @@
                     android:drawableStart="@drawable/ic_turned_in_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +79,7 @@
                     android:drawableStart="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="Username/Mail"
+                    android:hint="@string/username_mail"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
                     android:drawableStart="@drawable/ic_padlock_pass"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="Password"
+                    android:hint="@string/password_text"
                     android:inputType="textPassword"
                     android:selectAllOnFocus="true"
                     android:singleLine="true" />
@@ -131,7 +131,7 @@
                     android:drawableStart="@drawable/ic_description_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="Notes"
+                    android:hint="@string/notes"
                     android:selectAllOnFocus="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -148,7 +148,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/notesLayout" />
 
             <Button
-                android:id="@+id/editButton"
+                android:id="@+id/menuButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

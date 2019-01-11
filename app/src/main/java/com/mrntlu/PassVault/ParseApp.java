@@ -1,13 +1,9 @@
 package com.mrntlu.PassVault;
 
 import android.app.Application;
-import android.util.Log;
-
 import com.google.android.gms.ads.MobileAds;
 import com.parse.Parse;
 import com.parse.ParseACL;
-import com.parse.ParseObject;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 

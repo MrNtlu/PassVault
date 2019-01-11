@@ -28,7 +28,7 @@ public class FragmentMailVault extends Fragment {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private MailVaultRVAdapter mailVaultRVAdapter;
-    private ArrayList<Boolean> passBool=new ArrayList<Boolean>();
+    private ArrayList<Boolean> passBool=new ArrayList<>();
     private OfflineViewModel offlineViewModel;
     public static OfflineViewModel staticViewModel;
     private FloatingActionButton fab;
@@ -84,7 +84,7 @@ public class FragmentMailVault extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<MailObject> searchMail = offlineViewModel.searchMailObject(s).getValue();
-                    mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), searchMail, passBool, realm);
+                    mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), searchMail, passBool, realm,getActivity());
                     recyclerView.setAdapter(mailVaultRVAdapter);
                 }
                 return false;
@@ -127,7 +127,7 @@ public class FragmentMailVault extends Fragment {
 
     private void initRecyclerView(){
         if (realm!=null) {
-            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), offlineViewModel.getMailObjects().getValue(), passBool,realm);
+            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), offlineViewModel.getMailObjects().getValue(), passBool,realm,getActivity());
             recyclerView.setAdapter(mailVaultRVAdapter);
         }else{
             realm=Realm.getDefaultInstance();

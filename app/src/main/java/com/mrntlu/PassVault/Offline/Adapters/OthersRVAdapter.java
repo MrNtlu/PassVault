@@ -1,11 +1,11 @@
 package com.mrntlu.PassVault.Offline.Adapters;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,46 +13,44 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
 import com.mrntlu.PassVault.R;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyViewHolder> {
 
-    Context context;
-    Dialog customDialog;
-
-    FileOutputStream fos=null;
-    FileOutputStream fosPass=null;
+    private Context context;
+    private Dialog customDialog;
 
     private RealmResults<OthersObject> otherObjects;
     private ArrayList<Boolean> passBool;
-    ClassController classController;
-    Realm realm;
+    private ClassController classController;
+    private Realm realm;
+    private FragmentActivity fragmentActivity;
+    private OthersRVAdapter adapter;
 
     private boolean isSearching=false;
 
-    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool,Realm realm) {
+    public OthersRVAdapter(Context context, final RealmResults<OthersObject> otherObjects, final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity) {
         this.context = context;
         this.otherObjects=otherObjects;
         this.passBool = passBool;
         this.realm=realm;
+        this.fragmentActivity=fragmentActivity;
         classController=new ClassController(context);
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v=LayoutInflater.from(context).inflate(R.layout.custom_other_cell,parent,false);
-        MyViewHolder myViewHolder=new MyViewHolder(v);
-        return myViewHolder;
+        return new MyViewHolder(v);
     }
 
     @Override
@@ -62,8 +60,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         classController.setColorImage(holder.idText.getText().toString(),holder.img);
 
         if (isSearching) {
-            holder.editButton.setVisibility(View.GONE);
-            holder.deleteButton.setVisibility(View.GONE);
+            holder.menuButton.setVisibility(View.GONE);
         }
 
         if (otherObjects.size()!=passBool.size() && passBool.size()<otherObjects.size()) {
@@ -87,49 +84,40 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
             }
         });
 
-        holder.editButton.setOnClickListener(new View.OnClickListener() {
+        holder.menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customDialog=new Dialog(context);
-                showPopup(v,position);
-            }
-        });
+                PopupMenu popup = new PopupMenu(context, v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.offline_menu, popup.getMenu());
 
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Are You Sure?");
-                builder.setMessage("Do you want to delete?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        realm.executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                                try{
-                                    passBool.remove(position);
-                                    otherObjects.get(position).deleteFromRealm();
-                                }catch (NullPointerException e){
-                                    Toasty.error(context,"Error: "+e.getMessage(),Toast.LENGTH_SHORT).show();
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position,getItemCount());
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.editMenuButton:
+                                customDialog=new Dialog(context);
+                                showPopup(position);
+                                return true;
+                            case R.id.deleteMenuButton:
+                                classController.adapterDeleteButton(realm,passBool,otherObjects.get(position),position,adapter);
+                                return true;
+                            case R.id.moveMenuButton:
+                                classController.adapterMoveOnlineButton(fragmentActivity,"Please Edit Title",otherObjects.get(position).getDescription(),otherObjects.get(position).getPassword());
+                                return true;
+                        }
+                        return false;
                     }
                 });
-                builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
+                popup.show();
             }
         });
+    }
 
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        adapter=(OthersRVAdapter)recyclerView.getAdapter();
     }
 
     @Override
@@ -137,7 +125,7 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
         return otherObjects.size();
     }
 
-    public void showPopup(View v,final int position){
+    public void showPopup(final int position){
         Button editAdd,editClose;
         final TextView editDesc,editPassword;
         if (Build.VERSION.SDK_INT==21){
@@ -185,16 +173,14 @@ public class OthersRVAdapter extends RecyclerView.Adapter<OthersRVAdapter.MyView
 
         TextView idText;
         TextView passwordText;
-        ImageButton deleteButton;
-        ImageButton editButton;
+        ImageButton menuButton;
         ImageView img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             idText=(TextView)itemView.findViewById(R.id.idText);
             passwordText=(TextView)itemView.findViewById(R.id.passwordText);
-            deleteButton=(ImageButton) itemView.findViewById(R.id.deleteButton);
-            editButton=(ImageButton) itemView.findViewById(R.id.editButton);
+            menuButton =(ImageButton) itemView.findViewById(R.id.menuButton);
             img=itemView.findViewById(R.id.imageColor);
         }
     }

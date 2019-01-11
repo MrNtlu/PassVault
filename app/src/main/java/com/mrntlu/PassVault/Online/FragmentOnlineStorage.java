@@ -28,17 +28,15 @@ import java.util.ArrayList;
 public class FragmentOnlineStorage extends Fragment {
 
     private View v;
-    RecyclerView recyclerView;
-    SearchView searchView;
-    OnlineRVAdapter onlineRVAdapter;
+    private RecyclerView recyclerView;
+    private SearchView searchView;
+    private OnlineRVAdapter onlineRVAdapter;
     private OnlineViewModel viewModel;
     private OnlineDialog dialogClass;
     private ProgressBar progressBar;
-    public static ProgressBar sProgressBar;
 
     public static FragmentOnlineStorage newInstance() {
-        FragmentOnlineStorage fragment = new FragmentOnlineStorage();
-        return fragment;
+        return new FragmentOnlineStorage();
     }
 
     @Override
@@ -84,7 +82,6 @@ public class FragmentOnlineStorage extends Fragment {
         recyclerView=(RecyclerView)v.findViewById(R.id.onlineRecycler);
         searchView=(SearchView)v.findViewById(R.id.onlineSearch);
         progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
-        sProgressBar=progressBar;
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);

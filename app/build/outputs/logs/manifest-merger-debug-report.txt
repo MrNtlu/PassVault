@@ -34,7 +34,7 @@ MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/83620b6ddab3b8e35100cea2791a3062/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:17:1-22:12
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:2:1-19:12
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:2:1-19:12
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:10:1-24:12
 MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:2:1-10:12
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:2:1-11:12
@@ -74,9 +74,9 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/bura
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/8f23a78358ab525d2cf2d487306ac58f/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:2:1-9:12
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:2:1-13:12
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:45:1-56:12
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:2:1-13:12
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:22:1-33:12
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:45:1-56:12
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:2:1-13:12
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:22:1-33:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-83:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-83:12
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:2:1-83:12
@@ -130,18 +130,18 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /U
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.0.4] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-measurement-sdk-api-16.0.4.aar/54338d71eb6b2c0fc1c3bc965ad29e92/AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-iid:17.0.3] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-firebase-iid-17.0.3.aar/7d49803908b43eb3de455c9ed649e3a0/AndroidManifest.xml:23:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:9:5-67
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:19:5-67
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:19:5-67
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:9:5-67
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:52:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:52:5-67
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:9:5-67
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:29:5-67
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:29:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:29:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:29:5-67
 	android:name
 		ADDED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml:7:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
@@ -206,8 +206,8 @@ MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gr
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/2732434a975e22b57c84fef93c936377/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:22:5-26:19
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:11:5-17:19
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:11:5-17:19
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:22:5-20
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:22:5-20
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-circleimageview-2.2.0.aar/04cd4ee0dad799161ae4f21366bc1e76/AndroidManifest.xml:9:5-20
@@ -226,12 +226,12 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:7:5-20
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:11:5-20
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:54:5-20
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:54:5-20
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:11:5-20
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:31:5-20
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:31:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:31:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:31:5-20
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/AndroidManifest.xml:22:18-86
 	android:supportsRtl
@@ -426,8 +426,8 @@ MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/trans
 MERGED from [com.github.GrenderG:Toasty:1.3.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-Toasty-1.3.0.aar/c1e8df23a66dd1dc1c2f38ae7adbfd95/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/13f7a15b41f06db8ff77afd15823b2de/AndroidManifest.xml:20:5-44
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:7:5-43
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:15:5-17:41
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-parse-1.18.5.aar/6de14e44a6b5a9ca8502f8fafe770fa4/AndroidManifest.xml:15:5-17:41
 MERGED from [io.realm:android-adapters:2.1.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-android-adapters-2.1.1.aar/b290a2972369b7bc1722ab8f5fc30c31/AndroidManifest.xml:6:5-8:41
@@ -506,12 +506,12 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] /Users/burak/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.1.2.aar/3bf398b2c2c681d70c7cc66246e065e1/AndroidManifest.xml:5:5-44
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:7:5-43
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] /Users/burak/.gradle/caches/transforms-1/files-1.1/beta-1.2.10.aar/f1263c26e21bb4e767a490ee981afd81/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:50:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.6.aar/95fa4821d049ef74550d131b6e69ca46/AndroidManifest.xml:50:5-43
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:answers:1.4.5] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.5.aar/17de11b6713b032fc585bf0143f59ae6/AndroidManifest.xml:7:5-43
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:27:5-43
-MERGED from [io.fabric.sdk.android:fabric:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.6.aar/d50e521f97713aaa538b725101359c77/AndroidManifest.xml:27:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.6.7.aar/ce472e001ffb31f014940ed7109ce9f9/AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.6] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-answers-1.4.6.aar/fb072104a79587e9fc1a4cea4e510cf5/AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:27:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/fabric-1.4.7.aar/35af4de05883509b95b58487665d34aa/AndroidManifest.xml:27:5-43
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 INJECTED from /Users/burak/AndroidStudioProjects/PassVault/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
@@ -683,15 +683,15 @@ ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/burak/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/22288a4a13b2e54e51af9bd7d9a24e1a/AndroidManifest.xml:24:13-58
 provider#com.crashlytics.android.CrashlyticsInitProvider
-ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:12:9-16:38
+ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:12:9-16:38
 	android:authorities
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:14:13-75
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:14:13-75
 	android:exported
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:15:13-37
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:15:13-37
 	android:initOrder
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:16:13-35
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:16:13-35
 	android:name
-		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.7] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.7.aar/686ace3864a8d8a5fc7b62b3886a529f/AndroidManifest.xml:13:13-75
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.8] /Users/burak/.gradle/caches/transforms-1/files-1.1/crashlytics-2.9.8.aar/62a7cc0482d785767f11d652275d69e4/AndroidManifest.xml:13:13-75
 provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
 ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/burak/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/c8ffa3b0dcfd684b288218f41ece9eec/AndroidManifest.xml:23:9-27:43
 	android:authorities
