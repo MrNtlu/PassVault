@@ -42,6 +42,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:textColorHint="@color/midnightblue"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/midnightblue"
+                app:hintAnimationEnabled="true"
+                android:hint="@string/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -54,7 +58,6 @@
                     android:drawableStart="@drawable/ic_turned_in_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="@string/title"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,6 +70,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:textColorHint="@color/midnightblue"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/midnightblue"
+                app:hintAnimationEnabled="true"
+                android:hint="@string/username_mail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleLayout">
@@ -79,7 +86,6 @@
                     android:drawableStart="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="@string/username_mail"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +97,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:textColorHint="@color/midnightblue"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/midnightblue"
+                app:hintAnimationEnabled="true"
+                android:hint="@string/password_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/usernameLayout"
@@ -104,7 +114,6 @@
                     android:drawableStart="@drawable/ic_padlock_pass"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="@string/password_text"
                     android:inputType="textPassword"
                     android:selectAllOnFocus="true"
                     android:singleLine="true" />
@@ -118,7 +127,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:hint="@string/notes"
                 android:textColorHint="@color/midnightblue"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/midnightblue"
+                app:hintAnimationEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
@@ -131,7 +144,6 @@
                     android:drawableStart="@drawable/ic_description_black_24dp"
                     android:drawablePadding="8dp"
                     android:focusable="false"
-                    android:hint="@string/notes"
                     android:selectAllOnFocus="true" />
 
             </com.google.android.material.textfield.TextInputLayout>

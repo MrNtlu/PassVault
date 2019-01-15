@@ -4,7 +4,17 @@
             "outputFile": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/ce46d9834ab8ad44da94bb1923cd689f/res/values-v16/values-v16.xml",
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/505696e8ca7f70540def0ea2ea0532a4/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/fe192c76e9193a1c3ae4f12729039001/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/c85b504004768bc6da70f01ca3cb44ca/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

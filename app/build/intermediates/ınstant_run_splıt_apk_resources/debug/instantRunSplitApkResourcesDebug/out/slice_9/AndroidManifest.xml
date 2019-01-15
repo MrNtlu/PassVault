@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.mrntlu.PassVault"
-      android:versionCode="21"
-      android:versionName="5.9.2"
+      android:versionCode="22"
+      android:versionName="5.9.3"
       split="lib_slice_9_apk">
 </manifest>
