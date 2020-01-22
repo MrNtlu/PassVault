@@ -3,9 +3,9 @@ package com.mrntlu.PassVault.Offline.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mrntlu.PassVault.Common.BaseAdapter;
+import com.mrntlu.PassVault.Common.ErrorItemViewHolder;
+import com.mrntlu.PassVault.Common.LoadingViewHolder;
+import com.mrntlu.PassVault.Common.NoItemViewHolder;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.R;
@@ -24,12 +29,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.MyViewHolder> {
+public class MailVaultRVAdapter extends BaseAdapter<MailObject> {
 
     private Context context;
     private Dialog customDialog;
 
-    private RealmResults<MailObject> mailObjects;
     private ArrayList<Boolean> passBool;
     private ClassController classController;
     private Realm realm;
@@ -38,80 +42,86 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
 
     private boolean isSearching=false;
 
-    public MailVaultRVAdapter(Context context, final RealmResults<MailObject> mailObjects, final ArrayList<Boolean> passBool, Realm realm, FragmentActivity fragmentActivity) {
+    public MailVaultRVAdapter(Context context, final ArrayList<Boolean> passBool, Realm realm,
+                              FragmentActivity fragmentActivity) {
         this.context = context;
-        this.mailObjects=mailObjects;
         this.passBool=passBool;
         this.realm=realm;
         this.fragmentActivity=fragmentActivity;
         classController=new ClassController(context);
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v=LayoutInflater.from(context).inflate(R.layout.custom_mail_cell,parent,false);
-        return new MyViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType==NO_ITEM_HOLDER){
+            View view = LayoutInflater.from(context).inflate(R.layout.cell_no_item, parent, false);
+            return new NoItemViewHolder(view);
+        }else if (viewType == LOADING_ITEM_HOLDER){
+            View v = LayoutInflater.from(context).inflate(R.layout.cell_loading, parent, false);
+            return new LoadingViewHolder(v);
+        }else if (viewType == ERROR_HOLDER){
+            View v = LayoutInflater.from(context).inflate(R.layout.cell_error, parent, false);
+            return new ErrorItemViewHolder(v);
+        }else {
+            View v = LayoutInflater.from(context).inflate(R.layout.custom_mail_cell, parent, false);
+            return new MyViewHolder(v);
+        }
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.idText.setText(mailObjects.get(position).getMail());
-        classController.setColorImage(holder.idText.getText().toString(),holder.img);
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
+        if (viewHolder instanceof MyViewHolder) {
+            MyViewHolder holder=((MyViewHolder)viewHolder);
 
-        if (isSearching) {
-            holder.menuButton.setVisibility(View.GONE);
-        }
+            holder.idText.setText(arrayList.get(position).getMail());
+            classController.setColorImage(holder.idText.getText().toString(), holder.img);
 
-        if (mailObjects.size()!=passBool.size() && passBool.size()<mailObjects.size()) {
-            passBool.add(false);
-        }
+            if (isSearching) {
+                holder.menuButton.setVisibility(View.GONE);
+            }
 
-        classController.passwordInitHider(passBool,holder.passwordText,mailObjects.get(position).getPassword(),position);
-        
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                classController.copyToClipboard(mailObjects.get(position).getPassword());
+            if (arrayList.size() != passBool.size() && passBool.size() < arrayList.size()) {
+                passBool.add(false);
+            }
+
+            classController.passwordInitHider(passBool, holder.passwordText, arrayList.get(position).getPassword(), position);
+
+            holder.itemView.setOnLongClickListener(v -> {
+                classController.copyToClipboard(arrayList.get(position).getPassword());
                 return true;
-            }
-        });
+            });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                classController.passwordHider(passBool,holder.passwordText,mailObjects.get(position).getPassword(),position);
-            }
-        });
+            holder.itemView.setOnClickListener(v -> classController.passwordHider(passBool, holder.passwordText, arrayList.get(position).getPassword(), position));
 
 
-        holder.menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.menuButton.setOnClickListener(v -> {
                 PopupMenu popup = new PopupMenu(context, v);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.offline_menu, popup.getMenu());
 
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.editMenuButton:
-                                customDialog=new Dialog(context);
-                                showPopup(position);
-                                return true;
-                            case R.id.deleteMenuButton:
-                                classController.adapterDeleteButton(realm,passBool,mailObjects.get(position),position,adapter);
-                                return true;
-                            case R.id.moveMenuButton:
-                                classController.adapterMoveOnlineButton(fragmentActivity,"Please Edit Title",mailObjects.get(position).getMail(),mailObjects.get(position).getPassword());
-                                return true;
-                        }
-                        return false;
+                popup.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.editMenuButton:
+                            customDialog = new Dialog(context);
+                            showPopup(position);
+                            return true;
+                        case R.id.deleteMenuButton:
+                            classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
+                            return true;
+                        case R.id.moveMenuButton:
+                            classController.adapterMoveOnlineButton(fragmentActivity, "Please Edit Title", arrayList.get(position).getMail(), arrayList.get(position).getPassword());
+                            return true;
                     }
+                    return false;
                 });
                 popup.show();
-            }
-        });
+            });
+        }else if (viewHolder instanceof NoItemViewHolder){
+            NoItemViewHolder holder=(NoItemViewHolder)viewHolder;
+
+            holder.noneText.setText("Couldn't find any mail.");
+        }
     }
 
     @Override
@@ -120,12 +130,7 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
         adapter=(MailVaultRVAdapter)recyclerView.getAdapter();
     }
 
-    @Override
-    public int getItemCount() {
-        return mailObjects.size();
-    }
-
-    public void showPopup(final int position){
+    private void showPopup(final int position){
         Button editAdd,editClose;
         final TextView editID,editPassword;
         if (Build.VERSION.SDK_INT==21){
@@ -133,44 +138,32 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
         }
         customDialog.setContentView(R.layout.dialog_mail_other);
 
-        editID=(TextView)customDialog.findViewById(R.id.editID);
-        editPassword=(TextView)customDialog.findViewById(R.id.editpassword);
-        editAdd=(Button)customDialog.findViewById(R.id.editAdd);
-        editClose=(Button)customDialog.findViewById(R.id.editClose);
+        editID= customDialog.findViewById(R.id.editID);
+        editPassword= customDialog.findViewById(R.id.editpassword);
+        editAdd= customDialog.findViewById(R.id.editAdd);
+        editClose= customDialog.findViewById(R.id.editClose);
 
-        editID.setText(mailObjects.get(position).getMail());
-        editPassword.setText(mailObjects.get(position).getPassword());
+        editID.setText(arrayList.get(position).getMail());
+        editPassword.setText(arrayList.get(position).getPassword());
 
-        editAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!classController.isEmptyTextViews(new TextView[] {editID, editPassword})){
-                    realm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            String id=editID.getText().toString();
-                            String password=editPassword.getText().toString();
-                            mailObjects.get(position).setPassword(password);
-                            mailObjects.get(position).setMail(id);
-                        }
-                    });
-                    notifyDataSetChanged();
-                    customDialog.dismiss();
-                }
-            }
-        });
-
-        editClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        editAdd.setOnClickListener(v -> {
+            if (!classController.isEmptyTextViews(new TextView[] {editID, editPassword})){
+                realm.executeTransaction(realm -> {
+                    String id=editID.getText().toString();
+                    String password=editPassword.getText().toString();
+                    arrayList.get(position).setPassword(password);
+                    arrayList.get(position).setMail(id);
+                });
+                notifyDataSetChanged();
                 customDialog.dismiss();
             }
         });
+
+        editClose.setOnClickListener(v -> customDialog.dismiss());
         customDialog.show();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView idText;
         TextView passwordText;
         ImageButton menuButton;
@@ -178,9 +171,9 @@ public class MailVaultRVAdapter extends RecyclerView.Adapter<MailVaultRVAdapter.
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            idText=(TextView)itemView.findViewById(R.id.idText);
-            passwordText=(TextView)itemView.findViewById(R.id.passwordText);
-            menuButton=(ImageButton) itemView.findViewById(R.id.menuButton);
+            idText= itemView.findViewById(R.id.idText);
+            passwordText= itemView.findViewById(R.id.passwordText);
+            menuButton= itemView.findViewById(R.id.menuButton);
             img=itemView.findViewById(R.id.imageColor);
         }
     }

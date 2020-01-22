@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class FragmentUserAccounts extends Fragment {
 
-    private View v;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private UserAccountsRVAdapter userAccountsRVAdapter;
@@ -47,32 +46,26 @@ public class FragmentUserAccounts extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v=inflater.inflate(R.layout.fragment_user_accounts, container, false);
-        recyclerView=(RecyclerView)v.findViewById(R.id.userRV);
-        searchView=(SearchView)v.findViewById(R.id.userSearch);
+        View v = inflater.inflate(R.layout.fragment_user_accounts, container, false);
+        recyclerView= v.findViewById(R.id.userRV);
+        searchView= v.findViewById(R.id.userSearch);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        mViewModel= ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
-        mViewModel.initAccountObjects(realm);
-        mViewModel.getmUserObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<AccountsObject>>() {
-            @Override
-            public void onChanged(RealmResults<AccountsObject> accountsObjects) {
-                if (userAccountsRVAdapter==null){
-                    initRecyclerView();
-                }else{
-                    userAccountsRVAdapter.notifyDataSetChanged();
-                }
-            }
-        });
         initRecyclerView();
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b){
-                    initRecyclerView();
-                }
+        mViewModel= ViewModelProviders.of(this).get(OfflineViewModel.class);
+        mViewModel.initAccountObjects(realm);
+        mViewModel.getmUserObjects().observe(getViewLifecycleOwner(), accountsObjects -> {
+            if (userAccountsRVAdapter==null){
+                initRecyclerView();
+            }else{
+                userAccountsRVAdapter.submitList(convertRealmListToList(accountsObjects));
+            }
+        });
+
+        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
+            if (!b){
+                initRecyclerView();
             }
         });
 
@@ -81,7 +74,8 @@ public class FragmentUserAccounts extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<AccountsObject> searchAccount = mViewModel.searchAccountObject(s).getValue();
-                    userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), searchAccount, passBool, realm,getActivity());
+                    userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), passBool, realm,getActivity());
+                    userAccountsRVAdapter.submitList(convertRealmListToList(searchAccount));
                     recyclerView.setAdapter(userAccountsRVAdapter);
                 }
                 return false;
@@ -96,7 +90,7 @@ public class FragmentUserAccounts extends Fragment {
             }
         });
 
-        fab=(FloatingActionButton) getActivity().findViewById(R.id.addButton);
+        fab= getActivity().findViewById(R.id.addButton);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -122,9 +116,13 @@ public class FragmentUserAccounts extends Fragment {
         return v;
     }
 
+    private <E> ArrayList<E> convertRealmListToList(RealmResults<E> realmList){
+        return new ArrayList<>(realmList);
+    }
+
     private void initRecyclerView(){
         if (realm!=null) {
-            userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), mViewModel.getmUserObjects().getValue(), passBool, realm,getActivity());
+            userAccountsRVAdapter = new UserAccountsRVAdapter(getContext(), passBool, realm,getActivity());
             recyclerView.setAdapter(userAccountsRVAdapter);
         }
         else{

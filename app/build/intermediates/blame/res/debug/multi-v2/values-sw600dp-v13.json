@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/9dd5292653ec630f03171d415555700a/res/values-sw600dp-v13/values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,113",
-                        "endColumns": "57,58",
-                        "endOffsets": "108,167"
-                    },
-                    "to": {
-                        "startLines": "10,11",
-                        "startColumns": "4,4",
-                        "startOffsets": "611,669",
-                        "endColumns": "57,58",
-                        "endOffsets": "664,723"
-                    }
-                },
-                {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/material-1.1.0-alpha02.aar/79f297169092fa496cfee3a9ebd9de09/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\fbf97ddd5fa8d28f1d092e13328234ab\\material-1.2.0-alpha03\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,13 +23,30 @@
                     }
                 },
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/fe192c76e9193a1c3ae4f12729039001/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
                         "startOffsets": "55,124,193,263,337,413,472,543",
                         "endColumns": "68,68,69,73,75,58,70,67",
                         "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\05f8e7cae7f1bacf79307941abec6689\\appintro-v5.1.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,58",
+                        "endOffsets": "108,167"
+                    },
+                    "to": {
+                        "startLines": "10,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "611,669",
+                        "endColumns": "57,58",
+                        "endOffsets": "664,723"
                     }
                 }
             ]

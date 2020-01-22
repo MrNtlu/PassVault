@@ -1,7 +1,0 @@
-#Tue Jan 15 10:35:32 EET 2019
-base.0=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/21
-path.1=classes2.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/transforms/dexMerger/debug/21

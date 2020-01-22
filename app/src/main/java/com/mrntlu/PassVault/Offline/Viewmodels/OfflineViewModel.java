@@ -32,7 +32,7 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void initMailObjects(Realm realm){
-        if (realm!=null){
+            if (realm!=null){
             mRealm=realm;
         }
         if (mMailObjects!=null){
@@ -65,19 +65,18 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void addMailObject(final String mail, final String password){
-        Boolean wasNull=false;
+        boolean wasNull=false;
         if (mRealm==null){
             mRealm=Realm.getDefaultInstance();
             wasNull=true;
         }
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                MailObject mailObject=realm.createObject(MailObject.class);
-                mailObject.setMail(mail);
-                mailObject.setPassword(password);
-            }
+        mRealm.executeTransaction(realm -> {
+            MailObject mailObject=realm.createObject(MailObject.class);
+            mailObject.setMail(mail);
+            mailObject.setPassword(password);
         });
+        if (mMailObjects==null)
+            initMailObjects(mRealm);
         RealmResults<MailObject> mailObjects=mMailObjects.getValue();
         mMailObjects.postValue(mailObjects);
         if (wasNull){
@@ -86,20 +85,19 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void addUserObject(final String mail, final String password,final String description){
-        Boolean wasNull=false;
+        boolean wasNull=false;
         if (mRealm==null){
             mRealm=Realm.getDefaultInstance();
             wasNull=true;
         }
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                AccountsObject accountsObject=realm.createObject(AccountsObject.class);
-                accountsObject.setIdMail(mail);
-                accountsObject.setPassword(password);
-                accountsObject.setDescription(description);
-            }
+        mRealm.executeTransaction(realm -> {
+            AccountsObject accountsObject=realm.createObject(AccountsObject.class);
+            accountsObject.setIdMail(mail);
+            accountsObject.setPassword(password);
+            accountsObject.setDescription(description);
         });
+        if (mUserObjects==null)
+            initAccountObjects(mRealm);
         RealmResults<AccountsObject> accountObjects=mUserObjects.getValue();
         mUserObjects.postValue(accountObjects);
         if (wasNull){
@@ -108,19 +106,18 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void addOtherObject(final String description, final String password){
-        Boolean wasNull=false;
+        boolean wasNull=false;
         if (mRealm==null){
             mRealm=Realm.getDefaultInstance();
             wasNull=true;
         }
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                OthersObject othersObject = realm.createObject(OthersObject.class);
-                othersObject.setDescription(description);
-                othersObject.setPassword(password);
-            }
+        mRealm.executeTransaction(realm -> {
+            OthersObject othersObject = realm.createObject(OthersObject.class);
+            othersObject.setDescription(description);
+            othersObject.setPassword(password);
         });
+        if (mOtherObjects==null)
+            initOtherObjects(mRealm);
         RealmResults<OthersObject> otherObjects = mOtherObjects.getValue();
         mOtherObjects.postValue(otherObjects);
         if (wasNull){

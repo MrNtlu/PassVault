@@ -41,8 +41,7 @@ public class FragmentPasswordGenerator extends Fragment {
     }
 
     public static FragmentPasswordGenerator newInstance() {
-        FragmentPasswordGenerator fragment = new FragmentPasswordGenerator();
-        return fragment;
+        return new FragmentPasswordGenerator();
     }
 
     @Override
@@ -62,27 +61,19 @@ public class FragmentPasswordGenerator extends Fragment {
 
         generatedText.setText(generateString(letterCheck.isChecked(),numberCheck.isChecked(),signCheck.isChecked(),lengthBar.getProgress(),""));
 
-        copyClipboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText(generatedText.getText().toString(), generatedText.getText().toString());
-                    clipboard.setPrimaryClip(clip);
-                    Toasty.success(getContext(), "Password Copied!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Toasty.error(getContext(), "Error! Please try again", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+        copyClipboard.setOnClickListener(view -> {
+            try {
+                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(generatedText.getText().toString(), generatedText.getText().toString());
+                clipboard.setPrimaryClip(clip);
+                Toasty.success(getContext(), "Password Copied!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toasty.error(getContext(), "Error! Please try again", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
 
-        generateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                generatedText.setText(generateString(letterCheck.isChecked(),numberCheck.isChecked(),signCheck.isChecked(),lengthBar.getProgress(),keywordText.getText().toString().trim()));
-            }
-        });
+        generateButton.setOnClickListener(view -> generatedText.setText(generateString(letterCheck.isChecked(),numberCheck.isChecked(),signCheck.isChecked(),lengthBar.getProgress(),keywordText.getText().toString().trim())));
 
         lengthBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

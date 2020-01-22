@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,6 +12,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mrntlu.PassVault.Common.BaseAdapter;
+import com.mrntlu.PassVault.Common.ErrorItemViewHolder;
+import com.mrntlu.PassVault.Common.LoadingViewHolder;
+import com.mrntlu.PassVault.Common.NoItemViewHolder;
 import com.mrntlu.PassVault.Offline.ClassController;
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
 import com.mrntlu.PassVault.R;
@@ -24,12 +28,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAdapter.MyViewHolder> {
+public class UserAccountsRVAdapter extends BaseAdapter<AccountsObject> {
 
     private Context context;
     private Dialog customDialog;
 
-    private RealmResults<AccountsObject> userObjects;
     private ArrayList<Boolean> passBool;
     private boolean isSearching=false;
     private UserAccountsRVAdapter adapter;
@@ -38,9 +41,8 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     private Realm realm;
     private ClassController classController;
 
-    public UserAccountsRVAdapter(Context context, RealmResults<AccountsObject> userObjects, final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity) {
+    public UserAccountsRVAdapter(Context context,final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity) {
         this.context = context;
-        this.userObjects=userObjects;
         this.passBool = passBool;
         this.realm=realm;
         this.fragmentActivity=fragmentActivity;
@@ -48,71 +50,76 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v=LayoutInflater.from(context).inflate(R.layout.custom_useraccounts_cell,parent,false);
-        return new MyViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType==NO_ITEM_HOLDER){
+            View view = LayoutInflater.from(context).inflate(R.layout.cell_no_item, parent, false);
+            return new NoItemViewHolder(view);
+        }else if (viewType == LOADING_ITEM_HOLDER){
+            View v = LayoutInflater.from(context).inflate(R.layout.cell_loading, parent, false);
+            return new LoadingViewHolder(v);
+        }else if (viewType == ERROR_HOLDER){
+            View v = LayoutInflater.from(context).inflate(R.layout.cell_error, parent, false);
+            return new ErrorItemViewHolder(v);
+        }else {
+            View v = LayoutInflater.from(context).inflate(R.layout.custom_useraccounts_cell, parent, false);
+            return new MyViewHolder(v);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.idText.setText(userObjects.get(position).getIdMail());
-        holder.descriptionText.setText(userObjects.get(position).getDescription());
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
+        if (viewHolder instanceof MyViewHolder) {
+            MyViewHolder holder=((MyViewHolder)viewHolder);
 
-        classController.setColorImage(holder.descriptionText.getText().toString(),holder.img);
+            holder.idText.setText(arrayList.get(position).getIdMail());
+            holder.descriptionText.setText(arrayList.get(position).getDescription());
 
-        if (isSearching) {
-            holder.menuButton.setVisibility(View.GONE);
-        }
+            classController.setColorImage(holder.descriptionText.getText().toString(), holder.img);
 
-        if (userObjects.size()!=passBool.size() && passBool.size()<userObjects.size()) {
-            passBool.add(false);
-        }
+            if (isSearching) {
+                holder.menuButton.setVisibility(View.GONE);
+            }
 
-        classController.passwordInitHider(passBool,holder.passwordText,userObjects.get(position).getPassword(),position);
+            if (arrayList.size() != passBool.size() && passBool.size() < arrayList.size()) {
+                passBool.add(false);
+            }
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                classController.copyToClipboard(userObjects.get(position).getPassword());
+            classController.passwordInitHider(passBool, holder.passwordText, arrayList.get(position).getPassword(), position);
+
+            holder.itemView.setOnLongClickListener(v -> {
+                classController.copyToClipboard(arrayList.get(position).getPassword());
                 return true;
-            }
-        });
+            });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                classController.passwordHider(passBool,holder.passwordText,userObjects.get(position).getPassword(),position);
-            }
-        });
+            holder.itemView.setOnClickListener(v -> classController.passwordHider(passBool, holder.passwordText, arrayList.get(position).getPassword(), position));
 
-        holder.menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.menuButton.setOnClickListener(v -> {
                 PopupMenu popup = new PopupMenu(context, v);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.offline_menu, popup.getMenu());
 
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.editMenuButton:
-                                customDialog=new Dialog(context);
-                                showPopup(position);
-                                return true;
-                            case R.id.deleteMenuButton:
-                                classController.adapterDeleteButton(realm,passBool,userObjects.get(position),position,adapter);
-                                return true;
-                            case R.id.moveMenuButton:
-                                classController.adapterMoveOnlineButton(fragmentActivity,userObjects.get(position).getDescription(),userObjects.get(position).getIdMail(),userObjects.get(position).getPassword());
-                                return true;
-                        }
-                        return false;
+                popup.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.editMenuButton:
+                            customDialog = new Dialog(context);
+                            showPopup(position);
+                            return true;
+                        case R.id.deleteMenuButton:
+                            classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
+                            return true;
+                        case R.id.moveMenuButton:
+                            classController.adapterMoveOnlineButton(fragmentActivity, arrayList.get(position).getDescription(), arrayList.get(position).getIdMail(), arrayList.get(position).getPassword());
+                            return true;
                     }
+                    return false;
                 });
                 popup.show();
-            }
-        });
+            });
+        }else if (viewHolder instanceof NoItemViewHolder){
+            NoItemViewHolder holder=(NoItemViewHolder)viewHolder;
+
+            holder.noneText.setText("Couldn't find any account.");
+        }
     }
 
     @Override
@@ -121,12 +128,7 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         adapter=(UserAccountsRVAdapter)recyclerView.getAdapter();
     }
 
-    @Override
-    public int getItemCount() {
-        return userObjects.size();
-    }
-
-    public void showPopup(final int position){
+    private void showPopup(final int position){
         Button editAdd,editClose;
         final TextView editID,editPassword,editDesc;
         if (Build.VERSION.SDK_INT==21){
@@ -134,48 +136,37 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
         }
         customDialog.setContentView(R.layout.dialog_useraccounts);
 
-        editID=(TextView)customDialog.findViewById(R.id.editID);
-        editPassword=(TextView)customDialog.findViewById(R.id.editpassword);
-        editAdd=(Button)customDialog.findViewById(R.id.editAdd);
-        editClose=(Button)customDialog.findViewById(R.id.editClose);
-        editDesc=(TextView)customDialog.findViewById(R.id.editDes);
+        editID=customDialog.findViewById(R.id.editID);
+        editPassword=customDialog.findViewById(R.id.editpassword);
+        editAdd=customDialog.findViewById(R.id.editAdd);
+        editClose=customDialog.findViewById(R.id.editClose);
+        editDesc=customDialog.findViewById(R.id.editDes);
 
-        editID.setText(userObjects.get(position).getIdMail());
-        editPassword.setText(userObjects.get(position).getPassword());
-        editDesc.setText(userObjects.get(position).getDescription());
+        editID.setText(arrayList.get(position).getIdMail());
+        editPassword.setText(arrayList.get(position).getPassword());
+        editDesc.setText(arrayList.get(position).getDescription());
 
-        editAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!classController.isEmptyTextViews(new TextView[]{editID,editPassword,editDesc})){
-                    realm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            String id=editID.getText().toString();
-                            String password=editPassword.getText().toString();
-                            String desc=editDesc.getText().toString();
-                            userObjects.get(position).setIdMail(id);
-                            userObjects.get(position).setPassword(password);
-                            userObjects.get(position).setDescription(desc);
-                        }
-                    });
+        editAdd.setOnClickListener(v -> {
+            if (!classController.isEmptyTextViews(new TextView[]{editID,editPassword,editDesc})){
+                realm.executeTransaction(realm -> {
+                    String id=editID.getText().toString();
+                    String password=editPassword.getText().toString();
+                    String desc=editDesc.getText().toString();
+                    arrayList.get(position).setIdMail(id);
+                    arrayList.get(position).setPassword(password);
+                    arrayList.get(position).setDescription(desc);
+                });
 
-                    notifyDataSetChanged();
-                    customDialog.dismiss();
-                }
-            }
-        });
-
-        editClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                notifyDataSetChanged();
                 customDialog.dismiss();
             }
         });
+
+        editClose.setOnClickListener(v -> customDialog.dismiss());
         customDialog.show();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView idText;
         TextView descriptionText;
@@ -185,11 +176,11 @@ public class UserAccountsRVAdapter extends RecyclerView.Adapter<UserAccountsRVAd
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            idText=(TextView)itemView.findViewById(R.id.idText);
-            descriptionText=(TextView)itemView.findViewById(R.id.descriptionText);
-            passwordText=(TextView)itemView.findViewById(R.id.passwordText);
-            menuButton =(ImageButton) itemView.findViewById(R.id.menuButton);
-            img=(ImageView) itemView.findViewById(R.id.imageColor);
+            idText=itemView.findViewById(R.id.idText);
+            descriptionText=itemView.findViewById(R.id.descriptionText);
+            passwordText=itemView.findViewById(R.id.passwordText);
+            menuButton =itemView.findViewById(R.id.menuButton);
+            img=itemView.findViewById(R.id.imageColor);
         }
     }
 }

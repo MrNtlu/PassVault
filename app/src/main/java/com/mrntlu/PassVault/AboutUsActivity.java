@@ -1,9 +1,7 @@
 package com.mrntlu.PassVault;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.vansuita.materialabout.builder.AboutBuilder;
 import com.vansuita.materialabout.views.AboutView;
 
@@ -34,7 +32,7 @@ public class AboutUsActivity extends AppCompatActivity {
                 .setShowAsCard(true)
                 .build();
 
-        AboutView aboutViewLayout=(AboutView)findViewById(R.id.about_us);
+        AboutView aboutViewLayout= findViewById(R.id.about_us);
         aboutViewLayout.addView(view);
     }
 }

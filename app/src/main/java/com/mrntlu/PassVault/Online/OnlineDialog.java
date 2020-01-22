@@ -61,12 +61,7 @@ public class OnlineDialog {
 
         colorImage.setImageDrawable(drawable);
 
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onlineDialog.dismiss();
-            }
-        });
+        closeButton.setOnClickListener(view -> onlineDialog.dismiss());
     }
 
     public void searchDialog(final int position, final String title, final String username, final String password){
@@ -91,15 +86,12 @@ public class OnlineDialog {
         editButton.setText("Add");
         deleteButton.setVisibility(View.GONE);
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
-                    Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
-                }else{
-                    viewModel.addOnlineObject(titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
-                    onlineDialog.dismiss();
-                }
+        editButton.setOnClickListener(view -> {
+            if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
+                Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
+            }else{
+                viewModel.addOnlineObject(titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
+                onlineDialog.dismiss();
             }
         });
 
@@ -114,64 +106,43 @@ public class OnlineDialog {
         passwordEditText.setText(password);
         noteEditText.setText(parseObjects.get(position).getString("Note"));
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editButton.getText().toString().toLowerCase().equals("save")){
-                    if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
-                        Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
-                    }else{
-                        viewModel.editOnlineObject(position, titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
-                        onlineDialog.dismiss();
-                    }
-                }
-                else if (editButton.getText().toString().toLowerCase().equals("edit")){
-                    editButton.setText("Save");
-                    deleteButton.setText("Cancel");
-                    setModeChange(true);
-                }
-            }
-        });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (deleteButton.getText().toString().toLowerCase().equals("delete")){
+        editButton.setOnClickListener(view -> {
+            if (editButton.getText().toString().toLowerCase().equals("save")){
+                if(titleEditText.getText().toString().trim().equals("") || usernameEditText.getText().toString().trim().equals("") || passwordEditText.getText().toString().trim().equals("")) {
+                    Toasty.error(context,"Please don't leave empty.",Toast.LENGTH_SHORT).show();
+                }else{
+                    viewModel.editOnlineObject(position, titleEditText.getText().toString(), usernameEditText.getText().toString(), passwordEditText.getText().toString(), noteEditText.getText().toString());
                     onlineDialog.dismiss();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Are You Sure?");
-                    builder.setMessage("Do you want to delete?");
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            viewModel.deleteOnlineObject(position);
-                        }
-                    });
-                    builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
                 }
-                else if (deleteButton.getText().toString().toLowerCase().equals("cancel")){
-                    titleEditText.setText(title);
-                    usernameEditText.setText(username);
-                    passwordEditText.setText(password);
-                    deleteButton.setText("Delete");
-                    editButton.setText("Edit");
-                    setModeChange(false);
-                }
+            }
+            else if (editButton.getText().toString().toLowerCase().equals("edit")){
+                editButton.setText("Save");
+                deleteButton.setText("Cancel");
+                setModeChange(true);
             }
         });
 
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        deleteButton.setOnClickListener(view -> {
+            if (deleteButton.getText().toString().toLowerCase().equals("delete")){
                 onlineDialog.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Are You Sure?");
+                builder.setMessage("Do you want to delete?");
+                builder.setPositiveButton("Yes", (dialog, which) -> viewModel.deleteOnlineObject(position));
+                builder.setNegativeButton("NO!", (dialog, which) -> dialog.cancel());
+                builder.show();
+            }
+            else if (deleteButton.getText().toString().toLowerCase().equals("cancel")){
+                titleEditText.setText(title);
+                usernameEditText.setText(username);
+                passwordEditText.setText(password);
+                deleteButton.setText("Delete");
+                editButton.setText("Edit");
+                setModeChange(false);
             }
         });
+
+        closeButton.setOnClickListener(view -> onlineDialog.dismiss());
 
         onlineDialog.show();
     }

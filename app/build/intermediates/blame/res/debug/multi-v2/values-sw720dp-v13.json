@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/burak/AndroidStudioProjects/PassVault/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw720dp-v13/values-sw720dp-v13.xml",
+            "outputFile": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-v13\\values-sw720dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/burak/.gradle/caches/transforms-1/files-1.1/appintro-v5.1.0.aar/9dd5292653ec630f03171d415555700a/res/values-sw720dp-v13/values-sw720dp-v13.xml",
+                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\05f8e7cae7f1bacf79307941abec6689\\appintro-v5.1.0\\res\\values-sw720dp-v13\\values-sw720dp-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

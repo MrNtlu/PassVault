@@ -3,14 +3,11 @@ package com.mrntlu.PassVault.Offline;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmResults;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +22,6 @@ import java.util.ArrayList;
 
 public class FragmentOtherAccounts extends Fragment {
 
-    private View v;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private OthersRVAdapter othersRVAdapter;
@@ -48,32 +44,26 @@ public class FragmentOtherAccounts extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v=inflater.inflate(R.layout.fragment_other_accounts, container, false);
-        recyclerView=(RecyclerView)v.findViewById(R.id.otherRV);
-        searchView=(SearchView)v.findViewById(R.id.otherSearch);
+        View v = inflater.inflate(R.layout.fragment_other_accounts, container, false);
+        recyclerView= v.findViewById(R.id.otherRV);
+        searchView= v.findViewById(R.id.otherSearch);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        mViewModel=ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
-        mViewModel.initOtherObjects(realm);
-        mViewModel.getmOtherObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<OthersObject>>() {
-            @Override
-            public void onChanged(RealmResults<OthersObject> othersObjects) {
-                if (othersRVAdapter==null){
-                    initRecyclerView();
-                }else{
-                    othersRVAdapter.notifyDataSetChanged();
-                }
-            }
-        });
         initRecyclerView();
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b){
-                    initRecyclerView();
-                }
+        mViewModel=ViewModelProviders.of(this).get(OfflineViewModel.class);
+        mViewModel.initOtherObjects(realm);
+        mViewModel.getmOtherObjects().observe(getViewLifecycleOwner(), othersObjects -> {
+            if (othersRVAdapter==null){
+                initRecyclerView();
+            }else{
+                othersRVAdapter.submitList(convertRealmListToList(othersObjects));
+            }
+        });
+
+        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
+            if (!b){
+                initRecyclerView();
             }
         });
 
@@ -82,7 +72,8 @@ public class FragmentOtherAccounts extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<OthersObject> searchOthers = mViewModel.searchOtherObject(s).getValue();
-                    othersRVAdapter = new OthersRVAdapter(getContext(), searchOthers, passBool, realm,getActivity());
+                    othersRVAdapter = new OthersRVAdapter(getContext(), passBool, realm,getActivity());
+                    othersRVAdapter.submitList(convertRealmListToList(searchOthers));
                     recyclerView.setAdapter(othersRVAdapter);
                 }
                 return false;
@@ -97,7 +88,7 @@ public class FragmentOtherAccounts extends Fragment {
             }
         });
 
-        fab=(FloatingActionButton) getActivity().findViewById(R.id.addButton);
+        fab=getActivity().findViewById(R.id.addButton);
         if (fab.getTranslationY()!=0.0){
             fab.setTranslationY(0f);
         }
@@ -126,9 +117,13 @@ public class FragmentOtherAccounts extends Fragment {
         return v;
     }
 
+    private <E> ArrayList<E> convertRealmListToList(RealmResults<E> realmList){
+        return new ArrayList<>(realmList);
+    }
+
     private void initRecyclerView(){
         if (realm!=null) {
-            othersRVAdapter = new OthersRVAdapter(getContext(), mViewModel.getmOtherObjects().getValue(), passBool,realm,getActivity());
+            othersRVAdapter = new OthersRVAdapter(getContext(), passBool,realm,getActivity());
             recyclerView.setAdapter(othersRVAdapter);
         }else{
             realm=Realm.getDefaultInstance();

@@ -1,16 +1,10 @@
 package com.mrntlu.PassVault.Online.Viewmodels;
 
 import android.app.Application;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.mrntlu.PassVault.Online.FragmentOnlineStorage;
 import com.mrntlu.PassVault.Online.Repositories.OnlineRepository;
-import com.parse.DeleteCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -26,7 +20,6 @@ public class OnlineViewModel extends AndroidViewModel {
     private OnlineRepository mRepo;
     private ParseUser user;
     private ArrayList<ParseObject> array;
-    private ProgressBar progressBar;
 
     public OnlineViewModel(@NonNull Application application) {
         super(application);
@@ -36,9 +29,8 @@ public class OnlineViewModel extends AndroidViewModel {
         mRepo=new OnlineRepository(user);
     }
 
-    public void initOnlineObjects(ProgressBar progressBar){
-        this.progressBar=progressBar;
-        onlineObjects=mRepo.getOnlineObjects(progressBar);
+    public void initOnlineObjects(){
+        onlineObjects=mRepo.getOnlineObjects();
     }
 
     public static void addOnlineObject(FragmentActivity fragmentActivity, String title, String username, String password){
@@ -58,26 +50,18 @@ public class OnlineViewModel extends AndroidViewModel {
         object.put("Username",username);
         object.put("Password",password);
         object.put("Note",note);
-        if (progressBar!=null) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e==null && onlineObjects!=null){
-                    onlineObjects.getValue().add(object);
-                    array=onlineObjects.getValue();
-                    onlineObjects.postValue(array);
-                }else if (e==null && onlineObjects==null){
-                    Toasty.success(getApplication().getApplicationContext(),"Successfully Added.",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-                if (progressBar!=null){
-                    progressBar.setVisibility(View.GONE);
-                }
+
+        object.saveInBackground(e -> {
+            if (e==null && onlineObjects!=null){
+                onlineObjects.getValue().add(object);
+                array=onlineObjects.getValue();
+                onlineObjects.postValue(array);
+            }else if (e==null && onlineObjects==null){
+                Toasty.success(getApplication().getApplicationContext(),"Successfully Added.",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
     }
@@ -87,44 +71,27 @@ public class OnlineViewModel extends AndroidViewModel {
         onlineObjects.getValue().get(position).put("Username",username);
         onlineObjects.getValue().get(position).put("Password",password);
         onlineObjects.getValue().get(position).put("Note",note);
-        if (progressBar!=null){
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        onlineObjects.getValue().get(position).saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e==null){
-                    array=onlineObjects.getValue();
-                    onlineObjects.postValue(array);
-                }else{
-                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-                if (progressBar!=null){
-                    progressBar.setVisibility(View.GONE);
-                }
+
+        onlineObjects.getValue().get(position).saveInBackground(e -> {
+            if (e==null){
+                array=onlineObjects.getValue();
+                onlineObjects.postValue(array);
+            }else{
+                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
     }
 
     public void deleteOnlineObject(final int position){
-        if (progressBar!=null){
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        onlineObjects.getValue().get(position).deleteInBackground(new DeleteCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e==null) {
-                    onlineObjects.getValue().remove(position);
-                    array = onlineObjects.getValue();
-                    onlineObjects.postValue(array);
-                }else{
-                    Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-                if (progressBar!=null){
-                    progressBar.setVisibility(View.GONE);
-                }
+        onlineObjects.getValue().get(position).deleteInBackground(e -> {
+            if (e==null) {
+                onlineObjects.getValue().remove(position);
+                array = onlineObjects.getValue();
+                onlineObjects.postValue(array);
+            }else{
+                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
     }

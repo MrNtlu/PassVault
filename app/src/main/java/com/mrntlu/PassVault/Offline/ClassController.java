@@ -110,31 +110,20 @@ public class ClassController {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Are You Sure?");
         builder.setMessage("Do you want to delete?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        try {
-                            passBool.remove(position);
-                            object.deleteFromRealm();
-                        }catch (NullPointerException e){
-                            e.printStackTrace();
-                            Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                adapter.notifyItemRemoved(position);
-                adapter.notifyItemRangeChanged(position,adapter.getItemCount());
-            }
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            realm.executeTransaction(realm1 -> {
+                try {
+                    passBool.remove(position);
+                    object.deleteFromRealm();
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                    if (e.getMessage()!=null)
+                        Toasty.error(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+            adapter.notifyDataSetChanged();
         });
-        builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("NO!", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 }

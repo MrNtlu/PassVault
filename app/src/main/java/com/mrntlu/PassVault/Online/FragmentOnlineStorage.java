@@ -70,45 +70,26 @@ public class FragmentOnlineStorage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        final ParseUser user=ParseUser.getCurrentUser();
-        if (user==null){
-            startActivity(new Intent(getActivity(),MainActivity.class));
-        }
-
-        setHasOptionsMenu(true);
-
-        v=inflater.inflate(R.layout.fragment_online_storage, container, false);
-        recyclerView=(RecyclerView)v.findViewById(R.id.onlineRecycler);
-        searchView=(SearchView)v.findViewById(R.id.onlineSearch);
-        progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         viewModel=ViewModelProviders.of(getActivity()).get(OnlineViewModel.class);
-        viewModel.initOnlineObjects(progressBar);
+        viewModel.initOnlineObjects();
 
         initRecyclerView();
 
-        viewModel.getOnlineObjects().observe(getViewLifecycleOwner(), new Observer<ArrayList<ParseObject>>() {
-            @Override
-            public void onChanged(ArrayList<ParseObject> parseObjects) {
-                if (onlineRVAdapter == null) {
-                    initRecyclerView();
-                } else {
-                    onlineRVAdapter.notifyDataSetChanged();
-                }
+        viewModel.getOnlineObjects().observe(getViewLifecycleOwner(), parseObjects -> {
+            if (onlineRVAdapter == null) {
+                initRecyclerView();
+            } else {
+                onlineRVAdapter.notifyDataSetChanged();
             }
         });
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-               if (!b){
-                    initRecyclerView();
-               }
-            }
+        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
+           if (!b){
+                initRecyclerView();
+           }
         });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -24,13 +24,11 @@ import java.util.ArrayList;
 
 public class FragmentMailVault extends Fragment {
 
-    private View v;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private MailVaultRVAdapter mailVaultRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<>();
     private OfflineViewModel offlineViewModel;
-    public static OfflineViewModel staticViewModel;
     private FloatingActionButton fab;
     private Realm realm;
 
@@ -48,34 +46,26 @@ public class FragmentMailVault extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_mail_vault, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.mailRV);
-        searchView = (SearchView) v.findViewById(R.id.mailSearch);
+        View v = inflater.inflate(R.layout.fragment_mail_vault, container, false);
+        recyclerView = v.findViewById(R.id.mailRV);
+        searchView = v.findViewById(R.id.mailSearch);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        offlineViewModel = ViewModelProviders.of(getActivity()).get(OfflineViewModel.class);
-        staticViewModel=offlineViewModel;
-        offlineViewModel.initMailObjects(realm);
-        offlineViewModel.getMailObjects().observe(getViewLifecycleOwner(), new Observer<RealmResults<MailObject>>() {
-            @Override
-            public void onChanged(RealmResults<MailObject> mailObjects) {
-                if (mailVaultRVAdapter == null) {
-                    initRecyclerView();
-                } else {
-                    mailVaultRVAdapter.notifyDataSetChanged();
-                }
-            }
-        });
         initRecyclerView();
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    initRecyclerView();
-                }
+        offlineViewModel = ViewModelProviders.of(this).get(OfflineViewModel.class);
+        offlineViewModel.initMailObjects(realm);
+        offlineViewModel.getMailObjects().observe(getViewLifecycleOwner(), mailObjects -> {
+            if (mailVaultRVAdapter == null) {
+                initRecyclerView();
+            } else {
+                mailVaultRVAdapter.submitList(convertRealmListToList(mailObjects));
+            }
+        });
+
+        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
+            if (!b) {
+                mailVaultRVAdapter.submitList(convertRealmListToList(offlineViewModel.getMailObjects().getValue()));
             }
         });
 
@@ -84,7 +74,8 @@ public class FragmentMailVault extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
                     RealmResults<MailObject> searchMail = offlineViewModel.searchMailObject(s).getValue();
-                    mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), searchMail, passBool, realm,getActivity());
+                    mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), passBool, realm,getActivity());
+                    mailVaultRVAdapter.submitList(convertRealmListToList(searchMail));
                     recyclerView.setAdapter(mailVaultRVAdapter);
                 }
                 return false;
@@ -93,13 +84,13 @@ public class FragmentMailVault extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.trim().length() == 0) {
-                    initRecyclerView();
+                    mailVaultRVAdapter.submitList(convertRealmListToList(offlineViewModel.getMailObjects().getValue()));
                 }
                 return false;
             }
         });
 
-        fab = (FloatingActionButton) getActivity().findViewById(R.id.addButton);
+        fab = getActivity().findViewById(R.id.addButton);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -125,9 +116,13 @@ public class FragmentMailVault extends Fragment {
         return v;
     }
 
+    private <E> ArrayList<E> convertRealmListToList(RealmResults<E> realmList){
+        return new ArrayList<>(realmList);
+    }
+
     private void initRecyclerView(){
         if (realm!=null) {
-            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), offlineViewModel.getMailObjects().getValue(), passBool,realm,getActivity());
+            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), passBool,realm,getActivity());
             recyclerView.setAdapter(mailVaultRVAdapter);
         }else{
             realm=Realm.getDefaultInstance();

@@ -1,5 +1,6 @@
 package com.mrntlu.PassVault.Offline;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -7,13 +8,14 @@ import io.realm.Realm;
 
 public class OfflineViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    Realm realm;
+    private Realm realm;
 
-    public OfflineViewPagerAdapter(FragmentManager fm, Realm realm) {
-        super(fm);
+    OfflineViewPagerAdapter(FragmentManager fm, Realm realm) {
+        super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.realm=realm;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         Fragment returnFragment;
