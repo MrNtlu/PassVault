@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.Offline.Repositories;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import androidx.lifecycle.MutableLiveData;
 import io.realm.Realm;
@@ -14,19 +16,18 @@ public class MailObjectRepository {
 
     public MailObjectRepository(Context context) {
         this.context = context;
-        mRealm=Realm.getDefaultInstance();
+        if (mRealm==null || mRealm.isClosed())
+            mRealm=Realm.getDefaultInstance();
         dataSet=mRealm.where(MailObject.class).findAll();
     }
 
     public MutableLiveData<RealmResults<MailObject>> getMailObjects(){
-        closeRealm();
         MutableLiveData<RealmResults<MailObject>> data=new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
     }
 
-    private void closeRealm(){
-
+    public void closeRealm(){
         if (mRealm!=null && !mRealm.isClosed()){
             mRealm.close();
         }

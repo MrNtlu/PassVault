@@ -45,7 +45,6 @@ public class FragmentOfflineAdd extends Fragment {
         editText3=v.findViewById(R.id.editText3);
         saveButton=v.findViewById(R.id.saveButton);
         offlineViewModel = ViewModelProviders.of(this).get(OfflineViewModel.class);
-        setHasOptionsMenu(true);
         return v;
     }
 
@@ -76,6 +75,10 @@ public class FragmentOfflineAdd extends Fragment {
                     case 1:
                         if (!editText3.getText().toString().trim().equals("")) {
                             offlineViewModel.addUserObject(editText.getText().toString(), editText2.getText().toString(), editText3.getText().toString());
+                        }else{
+                            if (getContext()!=null)
+                                Toasty.error(getContext(),"Please don't leave anything empty!",Toast.LENGTH_SHORT).show();
+                            return;
                         }
                         break;
                     case 2:
@@ -96,7 +99,7 @@ public class FragmentOfflineAdd extends Fragment {
     }
 
     private void startTransaction(Fragment fragment){
-        fragmentTransaction.replace(R.id.frameLayout,fragment).addToBackStack(null);
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
         fragmentTransaction.commit();
     }
 }

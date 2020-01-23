@@ -15,6 +15,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import io.realm.Case;
 import io.realm.Realm;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 public class OfflineViewModel extends AndroidViewModel {
@@ -32,9 +33,11 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void initMailObjects(Realm realm){
-            if (realm!=null){
+        if (realm!=null && !realm.isClosed())
             mRealm=realm;
-        }
+        else
+            mRealm=Realm.getDefaultInstance();
+
         if (mMailObjects!=null){
             return;
         }
@@ -43,9 +46,11 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void initAccountObjects(Realm realm){
-        if (realm!=null){
+        if (realm!=null && !realm.isClosed())
             mRealm=realm;
-        }
+        else
+            mRealm=Realm.getDefaultInstance();
+
         if (mUserObjects!=null){
             return;
         }
@@ -54,9 +59,11 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void initOtherObjects(Realm realm){
-        if (realm!=null){
+        if (realm!=null && !realm.isClosed())
             mRealm=realm;
-        }
+        else
+            mRealm=Realm.getDefaultInstance();
+
         if (mOtherObjects!=null){
             return;
         }
@@ -65,11 +72,9 @@ public class OfflineViewModel extends AndroidViewModel {
     }
 
     public void addMailObject(final String mail, final String password){
-        boolean wasNull=false;
-        if (mRealm==null){
+        if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
-            wasNull=true;
-        }
+
         mRealm.executeTransaction(realm -> {
             MailObject mailObject=realm.createObject(MailObject.class);
             mailObject.setMail(mail);
@@ -79,17 +84,12 @@ public class OfflineViewModel extends AndroidViewModel {
             initMailObjects(mRealm);
         RealmResults<MailObject> mailObjects=mMailObjects.getValue();
         mMailObjects.postValue(mailObjects);
-        if (wasNull){
-            mRealm.close();
-        }
     }
 
     public void addUserObject(final String mail, final String password,final String description){
-        boolean wasNull=false;
-        if (mRealm==null){
+        if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
-            wasNull=true;
-        }
+
         mRealm.executeTransaction(realm -> {
             AccountsObject accountsObject=realm.createObject(AccountsObject.class);
             accountsObject.setIdMail(mail);
@@ -100,17 +100,12 @@ public class OfflineViewModel extends AndroidViewModel {
             initAccountObjects(mRealm);
         RealmResults<AccountsObject> accountObjects=mUserObjects.getValue();
         mUserObjects.postValue(accountObjects);
-        if (wasNull){
-            mRealm.close();
-        }
     }
 
     public void addOtherObject(final String description, final String password){
-        boolean wasNull=false;
-        if (mRealm==null){
+        if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
-            wasNull=true;
-        }
+
         mRealm.executeTransaction(realm -> {
             OthersObject othersObject = realm.createObject(OthersObject.class);
             othersObject.setDescription(description);
@@ -120,8 +115,50 @@ public class OfflineViewModel extends AndroidViewModel {
             initOtherObjects(mRealm);
         RealmResults<OthersObject> otherObjects = mOtherObjects.getValue();
         mOtherObjects.postValue(otherObjects);
-        if (wasNull){
-            mRealm.close();
+    }
+
+    public void deleteMailObject(MailObject object){
+        if (mRealm == null || mRealm.isClosed())
+            mRealm=Realm.getDefaultInstance();
+
+        if (mMailObjects==null)
+            initMailObjects(mRealm);
+        RealmResults<MailObject> mailObjects=mMailObjects.getValue();
+        if (mailObjects != null) {
+            mRealm.executeTransaction(realm -> {
+                mailObjects.deleteFromRealm(mailObjects.indexOf(object));
+                mMailObjects.postValue(mailObjects);
+            });
+        }
+    }
+
+    public void deleteOtherObject(OthersObject object){
+        if (mRealm == null || mRealm.isClosed())
+            mRealm=Realm.getDefaultInstance();
+
+        if (mOtherObjects==null)
+            initOtherObjects(mRealm);
+        RealmResults<OthersObject> otherObjects=mOtherObjects.getValue();
+        if (otherObjects != null) {
+            mRealm.executeTransaction(realm -> {
+                otherObjects.deleteFromRealm(otherObjects.indexOf(object));
+                mOtherObjects.postValue(otherObjects);
+            });
+        }
+    }
+
+    public void deleteAccountObject(AccountsObject object){
+        if (mRealm == null || mRealm.isClosed())
+            mRealm=Realm.getDefaultInstance();
+
+        if (mUserObjects==null)
+            initAccountObjects(mRealm);
+        RealmResults<AccountsObject> userObjects=mUserObjects.getValue();
+        if (userObjects != null) {
+            mRealm.executeTransaction(realm -> {
+                userObjects.deleteFromRealm(userObjects.indexOf(object));
+                mUserObjects.postValue(userObjects);
+            });
         }
     }
 
@@ -156,5 +193,18 @@ public class OfflineViewModel extends AndroidViewModel {
 
     public LiveData<RealmResults<OthersObject>> getmOtherObjects() {
         return mOtherObjects;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (mRealm!=null && !mRealm.isClosed())
+            mRealm.close();
+        if (mOtherRepo!=null)
+            mOtherRepo.closeRealm();
+        if (mRepo!=null)
+            mRepo.closeRealm();
+        if (mUserRepo!=null)
+            mUserRepo.closeRealm();
     }
 }

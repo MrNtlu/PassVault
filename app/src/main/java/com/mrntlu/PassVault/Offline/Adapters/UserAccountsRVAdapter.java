@@ -37,15 +37,17 @@ public class UserAccountsRVAdapter extends BaseAdapter<AccountsObject> {
     private boolean isSearching=false;
     private UserAccountsRVAdapter adapter;
     private FragmentActivity fragmentActivity;
+    private OnChangeHandler onChangeHandler;
 
     private Realm realm;
     private ClassController classController;
 
-    public UserAccountsRVAdapter(Context context,final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity) {
+    public UserAccountsRVAdapter(Context context,final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity,OnChangeHandler onChangeHandler) {
         this.context = context;
         this.passBool = passBool;
         this.realm=realm;
         this.fragmentActivity=fragmentActivity;
+        this.onChangeHandler=onChangeHandler;
         classController=new ClassController(context);
     }
 
@@ -105,7 +107,8 @@ public class UserAccountsRVAdapter extends BaseAdapter<AccountsObject> {
                             showPopup(position);
                             return true;
                         case R.id.deleteMenuButton:
-                            classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
+                            onChangeHandler.onDataDeleted(position);
+                            //classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
                             return true;
                         case R.id.moveMenuButton:
                             classController.adapterMoveOnlineButton(fragmentActivity, arrayList.get(position).getDescription(), arrayList.get(position).getIdMail(), arrayList.get(position).getPassword());

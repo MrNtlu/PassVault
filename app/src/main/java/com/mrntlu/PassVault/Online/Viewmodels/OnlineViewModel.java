@@ -2,6 +2,8 @@ package com.mrntlu.PassVault.Online.Viewmodels;
 
 import android.app.Application;
 import android.widget.Toast;
+
+import com.mrntlu.PassVault.Online.FragmentOnlineAdd;
 import com.mrntlu.PassVault.Online.Repositories.OnlineRepository;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -21,29 +23,32 @@ public class OnlineViewModel extends AndroidViewModel {
     private ParseUser user;
     private ArrayList<ParseObject> array;
 
+    private MutableLiveData<FragmentOnlineAdd.State> stateMutableLiveData=new MutableLiveData<>();
+
+    public LiveData<FragmentOnlineAdd.State> getStateMutableLiveData() {
+        return stateMutableLiveData;
+    }
+
+    public void setState(FragmentOnlineAdd.State state){
+        stateMutableLiveData.postValue(state);
+    }
+
     public OnlineViewModel(@NonNull Application application) {
         super(application);
-        if (ParseUser.getCurrentUser()!=null){
+        if (ParseUser.getCurrentUser()!=null)
             user=ParseUser.getCurrentUser();
-        }
         mRepo=new OnlineRepository(user);
     }
 
     public void initOnlineObjects(){
-        onlineObjects=mRepo.getOnlineObjects();
+        onlineObjects=mRepo.getOnlineObjects(null);
     }
 
-    public static void addOnlineObject(FragmentActivity fragmentActivity, String title, String username, String password){
-        OnlineViewModel onlineViewModel=ViewModelProviders.of(fragmentActivity).get(OnlineViewModel.class);
-        if (onlineViewModel.user!=null) {
-            Toasty.info(fragmentActivity.getApplicationContext(), "Trying to add...", Toast.LENGTH_SHORT).show();
-            onlineViewModel.addOnlineObject(title, username, password, "Added from Offline");
-        }else{
-            Toasty.error(fragmentActivity.getApplicationContext(),"Error! Please login to your online account.",Toast.LENGTH_SHORT).show();
-        }
+    public LiveData<ArrayList<ParseObject>> getOnlineObjects(OnlineRepository.ObjectsCallback callback) {
+        return mRepo.getOnlineObjects(callback);
     }
 
-    public void addOnlineObject(String title,String username,String password,String note){
+    public void addOnlineObject(String title,String username,String password,String note,OnRequestCallback onRequestCallback){
         final ParseObject object=new ParseObject("Account");
         object.put("ParseUser",user.getUsername());
         object.put("Title",title);
@@ -52,21 +57,28 @@ public class OnlineViewModel extends AndroidViewModel {
         object.put("Note",note);
 
         object.saveInBackground(e -> {
-            if (e==null && onlineObjects!=null){
-                onlineObjects.getValue().add(object);
-                array=onlineObjects.getValue();
-                onlineObjects.postValue(array);
-            }else if (e==null && onlineObjects==null){
+            if (e==null){
+                if (onlineObjects!=null && onlineObjects.getValue()!=null) {
+                    onlineObjects.getValue().add(object);
+                    array = onlineObjects.getValue();
+                    onlineObjects.postValue(array);
+                }
                 Toasty.success(getApplication().getApplicationContext(),"Successfully Added.",Toast.LENGTH_SHORT).show();
+                if (onRequestCallback!=null)
+                    onRequestCallback.onAddSuccess();
             }
             else{
-                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+                if (onRequestCallback!=null)
+                    onRequestCallback.onFailed(e);
+                else{
+                    Toasty.error(getApplication().getApplicationContext(), e.getMessage()!=null?e.getMessage():"Error!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    public void editOnlineObject(int position,String title,String username,String password,String note){
+    public void editOnlineObject(int position,String title,String username,String password,String note,OnRequestCallback onRequestCallback){
         onlineObjects.getValue().get(position).put("Title",title);
         onlineObjects.getValue().get(position).put("Username",username);
         onlineObjects.getValue().get(position).put("Password",password);
@@ -76,33 +88,51 @@ public class OnlineViewModel extends AndroidViewModel {
             if (e==null){
                 array=onlineObjects.getValue();
                 onlineObjects.postValue(array);
+                onRequestCallback.onUpdateSuccess(title,username,password,note);
             }else{
-                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+                onRequestCallback.onFailed(e);
             }
         });
     }
 
-    public void deleteOnlineObject(final int position){
+    public void deleteOnlineObject(final int position,OnRequestCallback onRequestCallback){
         onlineObjects.getValue().get(position).deleteInBackground(e -> {
             if (e==null) {
                 onlineObjects.getValue().remove(position);
                 array = onlineObjects.getValue();
                 onlineObjects.postValue(array);
+                onRequestCallback.onDeleteSuccess();
             }else{
-                Toasty.error(getApplication().getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+                onRequestCallback.onFailed(e);
             }
         });
     }
 
-    public LiveData<ArrayList<ParseObject>> searchOnlineObjects(String search){
-        MutableLiveData<ArrayList<ParseObject>> searchData=new MutableLiveData<>();
-        searchData.setValue(mRepo.getSearchOnlineObject(search));
-        return searchData;
+    public static void addOnlineObject(FragmentActivity fragmentActivity, String title, String username, String password){
+        OnlineViewModel onlineViewModel=ViewModelProviders.of(fragmentActivity).get(OnlineViewModel.class);
+        if (onlineViewModel.user!=null) {
+            Toasty.info(fragmentActivity.getApplicationContext(), "Trying to add...", Toast.LENGTH_SHORT).show();
+            onlineViewModel.addOnlineObject(title, username, password, "Added from Offline",null);
+        }else{
+            Toasty.error(fragmentActivity.getApplicationContext(),"Error! Please login to your online account.",Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public LiveData<ArrayList<ParseObject>> getOnlineObjects() {
-        return onlineObjects;
+    public void searchOnlineObjects(String search){
+        mRepo.getSearchOnlineObject(search);
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (mRepo!=null)
+            mRepo.cancelQueries();
+    }
+
+    public interface OnRequestCallback{
+        void onDeleteSuccess();
+        void onUpdateSuccess(String title,String username, String password, String note);
+        void onAddSuccess();
+        void onFailed(Exception e);
     }
 }

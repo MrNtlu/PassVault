@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,14 +12,14 @@
 
         <EditText
             android:id="@+id/editID"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/idmail"
             android:inputType="textPersonName"
@@ -32,13 +30,13 @@
 
         <EditText
             android:id="@+id/editpassword"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/editID"
-            android:layout_marginEnd="16dp"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/pass"
             android:inputType="textPersonName"
@@ -49,35 +47,36 @@
 
         <Button
             android:id="@+id/editAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/editpassword"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/rounded_red"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/update"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editClose"
             app:layout_constraintTop_toBottomOf="@+id/editpassword" />
 
         <Button
             android:id="@+id/editClose"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@+id/editAdd"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_toStartOf="@+id/editpassword"
-            android:background="@drawable/rounded_red"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/close"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/space"
             app:layout_constraintEnd_toStartOf="@+id/editAdd"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editAdd" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"

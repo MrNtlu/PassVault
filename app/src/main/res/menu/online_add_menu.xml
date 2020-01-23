@@ -2,15 +2,8 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/sync"
-        android:id="@+id/syncOnline"
-        android:icon="@drawable/ic_sync_black_24dp"
+    <item android:title="Back"
+        android:id="@+id/backOnline"
+        android:icon="@drawable/ic_arrow_back_black_24dp"
         app:showAsAction="ifRoom"/>
-
-    <item android:title="@string/add"
-        android:id="@+id/addOnline"
-        android:icon="@drawable/ic_add_black_48dp"
-        app:showAsAction="ifRoom"/>
-
-
 </menu>

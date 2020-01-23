@@ -39,14 +39,16 @@ public class OthersRVAdapter extends BaseAdapter<OthersObject> {
     private Realm realm;
     private FragmentActivity fragmentActivity;
     private OthersRVAdapter adapter;
+    private OnChangeHandler onChangeHandler;
 
     private boolean isSearching=false;
 
-    public OthersRVAdapter(Context context, final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity) {
+    public OthersRVAdapter(Context context, final ArrayList<Boolean> passBool,Realm realm, FragmentActivity fragmentActivity,OnChangeHandler onChangeHandler) {
         this.context = context;
         this.passBool = passBool;
         this.realm=realm;
         this.fragmentActivity=fragmentActivity;
+        this.onChangeHandler=onChangeHandler;
         classController=new ClassController(context);
     }
 
@@ -106,7 +108,8 @@ public class OthersRVAdapter extends BaseAdapter<OthersObject> {
                             showPopup(position);
                             return true;
                         case R.id.deleteMenuButton:
-                            classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
+                            onChangeHandler.onDataDeleted(position);
+                            //classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
                             return true;
                         case R.id.moveMenuButton:
                             classController.adapterMoveOnlineButton(fragmentActivity, "Please Edit Title", arrayList.get(position).getDescription(), arrayList.get(position).getPassword());

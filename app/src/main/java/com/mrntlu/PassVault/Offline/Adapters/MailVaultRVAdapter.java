@@ -39,15 +39,17 @@ public class MailVaultRVAdapter extends BaseAdapter<MailObject> {
     private Realm realm;
     private FragmentActivity fragmentActivity;
     private MailVaultRVAdapter adapter;
+    private OnChangeHandler onChangeHandler;
 
     private boolean isSearching=false;
 
     public MailVaultRVAdapter(Context context, final ArrayList<Boolean> passBool, Realm realm,
-                              FragmentActivity fragmentActivity) {
+                              FragmentActivity fragmentActivity,OnChangeHandler onChangeHandler) {
         this.context = context;
         this.passBool=passBool;
         this.realm=realm;
         this.fragmentActivity=fragmentActivity;
+        this.onChangeHandler=onChangeHandler;
         classController=new ClassController(context);
     }
 
@@ -107,7 +109,8 @@ public class MailVaultRVAdapter extends BaseAdapter<MailObject> {
                             showPopup(position);
                             return true;
                         case R.id.deleteMenuButton:
-                            classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
+                            onChangeHandler.onDataDeleted(position);
+                            //classController.adapterDeleteButton(realm, passBool, arrayList.get(position), position, adapter);
                             return true;
                         case R.id.moveMenuButton:
                             classController.adapterMoveOnlineButton(fragmentActivity, "Please Edit Title", arrayList.get(position).getMail(), arrayList.get(position).getPassword());

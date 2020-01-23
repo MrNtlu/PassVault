@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context=".Online.FragmentSignup">
+    android:focusableInTouchMode="true">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signupUsernameLayout"
@@ -18,14 +17,10 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:hint="Username"
+        android:textColorHint="@color/white"
         app:hintEnabled="true"
-        app:hintTextColor="@color/black"
-        android:textColorHint="@color/flatdarkblue"
-        app:boxBackgroundColor="@color/white"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
+        app:hintTextColor="@color/white"
+        style="@style/Widget.Design.TextInputLayout"
         app:hintAnimationEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textColorHint="@color/flatdarkblue" />
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,18 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:hint="Email"
-        android:textColorHint="@color/flatdarkblue"
-        app:boxBackgroundColor="@color/white"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:hintAnimationEnabled="true"
+        android:textColorHint="@color/white"
         app:hintEnabled="true"
-        app:hintTextColor="@color/black"
+        app:hintTextColor="@color/white"
+        app:hintAnimationEnabled="true"
+        style="@style/Widget.Design.TextInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupUsernameLayout">
@@ -64,7 +55,6 @@
             android:id="@+id/signupMailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/flatdarkblue"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,18 +63,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:hint="Password"
-        android:textColorHint="@color/flatdarkblue"
-        app:boxBackgroundColor="@color/white"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:hintAnimationEnabled="true"
+        android:textColorHint="@color/white"
         app:hintEnabled="true"
-        app:hintTextColor="@color/black"
+        app:hintTextColor="@color/white"
+        app:hintAnimationEnabled="true"
+        android:hint="Password"
+        style="@style/Widget.Design.TextInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupMailLayout"
@@ -94,7 +80,6 @@
             android:id="@+id/signupPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/flatdarkblue"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,20 +88,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:hint="Confirm Password"
-        android:textColorHint="@color/flatdarkblue"
-        app:boxBackgroundColor="@color/white"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:hintAnimationEnabled="true"
+        android:textColorHint="@color/white"
         app:hintEnabled="true"
-        app:hintTextColor="@color/black"
+        app:hintTextColor="@color/white"
+        app:hintAnimationEnabled="true"
+        android:hint="Confirm Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        style="@style/Widget.Design.TextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/signupPasswordLayout"
         app:passwordToggleEnabled="true">
 
@@ -125,17 +106,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColorHint="@color/flatdarkblue" />
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/midnightblue"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
         android:text="@string/register"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/signupRepeatPasswordLayout"
         app:layout_constraintStart_toStartOf="@+id/signupRepeatPasswordLayout"
         app:layout_constraintTop_toBottomOf="@+id/signupRepeatPasswordLayout" />

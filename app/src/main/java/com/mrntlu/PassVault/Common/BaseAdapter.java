@@ -13,10 +13,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     protected int PAGINATION_LOADING_HOLDER=3;
     protected int ERROR_HOLDER=4;
 
-    boolean isPaginationLoading=false;
-    boolean isAdapterSet=false;
-    boolean isErrorOccured=false;
-    String errorMessage="Error";
+    private boolean isPaginationLoading=false;
+    private boolean isAdapterSet=false;
+    private boolean isErrorOccured=false;
+    protected String errorMessage="Error";
 
     @Override
     public int getItemCount() {
@@ -62,31 +62,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         notifyDataSetChanged();
     }
 
-    //Pagination
-    public void submitPaginationLoading(){
-        isAdapterSet=true;
-        isPaginationLoading=true;
-        notifyDataSetChanged();
-    }
-
-    public void submitPaginationError(){
-        isAdapterSet=true;
-        isPaginationLoading=false;
-        notifyDataSetChanged();
-    }
-
-    public void submitPaginationList(ArrayList<T> list){
-        isAdapterSet=true;
-        isErrorOccured=false;
-        isPaginationLoading=false;
-        arrayList.clear();
-        arrayList.addAll(list);
-        notifyDataSetChanged();
-    }
-
     public interface OnChangeHandler {
-        void onDataDeleted();
+        void onDataDeleted(int position);
+    }
 
-        void onDataUpdated();
+    public interface Interaction{
+        void onErrorRefreshPressed();
+
+        void onClicked(int position,String title, String username, String password,String description);
     }
 }

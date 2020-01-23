@@ -1,5 +1,6 @@
 package com.mrntlu.PassVault.Offline;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -15,7 +18,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mrntlu.PassVault.Common.BaseAdapter;
 import com.mrntlu.PassVault.Offline.Adapters.MailVaultRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.MailObject;
 import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
@@ -31,10 +37,11 @@ public class FragmentMailVault extends Fragment {
     private OfflineViewModel offlineViewModel;
     private FloatingActionButton fab;
     private Realm realm;
+    private RealmResults<MailObject> mailObjects;
 
     public static FragmentMailVault newInstance(Realm realm) {
         FragmentMailVault fragment = new FragmentMailVault();
-        fragment.realm=realm;
+        fragment.realm=Realm.getDefaultInstance();
         return fragment;
     }
 
@@ -49,6 +56,9 @@ public class FragmentMailVault extends Fragment {
         View v = inflater.inflate(R.layout.fragment_mail_vault, container, false);
         recyclerView = v.findViewById(R.id.mailRV);
         searchView = v.findViewById(R.id.mailSearch);
+        if (realm==null || realm.isClosed())
+            realm=Realm.getDefaultInstance();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         initRecyclerView();
@@ -56,6 +66,7 @@ public class FragmentMailVault extends Fragment {
         offlineViewModel = ViewModelProviders.of(this).get(OfflineViewModel.class);
         offlineViewModel.initMailObjects(realm);
         offlineViewModel.getMailObjects().observe(getViewLifecycleOwner(), mailObjects -> {
+            this.mailObjects=mailObjects;
             if (mailVaultRVAdapter == null) {
                 initRecyclerView();
             } else {
@@ -63,29 +74,20 @@ public class FragmentMailVault extends Fragment {
             }
         });
 
-        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
-            if (!b) {
-                mailVaultRVAdapter.submitList(convertRealmListToList(offlineViewModel.getMailObjects().getValue()));
-            }
-        });
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 if (realm!=null) {
+                    initRecyclerView();
                     RealmResults<MailObject> searchMail = offlineViewModel.searchMailObject(s).getValue();
-                    mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), passBool, realm,getActivity());
                     mailVaultRVAdapter.submitList(convertRealmListToList(searchMail));
-                    recyclerView.setAdapter(mailVaultRVAdapter);
                 }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (s.trim().length() == 0) {
-                    mailVaultRVAdapter.submitList(convertRealmListToList(offlineViewModel.getMailObjects().getValue()));
-                }
+                mailVaultRVAdapter.submitList(convertRealmListToList(mailObjects));
                 return false;
             }
         });
@@ -96,19 +98,10 @@ public class FragmentMailVault extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (fab != null) {
-                    if (dy >= 1) {
-                        if (fab.getTranslationY()==0.0) {
-                            fab.animate().translationYBy(500).setDuration(150);
-                        }else{
-                            fab.setTranslationY(500f);
-                        }
-                    } else {
-                        if (fab.getTranslationY()==500.0) {
-                            fab.animate().translationYBy(-500).setDuration(150);
-                        }else{
-                            fab.setTranslationY(0f);
-                        }
-                    }
+                    if (dy >= 1)
+                        fab.hide();
+                    else
+                        fab.show();
                 }
             }
         });
@@ -117,12 +110,26 @@ public class FragmentMailVault extends Fragment {
     }
 
     private <E> ArrayList<E> convertRealmListToList(RealmResults<E> realmList){
-        return new ArrayList<>(realmList);
+        if (realmList!=null)
+            return new ArrayList<>(realmList);
+        else
+            return new ArrayList<>();
     }
 
     private void initRecyclerView(){
         if (realm!=null) {
-            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), passBool,realm,getActivity());
+            mailVaultRVAdapter = new MailVaultRVAdapter(getContext(), passBool, realm, getActivity(), position -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Are You Sure?");
+                builder.setMessage("Do you want to delete?");
+                builder.setPositiveButton("Yes", (dialog, which) -> offlineViewModel.deleteMailObject(mailObjects.get(position)));
+                builder.setNegativeButton("NO!", (dialog, which) -> dialog.cancel());
+                AlertDialog alertDialog=builder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources().getColor(R.color.white));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setBackgroundColor(getResources().getColor(R.color.white));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+            });
             recyclerView.setAdapter(mailVaultRVAdapter);
         }else{
             realm=Realm.getDefaultInstance();

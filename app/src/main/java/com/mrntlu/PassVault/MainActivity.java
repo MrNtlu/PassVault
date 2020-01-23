@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startTransaction(FragmentMain.newInstance());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout,FragmentMain.newInstance())
+                .commit();
 
         adView=findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("AD4218F6AC5DB23A77A519172E0D2A6D").build();
@@ -41,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 super.onAdClosed();
                 if (!interstitialAd.isLoaded())
                     interstitialAd.loadAd(interstitialRequest);
-                startTransaction(fragment);
+                //startTransaction(fragment);
             }
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
                 adCounter--;
-                startTransaction(fragment);
+                //startTransaction(fragment);
             }
         });
 

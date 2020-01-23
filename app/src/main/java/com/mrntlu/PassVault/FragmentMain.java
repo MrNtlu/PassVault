@@ -60,18 +60,18 @@ public class FragmentMain extends Fragment {
         onlineButton.setOnClickListener(view -> {
             if ((MainActivity.adCounter%3==1)){
                 ((MainActivity)view.getContext()).showInterstitalAd(FragmentLogin.newInstance());
-            }else{
-                startTransaction(FragmentLogin.newInstance());
             }
+            startTransaction(FragmentLogin.newInstance());
+
             MainActivity.adCounter++;
         });
 
         offlineButton.setOnClickListener(view -> {
             if ((MainActivity.adCounter%3==1)){
                 ((MainActivity)view.getContext()).showInterstitalAd(FragmentOffline.newInstance());
-            }else{
-                startTransaction(FragmentOffline.newInstance());
             }
+            startTransaction(FragmentOffline.newInstance());
+
             MainActivity.adCounter++;
         });
 

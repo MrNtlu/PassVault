@@ -948,10 +948,6 @@
         "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\drawable\\ic_save_black_24dp.xml"
     },
     {
-        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_online_storage.xml.flat",
-        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\layout\\fragment_online_storage.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\drawable-ldrtl-xhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
@@ -1636,6 +1632,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\fbf97ddd5fa8d28f1d092e13328234ab\\material-1.2.0-alpha03\\res\\drawable\\ic_calendar_black_24dp.xml"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_online_list.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\layout\\fragment_online_list.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\color_primary_text_selector_light.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\f8b9427e1fc8dfb87b79d6d771f3c008\\jetified-MaterialAbout-0.2.3\\res\\color\\primary_text_selector_light.xml"
     },
@@ -1852,6 +1852,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\fbf97ddd5fa8d28f1d092e13328234ab\\material-1.2.0-alpha03\\res\\layout\\mtrl_picker_text_input_date_range.xml"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_online_add.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\layout\\fragment_online_add.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\714400276e13cbe3521271c554405296\\jetified-play-services-base-16.0.1\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
@@ -1950,6 +1954,10 @@
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_extended_fab_ripple_color.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\fbf97ddd5fa8d28f1d092e13328234ab\\material-1.2.0-alpha03\\res\\color\\mtrl_extended_fab_ripple_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_cancel_white_24dp.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\drawable\\ic_cancel_white_24dp.xml"
     },
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_btn_state_list_anim.xml.flat",
@@ -2592,6 +2600,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_confused.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\drawable\\ic_confused.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_light.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\color\\abc_primary_text_material_light.xml"
     },
@@ -2740,12 +2752,12 @@
         "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light.xml.flat",
-        "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\714400276e13cbe3521271c554405296\\jetified-play-services-base-16.0.1\\res\\drawable\\common_google_signin_btn_text_light.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_appintro_indicator_dot_grey.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\05f8e7cae7f1bacf79307941abec6689\\appintro-v5.1.0\\res\\drawable\\appintro_indicator_dot_grey.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light.xml.flat",
+        "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\714400276e13cbe3521271c554405296\\jetified-play-services-base-16.0.1\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
@@ -3028,6 +3040,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\color\\switch_thumb_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_delete_white_24dp.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\drawable\\ic_delete_white_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
@@ -3240,6 +3256,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\menu_online_edit_menu.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\menu\\online_edit_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\714400276e13cbe3521271c554405296\\jetified-play-services-base-16.0.1\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
     },
@@ -3258,6 +3278,10 @@
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-nodpi-v4_profile_picture.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\f8b9427e1fc8dfb87b79d6d771f3c008\\jetified-MaterialAbout-0.2.3\\res\\mipmap-nodpi-v4\\profile_picture.png"
+    },
+    {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_edit_white_24dp.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\drawable\\ic_edit_white_24dp.xml"
     },
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_content_copy_black_24dp.xml.flat",
@@ -3498,6 +3522,10 @@
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\6df18137f0d2b789b9f7edfceaffcb68\\appcompat-1.1.0\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\menu_online_list_menu.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\menu\\online_list_menu.xml"
     },
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -3752,6 +3780,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\05f8e7cae7f1bacf79307941abec6689\\appintro-v5.1.0\\res\\layout\\appintro_fragment_intro_content.xml"
     },
     {
+        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\menu_online_show_menu.xml.flat",
+        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\menu\\online_show_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_user_accounts.xml.flat",
         "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\layout\\fragment_user_accounts.xml"
     },
@@ -3786,10 +3818,6 @@
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_test_reflow_chipgroup.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\fbf97ddd5fa8d28f1d092e13328234ab\\material-1.2.0-alpha03\\res\\layout\\test_reflow_chipgroup.xml"
-    },
-    {
-        "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_online_add.xml.flat",
-        "source": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\src\\main\\res\\layout\\dialog_online_add.xml"
     },
     {
         "merged": "C:\\Users\\PC\\AndroidStudioProjects\\PassVault\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_light.xml.flat",

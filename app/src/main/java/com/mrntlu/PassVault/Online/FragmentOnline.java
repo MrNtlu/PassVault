@@ -2,40 +2,39 @@ package com.mrntlu.PassVault.Online;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import es.dmoral.toasty.Toasty;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
-
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mrntlu.PassVault.Common.BaseAdapter;
 import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.Online.Adapters.OnlineRVAdapter;
 import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
 import com.mrntlu.PassVault.R;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import java.util.ArrayList;
 
-
-public class FragmentOnline extends Fragment {
+public class FragmentOnline extends Fragment{
 
     private BottomAppBar bottomAppBar;
-    private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private BottomSheetDialog bottomSheetDialog;
-    private OnlineDialog dialogClass;
-    private OnlineViewModel viewModel;
-    private OnlineRVAdapter onlineRVAdapter;
 
     public static FragmentOnline newInstance() {
         return new FragmentOnline();
@@ -46,7 +45,6 @@ public class FragmentOnline extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_online, container, false);
         bottomAppBar=v.findViewById(R.id.bottomAppBar);
-        recyclerView=v.findViewById(R.id.onlineRV);
         fab=v.findViewById(R.id.fab);
         return v;
     }
@@ -58,32 +56,58 @@ public class FragmentOnline extends Fragment {
         if (user==null){
             startActivity(new Intent(getActivity(),MainActivity.class));
         }
-        viewModel= ViewModelProviders.of(this).get(OnlineViewModel.class);
-        viewModel.initOnlineObjects();
-        dialogClass=new OnlineDialog(viewModel.getOnlineObjects().getValue(),getContext(),viewModel);
 
-        setRecyclerView();
+        FragmentTransaction fragmentTransaction = ((AppCompatActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.onlineFrameLayout,FragmentOnlineList.newInstance(this));
+        fragmentTransaction.commit();
+
         setListeners();
         setBottomSheetDialog(view);
-        setupObserver();
-    }
-
-    private void setupObserver() {
-        viewModel.getOnlineObjects().observe(getViewLifecycleOwner(), parseObjects -> {
-            if (onlineRVAdapter == null) {
-                setRecyclerView();
-            } else {
-                onlineRVAdapter.notifyDataSetChanged();
-            }
-        });
     }
 
     private void setListeners() {
-        fab.setOnClickListener(view -> {
-            dialogClass.showAddDialog();
-        });
-
         bottomAppBar.setNavigationOnClickListener(view -> bottomSheetDialog.show());
+    }
+
+    void setBottomAppBar(Fragment fragment){
+        if (fragment instanceof FragmentOnlineList){
+            if (bottomAppBar.getNavigationIcon()==null)
+                bottomAppBar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_menu_black_24dp));
+            bottomAppBar.replaceMenu(R.menu.online_list_menu);
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_add_black_24dp));
+        }else if (fragment instanceof FragmentOnlineAdd){
+            if (bottomAppBar.getNavigationIcon()!=null)
+                bottomAppBar.setNavigationIcon(null);
+        }
+    }
+
+    void setBottomAppBarMenu(FragmentOnlineAdd.State state){
+        int menu=R.menu.online_add_menu;
+        int drawable=R.drawable.ic_save_black_24dp;
+        switch (state){
+            case ADD_STATE:
+                drawable=R.drawable.ic_save_black_24dp;
+                menu=R.menu.online_add_menu;
+                break;
+            case EDIT_STATE:
+                drawable=R.drawable.ic_save_black_24dp;
+                menu=R.menu.online_edit_menu;
+                break;
+            case SHOW_STATE:
+                drawable=R.drawable.edit_button;
+                menu=R.menu.online_show_menu;
+                break;
+        }
+        fab.setImageDrawable(getResources().getDrawable(drawable));
+        bottomAppBar.replaceMenu(menu);
+    }
+
+    FloatingActionButton getFab() {
+        return fab;
+    }
+
+    BottomAppBar getBottomAppBar() {
+        return bottomAppBar;
     }
 
     private void setBottomSheetDialog(View v){
@@ -92,6 +116,25 @@ public class FragmentOnline extends Fragment {
         bottomSheetDialog.setContentView(bottomSheetDialogView);
 
         View logOut=bottomSheetDialogView.findViewById(R.id.logOut);
+        View mainMenu=bottomSheetDialogView.findViewById(R.id.mainMenu);
+        View onlineStorage=bottomSheetDialogView.findViewById(R.id.onlineStorage);
+        View passwordGenerator=bottomSheetDialogView.findViewById(R.id.passwordGenerator);
+
+        onlineStorage.setOnClickListener(view -> {
+            startTransaction(view,FragmentOnlineList.newInstance(this));
+            bottomSheetDialog.dismiss();
+        });
+
+        mainMenu.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(),MainActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            bottomSheetDialog.dismiss();
+        });
+
+        passwordGenerator.setOnClickListener(view -> {
+            startTransaction(view,FragmentPasswordGenerator.newInstance());
+            bottomSheetDialog.dismiss();
+        });
 
         logOut.setOnClickListener((view -> {
             ParseUser.logOutInBackground(e -> {
@@ -108,12 +151,6 @@ public class FragmentOnline extends Fragment {
         }));
     }
 
-    private void setRecyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        onlineRVAdapter=new OnlineRVAdapter(viewModel.getOnlineObjects().getValue(),getContext(),viewModel);
-        recyclerView.setAdapter(onlineRVAdapter);
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -126,6 +163,12 @@ public class FragmentOnline extends Fragment {
         super.onDetach();
         if (getContext()!=null)
             ((MainActivity)getContext()).getAdView().setVisibility(View.VISIBLE);
+    }
+
+    private void startTransaction(View view,Fragment fragment){
+        FragmentTransaction fragmentTransaction = ((AppCompatActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.onlineFrameLayout,fragment).addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     /*FragmentManager fragmentManager = getSupportFragmentManager();

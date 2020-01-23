@@ -1706,6 +1706,7 @@ drawable ic_appintro_skip_white
 drawable ic_arrow_back_black_24dp
 drawable ic_arrow_down_24dp
 drawable ic_calendar_black_24dp
+drawable ic_cancel_white_24dp
 drawable ic_check_white_24dp
 drawable ic_checked
 drawable ic_clear_black_24dp
@@ -1715,9 +1716,12 @@ drawable ic_close_white_36dp
 drawable ic_cloud
 drawable ic_cloud_2
 drawable ic_cloud_black_24dp
+drawable ic_confused
 drawable ic_content_copy_black_24dp
+drawable ic_delete_white_24dp
 drawable ic_description_black_24dp
 drawable ic_edit_black_24dp
+drawable ic_edit_white_24dp
 drawable ic_error_404
 drawable ic_error_outline_white_24dp
 drawable ic_fingerprint_black_24dp
@@ -1861,7 +1865,6 @@ id adView
 id add
 id addButton
 id addMenuButton
-id addOnline
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1881,6 +1884,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id back
+id backOnline
 id background
 id barrier
 id baseline
@@ -1898,9 +1902,10 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id buttonPanel
+id cancelOnline
 id cancel_action
 id cancel_button
-id cardView
+id cardView2
 id card_holder
 id center
 id center_horizontal
@@ -1919,7 +1924,6 @@ id clear_text
 id clicktoSee
 id clip_horizontal
 id clip_vertical
-id closeButton
 id collapseActionView
 id colorImage
 id confirm_button
@@ -1940,8 +1944,8 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
-id deleteButton
 id deleteMenuButton
+id deleteOnline
 id deltaRelative
 id description
 id descriptionText
@@ -2063,6 +2067,7 @@ id logoImage
 id mailRV
 id mailSearch
 id main
+id mainMenu
 id main_menu
 id masked
 id media_actions
@@ -2118,8 +2123,10 @@ id off
 id offlineButton
 id on
 id onlineButton
+id onlineFrameLayout
 id onlineRV
 id onlineSearch
+id onlineStorage
 id online_storage
 id otherRV
 id otherSearch
@@ -2132,6 +2139,7 @@ id parentRelative
 id parent_matrix
 id pass_generator
 id passwordEditText
+id passwordGenerator
 id passwordHolder
 id passwordLayout
 id passwordText
@@ -2237,7 +2245,6 @@ id sub_title
 id submenuarrow
 id submit_area
 id switchWidget
-id syncOnline
 id tabLayout
 id tabMode
 id tag_accessibility_actions
@@ -2405,7 +2412,6 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_bottom_sheet
 layout dialog_mail_other
-layout dialog_online_add
 layout dialog_send_as_mail
 layout dialog_useraccounts
 layout expand_button
@@ -2415,7 +2421,8 @@ layout fragment_main
 layout fragment_offline
 layout fragment_offline_add
 layout fragment_online
-layout fragment_online_storage
+layout fragment_online_add
+layout fragment_online_list
 layout fragment_other_accounts
 layout fragment_password_generator
 layout fragment_signup
@@ -2505,6 +2512,9 @@ menu add_menu
 menu navigation_drawer_menu
 menu offline_menu
 menu online_add_menu
+menu online_edit_menu
+menu online_list_menu
+menu online_show_menu
 mipmap ads
 mipmap android
 mipmap bitbucket
