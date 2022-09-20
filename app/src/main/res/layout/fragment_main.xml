@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".MainActivity"
+    tools:context=".MainActivityOld"
     tools:layout_editor_absoluteY="25dp">
 
     <de.hdodenhof.circleimageview.CircleImageView

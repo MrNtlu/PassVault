@@ -4,14 +4,13 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.mrntlu.PassVault.MainActivity;
+import com.mrntlu.PassVault.MainActivityOld;
 import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
 import java.util.ArrayList;
 import androidx.fragment.app.FragmentActivity;
@@ -55,7 +54,7 @@ public class ClassController {
     private void indexError(Exception e){
         e.printStackTrace();
         Toasty.error(context,"Error Occured! "+e.getMessage(), Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(context,MainActivity.class);
+        Intent intent=new Intent(context, MainActivityOld.class);
         context.startActivity(intent);
     }
 

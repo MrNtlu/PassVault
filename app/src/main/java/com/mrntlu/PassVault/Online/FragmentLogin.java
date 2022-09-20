@@ -26,7 +26,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
-import com.mrntlu.PassVault.MainActivity;
+import com.mrntlu.PassVault.MainActivityOld;
 import com.mrntlu.PassVault.R;
 import com.parse.ParseUser;
 
@@ -95,7 +95,7 @@ public class FragmentLogin extends Fragment {
             startTransaction(FragmentOnline.newInstance());
         else if (!isNetworkAvailable(view)){
             Toasty.error(view.getContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(),MainActivity.class));
+            startActivity(new Intent(getActivity(), MainActivityOld.class));
         }
 
         editTextCompatConfigurations();
@@ -108,7 +108,7 @@ public class FragmentLogin extends Fragment {
                 startTransaction(FragmentSignup.newInstance());
             }else{
                 Toasty.error(view.getContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(),MainActivity.class));
+                startActivity(new Intent(getActivity(), MainActivityOld.class));
 
             }
         });
@@ -194,13 +194,13 @@ public class FragmentLogin extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        ((MainActivity)context).getAdView().setVisibility(View.GONE);
+        ((MainActivityOld)context).getAdView().setVisibility(View.GONE);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         if (getContext()!=null)
-            ((MainActivity)getContext()).getAdView().setVisibility(View.VISIBLE);
+            ((MainActivityOld)getContext()).getAdView().setVisibility(View.VISIBLE);
     }
 }

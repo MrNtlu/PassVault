@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.mrntlu.PassVault.MainActivity;
+import com.mrntlu.PassVault.MainActivityOld;
 import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
 import com.mrntlu.PassVault.R;
 
@@ -54,7 +54,7 @@ public class FragmentOfflineAdd extends Fragment {
         fragmentTransaction=((AppCompatActivity)view.getContext()).getSupportFragmentManager().beginTransaction();
         if (objectID==-1){
             Toasty.error(view.getContext(),"Error Occured, Try again.",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(), MainActivity.class));
+            startActivity(new Intent(getActivity(), MainActivityOld.class));
         }
         if (objectID==1){
             editText3.setVisibility(View.VISIBLE);

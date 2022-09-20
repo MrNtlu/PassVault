@@ -33,7 +33,6 @@
         app:tabBackground="@color/midnightblue"
         app:tabIndicatorColor="@color/white"
         app:tabMode="fixed"
-        app:tabTextAppearance="@style/CustomTabLayout"
         app:tabTextColor="@color/white" />
 
     <androidx.viewpager.widget.ViewPager

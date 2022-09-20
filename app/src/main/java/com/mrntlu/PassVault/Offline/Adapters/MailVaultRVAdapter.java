@@ -151,7 +151,7 @@ public class MailVaultRVAdapter extends BaseAdapter<MailObject> {
 
         editAdd.setOnClickListener(v -> {
             if (!classController.isEmptyTextViews(new TextView[] {editID, editPassword})){
-                realm.executeTransaction(realm -> {
+                realm.executeTransactionAsync(realm -> {
                     String id=editID.getText().toString();
                     String password=editPassword.getText().toString();
                     arrayList.get(position).setPassword(password);

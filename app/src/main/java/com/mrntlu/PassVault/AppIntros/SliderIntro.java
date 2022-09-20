@@ -6,10 +6,10 @@ import android.os.Bundle;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
-import com.mrntlu.PassVault.MainActivity;
 import com.mrntlu.PassVault.R;
+import com.mrntlu.PassVault.ui.MainActivity;
+
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public class SliderIntro extends AppIntro {
@@ -58,7 +58,7 @@ public class SliderIntro extends AppIntro {
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

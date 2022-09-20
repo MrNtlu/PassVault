@@ -75,7 +75,7 @@ public class OfflineViewModel extends AndroidViewModel {
         if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
 
-        mRealm.executeTransaction(realm -> {
+        mRealm.executeTransactionAsync(realm -> {
             MailObject mailObject=realm.createObject(MailObject.class);
             mailObject.setMail(mail);
             mailObject.setPassword(password);
@@ -90,7 +90,7 @@ public class OfflineViewModel extends AndroidViewModel {
         if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
 
-        mRealm.executeTransaction(realm -> {
+        mRealm.executeTransactionAsync(realm -> {
             AccountsObject accountsObject=realm.createObject(AccountsObject.class);
             accountsObject.setIdMail(mail);
             accountsObject.setPassword(password);
@@ -106,7 +106,7 @@ public class OfflineViewModel extends AndroidViewModel {
         if (mRealm == null || mRealm.isClosed())
             mRealm=Realm.getDefaultInstance();
 
-        mRealm.executeTransaction(realm -> {
+        mRealm.executeTransactionAsync(realm -> {
             OthersObject othersObject = realm.createObject(OthersObject.class);
             othersObject.setDescription(description);
             othersObject.setPassword(password);

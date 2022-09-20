@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,21 +57,21 @@ public class FragmentMain extends Fragment {
 
     private void setListeners(){
         onlineButton.setOnClickListener(view -> {
-            if ((MainActivity.adCounter%3==1)){
-                ((MainActivity)view.getContext()).showInterstitalAd(FragmentLogin.newInstance());
+            if ((MainActivityOld.adCounter%3==1)){
+                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentLogin.newInstance());
             }
             startTransaction(FragmentLogin.newInstance());
 
-            MainActivity.adCounter++;
+            MainActivityOld.adCounter++;
         });
 
         offlineButton.setOnClickListener(view -> {
-            if ((MainActivity.adCounter%3==1)){
-                ((MainActivity)view.getContext()).showInterstitalAd(FragmentOffline.newInstance());
+            if ((MainActivityOld.adCounter%3==1)){
+                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentOffline.newInstance());
             }
             startTransaction(FragmentOffline.newInstance());
 
-            MainActivity.adCounter++;
+            MainActivityOld.adCounter++;
         });
 
         helpButton.setOnClickListener(view -> startActivity(new Intent(getActivity(), SliderIntro.class)));

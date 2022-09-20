@@ -5,30 +5,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import es.dmoral.toasty.Toasty;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.Toast;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mrntlu.PassVault.Common.BaseAdapter;
-import com.mrntlu.PassVault.MainActivity;
-import com.mrntlu.PassVault.Online.Adapters.OnlineRVAdapter;
-import com.mrntlu.PassVault.Online.Viewmodels.OnlineViewModel;
+import com.mrntlu.PassVault.MainActivityOld;
 import com.mrntlu.PassVault.R;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import java.util.ArrayList;
 
 public class FragmentOnline extends Fragment{
 
@@ -54,7 +45,7 @@ public class FragmentOnline extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         final ParseUser user=ParseUser.getCurrentUser();
         if (user==null){
-            startActivity(new Intent(getActivity(),MainActivity.class));
+            startActivity(new Intent(getActivity(), MainActivityOld.class));
         }
 
         FragmentTransaction fragmentTransaction = ((AppCompatActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
@@ -126,7 +117,7 @@ public class FragmentOnline extends Fragment{
         });
 
         mainMenu.setOnClickListener(view -> {
-            startActivity(new Intent(getActivity(),MainActivity.class)
+            startActivity(new Intent(getActivity(), MainActivityOld.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             bottomSheetDialog.dismiss();
         });
@@ -140,7 +131,7 @@ public class FragmentOnline extends Fragment{
             ParseUser.logOutInBackground(e -> {
                 if (e==null){
                     Toasty.info(view.getContext(),"Logged out.",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getActivity(),MainActivity.class));
+                    startActivity(new Intent(getActivity(), MainActivityOld.class));
                 }else{
                     if (e.getMessage()!=null)
                         Toasty.error(view.getContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -155,14 +146,14 @@ public class FragmentOnline extends Fragment{
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        ((MainActivity)context).getAdView().setVisibility(View.GONE);
+        ((MainActivityOld)context).getAdView().setVisibility(View.GONE);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         if (getContext()!=null)
-            ((MainActivity)getContext()).getAdView().setVisibility(View.VISIBLE);
+            ((MainActivityOld)getContext()).getAdView().setVisibility(View.VISIBLE);
     }
 
     private void startTransaction(View view,Fragment fragment){
@@ -175,7 +166,7 @@ public class FragmentOnline extends Fragment{
     Fragment fragment=null;
     switch (menuItem.getItemId()){
         case R.id.main_menu:
-            startActivity(new Intent(FragmentOnline.this,MainActivity.class));
+            startActivity(new Intent(FragmentOnline.this,MainActivityOld.class));
             finish();
             break;
         case R.id.online_storage:
