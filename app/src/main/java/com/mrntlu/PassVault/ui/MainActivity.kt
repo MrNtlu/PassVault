@@ -60,8 +60,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
     navController: NavHostController
@@ -93,7 +91,7 @@ fun MainScreen(
             )
         }
     ) {
-        NavigationComposable(navController = navController)
+        NavigationComposable(navController = navController, padding = it)
     }
 }
 
