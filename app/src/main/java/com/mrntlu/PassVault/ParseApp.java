@@ -4,9 +4,12 @@ import android.app.Application;
 import com.google.android.gms.ads.MobileAds;
 import com.parse.Parse;
 import com.parse.ParseACL;
+
+import dagger.hilt.android.HiltAndroidApp;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
+@HiltAndroidApp
 public class ParseApp extends Application {
 
     @Override

@@ -19,13 +19,25 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
+import com.mrntlu.PassVault.ui.widgets.ErrorDialog
+import com.mrntlu.PassVault.utils.CheckLoggedIn
+import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
 @Composable
 fun LoginScreen(
-    onLoginClicked: (username: String, password: String) -> Unit,
-    onRegisterClicked: () -> Unit,
+    navController: NavController,
+    firebaseVM: FirebaseAuthViewModel,
+    parseVM: ParseAuthViewModel
 ) {
+    val isErrorOccured = parseVM.isErrorOccured.value
+
+    CheckLoggedIn(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -80,8 +92,8 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                    focusManager.clearFocus()
-                    onLoginClicked(usernameState.value.text, passwordState.value.text)
+                    focusManager.clearFocus(force = true)
+                    parseVM.parseLogin(usernameState.value.text, passwordState.value.text)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,13 +104,24 @@ fun LoginScreen(
             }
 
             TextButton(
-                onClick = onRegisterClicked,
+                onClick = { navController.navigate("register") },
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.Transparent,
                     contentColor = BlueMidnight
                 )
             ) {
                 Text(text = "Don't have an account? Register")
+            }
+
+            if(isErrorOccured != null) {
+                val showDialog = remember { mutableStateOf(true)  }
+
+                if (showDialog.value) {
+                    ErrorDialog(error = isErrorOccured) {
+                        showDialog.value = false
+                        parseVM.isErrorOccured.value = null
+                    }
+                }
             }
         }
     }
@@ -107,5 +130,5 @@ fun LoginScreen(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen({_,_->}, {})
+    LoginScreen(rememberNavController(), viewModel(), viewModel())
 }

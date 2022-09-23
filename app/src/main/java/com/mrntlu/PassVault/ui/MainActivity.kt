@@ -1,6 +1,5 @@
 package com.mrntlu.PassVault.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,23 +7,37 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.mrntlu.PassVault.AppIntros.SliderIntro
 import com.mrntlu.PassVault.models.BottomNavItem
+import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
 import com.mrntlu.PassVault.ui.widgets.BottomNavigationBar
+import com.mrntlu.PassVault.ui.widgets.LoadingView
+import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,34 +77,93 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(
     navController: NavHostController
 ) {
+    val firebaseVM = hiltViewModel<FirebaseAuthViewModel>()
+    val parseVM = hiltViewModel<ParseAuthViewModel>()
+
+    val bottomBarItems = listOf(
+        BottomNavItem(
+            name ="Online Storage",
+            route = "home",
+            icon = Icons.Rounded.Home
+        ),
+        BottomNavItem(
+            name ="Offline Storage",
+            route = "offline",
+            icon = Icons.Rounded.Lock
+        ),
+        BottomNavItem(
+            name ="Settings",
+            route = "settings",
+            icon = Icons.Rounded.Settings
+        )
+    )
+    val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
+    val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
+    val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
+
     Scaffold(
-        bottomBar = {
-            BottomNavigationBar(
-                items = listOf(
-                    BottomNavItem(
-                        name ="Online Storage",
-                        route = "home",
-                        icon = Icons.Rounded.Home
-                    ),
-                    BottomNavItem(
-                        name ="Offline Storage",
-                        route = "offline",
-                        icon = Icons.Rounded.Lock
-                    ),
-                    BottomNavItem(
-                        name ="Settings",
-                        route = "settings",
-                        icon = Icons.Rounded.Settings
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = when(navController.currentDestination?.route) {
+                            "login" -> {
+                                "Login"
+                            }
+                            "register" -> {
+                                "Register"
+                            }
+                            else -> ""
+                        },
+                        color = Color.White
                     )
-                ),
-                navController = navController,
-                onItemClick = {
-                    navController.navigate(it.route)
-                }
+                },
+                navigationIcon = {
+                    if (!showBottomBar && navController.previousBackStackEntry != null && !isAuthLoading) {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.Filled.ArrowBack,
+                                contentDescription = "Back",
+                                tint = Color.White
+                            )
+                        }
+                    }
+                },
+                actions = {
+                    if (navController.currentBackStackEntry?.destination?.route == "home" && isUserLoggedIn.value) {
+                        IconButton(onClick = {
+                            parseVM.parseSignout()
+                        }){
+                            Icon(imageVector = Icons.Rounded.Logout, contentDescription = "Log out", tint = Color.White)
+                        }
+                    }
+                },
+                elevation = 8.dp,
+                backgroundColor = BlueLogo
             )
+        },
+        bottomBar = {
+            if (showBottomBar) {
+                BottomNavigationBar(
+                    items = bottomBarItems,
+                    navController = navController,
+                    onItemClick = {
+                        navController.navigate(it.route)
+                    }
+                )
+            }
         }
     ) {
-        NavigationComposable(navController = navController, padding = it)
+        NavigationComposable(
+            navController = navController,
+            padding = it,
+            firebaseVM = firebaseVM,
+            parseVM = parseVM
+        )
+
+        if (isAuthLoading) {
+            LoadingView()
+        }
     }
 }
 

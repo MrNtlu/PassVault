@@ -31,5 +31,5 @@ fun ErrorDialog(
 @Preview
 @Composable
 fun ErrorDialogPreview() {
-    ErrorDialog("Error", {})
+    ErrorDialog("Error") {}
 }

@@ -7,15 +7,40 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.mrntlu.PassVault.ui.views.HomeScreen
-import com.mrntlu.PassVault.ui.views.OfflineScreen
-import com.mrntlu.PassVault.ui.views.SettingsScreen
+import com.mrntlu.PassVault.ui.views.*
+import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
 @Composable
-fun NavigationComposable(navController: NavHostController, padding: PaddingValues) {
+fun NavigationComposable(
+    navController: NavHostController,
+    padding: PaddingValues,
+    firebaseVM: FirebaseAuthViewModel,
+    parseVM: ParseAuthViewModel
+) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding) ) {
         composable("home") {
-            HomeScreen(navController = navController)
+            HomeScreen(
+                navController = navController,
+                parseVM = parseVM,
+                firebaseVM = firebaseVM
+            )
+        }
+
+        composable("register") {
+            RegisterScreen(
+                navController = navController,
+                firebaseVM = firebaseVM,
+                parseVM = parseVM
+            )
+        }
+
+        composable("login") {
+            LoginScreen(
+                navController = navController,
+                firebaseVM = firebaseVM,
+                parseVM = parseVM
+            )
         }
 
         composable("offline") {

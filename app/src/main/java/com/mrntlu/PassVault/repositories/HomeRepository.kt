@@ -1,7 +1,9 @@
 package com.mrntlu.PassVault.repositories
 
+import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.services.ParseService
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.parseObjectToPasswordItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -18,8 +20,8 @@ class HomeRepository(): ParseService {
             user = ParseUser.getCurrentUser()
     }
 
-    override fun getPasswords(): Flow<Response<List<ParseObject>>> = callbackFlow {
-        var response: Response<List<ParseObject>> = Response.Loading
+    override fun getPasswords(): Flow<Response<List<PasswordItem>>> = callbackFlow {
+        var response: Response<List<PasswordItem>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")
 
         try{
@@ -29,15 +31,15 @@ class HomeRepository(): ParseService {
 
             query.findInBackground { objects, error ->
                 response = if (error == null) {
-                    Response.Success(objects)
+                    Response.Success(objects.map { parseObjectToPasswordItem(it) })
                 } else {
-                    Response.Failure(error)
+                    Response.Failure(error.message ?: error.toString())
                 }
 
                 trySend(response)
             }
         } catch (error: Exception) {
-            response = Response.Failure(error)
+            response = Response.Failure(error.message ?: error.toString())
             trySend(response)
         }
 
