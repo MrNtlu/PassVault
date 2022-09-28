@@ -1,6 +1,9 @@
+@file:OptIn(ExperimentalMaterialApi::class)
+
 package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,10 +29,12 @@ import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.LoadingView
 import com.mrntlu.PassVault.ui.widgets.OnlinePasswordListItem
+import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheet
 import com.mrntlu.PassVault.utils.Response
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -43,80 +48,102 @@ fun HomeScreen(
 
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
 
-    Scaffold(
-        floatingActionButton = {
-           if (isParseLoggedIn.value) {
-               FloatingActionButton(
-                   onClick = {},
-                   backgroundColor = BlueMidnight,
-                   contentColor = Color.White,
-               ) {
-                   Icon(imageVector = Icons.Rounded.Add, contentDescription = "Add")
-               }
-           }
+    val sheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
+    )
+    val coroutineScope = rememberCoroutineScope()
+
+    BackHandler(sheetState.isVisible) {
+        coroutineScope.launch { sheetState.hide() }
+    }
+
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetContent = {
+            PasswordBottomSheet()
         },
-        floatingActionButtonPosition = FabPosition.End,
-        isFloatingActionButtonDocked = false,
-        content = {
-            if (isParseLoggedIn.value) {
-                val uiState by homeViewModel.passwords
-
-                LaunchedEffect(key1 = true) {
-                    homeViewModel.getPasswords()
+    ) {
+        Scaffold(
+            floatingActionButton = {
+                if (isParseLoggedIn.value) {
+                    FloatingActionButton(
+                        onClick = {
+                            coroutineScope.launch {
+                                if (sheetState.isVisible) sheetState.hide()
+                                else sheetState.animateTo(ModalBottomSheetValue.Expanded)
+                            }
+                        },
+                        backgroundColor = BlueMidnight,
+                        contentColor = Color.White,
+                    ) {
+                        Icon(imageVector = Icons.Rounded.Add, contentDescription = "Add")
+                    }
                 }
+            },
+            floatingActionButtonPosition = FabPosition.End,
+            isFloatingActionButtonDocked = false,
+            content = {
+                if (isParseLoggedIn.value) {
+                    val uiState by homeViewModel.passwords
 
-                when(uiState) {
-                    is Response.Loading -> {
-                        LoadingView()
+                    LaunchedEffect(key1 = true) {
+                        homeViewModel.getPasswords()
                     }
 
-                    is Response.Success<List<PasswordItem>> -> {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(
-                                    brush = Brush.verticalGradient(
-                                        colors = listOf(
-                                            BlueLogo,
-                                            BlueDark,
-                                            BlueDarkest
+                    when(uiState) {
+                        is Response.Loading -> {
+                            LoadingView()
+                        }
+
+                        is Response.Success<List<PasswordItem>> -> {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(
+                                        brush = Brush.verticalGradient(
+                                            colors = listOf(
+                                                BlueLogo,
+                                                BlueDark,
+                                                BlueDarkest
+                                            )
                                         )
-                                    )
-                                ),
-                        ) {
-                            val passwords = (homeViewModel.passwords.value as Response.Success).data
+                                    ),
+                            ) {
+                                val passwords = (homeViewModel.passwords.value as Response.Success).data
 
-                            passwords?.let {
-                                LazyColumn {
-                                    items(
-                                        count = it.size
-                                    ) { index ->
-                                        val password = passwords[index]
+                                passwords?.let {
+                                    LazyColumn {
+                                        items(
+                                            count = it.size
+                                        ) { index ->
+                                            val password = passwords[index]
 
-                                        OnlinePasswordListItem(password = password)
+                                            OnlinePasswordListItem(password = password)
+                                        }
                                     }
                                 }
                             }
                         }
+
+                        else -> {}
                     }
+                } else {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(text = "You need to login!")
 
-                    else -> {}
-                }
-            } else {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "You need to login!")
-
-                    Button(onClick = { navController.navigate("login") }) {
-                        Text(text = "Login")
+                        Button(onClick = { navController.navigate("login") }) {
+                            Text(text = "Login")
+                        }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }
 
 @Preview

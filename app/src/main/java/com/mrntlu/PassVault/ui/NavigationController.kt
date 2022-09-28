@@ -23,7 +23,7 @@ fun NavigationComposable(
             HomeScreen(
                 navController = navController,
                 parseVM = parseVM,
-                firebaseVM = firebaseVM
+                firebaseVM = firebaseVM,
             )
         }
 
