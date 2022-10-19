@@ -4,7 +4,6 @@ package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +14,6 @@ import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,14 +21,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.repositories.HomeRepository
-import com.mrntlu.PassVault.ui.theme.BlueDark
-import com.mrntlu.PassVault.ui.theme.BlueDarkest
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.LoadingView
 import com.mrntlu.PassVault.ui.widgets.OnlinePasswordListItem
 import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheet
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.setGradientBackground
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
@@ -61,7 +57,9 @@ fun HomeScreen(
     ModalBottomSheetLayout(
         sheetState = sheetState,
         sheetContent = {
-            PasswordBottomSheet()
+            PasswordBottomSheet() {
+                coroutineScope.launch { sheetState.hide() }
+            }
         },
     ) {
         Scaffold(
@@ -100,15 +98,7 @@ fun HomeScreen(
                             Column(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .background(
-                                        brush = Brush.verticalGradient(
-                                            colors = listOf(
-                                                BlueLogo,
-                                                BlueDark,
-                                                BlueDarkest
-                                            )
-                                        )
-                                    ),
+                                    .setGradientBackground(),
                             ) {
                                 val passwords = (homeViewModel.passwords.value as Response.Success).data
 
@@ -119,7 +109,7 @@ fun HomeScreen(
                                         ) { index ->
                                             val password = passwords[index]
 
-                                            OnlinePasswordListItem(password = password)
+                                            OnlinePasswordListItem(index = index, { navController.navigate("online_details") }, password = password)
                                         }
                                     }
                                 }

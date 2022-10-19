@@ -97,6 +97,9 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
     // Lifecycle components
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

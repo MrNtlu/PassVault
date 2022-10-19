@@ -23,7 +23,7 @@ import com.mrntlu.PassVault.R
 
 @Composable
 fun PasswordBottomSheet(
-
+    onCancel: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -129,6 +129,8 @@ fun PasswordBottomSheet(
                     modifier = Modifier.weight(1f),
                     onClick = {
                         focusManager.clearFocus(force = true)
+
+                        //TODO Save inputs
                     },
                 ) {
                     Text(text = "Save")
@@ -138,6 +140,7 @@ fun PasswordBottomSheet(
                     modifier = Modifier.weight(1f),
                     onClick = {
                         focusManager.clearFocus(force = true)
+                        onCancel()
                     },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.DarkGray,
@@ -154,5 +157,5 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet()
+    PasswordBottomSheet(onCancel = {})
 }
