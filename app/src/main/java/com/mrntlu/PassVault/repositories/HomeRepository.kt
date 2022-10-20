@@ -20,7 +20,7 @@ class HomeRepository(): ParseService {
             user = ParseUser.getCurrentUser()
     }
 
-    override fun addPassword(title: String,username: String, password: String, note: String) = callbackFlow {
+    override fun addPassword(title: String, username: String, password: String, note: String) = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 

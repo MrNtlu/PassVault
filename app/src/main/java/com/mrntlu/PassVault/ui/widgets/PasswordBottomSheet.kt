@@ -20,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.utils.printLog
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 
 @Composable
@@ -182,10 +181,7 @@ fun PasswordBottomSheet(
                         }
 
                         if (!(titleError || usernameError || passwordError)) {
-                            printLog(message = usernameState.value.text)
-                            printLog(message = titleState.value.text)
-                            printLog(message = passwordState.value.text)
-                            printLog(message = notesState.value.text)
+                            onCancel()
 
                             homeVM.addPassword(
                                 titleState.value.text,

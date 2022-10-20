@@ -35,7 +35,7 @@ fun OnlinePasswordListItem(
     password: PasswordItem
 ) {
     val color = remember { ColorGenerator.MATERIAL.randomColor }
-    val drawable = TextDrawable.builder().buildRound(password.title.trim { it <= ' ' }.substring(0, 1), color)
+    val drawable = remember { TextDrawable.builder().buildRound(password.title.trim { it <= ' ' }.substring(0, 1), color) }
 
     val context = LocalContext.current
     val passwordVisiblityState = remember { mutableStateOf(false) }

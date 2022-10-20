@@ -65,17 +65,21 @@ fun HomeScreen(
         Scaffold(
             floatingActionButton = {
                 if (isParseLoggedIn.value) {
-                    FloatingActionButton(
-                        onClick = {
-                            coroutineScope.launch {
-                                if (sheetState.isVisible) sheetState.hide()
-                                else sheetState.animateTo(ModalBottomSheetValue.Expanded)
-                            }
-                        },
-                        backgroundColor = BlueMidnight,
-                        contentColor = Color.White,
-                    ) {
-                        Icon(imageVector = Icons.Rounded.Add, contentDescription = "Add")
+                    val uiState by homeViewModel.passwords
+
+                    if (uiState is Response.Success) {
+                        FloatingActionButton(
+                            onClick = {
+                                coroutineScope.launch {
+                                    if (sheetState.isVisible) sheetState.hide()
+                                    else sheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                }
+                            },
+                            backgroundColor = BlueMidnight,
+                            contentColor = Color.White,
+                        ) {
+                            Icon(imageVector = Icons.Rounded.Add, contentDescription = "Add")
+                        }
                     }
                 }
             },

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.parseObjectToPasswordItem
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -20,12 +21,24 @@ class HomeViewModel(
         getPasswords()
     }
 
-    //TODO: Find a way to insert newly added item to list
-    fun addPassword(title: String,username: String, password: String, note: String) {
+    fun addPassword(title: String, username: String, password: String, note: String) {
         viewModelScope.launch {
+            val passwordList = (_passwords.value as Response.Success).data
+
             homeRepository.addPassword(title, username, password, note).collect {
-                if (_passwords.value is Response.Success) {
-                    (_passwords.value as Response.Success).data?.plus(it)
+                when(it) {
+                    is Response.Loading -> _passwords.value = it
+                    is Response.Failure -> _passwords.value = it
+                    is Response.Idle -> _passwords.value = it
+                    is Response.Success -> {
+                        it.data?.let { data ->
+                            _passwords.value = Response.Success(
+                                passwordList?.plus(
+                                    parseObjectToPasswordItem(data)
+                                )
+                            )
+                        }
+                    }
                 }
             }
         }
