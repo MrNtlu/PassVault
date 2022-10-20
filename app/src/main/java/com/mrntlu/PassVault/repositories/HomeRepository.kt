@@ -20,6 +20,38 @@ class HomeRepository(): ParseService {
             user = ParseUser.getCurrentUser()
     }
 
+    override fun addPassword(title: String,username: String, password: String, note: String) = callbackFlow {
+        var response: Response<ParseObject> = Response.Loading
+        val parseObject = ParseObject.create("Account")
+
+        parseObject.apply {
+            put("ParseUser", user.username)
+            put("Title", title)
+            put("Username", username)
+            put("Password", password)
+            put("Note", note)
+        }
+
+        try {
+            trySend(response)
+
+            parseObject.saveInBackground { error ->
+                response = if (error == null) {
+                    Response.Success(parseObject)
+                } else {
+                    Response.Failure(error.message ?: error.toString())
+                }
+
+                trySend(response)
+            }
+        } catch (error: Exception) {
+            response = Response.Failure(error.message ?: error.toString())
+            trySend(response)
+        }
+
+        awaitClose()
+    }
+
     override fun getPasswords(): Flow<Response<List<PasswordItem>>> = callbackFlow {
         var response: Response<List<PasswordItem>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")

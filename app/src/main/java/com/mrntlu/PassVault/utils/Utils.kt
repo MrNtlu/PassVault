@@ -1,5 +1,6 @@
 package com.mrntlu.PassVault.utils
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -8,6 +9,8 @@ import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.parse.ParseObject
+
+fun printLog(tag: String = "Test",message:String) = Log.d(tag,message)
 
 fun navigateByPop(navController: NavController, route: String) {
     navController.navigate(route) {

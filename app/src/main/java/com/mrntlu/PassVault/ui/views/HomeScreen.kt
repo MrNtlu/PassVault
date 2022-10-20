@@ -57,7 +57,7 @@ fun HomeScreen(
     ModalBottomSheetLayout(
         sheetState = sheetState,
         sheetContent = {
-            PasswordBottomSheet() {
+            PasswordBottomSheet(homeVM = homeViewModel) {
                 coroutineScope.launch { sheetState.hide() }
             }
         },

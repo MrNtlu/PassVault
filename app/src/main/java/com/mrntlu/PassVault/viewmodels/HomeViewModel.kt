@@ -20,9 +20,20 @@ class HomeViewModel(
         getPasswords()
     }
 
+    //TODO: Find a way to insert newly added item to list
+    fun addPassword(title: String,username: String, password: String, note: String) {
+        viewModelScope.launch {
+            homeRepository.addPassword(title, username, password, note).collect {
+                if (_passwords.value is Response.Success) {
+                    (_passwords.value as Response.Success).data?.plus(it)
+                }
+            }
+        }
+    }
+
     fun getPasswords() {
         viewModelScope.launch {
-            homeRepository.getPasswords().collect() {
+            homeRepository.getPasswords().collect {
                 _passwords.value = it
             }
         }
