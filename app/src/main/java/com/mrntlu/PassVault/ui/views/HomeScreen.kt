@@ -25,6 +25,7 @@ import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.LoadingView
 import com.mrntlu.PassVault.ui.widgets.OnlinePasswordListItem
 import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheet
+import com.mrntlu.PassVault.ui.widgets.SheetState
 import com.mrntlu.PassVault.utils.Response
 import com.mrntlu.PassVault.utils.setGradientBackground
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
@@ -44,21 +45,24 @@ fun HomeScreen(
 
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
 
-    val sheetState = rememberModalBottomSheetState(
+    val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = { it != ModalBottomSheetValue.Expanded }
+        confirmStateChange = {
+            it != ModalBottomSheetValue.Expanded
+        },
     )
+    var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
     val coroutineScope = rememberCoroutineScope()
 
-    BackHandler(sheetState.isVisible) {
-        coroutineScope.launch { sheetState.hide() }
+    BackHandler(modalSheetState.isVisible) {
+        coroutineScope.launch { modalSheetState.hide() }
     }
 
     ModalBottomSheetLayout(
-        sheetState = sheetState,
+        sheetState = modalSheetState,
         sheetContent = {
-            PasswordBottomSheet(homeVM = homeViewModel) {
-                coroutineScope.launch { sheetState.hide() }
+            PasswordBottomSheet(homeVM = homeViewModel, sheetState = sheetState) {
+                coroutineScope.launch { modalSheetState.hide() }
             }
         },
     ) {
@@ -71,8 +75,12 @@ fun HomeScreen(
                         FloatingActionButton(
                             onClick = {
                                 coroutineScope.launch {
-                                    if (sheetState.isVisible) sheetState.hide()
-                                    else sheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                    sheetState = SheetState.AddItem
+
+                                    if (modalSheetState.isVisible)
+                                        modalSheetState.hide()
+                                    else
+                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                 }
                             },
                             backgroundColor = BlueMidnight,
@@ -113,7 +121,32 @@ fun HomeScreen(
                                         ) { index ->
                                             val password = passwords[index]
 
-                                            OnlinePasswordListItem(index = index, { navController.navigate("online_details") }, password = password)
+                                            OnlinePasswordListItem(
+                                                index = index,
+                                                onEditClicked = {
+                                                    sheetState = SheetState.EditItem(passwords[it])
+
+                                                    coroutineScope.launch {
+                                                        if (modalSheetState.isVisible)
+                                                            modalSheetState.hide()
+                                                        else
+                                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                                    }
+                                                },
+                                                onDeleteClicked = { TODO() },
+                                                //TODO Instead show on sheet
+                                                onItemClicked = {
+                                                    sheetState = SheetState.ViewItem(passwords[it])
+                                                    coroutineScope.launch {
+                                                        if (modalSheetState.isVisible)
+                                                            modalSheetState.hide()
+                                                        else
+                                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                                    }
+                                                    //navController.navigate("online_details")
+                                                },
+                                                password = password
+                                            )
                                         }
                                     }
                                 }

@@ -8,11 +8,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ContentCopy
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +30,8 @@ import kotlin.math.min
 @Composable
 fun OnlinePasswordListItem(
     index: Int,
+    onEditClicked: (Int) -> Unit,
+    onDeleteClicked: (Int) -> Unit,
     onItemClicked: (Int) -> Unit,
     password: PasswordItem
 ) {
@@ -38,12 +39,15 @@ fun OnlinePasswordListItem(
     val drawable = remember { TextDrawable.builder().buildRound(password.title.trim { it <= ' ' }.substring(0, 1), color) }
 
     val context = LocalContext.current
-    val passwordVisiblityState = remember { mutableStateOf(false) }
+
+    var passwordVisiblityState by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(all = 8.dp)
+            .padding(vertical = 8.dp)
+            .padding(horizontal = 4.dp)
             .clickable { onItemClicked(index) },
         elevation = 4.dp,
         backgroundColor = Color.White,
@@ -71,12 +75,42 @@ fun OnlinePasswordListItem(
                     .weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                Text(
-                    text = password.title,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = Color.Black,
-                )
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        modifier = Modifier.weight(1f),
+                        text = password.title,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = Color.Black,
+                    )
+
+                    IconButton(
+                        modifier = Modifier
+                            .padding(start = 6.dp)
+                            .size(24.dp),
+                        onClick = {
+                            expanded = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.MoreVert,
+                            contentDescription = "Item Menu",
+                            tint = Color.Black,
+                        )
+
+                        OnlineItemDropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false },
+                            index = index,
+                            onEditClicked = onEditClicked,
+                            onDeleteClicked = onDeleteClicked,
+                            onDetailsClicked = onItemClicked,
+                        )
+                    }
+                }
 
                 Text(
                     text = password.username,
@@ -92,7 +126,7 @@ fun OnlinePasswordListItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = if (passwordVisiblityState.value)
+                        text = if (passwordVisiblityState)
                             password.password
                         else
                             "•".repeat(min(password.password.length, 12)),
@@ -104,14 +138,16 @@ fun OnlinePasswordListItem(
                     )
 
                     IconToggleButton(
-                        modifier = Modifier.padding(end = 16.dp).size(24.dp),
-                        checked = passwordVisiblityState.value,
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .size(24.dp),
+                        checked = passwordVisiblityState,
                         onCheckedChange = {
-                            passwordVisiblityState.value = it
+                            passwordVisiblityState = it
                         },
                     ) {
                         Icon(
-                            imageVector = if (passwordVisiblityState.value) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
+                            imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
                             contentDescription = "Toggle Password Visibility",
                             tint = Color.Black,
                         )
@@ -142,7 +178,7 @@ fun OnlinePasswordListItem(
 @Preview
 @Composable
 fun OnlinePasswordListItemPreview() {
-    OnlinePasswordListItem(0, {},PasswordItem("Test", "Test Title", null, "Test Password"))
+    OnlinePasswordListItem(0, {}, {}, {},PasswordItem("Test", "Test Title", null, "Test Password"))
 
-    OnlinePasswordListItem(0, {}, PasswordItem("Test User Name This is an Example", "Test Long Title This is an example of long text", "This is an example note", "Test Password"))
+    OnlinePasswordListItem(0, {}, {}, {},PasswordItem("Test User Name This is an Example", "Test Long Title This is an example of long text", "This is an example note", "Test Password"))
 }

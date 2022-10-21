@@ -15,50 +15,86 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.*
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
+import com.mrntlu.PassVault.models.PasswordItem
+import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
+
+sealed class SheetState<out T> {
+    object AddItem: SheetState<Nothing>()
+
+    data class EditItem<out T>(
+        val item: T
+    ): SheetState<T>()
+
+    data class ViewItem<out T>(
+        val item: T
+    ): SheetState<T>()
+}
+
+fun <T> SheetState<T>.getItem(): T? = when(this) {
+    is SheetState.EditItem -> item
+    is SheetState.ViewItem -> item
+    is SheetState.AddItem -> null
+}
 
 @Composable
 fun PasswordBottomSheet(
     homeVM: HomeViewModel,
+    sheetState: SheetState<PasswordItem>,
     onCancel: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
 
-    val titleState = remember { mutableStateOf(TextFieldValue()) }
+    val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
+
+    LaunchedEffect(key1 = sheetState) {
+        bottomSheetVM.setStateValues(sheetState)
+    }
+
     var titleError by remember { mutableStateOf(false) }
     var titleErrorMessage by remember { mutableStateOf("") }
 
-    val usernameState = remember { mutableStateOf(TextFieldValue()) }
     var usernameError by remember { mutableStateOf(false) }
     var usernameErrorMessage by remember { mutableStateOf("") }
 
-    val passwordState = remember { mutableStateOf(TextFieldValue()) }
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
-    val notesState = remember { mutableStateOf(TextFieldValue()) }
-
     Box(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 36.dp)
+            .padding(bottom = 8.dp)
+            .padding(top = 16.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.width(IntrinsicSize.Max),
+            modifier = Modifier
+                .width(IntrinsicSize.Max),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             OutlinedTextFieldWithErrorView(
-                value = titleState.value,
-                onValueChange = { titleState.value = it },
-                modifier = Modifier.padding(8.dp),
+                value = bottomSheetVM.titleState,
+                onValueChange = { bottomSheetVM.titleState = it },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .padding(vertical = 3.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Next,
+                    keyboardType = KeyboardType.Text
+                ),
                 keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
                 leadingIcon = {
                     Image(
@@ -74,9 +110,12 @@ fun PasswordBottomSheet(
             )
 
             OutlinedTextFieldWithErrorView(
-                value = usernameState.value,
-                onValueChange = { usernameState.value = it },
-                modifier = Modifier.padding(8.dp),
+                value = bottomSheetVM.usernameState,
+                onValueChange = { bottomSheetVM.usernameState = it },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .padding(vertical = 3.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Email),
                 keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
@@ -94,9 +133,12 @@ fun PasswordBottomSheet(
             )
 
             OutlinedTextFieldWithErrorView(
-                value = passwordState.value,
-                onValueChange = { passwordState.value = it },
-                modifier = Modifier.padding(8.dp),
+                value = bottomSheetVM.passwordState,
+                onValueChange = { bottomSheetVM.passwordState = it },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .padding(vertical = 3.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
 
                 label = {
@@ -127,9 +169,12 @@ fun PasswordBottomSheet(
             )
 
             OutlinedTextField(
-                value = notesState.value,
-                onValueChange = { notesState.value = it },
-                modifier = Modifier.padding(8.dp),
+                value = bottomSheetVM.noteState,
+                onValueChange = { bottomSheetVM.noteState = it },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .padding(vertical = 3.dp)
+                    .fillMaxWidth(),
                 leadingIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_description_black_24dp),
@@ -153,7 +198,7 @@ fun PasswordBottomSheet(
                     onClick = {
                         focusManager.clearFocus(force = true)
 
-                        titleState.value.text.apply {
+                        bottomSheetVM.titleState.apply {
                             val isTitleEmpty = isEmpty() || isBlank()
                             titleError = isTitleEmpty
 
@@ -162,7 +207,7 @@ fun PasswordBottomSheet(
                             }
                         }
 
-                        usernameState.value.text.apply {
+                        bottomSheetVM.usernameState.apply {
                             val isUsernameEmpty = isEmpty() || isBlank()
                             usernameError = isUsernameEmpty
 
@@ -171,7 +216,7 @@ fun PasswordBottomSheet(
                             }
                         }
 
-                        passwordState.value.text.apply {
+                        bottomSheetVM.passwordState.apply {
                             val isPasswordEmpty = isEmpty() || isBlank()
                             passwordError = isPasswordEmpty
 
@@ -181,18 +226,34 @@ fun PasswordBottomSheet(
                         }
 
                         if (!(titleError || usernameError || passwordError)) {
-                            onCancel()
+                            when(sheetState) {
+                                is SheetState.AddItem -> {
+                                    onCancel()
 
-                            homeVM.addPassword(
-                                titleState.value.text,
-                                usernameState.value.text,
-                                passwordState.value.text,
-                                notesState.value.text
-                            )
+                                    homeVM.addPassword(
+                                        bottomSheetVM.titleState,
+                                        bottomSheetVM.usernameState,
+                                        bottomSheetVM.passwordState,
+                                        bottomSheetVM.noteState
+                                    )
+                                }
+                                is SheetState.EditItem -> {
+                                    onCancel()
+
+                                    //TODO Edit
+                                }
+                                is SheetState.ViewItem -> {
+                                    //TODO Change state
+                                }
+                            }
                         }
                     },
                 ) {
-                    Text(text = "Save")
+                    Text(text = when(sheetState) {
+                        is SheetState.AddItem -> "Save"
+                        is SheetState.EditItem -> "Update"
+                        is SheetState.ViewItem -> "Edit"
+                    })
                 }
 
                 Button(
@@ -216,5 +277,5 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet(homeVM = viewModel(), onCancel = {})
+    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, onCancel = {})
 }
