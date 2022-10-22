@@ -24,31 +24,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
+import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.isTextFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
-
-sealed class SheetState<out T> {
-    object AddItem: SheetState<Nothing>()
-
-    data class EditItem<out T>(
-        val item: T
-    ): SheetState<T>()
-
-    data class ViewItem<out T>(
-        val item: T
-    ): SheetState<T>()
-}
-
-fun <T> SheetState<T>.getItem(): T? = when(this) {
-    is SheetState.EditItem -> item
-    is SheetState.ViewItem -> item
-    is SheetState.AddItem -> null
-}
 
 @Composable
 fun PasswordBottomSheet(
     homeVM: HomeViewModel,
     sheetState: SheetState<PasswordItem>,
+    onEditClicked: () -> Unit,
     onCancel: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
@@ -105,6 +90,7 @@ fun PasswordBottomSheet(
                 label = {
                     Text(text = "Title")
                 },
+                enabled = sheetState.isTextFieldsEnabled(),
                 isError = titleError,
                 errorMsg = titleErrorMessage
             )
@@ -128,6 +114,7 @@ fun PasswordBottomSheet(
                 label = {
                     Text(text = "Username/Email")
                 },
+                enabled = sheetState.isTextFieldsEnabled(),
                 isError = usernameError,
                 errorMsg = usernameErrorMessage
             )
@@ -164,6 +151,7 @@ fun PasswordBottomSheet(
                         Icon(imageVector  = image, description)
                     }
                 },
+                enabled = sheetState.isTextFieldsEnabled(),
                 isError = passwordError,
                 errorMsg = passwordErrorMessage
             )
@@ -181,6 +169,7 @@ fun PasswordBottomSheet(
                         contentDescription = "Notes Leading"
                     )
                 },
+                enabled = sheetState.isTextFieldsEnabled(),
                 label = {
                     Text(text = "Notes")
                 }
@@ -198,52 +187,54 @@ fun PasswordBottomSheet(
                     onClick = {
                         focusManager.clearFocus(force = true)
 
-                        bottomSheetVM.titleState.apply {
-                            val isTitleEmpty = isEmpty() || isBlank()
-                            titleError = isTitleEmpty
+                        if (sheetState is SheetState.ViewItem) {
+                            onEditClicked()
+                        } else {
+                            bottomSheetVM.titleState.apply {
+                                val isTitleEmpty = isEmpty() || isBlank()
+                                titleError = isTitleEmpty
 
-                            if (isTitleEmpty) {
-                                titleErrorMessage = "Please don't leave empty"
-                            }
-                        }
-
-                        bottomSheetVM.usernameState.apply {
-                            val isUsernameEmpty = isEmpty() || isBlank()
-                            usernameError = isUsernameEmpty
-
-                            if (isUsernameEmpty) {
-                                usernameErrorMessage = "Please don't leave empty"
-                            }
-                        }
-
-                        bottomSheetVM.passwordState.apply {
-                            val isPasswordEmpty = isEmpty() || isBlank()
-                            passwordError = isPasswordEmpty
-
-                            if (isPasswordEmpty) {
-                                passwordErrorMessage = "Please don't leave empty"
-                            }
-                        }
-
-                        if (!(titleError || usernameError || passwordError)) {
-                            when(sheetState) {
-                                is SheetState.AddItem -> {
-                                    onCancel()
-
-                                    homeVM.addPassword(
-                                        bottomSheetVM.titleState,
-                                        bottomSheetVM.usernameState,
-                                        bottomSheetVM.passwordState,
-                                        bottomSheetVM.noteState
-                                    )
+                                if (isTitleEmpty) {
+                                    titleErrorMessage = "Please don't leave empty"
                                 }
-                                is SheetState.EditItem -> {
-                                    onCancel()
+                            }
 
-                                    //TODO Edit
+                            bottomSheetVM.usernameState.apply {
+                                val isUsernameEmpty = isEmpty() || isBlank()
+                                usernameError = isUsernameEmpty
+
+                                if (isUsernameEmpty) {
+                                    usernameErrorMessage = "Please don't leave empty"
                                 }
-                                is SheetState.ViewItem -> {
-                                    //TODO Change state
+                            }
+
+                            bottomSheetVM.passwordState.apply {
+                                val isPasswordEmpty = isEmpty() || isBlank()
+                                passwordError = isPasswordEmpty
+
+                                if (isPasswordEmpty) {
+                                    passwordErrorMessage = "Please don't leave empty"
+                                }
+                            }
+
+                            if (!(titleError || usernameError || passwordError)) {
+                                when(sheetState) {
+                                    is SheetState.AddItem -> {
+                                        onCancel()
+
+                                        homeVM.addPassword(
+                                            bottomSheetVM.titleState,
+                                            bottomSheetVM.usernameState,
+                                            bottomSheetVM.passwordState,
+                                            bottomSheetVM.noteState
+                                        )
+                                    }
+                                    is SheetState.EditItem -> {
+                                        onCancel()
+
+                                        //TODO Edit
+                                    }
+                                    else -> {}
                                 }
                             }
                         }
@@ -277,5 +268,5 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, onCancel = {})
+    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, onEditClicked = {}, onCancel = {})
 }

@@ -5,10 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
-import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
-import com.parse.ParseObject
 
 fun printLog(tag: String = "Test",message:String) = Log.d(tag,message)
 
@@ -18,13 +16,6 @@ fun navigateByPop(navController: NavController, route: String) {
         launchSingleTop = true
     }
 }
-
-fun parseObjectToPasswordItem(parseObject: ParseObject) = PasswordItem(
-    parseObject.getString("Username") ?: "",
-    parseObject.getString("Title") ?: "",
-    parseObject.getString("Note"),
-    parseObject.getString("Password") ?: "",
-)
 
 @Composable
 fun CheckLoggedIn(

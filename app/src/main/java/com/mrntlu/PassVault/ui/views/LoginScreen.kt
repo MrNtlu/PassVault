@@ -114,11 +114,11 @@ fun LoginScreen(
             }
 
             if(isErrorOccured != null) {
-                val showDialog = remember { mutableStateOf(true)  }
+                var showDialog by remember { mutableStateOf(true)  }
 
-                if (showDialog.value) {
+                if (showDialog) {
                     ErrorDialog(error = isErrorOccured) {
-                        showDialog.value = false
+                        showDialog = false
                         parseVM.isErrorOccured.value = null
                     }
                 }

@@ -1,14 +1,13 @@
 package com.mrntlu.PassVault;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import com.google.android.gms.ads.AdListener;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
 
 public class MainActivityOld extends AppCompatActivity {
 
@@ -30,6 +29,7 @@ public class MainActivityOld extends AppCompatActivity {
                 .commit();
 
         adView=findViewById(R.id.adView);
+        /*
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("AD4218F6AC5DB23A77A519172E0D2A6D").build();
         adView.loadAd(adRequest);
 
@@ -60,16 +60,16 @@ public class MainActivityOld extends AppCompatActivity {
                 super.onAdFailedToLoad(i);
                 adView.setVisibility(View.GONE);
             }
-        });
+        });*/
     }
 
-    public void showInterstitalAd(Fragment fragment){
+/*    public void showInterstitalAd(Fragment fragment){
         this.fragment=fragment;
         if (interstitialAd.isLoaded())
             interstitialAd.show();
         else
             interstitialAd.loadAd(interstitialRequest);
-    }
+    }*/
 
     private void startTransaction(Fragment fragment){
         getSupportFragmentManager()

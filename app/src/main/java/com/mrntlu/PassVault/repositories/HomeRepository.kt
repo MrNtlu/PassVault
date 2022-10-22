@@ -1,9 +1,7 @@
 package com.mrntlu.PassVault.repositories
 
-import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.services.ParseService
 import com.mrntlu.PassVault.utils.Response
-import com.mrntlu.PassVault.utils.parseObjectToPasswordItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
@@ -18,6 +16,29 @@ class HomeRepository(): ParseService {
     init {
         if (ParseUser.getCurrentUser() != null)
             user = ParseUser.getCurrentUser()
+    }
+
+    override fun deletePassword(parseObject: ParseObject): Flow<Response<Boolean>> = callbackFlow {
+        var response: Response<Boolean> = Response.Loading
+
+        try {
+            trySend(response)
+
+            parseObject.deleteInBackground { error ->
+                response = if (error == null) {
+                    Response.Success(true)
+                } else {
+                    Response.Failure(error.message ?: error.toString())
+                }
+
+                trySend(response)
+            }
+        } catch (error: Exception) {
+            response = Response.Failure(error.message ?: error.toString())
+            trySend(response)
+        }
+
+        awaitClose()
     }
 
     override fun addPassword(title: String, username: String, password: String, note: String) = callbackFlow {
@@ -52,8 +73,8 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
-    override fun getPasswords(): Flow<Response<List<PasswordItem>>> = callbackFlow {
-        var response: Response<List<PasswordItem>> = Response.Loading
+    override fun getPasswords(): Flow<Response<List<ParseObject>>> = callbackFlow {
+        var response: Response<List<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")
 
         try{
@@ -63,7 +84,7 @@ class HomeRepository(): ParseService {
 
             query.findInBackground { objects, error ->
                 response = if (error == null) {
-                    Response.Success(objects.map { parseObjectToPasswordItem(it) })
+                    Response.Success(objects)
                 } else {
                     Response.Failure(error.message ?: error.toString())
                 }

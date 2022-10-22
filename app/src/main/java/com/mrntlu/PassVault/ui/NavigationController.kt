@@ -27,14 +27,6 @@ fun NavigationComposable(
             )
         }
 
-        composable("online_details") {
-            ItemDetails(
-                navController = navController,
-                parseVM = parseVM,
-                firebaseVM = firebaseVM,
-            )
-        }
-
         composable("register") {
             RegisterScreen(
                 navController = navController,

@@ -2,9 +2,10 @@ package com.mrntlu.PassVault;
 
 import android.app.Application;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.parse.Parse;
 import com.parse.ParseACL;
-
+import java.util.Collections;
 import dagger.hilt.android.HiltAndroidApp;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -34,6 +35,10 @@ public class ParseApp extends Application {
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
 
-        MobileAds.initialize(this,"ca-app-pub-7421130457283934~8206592692");
+        MobileAds.initialize(this);
+        RequestConfiguration configuration = new RequestConfiguration.Builder()
+                .setTestDeviceIds(Collections.singletonList("802C7F4DE708805637B2A1EF202B75C9"))
+                .build();
+        MobileAds.setRequestConfiguration(configuration);
     }
 }

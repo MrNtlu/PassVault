@@ -12,10 +12,7 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,8 +25,11 @@ import com.mrntlu.PassVault.AppIntros.SliderIntro
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
+import com.mrntlu.PassVault.ui.widgets.AYSDialog
 import com.mrntlu.PassVault.ui.widgets.BottomNavigationBar
 import com.mrntlu.PassVault.ui.widgets.LoadingView
+import com.mrntlu.PassVault.utils.addInterstitialCallbacks
+import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,6 +51,10 @@ class MainActivity : ComponentActivity() {
                 MainScreen(navController = navController)
             }
         }
+
+        // Interstitial Init & Callbacks
+        loadInterstitial(this)
+        addInterstitialCallbacks(this)
     }
 
     private fun showSlider(context: Context) {
@@ -100,6 +104,7 @@ fun MainScreen(
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
     val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
+    var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -131,9 +136,11 @@ fun MainScreen(
                 },
                 actions = {
                     if (navController.currentBackStackEntry?.destination?.route == "home" && isUserLoggedIn.value) {
-                        IconButton(onClick = {
-                            parseVM.parseSignout()
-                        }){
+                        IconButton(
+                            onClick = {
+                                showDialog = true
+                            }
+                        ){
                             Icon(imageVector = Icons.Rounded.Logout, contentDescription = "Log out", tint = Color.White)
                         }
                     }
@@ -160,6 +167,18 @@ fun MainScreen(
             firebaseVM = firebaseVM,
             parseVM = parseVM
         )
+
+        if (showDialog) {
+            AYSDialog(
+                text = "Do you want to log out?",
+                onConfirmClicked = {
+                    showDialog = false
+                    parseVM.parseSignout()
+                }
+            ) {
+                showDialog = false
+            }
+        }
 
         if (isAuthLoading) {
             LoadingView()

@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.widgets.SheetState
-import com.mrntlu.PassVault.ui.widgets.getItem
+import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.getItem
 
 class BottomSheetViewModel: ViewModel() {
 

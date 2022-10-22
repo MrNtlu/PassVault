@@ -4,6 +4,10 @@ package com.mrntlu.PassVault;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +16,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.mrntlu.PassVault.AppIntros.SliderIntro;
 import com.mrntlu.PassVault.Offline.FragmentOffline;
@@ -58,7 +57,7 @@ public class FragmentMain extends Fragment {
     private void setListeners(){
         onlineButton.setOnClickListener(view -> {
             if ((MainActivityOld.adCounter%3==1)){
-                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentLogin.newInstance());
+//                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentLogin.newInstance());
             }
             startTransaction(FragmentLogin.newInstance());
 
@@ -67,7 +66,7 @@ public class FragmentMain extends Fragment {
 
         offlineButton.setOnClickListener(view -> {
             if ((MainActivityOld.adCounter%3==1)){
-                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentOffline.newInstance());
+//                ((MainActivityOld)view.getContext()).showInterstitalAd(FragmentOffline.newInstance());
             }
             startTransaction(FragmentOffline.newInstance());
 

@@ -9,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
@@ -66,7 +67,9 @@ fun OutlinedTextFieldWithErrorView(
             maxLines = maxLines,
             interactionSource = interactionSource,
             shape = shape,
-            colors = colors
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                disabledTextColor = Color.Black,
+            )
         )
 
         if (isError){
