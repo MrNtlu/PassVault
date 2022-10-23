@@ -5,7 +5,6 @@ package com.mrntlu.PassVault.ui.views
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -26,10 +25,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
-import com.mrntlu.PassVault.ui.widgets.AYSDialog
-import com.mrntlu.PassVault.ui.widgets.LoadingView
-import com.mrntlu.PassVault.ui.widgets.OnlinePasswordListItem
-import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheet
+import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
@@ -73,7 +69,7 @@ fun HomeScreen(
         sheetState = modalSheetState,
         sheetContent = {
             PasswordBottomSheet(homeVM = homeViewModel, sheetState = sheetState, onEditClicked = {
-                sheetState = SheetState.EditItem(sheetState.getItem()!!)
+                sheetState = SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
             }) {
                 coroutineScope.launch { modalSheetState.hide() }
             }
@@ -148,50 +144,39 @@ fun HomeScreen(
 
                                 val passwords = (homeViewModel.passwords.value as Response.Success).data
 
-                                passwords?.let {
+                                passwords?.let { list ->
+                                    OnlinePasswordList(
+                                        passwords = list,
+                                        onEditClicked = { index ->
+                                            sheetState = SheetState.EditItem(list[index].toPasswordItem(), index)
 
-                                    //TODO Move to separate widget
-                                    LazyColumn {
-                                        items(
-                                            count = it.size
-                                        ) { index ->
-                                            val password = passwords[index]
+                                            coroutineScope.launch {
+                                                if (modalSheetState.isVisible)
+                                                    modalSheetState.hide()
+                                                else
+                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                            }
+                                        },
+                                        onDeleteClicked = { index ->
+                                            showDialog = true
+                                            deleteIndex = index
+                                        },
+                                        onItemClicked = { index ->
+                                            if (adCount % 4 == 1) {
+                                                loadInterstitial(context)
+                                                showInterstitial(context)
+                                            }
+                                            adCount++
 
-                                            OnlinePasswordListItem(
-                                                index = index,
-                                                onEditClicked = {
-                                                    sheetState = SheetState.EditItem(passwords[it].toPasswordItem())
-
-                                                    coroutineScope.launch {
-                                                        if (modalSheetState.isVisible)
-                                                            modalSheetState.hide()
-                                                        else
-                                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                                    }
-                                                },
-                                                onDeleteClicked = {
-                                                    showDialog = true
-                                                    deleteIndex = it
-                                                },
-                                                onItemClicked = {
-                                                    if (adCount % 4 == 1) {
-                                                        loadInterstitial(context)
-                                                        showInterstitial(context)
-                                                    }
-                                                    adCount++
-
-                                                    sheetState = SheetState.ViewItem(passwords[it].toPasswordItem())
-                                                    coroutineScope.launch {
-                                                        if (modalSheetState.isVisible)
-                                                            modalSheetState.hide()
-                                                        else
-                                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                                    }
-                                                },
-                                                password = password.toPasswordItem()
-                                            )
+                                            sheetState = SheetState.ViewItem(list[index].toPasswordItem(), index)
+                                            coroutineScope.launch {
+                                                if (modalSheetState.isVisible)
+                                                    modalSheetState.hide()
+                                                else
+                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                            }
                                         }
-                                    }
+                                    )
                                 }
                             }
 

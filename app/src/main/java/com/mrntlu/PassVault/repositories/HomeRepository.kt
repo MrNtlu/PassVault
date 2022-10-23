@@ -41,16 +41,16 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
-    override fun addPassword(title: String, username: String, password: String, note: String) = callbackFlow {
+    override fun editPassword(
+        parseObject: ParseObject, title: String, username: String, password: String, note: String?
+    ): Flow<Response<ParseObject>> = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
-        val parseObject = ParseObject.create("Account")
 
         parseObject.apply {
-            put("ParseUser", user.username)
             put("Title", title)
             put("Username", username)
             put("Password", password)
-            put("Note", note)
+            put("Note", note ?: "")
         }
 
         try {
@@ -73,8 +73,41 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
-    override fun getPasswords(): Flow<Response<List<ParseObject>>> = callbackFlow {
-        var response: Response<List<ParseObject>> = Response.Loading
+    override fun addPassword(title: String, username: String, password: String, note: String?) = callbackFlow {
+        var response: Response<ParseObject> = Response.Loading
+        val parseObject = ParseObject.create("Account")
+
+        parseObject.apply {
+            put("ParseUser", user.username)
+            put("Title", title)
+            put("Username", username)
+            put("Password", password)
+            if (note != null)
+                put("Note", note)
+        }
+
+        try {
+            trySend(response)
+
+            parseObject.saveInBackground { error ->
+                response = if (error == null) {
+                    Response.Success(parseObject)
+                } else {
+                    Response.Failure(error.message ?: error.toString())
+                }
+
+                trySend(response)
+            }
+        } catch (error: Exception) {
+            response = Response.Failure(error.message ?: error.toString())
+            trySend(response)
+        }
+
+        awaitClose()
+    }
+
+    override fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
+        var response: Response<ArrayList<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")
 
         try{
@@ -84,7 +117,7 @@ class HomeRepository(): ParseService {
 
             query.findInBackground { objects, error ->
                 response = if (error == null) {
-                    Response.Success(objects)
+                    Response.Success(ArrayList(objects))
                 } else {
                     Response.Failure(error.message ?: error.toString())
                 }

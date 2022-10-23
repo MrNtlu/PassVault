@@ -41,6 +41,12 @@ fun <T> SheetState<T>.getItem(): T? = when(this) {
     is SheetState.AddItem -> null
 }
 
+fun <T> SheetState<T>.getPosition(): Int? = when(this) {
+    is SheetState.EditItem -> position
+    is SheetState.ViewItem -> position
+    is SheetState.AddItem -> null
+}
+
 fun <T> SheetState<T>.isTextFieldsEnabled(): Boolean = when(this) {
     is SheetState.EditItem -> true
     is SheetState.ViewItem -> false

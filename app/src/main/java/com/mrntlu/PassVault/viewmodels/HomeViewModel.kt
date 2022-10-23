@@ -13,7 +13,7 @@ class HomeViewModel(
     private val homeRepository: HomeRepository
 ): ViewModel() {
 
-    private val _passwords = mutableStateOf<Response<List<ParseObject>>>(Response.Loading)
+    private val _passwords = mutableStateOf<Response<ArrayList<ParseObject>>>(Response.Loading)
     val passwords: State<Response<List<ParseObject>>> = _passwords
 
     init {
@@ -34,9 +34,9 @@ class HomeViewModel(
                         is Response.Success -> {
                             response.data?.let { isDeleted ->
                                 if (isDeleted) {
-                                    _passwords.value = Response.Success(
-                                        passwordList.minus(parseObject)
-                                    )
+                                    passwordList.remove(parseObject)
+
+                                    _passwords.value = Response.Success(passwordList)
                                 }
                             }
                         }
@@ -46,7 +46,33 @@ class HomeViewModel(
         }
     }
 
-    fun addPassword(title: String, username: String, password: String, note: String) {
+    fun editPassword(
+        position: Int, title: String, username: String, password: String, note: String?
+    ) {
+        viewModelScope.launch {
+            val passwordList = (_passwords.value as Response.Success).data
+            val parseObject = passwordList?.get(position)
+
+            parseObject?.let {
+                homeRepository.editPassword(it, title, username, password, note).collect { response ->
+                    when(response) {
+                        is Response.Loading -> _passwords.value = response
+                        is Response.Failure -> _passwords.value = response
+                        is Response.Idle -> _passwords.value = response
+                        is Response.Success -> {
+                            response.data?.let { data ->
+                                passwordList[position] = data
+
+                                _passwords.value = Response.Success(passwordList)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun addPassword(title: String, username: String, password: String, note: String?) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
 
@@ -57,9 +83,9 @@ class HomeViewModel(
                     is Response.Idle -> _passwords.value = it
                     is Response.Success -> {
                         it.data?.let { data ->
-                            _passwords.value = Response.Success(
-                                passwordList?.plus(data)
-                            )
+                            passwordList?.add(data)
+
+                            _passwords.value = Response.Success(passwordList)
                         }
                     }
                 }

@@ -232,7 +232,13 @@ fun PasswordBottomSheet(
                                     is SheetState.EditItem -> {
                                         onCancel()
 
-                                        //TODO Edit
+                                        homeVM.editPassword(
+                                            sheetState.position,
+                                            bottomSheetVM.titleState,
+                                            bottomSheetVM.usernameState,
+                                            bottomSheetVM.passwordState,
+                                            bottomSheetVM.noteState
+                                        )
                                     }
                                     else -> {}
                                 }
