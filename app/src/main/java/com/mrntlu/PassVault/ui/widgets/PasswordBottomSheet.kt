@@ -1,31 +1,24 @@
 package com.mrntlu.PassVault.ui.widgets
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
+import com.mrntlu.PassVault.ui.theme.BlueLogo
+import com.mrntlu.PassVault.ui.theme.Purple500
 import com.mrntlu.PassVault.utils.SheetState
-import com.mrntlu.PassVault.utils.isTextFieldsEnabled
+import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 
@@ -37,7 +30,6 @@ fun PasswordBottomSheet(
     onCancel: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
-
     val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
 
     LaunchedEffect(key1 = sheetState) {
@@ -52,14 +44,14 @@ fun PasswordBottomSheet(
 
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 36.dp)
             .padding(bottom = 8.dp)
-            .padding(top = 16.dp),
+            .padding(top = 16.dp)
+            .imePadding(),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -68,118 +60,50 @@ fun PasswordBottomSheet(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            OutlinedTextFieldWithErrorView(
-                value = bottomSheetVM.titleState,
-                onValueChange = { bottomSheetVM.titleState = it },
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .padding(vertical = 3.dp)
-                    .fillMaxWidth(),
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                ),
-                keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
-                leadingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_turned_in_black_24dp),
-                        contentDescription = "Title Leading"
-                    )
-                },
-                label = {
-                    Text(text = "Title")
-                },
-                enabled = sheetState.isTextFieldsEnabled(),
-                isError = titleError,
-                errorMsg = titleErrorMessage
+            PasswordBottomSheetFields(
+                bottomSheetVM = bottomSheetVM,
+                sheetState = sheetState,
+                titleError, titleErrorMessage, usernameError, usernameErrorMessage, passwordError, passwordErrorMessage
             )
 
-            OutlinedTextFieldWithErrorView(
-                value = bottomSheetVM.usernameState,
-                onValueChange = { bottomSheetVM.usernameState = it },
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .padding(vertical = 3.dp)
-                    .fillMaxWidth(),
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Email),
-                keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
-                leadingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_account_circle_black_24dp),
-                        contentDescription = "Account Leading"
+            Row(
+                modifier = Modifier.padding(top = 4.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = bottomSheetVM.isEncrypted,
+                    onCheckedChange = { bottomSheetVM.isEncrypted = it },
+                    enabled = sheetState.areFieldsEnabled(),
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = BlueLogo
                     )
-                },
-                label = {
-                    Text(text = "Username/Email")
-                },
-                enabled = sheetState.isTextFieldsEnabled(),
-                isError = usernameError,
-                errorMsg = usernameErrorMessage
-            )
+                )
 
-            OutlinedTextFieldWithErrorView(
-                value = bottomSheetVM.passwordState,
-                onValueChange = { bottomSheetVM.passwordState = it },
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .padding(vertical = 3.dp)
-                    .fillMaxWidth(),
-                singleLine = true,
+                Text(
+                    text = "Encryption (Recommended)",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
 
-                label = {
-                    Text(text = "Password")
-                },
-                leadingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_padlock_pass),
-                        contentDescription = "Password Leading"
+                IconButton(
+                    onClick = { /*TODO Open Dialog*/ },
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(20.dp),
+                        imageVector = Icons.Rounded.Info,
+                        contentDescription = "What is encryption?",
+                        tint = Purple500,
                     )
-                },
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-                trailingIcon = {
-                    val image = if (passwordVisible)
-                        Icons.Filled.Visibility
-                    else Icons.Filled.VisibilityOff
-
-                    val description = if (passwordVisible) "Hide password" else "Show password"
-
-                    IconButton(onClick = {passwordVisible = !passwordVisible}){
-                        Icon(imageVector  = image, description)
-                    }
-                },
-                enabled = sheetState.isTextFieldsEnabled(),
-                isError = passwordError,
-                errorMsg = passwordErrorMessage
-            )
-
-            OutlinedTextField(
-                value = bottomSheetVM.noteState,
-                onValueChange = { bottomSheetVM.noteState = it },
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .padding(vertical = 3.dp)
-                    .fillMaxWidth(),
-                leadingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_description_black_24dp),
-                        contentDescription = "Notes Leading"
-                    )
-                },
-                enabled = sheetState.isTextFieldsEnabled(),
-                label = {
-                    Text(text = "Notes")
                 }
-            )
+            }
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
-                    .padding(top = 12.dp),
+                    .padding(top = 14.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Button(

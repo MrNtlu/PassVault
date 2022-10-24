@@ -14,6 +14,7 @@ class BottomSheetViewModel: ViewModel() {
     var usernameState by mutableStateOf("")
     var passwordState by mutableStateOf("")
     var noteState by mutableStateOf("")
+    var isEncrypted by  mutableStateOf(false)
 
     fun setStateValues(sheetState: SheetState<PasswordItem>) {
         sheetState.getItem().let {
@@ -21,6 +22,7 @@ class BottomSheetViewModel: ViewModel() {
             usernameState = it?.username ?: ""
             passwordState = it?.password ?: ""
             noteState = it?.note ?: ""
+            isEncrypted = if (it?.isEncrypted != null) it.isEncrypted!! else false
         }
     }
 }

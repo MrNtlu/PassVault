@@ -33,6 +33,7 @@ fun ParseObject.toPasswordItem() = PasswordItem(
     getString("Title") ?: "",
     getString("Note"),
     getString("Password") ?: "",
+    getBoolean("IsEncrypted")
 )
 
 fun <T> SheetState<T>.getItem(): T? = when(this) {
@@ -47,7 +48,7 @@ fun <T> SheetState<T>.getPosition(): Int? = when(this) {
     is SheetState.AddItem -> null
 }
 
-fun <T> SheetState<T>.isTextFieldsEnabled(): Boolean = when(this) {
+fun <T> SheetState<T>.areFieldsEnabled(): Boolean = when(this) {
     is SheetState.EditItem -> true
     is SheetState.ViewItem -> false
     is SheetState.AddItem -> true

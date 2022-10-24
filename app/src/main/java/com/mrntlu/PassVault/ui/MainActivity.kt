@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Logout
@@ -136,6 +137,14 @@ fun MainScreen(
                 },
                 actions = {
                     if (navController.currentBackStackEntry?.destination?.route == "home" && isUserLoggedIn.value) {
+                        IconButton(onClick = { TODO("Implement Search") }) {
+                            Icon(
+                                imageVector = Icons.Filled.Search,
+                                contentDescription = "Search",
+                                tint = Color.White
+                            )
+                        }
+
                         IconButton(
                             onClick = {
                                 showDialog = true

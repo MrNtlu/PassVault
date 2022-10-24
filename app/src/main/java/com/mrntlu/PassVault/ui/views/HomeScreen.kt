@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,6 +42,7 @@ fun HomeScreen(
     parseVM: ParseAuthViewModel,
 ) {
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
     val homeRepository = HomeRepository()
 
     val homeViewModel by remember { mutableStateOf(HomeViewModel(homeRepository = homeRepository)) }
@@ -63,6 +65,11 @@ fun HomeScreen(
     LaunchedEffect(key1 = isParseLoggedIn.value) {
         if (modalSheetState.isVisible)
             modalSheetState.animateTo(ModalBottomSheetValue.Hidden)
+    }
+
+    LaunchedEffect(key1 = modalSheetState.isVisible) {
+        if (!modalSheetState.isVisible)
+            focusManager.clearFocus(force = true)
     }
 
     ModalBottomSheetLayout(

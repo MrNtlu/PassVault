@@ -18,7 +18,7 @@ fun NavigationComposable(
     firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel
 ) {
-    NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding) ) {
+    NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
             HomeScreen(
                 navController = navController,

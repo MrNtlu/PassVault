@@ -13,9 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.mrntlu.PassVault.models.BottomNavItem
-import com.mrntlu.PassVault.ui.theme.BlueDarkest
 import com.mrntlu.PassVault.ui.theme.BlueLogo
-import com.mrntlu.PassVault.ui.theme.DarkWhite
 
 @Composable
 fun BottomNavigationBar(
