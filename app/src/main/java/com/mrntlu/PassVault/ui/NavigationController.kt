@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.mrntlu.PassVault.ui.views.*
+import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
@@ -16,7 +17,8 @@ fun NavigationComposable(
     navController: NavHostController,
     padding: PaddingValues,
     firebaseVM: FirebaseAuthViewModel,
-    parseVM: ParseAuthViewModel
+    parseVM: ParseAuthViewModel,
+    homeViewmodel: HomeViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
@@ -24,6 +26,7 @@ fun NavigationComposable(
                 navController = navController,
                 parseVM = parseVM,
                 firebaseVM = firebaseVM,
+                homeViewModel = homeViewmodel,
             )
         }
 

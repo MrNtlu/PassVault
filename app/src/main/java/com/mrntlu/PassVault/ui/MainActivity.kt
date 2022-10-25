@@ -5,18 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -24,13 +20,12 @@ import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.mrntlu.PassVault.AppIntros.SliderIntro
 import com.mrntlu.PassVault.models.BottomNavItem
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
-import com.mrntlu.PassVault.ui.widgets.AYSDialog
-import com.mrntlu.PassVault.ui.widgets.BottomNavigationBar
-import com.mrntlu.PassVault.ui.widgets.LoadingView
+import com.mrntlu.PassVault.ui.widgets.*
+import com.mrntlu.PassVault.utils.SearchWidgetState
 import com.mrntlu.PassVault.utils.addInterstitialCallbacks
 import com.mrntlu.PassVault.utils.loadInterstitial
+import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -82,8 +77,10 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(
     navController: NavHostController
 ) {
+    val focusManager = LocalFocusManager.current
     val firebaseVM = hiltViewModel<FirebaseAuthViewModel>()
     val parseVM = hiltViewModel<ParseAuthViewModel>()
+    val homeScreenVM = hiltViewModel<HomeViewModel>()
 
     val bottomBarItems = listOf(
         BottomNavItem(
@@ -103,60 +100,47 @@ fun MainScreen(
         )
     )
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
-    val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
+    val isCurrentScreenHome = navController.currentBackStackEntry?.destination?.route == "home"
     val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
+
+    val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var showDialog by remember { mutableStateOf(false) }
+    var searchWidgetState by remember{ mutableStateOf(SearchWidgetState.CLOSED) }
+    var searchTextState by remember { mutableStateOf("") }
+
+    LaunchedEffect(key1 = isCurrentScreenHome) {
+        if (!isCurrentScreenHome && searchWidgetState == SearchWidgetState.OPENED) {
+            searchWidgetState = SearchWidgetState.CLOSED
+            searchTextState = ""
+        }
+    }
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = when(navController.currentDestination?.route) {
-                            "login" -> {
-                                "Login"
-                            }
-                            "register" -> {
-                                "Register"
-                            }
-                            else -> ""
-                        },
-                        color = Color.White
-                    )
-                },
-                navigationIcon = {
-                    if (!showBottomBar && navController.previousBackStackEntry != null && !isAuthLoading) {
-                        IconButton(onClick = { navController.navigateUp() }) {
-                            Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "Back",
-                                tint = Color.White
-                            )
-                        }
+            if (isCurrentScreenHome && isUserLoggedIn.value && searchWidgetState == SearchWidgetState.OPENED) {
+                SearchAppBar(
+                    text = searchTextState,
+                    onResetSearch = { homeScreenVM.resetPassword() },
+                    onTextChange = { searchTextState = it },
+                    onCloseClicked = { searchWidgetState = SearchWidgetState.CLOSED },
+                    onSearchClicked = {
+                        homeScreenVM.searchPassword(it)
+                        focusManager.clearFocus(force = true)
                     }
-                },
-                actions = {
-                    if (navController.currentBackStackEntry?.destination?.route == "home" && isUserLoggedIn.value) {
-                        IconButton(onClick = { TODO("Implement Search") }) {
-                            Icon(
-                                imageVector = Icons.Filled.Search,
-                                contentDescription = "Search",
-                                tint = Color.White
-                            )
-                        }
-
-                        IconButton(
-                            onClick = {
-                                showDialog = true
-                            }
-                        ){
-                            Icon(imageVector = Icons.Rounded.Logout, contentDescription = "Log out", tint = Color.White)
-                        }
+                )
+            } else {
+                DefaultAppBar(
+                    navController = navController,
+                    isAuthLoading = isAuthLoading,
+                    isUserLoggedIn = isUserLoggedIn.value,
+                    showBottomBar = showBottomBar,
+                    isCurrentScreenHome = isCurrentScreenHome,
+                    onSearchClicked = { searchWidgetState = SearchWidgetState.OPENED },
+                    onLogOutClicked = {
+                        showDialog = true
                     }
-                },
-                elevation = 8.dp,
-                backgroundColor = BlueLogo
-            )
+                )
+            }
         },
         bottomBar = {
             if (showBottomBar) {
@@ -174,7 +158,8 @@ fun MainScreen(
             navController = navController,
             padding = it,
             firebaseVM = firebaseVM,
-            parseVM = parseVM
+            parseVM = parseVM,
+            homeViewmodel = homeScreenVM,
         )
 
         if (showDialog) {

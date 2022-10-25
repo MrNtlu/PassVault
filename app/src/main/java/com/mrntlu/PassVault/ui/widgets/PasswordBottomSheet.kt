@@ -17,6 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
+import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.utils.SheetState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
@@ -32,10 +33,6 @@ fun PasswordBottomSheet(
     val focusManager = LocalFocusManager.current
     val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
 
-    LaunchedEffect(key1 = sheetState) {
-        bottomSheetVM.setStateValues(sheetState)
-    }
-
     var titleError by remember { mutableStateOf(false) }
     var titleErrorMessage by remember { mutableStateOf("") }
 
@@ -44,6 +41,14 @@ fun PasswordBottomSheet(
 
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
+
+    LaunchedEffect(key1 = sheetState) {
+        bottomSheetVM.setStateValues(sheetState)
+
+        titleError = false
+        usernameError = false
+        passwordError = false
+    }
 
     Box(
         modifier = Modifier
@@ -108,6 +113,13 @@ fun PasswordBottomSheet(
             ) {
                 Button(
                     modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = when(sheetState) {
+                            is SheetState.AddItem -> BlueLogo
+                            is SheetState.EditItem -> BlueLogo
+                            is SheetState.ViewItem -> Yellow700
+                        }
+                    ),
                     onClick = {
                         focusManager.clearFocus(force = true)
 
@@ -170,11 +182,14 @@ fun PasswordBottomSheet(
                         }
                     },
                 ) {
-                    Text(text = when(sheetState) {
-                        is SheetState.AddItem -> "Save"
-                        is SheetState.EditItem -> "Update"
-                        is SheetState.ViewItem -> "Edit"
-                    })
+                    Text(
+                        text = when(sheetState) {
+                            is SheetState.AddItem -> "Save"
+                            is SheetState.EditItem -> "Update"
+                            is SheetState.ViewItem -> "Edit"
+                        },
+                        color = Color.White,
+                    )
                 }
 
                 Button(
@@ -185,10 +200,16 @@ fun PasswordBottomSheet(
                     },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.DarkGray,
-                        contentColor = Color.White
+                        contentColor = Color.White,
                     )
                 ) {
-                    Text(text = "Cancel")
+                    Text(
+                        text = when(sheetState) {
+                            is SheetState.AddItem -> "Cancel"
+                            is SheetState.EditItem -> "Cancel"
+                            is SheetState.ViewItem -> "Close"
+                        }
+                    )
                 }
             }
         }

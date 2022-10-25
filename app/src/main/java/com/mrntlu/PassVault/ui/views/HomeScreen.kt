@@ -40,12 +40,12 @@ fun HomeScreen(
     navController: NavController,
     firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel,
+    homeViewModel: HomeViewModel
 ) {
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val homeRepository = HomeRepository()
 
-    val homeViewModel by remember { mutableStateOf(HomeViewModel(homeRepository = homeRepository)) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
 
@@ -225,5 +225,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel())
 }
