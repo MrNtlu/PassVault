@@ -24,7 +24,6 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
@@ -44,7 +43,6 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
-    val homeRepository = HomeRepository()
 
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
@@ -83,6 +81,7 @@ fun HomeScreen(
         },
     ) {
         Scaffold(
+            modifier = Modifier.setGradientBackground(),
             floatingActionButton = {
                 if (isParseLoggedIn.value) {
                     val uiState by homeViewModel.passwords
@@ -115,7 +114,6 @@ fun HomeScreen(
             },
             floatingActionButtonPosition = FabPosition.End,
             isFloatingActionButtonDocked = false,
-            modifier = Modifier.setGradientBackground(),
             content = {
                 if (isParseLoggedIn.value) {
                     val uiState by homeViewModel.passwords

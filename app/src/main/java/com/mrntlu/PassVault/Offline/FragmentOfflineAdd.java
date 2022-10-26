@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mrntlu.PassVault.MainActivityOld;
-import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
+import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModelOld;
 import com.mrntlu.PassVault.R;
 
 public class FragmentOfflineAdd extends Fragment {
@@ -28,7 +28,7 @@ public class FragmentOfflineAdd extends Fragment {
     private EditText editText,editText2,editText3;
     private Button saveButton;
     private FragmentTransaction fragmentTransaction;
-    private OfflineViewModel offlineViewModel;
+    private OfflineViewModelOld offlineViewModelOld;
 
     public static FragmentOfflineAdd newInstance(int objectID){
          FragmentOfflineAdd fragment=new FragmentOfflineAdd();
@@ -44,7 +44,7 @@ public class FragmentOfflineAdd extends Fragment {
         editText2=v.findViewById(R.id.editText2);
         editText3=v.findViewById(R.id.editText3);
         saveButton=v.findViewById(R.id.saveButton);
-        offlineViewModel = ViewModelProviders.of(this).get(OfflineViewModel.class);
+        offlineViewModelOld = ViewModelProviders.of(this).get(OfflineViewModelOld.class);
         return v;
     }
 
@@ -66,15 +66,15 @@ public class FragmentOfflineAdd extends Fragment {
     }
 
     private void addRealmObject(){
-        if (offlineViewModel!=null) {
+        if (offlineViewModelOld !=null) {
             if (!(editText.getText().toString().trim().equals("") || editText2.getText().toString().trim().equals(""))) {
                 switch (objectID) {
                     case 0:
-                        offlineViewModel.addMailObject(editText.getText().toString(), editText2.getText().toString());
+                        offlineViewModelOld.addMailObject(editText.getText().toString(), editText2.getText().toString());
                         break;
                     case 1:
                         if (!editText3.getText().toString().trim().equals("")) {
-                            offlineViewModel.addUserObject(editText.getText().toString(), editText2.getText().toString(), editText3.getText().toString());
+                            offlineViewModelOld.addUserObject(editText.getText().toString(), editText2.getText().toString(), editText3.getText().toString());
                         }else{
                             if (getContext()!=null)
                                 Toasty.error(getContext(),"Please don't leave anything empty!",Toast.LENGTH_SHORT).show();
@@ -82,7 +82,7 @@ public class FragmentOfflineAdd extends Fragment {
                         }
                         break;
                     case 2:
-                        offlineViewModel.addOtherObject(editText.getText().toString(), editText2.getText().toString());
+                        offlineViewModelOld.addOtherObject(editText.getText().toString(), editText2.getText().toString());
                         break;
                 }
                 startTransaction(FragmentOffline.newInstance());

@@ -4,23 +4,20 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mrntlu.PassVault.Common.BaseAdapter;
 import com.mrntlu.PassVault.Offline.Adapters.UserAccountsRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.AccountsObject;
-import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
+import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModelOld;
 import com.mrntlu.PassVault.R;
 import java.util.ArrayList;
 
@@ -30,7 +27,7 @@ public class FragmentUserAccounts extends Fragment {
     private RecyclerView recyclerView;
     private UserAccountsRVAdapter userAccountsRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<>();
-    private OfflineViewModel mViewModel;
+    private OfflineViewModelOld mViewModel;
     private FloatingActionButton fab;
     private Realm realm;
     private RealmResults<AccountsObject> userObjects;
@@ -59,7 +56,7 @@ public class FragmentUserAccounts extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         initRecyclerView();
 
-        mViewModel= ViewModelProviders.of(this).get(OfflineViewModel.class);
+        mViewModel= ViewModelProviders.of(this).get(OfflineViewModelOld.class);
         mViewModel.initAccountObjects(realm);
         mViewModel.getmUserObjects().observe(getViewLifecycleOwner(), accountsObjects -> {
             userObjects=accountsObjects;

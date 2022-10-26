@@ -14,10 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mrntlu.PassVault.Common.BaseAdapter;
 import com.mrntlu.PassVault.Offline.Adapters.OthersRVAdapter;
 import com.mrntlu.PassVault.Offline.Models.OthersObject;
-import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModel;
+import com.mrntlu.PassVault.Offline.Viewmodels.OfflineViewModelOld;
 import com.mrntlu.PassVault.R;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class FragmentOtherAccounts extends Fragment {
     private RecyclerView recyclerView;
     private OthersRVAdapter othersRVAdapter;
     private ArrayList<Boolean> passBool=new ArrayList<>();
-    private OfflineViewModel mViewModel;
+    private OfflineViewModelOld mViewModel;
     private FloatingActionButton fab;
     private Realm realm;
     private RealmResults<OthersObject> otherObjects;
@@ -52,7 +51,7 @@ public class FragmentOtherAccounts extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         initRecyclerView();
 
-        mViewModel=ViewModelProviders.of(this).get(OfflineViewModel.class);
+        mViewModel=ViewModelProviders.of(this).get(OfflineViewModelOld.class);
         mViewModel.initOtherObjects(realm);
         mViewModel.getmOtherObjects().observe(getViewLifecycleOwner(), othersObjects -> {
             this.otherObjects=othersObjects;

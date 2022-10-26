@@ -11,6 +11,7 @@ import com.mrntlu.PassVault.ui.views.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 
 @Composable
 fun NavigationComposable(
@@ -18,7 +19,8 @@ fun NavigationComposable(
     padding: PaddingValues,
     firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel,
-    homeViewmodel: HomeViewModel,
+    homeVM: HomeViewModel,
+    offlineVM: OfflineViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
@@ -26,7 +28,7 @@ fun NavigationComposable(
                 navController = navController,
                 parseVM = parseVM,
                 firebaseVM = firebaseVM,
-                homeViewModel = homeViewmodel,
+                homeViewModel = homeVM,
             )
         }
 
@@ -47,7 +49,9 @@ fun NavigationComposable(
         }
 
         composable("offline") {
-            OfflineScreen()
+            OfflineScreen(
+                offlineViewModel = offlineVM
+            )
         }
 
         composable("settings") {

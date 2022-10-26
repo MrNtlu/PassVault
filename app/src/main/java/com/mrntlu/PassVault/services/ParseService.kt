@@ -10,5 +10,4 @@ interface ParseService {
     fun editPassword(parseObject: ParseObject, title: String, username: String, password: String, note: String?): Flow<Response<ParseObject>>
     fun addPassword(title: String, username: String, password: String, note: String?): Flow<Response<ParseObject>>
     fun getPasswords(): Flow<Response<ArrayList<ParseObject>>>
-    fun searchPasswords(): Flow<Response<List<ParseObject>>>
 }

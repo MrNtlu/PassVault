@@ -133,8 +133,4 @@ class HomeRepository(): ParseService {
             query.cancel()
         }
     }
-
-    override fun searchPasswords(): Flow<Response<List<ParseObject>>> {
-        TODO("Not yet implemented")
-    }
 }

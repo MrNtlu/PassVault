@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mrntlu.PassVault.repositories.HomeRepository
+import com.mrntlu.PassVault.repositories.OfflineRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +24,7 @@ class HiltModule {
 
     @Provides
     fun provideHomeRepository(): HomeRepository = HomeRepository()
+
+    @Provides
+    fun provideOfflineRepository(): OfflineRepository = OfflineRepository()
 }

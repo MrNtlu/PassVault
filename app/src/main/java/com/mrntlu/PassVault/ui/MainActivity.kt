@@ -28,6 +28,7 @@ import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -81,6 +82,7 @@ fun MainScreen(
     val firebaseVM = hiltViewModel<FirebaseAuthViewModel>()
     val parseVM = hiltViewModel<ParseAuthViewModel>()
     val homeScreenVM = hiltViewModel<HomeViewModel>()
+    val offlineVM = hiltViewModel<OfflineViewModel>()
 
     val bottomBarItems = listOf(
         BottomNavItem(
@@ -101,6 +103,7 @@ fun MainScreen(
     )
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
     val isCurrentScreenHome = navController.currentBackStackEntry?.destination?.route == "home"
+    val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "home"
     val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
 
     val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
@@ -159,7 +162,8 @@ fun MainScreen(
             padding = it,
             firebaseVM = firebaseVM,
             parseVM = parseVM,
-            homeViewmodel = homeScreenVM,
+            homeVM = homeScreenVM,
+            offlineVM = offlineVM
         )
 
         if (showDialog) {
