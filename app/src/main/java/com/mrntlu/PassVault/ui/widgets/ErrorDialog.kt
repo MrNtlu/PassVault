@@ -4,7 +4,9 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.mrntlu.PassVault.R
 
 @Composable
 fun ErrorDialog(
@@ -14,7 +16,7 @@ fun ErrorDialog(
     AlertDialog(
         onDismissRequest = onDismissClicked,
         title = {
-            Text(text = "Error")
+            Text(text = stringResource(R.string.error))
         },
         text = {
             Text(error)
@@ -22,7 +24,7 @@ fun ErrorDialog(
         confirmButton = {},
         dismissButton = {
             Button(onClick = onDismissClicked) {
-                Text("OK!")
+                Text(stringResource(R.string.ok_))
             }
         }
     )

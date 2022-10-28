@@ -16,9 +16,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 
 @Composable
@@ -51,7 +53,7 @@ fun SearchAppBar(
             placeholder = {
                 Text(
                     modifier = Modifier.alpha(ContentAlpha.medium),
-                    text = "Search",
+                    text = stringResource(R.string.search),
                     color = Color.White
                 )
             },
@@ -64,7 +66,7 @@ fun SearchAppBar(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Search,
-                        contentDescription = "Search Icon",
+                        contentDescription = stringResource(id = R.string.cd_search),
                         tint = Color.White
                     )
                 }
@@ -82,7 +84,7 @@ fun SearchAppBar(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Close Icon",
+                        contentDescription = stringResource(R.string.cd_close),
                         tint = Color.White
                     )
                 }

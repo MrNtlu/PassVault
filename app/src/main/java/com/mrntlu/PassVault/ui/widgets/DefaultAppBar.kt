@@ -10,10 +10,12 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Logout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 
 @Composable
@@ -23,6 +25,7 @@ fun DefaultAppBar(
     isAuthLoading: Boolean,
     showBottomBar: Boolean,
     isCurrentScreenHome: Boolean,
+    isCurrentScreenOffline: Boolean,
     onSearchClicked: () -> Unit,
     onLogOutClicked: () -> Unit,
 ) {
@@ -31,10 +34,10 @@ fun DefaultAppBar(
             Text(
                 text = when(navController.currentDestination?.route) {
                     "login" -> {
-                        "Login"
+                        stringResource(id = R.string.login)
                     }
                     "register" -> {
-                        "Register"
+                        stringResource(id = R.string.register)
                     }
                     else -> ""
                 },
@@ -46,17 +49,17 @@ fun DefaultAppBar(
                 IconButton(onClick = { navController.navigateUp() }) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = stringResource(R.string.cd_back),
                         tint = Color.White
                     )
                 }
             }
 
-            if (isCurrentScreenHome && isUserLoggedIn) {
+            if (isCurrentScreenOffline || (isCurrentScreenHome && isUserLoggedIn)) {
                 IconButton(onClick = onSearchClicked) {
                     Icon(
                         imageVector = Icons.Filled.Search,
-                        contentDescription = "Search",
+                        contentDescription = stringResource(R.string.cd_search),
                         tint = Color.White
                     )
                 }
@@ -67,9 +70,15 @@ fun DefaultAppBar(
                 IconButton(
                     onClick = onLogOutClicked
                 ){
-                    Icon(imageVector = Icons.Rounded.Logout, contentDescription = "Log out", tint = Color.White)
+                    Icon(
+                        imageVector = Icons.Rounded.Logout,
+                        contentDescription = stringResource(R.string.cd_log_out),
+                        tint = Color.White
+                    )
                 }
             }
+
+            //TODO: Delete all button for offline
         },
         elevation = 8.dp,
         backgroundColor = BlueLogo
@@ -79,5 +88,5 @@ fun DefaultAppBar(
 @Preview
 @Composable
 fun DefaultAppBarPreview() {
-    DefaultAppBar(navController = rememberNavController(), isUserLoggedIn = true, isAuthLoading = false, showBottomBar = true, isCurrentScreenHome = true, onLogOutClicked = {}, onSearchClicked = {})
+    DefaultAppBar(navController = rememberNavController(), isUserLoggedIn = true, isAuthLoading = false, showBottomBar = true, isCurrentScreenHome = true, isCurrentScreenOffline = false, onLogOutClicked = {}, onSearchClicked = {})
 }

@@ -46,6 +46,7 @@ class HomeRepository(): ParseService {
     ): Flow<Response<ParseObject>> = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
 
+        //TODO: Add encrption
         parseObject.apply {
             put("Title", title)
             put("Username", username)
@@ -77,6 +78,7 @@ class HomeRepository(): ParseService {
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 
+        //TODO: Add encrption
         parseObject.apply {
             put("ParseUser", user.username)
             put("Title", title)
@@ -106,6 +108,7 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
+    //TODO: Decrypt the password if encrypted
     override fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
         var response: Response<ArrayList<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")

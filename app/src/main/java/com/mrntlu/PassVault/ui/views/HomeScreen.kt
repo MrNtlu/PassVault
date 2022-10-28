@@ -5,6 +5,7 @@ package com.mrntlu.PassVault.ui.views
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -14,14 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
@@ -72,6 +73,7 @@ fun HomeScreen(
 
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
+        sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
         sheetContent = {
             PasswordBottomSheet(homeVM = homeViewModel, sheetState = sheetState, onEditClicked = {
                 sheetState = SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
@@ -107,7 +109,7 @@ fun HomeScreen(
                             backgroundColor = BlueMidnight,
                             contentColor = Color.White,
                         ) {
-                            Icon(imageVector = Icons.Rounded.Add, contentDescription = "Add")
+                            Icon(imageVector = Icons.Rounded.Add, contentDescription = stringResource(id = R.string.add))
                         }
                     }
                 }
@@ -135,16 +137,16 @@ fun HomeScreen(
                                     .fillMaxSize()
                                     .setGradientBackground(),
                             ) {
-                                AndroidView(
+                                BannerAdView()
+
+                                Text(
                                     modifier = Modifier
-                                        .fillMaxWidth(),
-                                    factory = { context ->
-                                        AdView(context).apply {
-                                            setAdSize(AdSize.BANNER)
-                                            adUnitId = context.getString(R.string.banner_ad_unit_id)
-                                            loadAd(AdRequest.Builder().build())
-                                        }
-                                    }
+                                        .padding(horizontal = 4.dp)
+                                        .padding(top = 3.dp),
+                                    text = stringResource(id = R.string.list_item_info),
+                                    color = Color.White,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Medium,
                                 )
 
                                 val passwords = (homeViewModel.passwords.value as Response.Success).data
@@ -187,7 +189,7 @@ fun HomeScreen(
 
                             if (showDialog) {
                                 AYSDialog(
-                                    text = "Do you want to delete?",
+                                    text = stringResource(R.string.ays_delete),
                                     onConfirmClicked = {
                                         showDialog = false
                                         homeViewModel.deletePassword(deleteIndex)
@@ -196,7 +198,6 @@ fun HomeScreen(
                                 ) {
                                     showDialog = false
                                 }
-
                             }
                         }
 

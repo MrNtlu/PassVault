@@ -6,8 +6,10 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import com.mrntlu.PassVault.R
 
 @Composable
 fun AYSDialog(
@@ -19,7 +21,7 @@ fun AYSDialog(
         onDismissRequest = onDismissClicked,
         title = {
             Text(
-                text = "Are you sure?",
+                text = stringResource(R.string.ays),
                 fontWeight = FontWeight.Medium
             )
         },
@@ -34,7 +36,7 @@ fun AYSDialog(
                     contentColor = Color.White,
                 )
             ) {
-                Text("Yes")
+                Text(stringResource(R.string.yes))
             }
         },
         dismissButton = {
@@ -45,7 +47,7 @@ fun AYSDialog(
                     contentColor = Color.White
                 )
             ) {
-                Text("NO")
+                Text(stringResource(R.string.no))
             }
         }
     )

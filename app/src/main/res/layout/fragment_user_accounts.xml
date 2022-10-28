@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="@string/clicktopassword"
+            android:text="@string/list_item_info"
             android:textColor="@color/white"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"

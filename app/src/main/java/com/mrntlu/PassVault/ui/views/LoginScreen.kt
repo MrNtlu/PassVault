@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.utils.CheckLoggedIn
@@ -38,6 +40,7 @@ fun LoginScreen(
 
     CheckLoggedIn(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
 
+    //TODO: Redesign & add forgot password etc.
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -63,7 +66,7 @@ fun LoginScreen(
                 modifier = Modifier.padding(8.dp),
                 singleLine = true,
                 label = {
-                    Text(text = "Username/Email")
+                    Text(text = stringResource(id = R.string.username_mail))
                 }
             )
 
@@ -73,7 +76,7 @@ fun LoginScreen(
                 modifier = Modifier.padding(8.dp),
                 singleLine = true,
                 label = {
-                    Text(text = "Password")
+                    Text(text = stringResource(id = R.string.password))
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -82,7 +85,10 @@ fun LoginScreen(
                         Icons.Filled.Visibility
                     else Icons.Filled.VisibilityOff
 
-                    val description = if (passwordVisible) "Hide password" else "Show password"
+                    val description = if (passwordVisible)
+                        stringResource(R.string.hide_password)
+                    else
+                        stringResource(R.string.show_password)
 
                     IconButton(onClick = {passwordVisible = !passwordVisible}){
                         Icon(imageVector  = image, description)
@@ -100,7 +106,7 @@ fun LoginScreen(
                     .padding(8.dp)
                     .padding(top = 12.dp),
             ) {
-                Text(text = "Login")
+                Text(text = stringResource(id = R.string.login))
             }
 
             TextButton(
@@ -110,7 +116,7 @@ fun LoginScreen(
                     contentColor = BlueMidnight
                 )
             ) {
-                Text(text = "Don't have an account? Register")
+                Text(text = stringResource(R.string.no_acc_register))
             }
 
             if(isErrorOccured != null) {

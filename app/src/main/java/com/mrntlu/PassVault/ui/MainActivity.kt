@@ -12,6 +12,7 @@ import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -19,6 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.mrntlu.PassVault.AppIntros.SliderIntro
+import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
 import com.mrntlu.PassVault.ui.widgets.*
@@ -86,24 +88,24 @@ fun MainScreen(
 
     val bottomBarItems = listOf(
         BottomNavItem(
-            name ="Online Storage",
+            name = stringResource(R.string.bottom_nav_online),
             route = "home",
             icon = Icons.Rounded.Home
         ),
         BottomNavItem(
-            name ="Offline Storage",
+            name = stringResource(R.string.bottom_nav_offline),
             route = "offline",
             icon = Icons.Rounded.Lock
         ),
         BottomNavItem(
-            name ="Settings",
+            name = stringResource(R.string.bottom_nav_settings),
             route = "settings",
             icon = Icons.Rounded.Settings
         )
     )
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
     val isCurrentScreenHome = navController.currentBackStackEntry?.destination?.route == "home"
-    val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "home"
+    val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "offline"
     val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
 
     val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
@@ -118,16 +120,34 @@ fun MainScreen(
         }
     }
 
+    LaunchedEffect(key1 = isCurrentScreenOffline) {
+        if (!isCurrentScreenOffline && searchWidgetState == SearchWidgetState.OPENED) {
+            searchWidgetState = SearchWidgetState.CLOSED
+            searchTextState = ""
+        }
+    }
+
     Scaffold(
         topBar = {
-            if (isCurrentScreenHome && isUserLoggedIn.value && searchWidgetState == SearchWidgetState.OPENED) {
+            if (
+                (isCurrentScreenOffline && searchWidgetState == SearchWidgetState.OPENED) ||
+                (isCurrentScreenHome && isUserLoggedIn.value && searchWidgetState == SearchWidgetState.OPENED)
+            ) {
                 SearchAppBar(
                     text = searchTextState,
-                    onResetSearch = { homeScreenVM.resetPassword() },
+                    onResetSearch = {
+                        if (isCurrentScreenHome)
+                            homeScreenVM.resetPassword()
+                        else
+                            offlineVM.resetPassword()
+                    },
                     onTextChange = { searchTextState = it },
                     onCloseClicked = { searchWidgetState = SearchWidgetState.CLOSED },
                     onSearchClicked = {
-                        homeScreenVM.searchPassword(it)
+                        if (isCurrentScreenHome)
+                            homeScreenVM.searchPassword(it)
+                        else
+                            offlineVM.searchPassword(it)
                         focusManager.clearFocus(force = true)
                     }
                 )
@@ -138,6 +158,7 @@ fun MainScreen(
                     isUserLoggedIn = isUserLoggedIn.value,
                     showBottomBar = showBottomBar,
                     isCurrentScreenHome = isCurrentScreenHome,
+                    isCurrentScreenOffline = isCurrentScreenOffline,
                     onSearchClicked = { searchWidgetState = SearchWidgetState.OPENED },
                     onLogOutClicked = {
                         showDialog = true
@@ -168,7 +189,7 @@ fun MainScreen(
 
         if (showDialog) {
             AYSDialog(
-                text = "Do you want to log out?",
+                text = stringResource(R.string.ays_logout),
                 onConfirmClicked = {
                     showDialog = false
                     parseVM.parseSignout()
