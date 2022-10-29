@@ -41,6 +41,7 @@ fun RegisterScreen(
     val isErrorOccured = parseVM.isErrorOccured.value
     val isRegistered = parseVM.isRegistered.value
 
+    //TODO: Terms & Conditions & Privacy Policy Checkboxes
     Column(
         modifier = Modifier
             .fillMaxSize()
