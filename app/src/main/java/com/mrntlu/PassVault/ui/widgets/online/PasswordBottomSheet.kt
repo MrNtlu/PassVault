@@ -19,6 +19,7 @@ import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
 import com.mrntlu.PassVault.ui.theme.Yellow700
+import com.mrntlu.PassVault.utils.Cryptography
 import com.mrntlu.PassVault.utils.SheetState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
@@ -28,7 +29,9 @@ import com.mrntlu.PassVault.viewmodels.HomeViewModel
 fun PasswordBottomSheet(
     homeVM: HomeViewModel,
     sheetState: SheetState<PasswordItem>,
+    isSheetVisible: Boolean,
     onEditClicked: () -> Unit,
+    onInfoDialogClicked: () -> Unit,
     onCancel: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
@@ -45,10 +48,18 @@ fun PasswordBottomSheet(
 
     LaunchedEffect(key1 = sheetState) {
         bottomSheetVM.setStateValues(sheetState)
+    }
 
-        titleError = false
-        usernameError = false
-        passwordError = false
+    LaunchedEffect(key1 = isSheetVisible) {
+        if (!isSheetVisible && sheetState is SheetState.AddItem) {
+            focusManager.clearFocus(force = true)
+
+            titleError = false
+            usernameError = false
+            passwordError = false
+
+            bottomSheetVM.resetValues()
+        }
     }
 
     Box(
@@ -91,7 +102,7 @@ fun PasswordBottomSheet(
                 )
 
                 IconButton(
-                    onClick = { /*TODO Open Dialog*/ },
+                    onClick = onInfoDialogClicked,
                 ) {
                     Icon(
                         modifier = Modifier
@@ -104,6 +115,7 @@ fun PasswordBottomSheet(
             }
 
             val textfieldError = stringResource(R.string.textfield_error)
+            val cryptoKey = stringResource(id = R.string.crypto_key)
 
             BottomSheetButtons(
                 confirmBGColor = when (sheetState) {
@@ -154,22 +166,32 @@ fun PasswordBottomSheet(
                                 is SheetState.AddItem -> {
                                     onCancel()
 
+                                    val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+                                        Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                    } else null
+
                                     homeVM.addPassword(
                                         bottomSheetVM.titleState,
                                         bottomSheetVM.usernameState,
-                                        bottomSheetVM.passwordState,
-                                        bottomSheetVM.noteState
+                                        encryptedPassword ?: bottomSheetVM.passwordState,
+                                        bottomSheetVM.noteState,
+                                        bottomSheetVM.isEncrypted
                                     )
                                 }
                                 is SheetState.EditItem -> {
                                     onCancel()
 
+                                    val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+                                        Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                    } else null
+
                                     homeVM.editPassword(
                                         sheetState.position,
                                         bottomSheetVM.titleState,
                                         bottomSheetVM.usernameState,
-                                        bottomSheetVM.passwordState,
-                                        bottomSheetVM.noteState
+                                        encryptedPassword ?: bottomSheetVM.passwordState,
+                                        bottomSheetVM.noteState,
+                                        bottomSheetVM.isEncrypted
                                     )
                                 }
                                 else -> {}
@@ -194,5 +216,5 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, onEditClicked = {}, onCancel = {})
+    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {})
 }

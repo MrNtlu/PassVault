@@ -7,16 +7,23 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
+import com.mrntlu.PassVault.ui.theme.BlueDarkest
 import com.mrntlu.PassVault.ui.theme.DarkWhite
 import com.vansuita.materialabout.builder.AboutBuilder
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    navController: NavController
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,29 +62,50 @@ fun SettingsScreen() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
                 .padding(horizontal = 6.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             TextButton(
-                onClick = { /*TODO Open Terms & Codifitions*/ }
+                onClick = { navController.navigate("policy/${true}") }
             ) {
                 Text(
-                    text = "Terms & Conditions",
+                    text = stringResource(R.string.terms_conditions_),
                     fontSize = 12.sp,
+                    color = BlueDarkest,
+                    fontWeight = FontWeight.Bold,
                 )
             }
 
             TextButton(
-                onClick = { /*TODO Open Privacy Policy*/ }
+                onClick = { navController.navigate("policy/${false}") },
             ) {
                 Text(
-                    text = "Privacy Policy",
+                    text = stringResource(R.string.privacy_policy_),
                     fontSize = 12.sp,
+                    color = BlueDarkest,
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }
+
+        /*Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 4.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            TextButton(
+                onClick = { *//*TODO Implement delete account*//* }
+            ) {
+                Text(
+                    text = "Delete Account",
+                    fontSize = 10.sp,
+                    color = BlueMidnight,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        }*/
     }
 }
 
@@ -86,5 +114,5 @@ fun SettingsScreen() {
 @Preview
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen()
+    SettingsScreen(rememberNavController())
 }

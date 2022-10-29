@@ -33,7 +33,7 @@ fun ParseObject.toPasswordItem() = PasswordItem(
     getString("Title") ?: "",
     getString("Note"),
     getString("Password") ?: "",
-    getBoolean("IsEncrypted")
+    getBoolean("IsEncrypted"),
 )
 
 fun <T> SheetState<T>.getItem(): T? = when(this) {

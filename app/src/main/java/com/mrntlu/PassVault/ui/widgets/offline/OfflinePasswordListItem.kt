@@ -5,13 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Description
 import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -66,7 +64,7 @@ fun OfflinePasswordListItem(
                         ).show()
                     },
                     onTap = {
-                        passwordVisiblityState = !passwordVisiblityState
+                        onDescriptionClicked(index)
                     }
                 )
             },
@@ -149,21 +147,18 @@ fun OfflinePasswordListItem(
                     )
                 }
 
-                IconButton(
+                IconToggleButton(
                     modifier = Modifier
-                        .padding(top = 12.dp)
+                        .padding(top = 3.dp)
                         .size(20.dp),
-                    onClick = {
-                        onDescriptionClicked(index)
-                    }
+                    checked = passwordVisiblityState,
+                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.Description,
-                        contentDescription = stringResource(R.string.cd_description_menu),
-                        tint = Color.Black,
+                        imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
+                        contentDescription = stringResource(id = R.string.cd_password)
                     )
                 }
-
             }
         }
     }

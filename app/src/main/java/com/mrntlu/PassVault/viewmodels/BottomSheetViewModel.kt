@@ -25,4 +25,12 @@ class BottomSheetViewModel: ViewModel() {
             isEncrypted = if (it?.isEncrypted != null) it.isEncrypted!! else false
         }
     }
+
+    fun resetValues() {
+        titleState = ""
+        usernameState = ""
+        passwordState = ""
+        noteState = ""
+        isEncrypted = false
+    }
 }

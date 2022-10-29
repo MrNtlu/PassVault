@@ -9,7 +9,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class HomeRepository(): ParseService {
+class HomeRepository : ParseService {
 
     private lateinit var user: ParseUser
 
@@ -41,17 +41,18 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
+    //TODO: Check update, if field same don't update.
     override fun editPassword(
-        parseObject: ParseObject, title: String, username: String, password: String, note: String?
+        parseObject: ParseObject, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
     ): Flow<Response<ParseObject>> = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
 
-        //TODO: Add encrption
         parseObject.apply {
             put("Title", title)
             put("Username", username)
             put("Password", password)
             put("Note", note ?: "")
+            put("IsEncrypted", isEncrypted)
         }
 
         try {
@@ -74,11 +75,10 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
-    override fun addPassword(title: String, username: String, password: String, note: String?) = callbackFlow {
+    override fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 
-        //TODO: Add encrption
         parseObject.apply {
             put("ParseUser", user.username)
             put("Title", title)
@@ -86,6 +86,7 @@ class HomeRepository(): ParseService {
             put("Password", password)
             if (note != null)
                 put("Note", note)
+            put("IsEncrypted", isEncrypted)
         }
 
         try {
@@ -108,7 +109,6 @@ class HomeRepository(): ParseService {
         awaitClose()
     }
 
-    //TODO: Decrypt the password if encrypted
     override fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
         var response: Response<ArrayList<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")

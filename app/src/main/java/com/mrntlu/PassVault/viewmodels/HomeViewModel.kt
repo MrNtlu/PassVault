@@ -81,14 +81,14 @@ class HomeViewModel @Inject constructor(
     }
 
     fun editPassword(
-        position: Int, title: String, username: String, password: String, note: String?
+        position: Int, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
     ) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
             val parseObject = passwordList?.get(position)
 
             parseObject?.let {
-                homeRepository.editPassword(it, title, username, password, note).collect { response ->
+                homeRepository.editPassword(it, title, username, password, note, isEncrypted).collect { response ->
                     when(response) {
                         is Response.Loading -> _passwords.value = response
                         is Response.Failure -> _passwords.value = response
@@ -106,11 +106,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun addPassword(title: String, username: String, password: String, note: String?) {
+    fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
 
-            homeRepository.addPassword(title, username, password, note).collect {
+            homeRepository.addPassword(title, username, password, note, isEncrypted).collect {
                 when(it) {
                     is Response.Loading -> _passwords.value = it
                     is Response.Failure -> _passwords.value = it

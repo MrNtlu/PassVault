@@ -5,13 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Description
 import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +29,7 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
+import com.mrntlu.PassVault.utils.Cryptography
 import kotlin.math.min
 
 @Composable
@@ -68,7 +67,7 @@ fun OnlinePasswordListItem(
                             .show()
                     },
                     onTap = {
-                        passwordVisiblityState = !passwordVisiblityState
+                        onItemClicked(index)
                     }
                 )
             },
@@ -115,11 +114,17 @@ fun OnlinePasswordListItem(
                     overflow = TextOverflow.Ellipsis,
                 )
 
+                val encryptedPassword = if (password.isEncrypted == true) {
+                    Cryptography(stringResource(id = R.string.crypto_key)).decrypt(password.password)
+                } else {
+                    password.password
+                }
+
                 Text(
-                    text = if (passwordVisiblityState)
-                        password.password
-                    else
-                        "•".repeat(min(password.password.length, 12)),
+                    text = if (passwordVisiblityState) {
+                        encryptedPassword
+                    } else
+                        "•".repeat(min(encryptedPassword.length, 12)),
                     color = Color.Black,
                     fontSize = 16.sp,
                     maxLines = 1,
@@ -158,17 +163,16 @@ fun OnlinePasswordListItem(
                     )
                 }
 
-                IconButton(
+                IconToggleButton(
                     modifier = Modifier
+                        .padding(3.dp)
                         .size(20.dp),
-                    onClick = {
-                        onItemClicked(index)
-                    }
+                    checked = passwordVisiblityState,
+                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.Description,
-                        contentDescription = stringResource(id = R.string.cd_description_menu),
-                        tint = Color.Black,
+                        imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
+                        contentDescription = stringResource(id = R.string.cd_password)
                     )
                 }
             }

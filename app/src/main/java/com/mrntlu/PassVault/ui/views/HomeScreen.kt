@@ -45,6 +45,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
 
+    var showInfoDialog by remember { mutableStateOf(false) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
 
@@ -66,20 +67,23 @@ fun HomeScreen(
             modalSheetState.animateTo(ModalBottomSheetValue.Hidden)
     }
 
-    LaunchedEffect(key1 = modalSheetState.isVisible) {
-        if (!modalSheetState.isVisible)
-            focusManager.clearFocus(force = true)
-    }
-
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
         sheetContent = {
-            PasswordBottomSheet(homeVM = homeViewModel, sheetState = sheetState, onEditClicked = {
-                sheetState = SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
-            }) {
-                coroutineScope.launch { modalSheetState.hide() }
-            }
+            PasswordBottomSheet(
+                homeVM = homeViewModel,
+                sheetState = sheetState,
+                isSheetVisible = modalSheetState.isVisible,
+                onEditClicked = {
+                    sheetState =
+                        SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
+                },
+                onInfoDialogClicked = { showInfoDialog = true },
+                onCancel = {
+                    coroutineScope.launch { modalSheetState.hide() }
+                }
+            )
         },
     ) {
         Scaffold(
@@ -198,6 +202,35 @@ fun HomeScreen(
                                 ) {
                                     showDialog = false
                                 }
+                            }
+
+                            if (showInfoDialog) {
+                                AlertDialog(
+                                    onDismissRequest = { showInfoDialog = false },
+                                    title = {
+                                        Text(
+                                            text = stringResource(R.string.cd_what_encryption),
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 16.sp,
+                                            color = Color.Black
+                                        )
+                                    },
+                                    text = {
+                                        Text(
+                                            text = stringResource(id = R.string.encryption_explanation),
+                                            fontSize = 14.sp,
+                                            color = Color.Black
+                                        )
+                                    },
+                                    confirmButton = {},
+                                    dismissButton = {
+                                        Button(
+                                            onClick = { showInfoDialog = false },
+                                        ) {
+                                            Text(stringResource(R.string.ok))
+                                        }
+                                    }
+                                )
                             }
                         }
 

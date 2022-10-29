@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.mrntlu.PassVault.ui.views.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
@@ -55,7 +57,20 @@ fun NavigationComposable(
         }
 
         composable("settings") {
-            SettingsScreen()
+            SettingsScreen(
+                navController = navController
+            )
+        }
+
+        composable(
+            route = "policy/{isTerm}",
+            arguments = listOf(
+                navArgument("isTerm") {
+                    NavType.BoolType
+                }
+            )
+        ) {
+            PolicyScreen(it.arguments?.getString("isTerm")?.toBoolean() ?: false)
         }
     }
 }

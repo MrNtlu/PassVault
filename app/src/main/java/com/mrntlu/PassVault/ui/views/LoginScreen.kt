@@ -41,6 +41,22 @@ fun LoginScreen(
     CheckLoggedIn(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
 
     //TODO: Redesign & add forgot password etc.
+    /*
+    if (!emailSend.getText().toString().trim().equals("") && emailSend.getText().toString().contains("@")){
+        ParseUser.requestPasswordResetInBackground(emailSend.getText().toString(), e -> {
+            if (e==null){
+                Toasty.info(view1.getContext(),"Email sent to "+emailSend.getText().toString(),Toast.LENGTH_SHORT).show();
+            }else {
+                if (e.getMessage()!=null)
+                    Toasty.error(view1.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            dialog.dismiss();
+        });
+    }else{
+        Toasty.error(view1.getContext(),"Invalid mail.",Toast.LENGTH_SHORT).show();
+    }
+    */
     Column(
         modifier = Modifier
             .fillMaxSize()

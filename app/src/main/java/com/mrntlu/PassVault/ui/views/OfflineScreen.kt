@@ -61,11 +61,6 @@ fun OfflineScreen(
         coroutineScope.launch { modalSheetState.hide() }
     }
 
-    LaunchedEffect(key1 = modalSheetState.isVisible) {
-        if (!modalSheetState.isVisible)
-            focusManager.clearFocus(force = true)
-    }
-
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
@@ -73,12 +68,14 @@ fun OfflineScreen(
             OfflinePasswordBottomSheet(
                 offlineVM = offlineViewModel,
                 sheetState = sheetState,
+                isSheetVisible = modalSheetState.isVisible,
                 onEditClicked = {
                     sheetState = SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
+                },
+                onCancel = {
+                    coroutineScope.launch { modalSheetState.hide() }
                 }
-            ) {
-                coroutineScope.launch { modalSheetState.hide() }
-            }
+            )
         }
     ) {
         Scaffold(

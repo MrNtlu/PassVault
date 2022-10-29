@@ -21,4 +21,10 @@ class OfflineBottomSheetViewModel: ViewModel() {
             descriptionState = it?.description ?: ""
         }
     }
+
+    fun resetValues() {
+        idMailState = ""
+        passwordState = ""
+        descriptionState = ""
+    }
 }

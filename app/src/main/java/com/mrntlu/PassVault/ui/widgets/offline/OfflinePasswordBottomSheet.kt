@@ -22,6 +22,7 @@ import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 fun OfflinePasswordBottomSheet(
     offlineVM: OfflineViewModel,
     sheetState: SheetState<OfflinePassword>,
+    isSheetVisible: Boolean,
     onEditClicked: () -> Unit,
     onCancel: () -> Unit,
 ) {
@@ -36,9 +37,17 @@ fun OfflinePasswordBottomSheet(
 
     LaunchedEffect(key1 = sheetState) {
         offlineBottomSheetVM.setStateValues(sheetState)
+    }
 
-        idMailError = false
-        passwordError = false
+    LaunchedEffect(key1 = isSheetVisible) {
+        if (!isSheetVisible && sheetState is SheetState.AddItem) {
+            focusManager.clearFocus(force = true)
+
+            idMailError = false
+            passwordError = false
+
+            offlineBottomSheetVM.resetValues()
+        }
     }
 
     Box(
@@ -141,6 +150,6 @@ fun OfflinePasswordBottomSheet(
 @Composable
 fun OfflinePasswordBottomSheetPreview() {
     OfflinePasswordBottomSheet(
-        viewModel(), SheetState.AddItem, {}, {}
+        viewModel(), SheetState.AddItem, true, {}, {}
     )
 }
