@@ -136,7 +136,6 @@ fun OfflinePasswordListItem(
                         tint = Color.Black,
                     )
 
-                    //TODO: Move to online button
                     OfflineItemDropdownMenu(
                         index = index,
                         expanded = expanded,

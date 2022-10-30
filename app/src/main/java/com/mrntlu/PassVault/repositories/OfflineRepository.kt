@@ -28,6 +28,7 @@ class OfflineRepository {
         realm = Realm.open(config)
     }
 
+    //TODO: Test on real device
     suspend fun startMigration() {
         val migrationList = arrayListOf<OfflinePassword>()
 

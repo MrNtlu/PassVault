@@ -77,8 +77,6 @@ fun DefaultAppBar(
                     )
                 }
             }
-
-            //TODO: Delete all button for offline
         },
         elevation = 8.dp,
         backgroundColor = BlueLogo
