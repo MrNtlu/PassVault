@@ -3,6 +3,7 @@ package com.mrntlu.PassVault.utils
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.util.Patterns
 import androidx.compose.foundation.background
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -11,6 +12,10 @@ import com.mrntlu.PassVault.ui.theme.BlueDark
 import com.mrntlu.PassVault.ui.theme.BlueDarkest
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.parse.ParseObject
+
+fun String.isValidEmail(): Boolean {
+    return trim().isNotBlank() && trim().isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
 
 fun Modifier.setGradientBackground(): Modifier = background(
     brush = Brush.verticalGradient(

@@ -34,6 +34,19 @@ class ParseAuthViewModel @Inject constructor(): ViewModel(), ParseAuthService {
         }
     }
 
+    override fun parseForgotPassword(email: String, onSuccess: () -> Unit) {
+        isLoading.value = true
+
+        ParseUser.requestPasswordResetInBackground(email) { error ->
+            if (error == null) {
+                isLoading.value = false
+                onSuccess()
+            } else {
+                handleException(error)
+            }
+        }
+    }
+
     override fun parseRegister(userRegister: UserRegister) {
         userRegister.apply {
             if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {

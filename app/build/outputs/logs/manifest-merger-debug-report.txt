@@ -23,6 +23,8 @@ MERGED from [androidx.appcompat:appcompat-resources:1.5.1] C:\Users\mrntl\.gradl
 MERGED from [androidx.preference:preference-ktx:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\dd56019db5f2070263d0e62cc95ff62d\transformed\jetified-preference-ktx-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.preference:preference:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\6545e56fec2ef9252f9a0a57920ca696\transformed\preference-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.ItsCalebJones:IconHandler:v2.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\304a7ab196afcd851ae00f3e553598b5\transformed\jetified-IconHandler-v2.0.0\AndroidManifest.xml:2:1-17:12
+MERGED from [com.airbnb.android:lottie-compose:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\ba17701d43245e907bbe974a5c39ce60\transformed\jetified-lottie-compose-5.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\0632d34860dda0e2a5e2a091270c88c1\transformed\jetified-lottie-5.2.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\a201002d1e3e131c522a79c14d2c662c\transformed\appcompat-1.5.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\ad974ed4dcc85c7bafebded5ae177913\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\0f74e91b6a7a9d474c16ebff7a45a3ff\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -256,6 +258,8 @@ MERGED from [com.github.paolorotolo:appintro:v5.1.0] C:\Users\mrntl\.gradle\cach
 MERGED from [com.github.paolorotolo:appintro:v5.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\d6fd4cfd39170f3fd3f3113047d14283\transformed\jetified-appintro-v5.1.0\AndroidManifest.xml:11:5-20
 MERGED from [com.github.ItsCalebJones:IconHandler:v2.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\304a7ab196afcd851ae00f3e553598b5\transformed\jetified-IconHandler-v2.0.0\AndroidManifest.xml:11:5-15:19
 MERGED from [com.github.ItsCalebJones:IconHandler:v2.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\304a7ab196afcd851ae00f3e553598b5\transformed\jetified-IconHandler-v2.0.0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\0632d34860dda0e2a5e2a091270c88c1\transformed\jetified-lottie-5.2.0\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\0632d34860dda0e2a5e2a091270c88c1\transformed\jetified-lottie-5.2.0\AndroidManifest.xml:9:5-20
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] C:\Users\mrntl\.gradle\caches\transforms-3\a2cd18d73cc1f9dad24ca1410614802d\transformed\jetified-parse-1.18.5\AndroidManifest.xml:22:5-20
 MERGED from [com.github.parse-community.Parse-SDK-Android:parse:1.18.5] C:\Users\mrntl\.gradle\caches\transforms-3\a2cd18d73cc1f9dad24ca1410614802d\transformed\jetified-parse-1.18.5\AndroidManifest.xml:22:5-20
 MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\feaef44ca177c1fcf71c725d547110e9\transformed\jetified-circleimageview-2.2.0\AndroidManifest.xml:9:5-20
@@ -468,6 +472,10 @@ MERGED from [androidx.preference:preference:1.2.0] C:\Users\mrntl\.gradle\caches
 MERGED from [androidx.preference:preference:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\6545e56fec2ef9252f9a0a57920ca696\transformed\preference-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.github.ItsCalebJones:IconHandler:v2.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\304a7ab196afcd851ae00f3e553598b5\transformed\jetified-IconHandler-v2.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.ItsCalebJones:IconHandler:v2.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\304a7ab196afcd851ae00f3e553598b5\transformed\jetified-IconHandler-v2.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.airbnb.android:lottie-compose:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\ba17701d43245e907bbe974a5c39ce60\transformed\jetified-lottie-compose-5.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie-compose:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\ba17701d43245e907bbe974a5c39ce60\transformed\jetified-lottie-compose-5.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\0632d34860dda0e2a5e2a091270c88c1\transformed\jetified-lottie-5.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\0632d34860dda0e2a5e2a091270c88c1\transformed\jetified-lottie-5.2.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\a201002d1e3e131c522a79c14d2c662c\transformed\appcompat-1.5.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\a201002d1e3e131c522a79c14d2c662c\transformed\appcompat-1.5.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\ad974ed4dcc85c7bafebded5ae177913\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44

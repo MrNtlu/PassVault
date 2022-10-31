@@ -7,4 +7,5 @@ interface ParseAuthService {
     fun parseLogin(username: String, password: String)
     fun parseRegister(userRegister: UserRegister)
     fun parseSignout()
+    fun parseForgotPassword(email: String, onSuccess: () -> Unit)
 }

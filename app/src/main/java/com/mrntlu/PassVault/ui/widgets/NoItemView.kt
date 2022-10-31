@@ -23,6 +23,7 @@ fun NoItemView(
     icon: ImageVector = Icons.Rounded.NoAccounts,
     text: String = stringResource(R.string.no_item_text)
 ) {
+    //TODO Use lottie animation instead of icon
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,

@@ -118,6 +118,10 @@ dependencies {
     def realm_version = "1.4.0"
     implementation "io.realm.kotlin:library-base:$realm_version"
 
+    //Lottie
+    def lottie_version = "5.2.0"
+    implementation "com.airbnb.android:lottie-compose:$lottie_version"
+
     implementation 'com.github.paolorotolo:appintro:v5.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

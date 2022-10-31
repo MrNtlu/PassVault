@@ -2,6 +2,7 @@ package com.mrntlu.PassVault.ui.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -9,23 +10,26 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.*
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.UserRegister
-import com.mrntlu.PassVault.ui.theme.BlueMidnight
+import com.mrntlu.PassVault.ui.theme.BlueDarkest
+import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.utils.navigateByPop
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
@@ -41,56 +45,68 @@ fun RegisterScreen(
     val isErrorOccured = parseVM.isErrorOccured.value
     val isRegistered = parseVM.isRegistered.value
 
-    //TODO: Terms & Conditions & Privacy Policy Checkboxes
+    val usernameState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue()) }
+    val emailState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue()) }
+    val passwordState = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue()) }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var privacyPolicy by rememberSaveable { mutableStateOf(false) }
+    var termsConditions by rememberSaveable { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(top = 32.dp),
+            .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
-        val usernameState = remember { mutableStateOf(TextFieldValue()) }
-        val emailState = remember { mutableStateOf(TextFieldValue()) }
-        val passwordState = remember { mutableStateOf(TextFieldValue()) }
-        var passwordVisible by remember { mutableStateOf(false) }
-
         Column(
-            modifier = Modifier.width(IntrinsicSize.Max),
+            modifier = Modifier
+                .padding(horizontal = 48.dp)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth(),
                 value = usernameState.value,
                 onValueChange = { usernameState.value = it },
-                modifier = Modifier.padding(8.dp),
                 singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Text),
+                keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
                 label = {
                     Text(text = stringResource(R.string.username))
                 }
             )
 
             OutlinedTextField(
+                modifier = Modifier
+                    .padding(top = 3.dp)
+                    .fillMaxWidth(),
                 value = emailState.value,
                 onValueChange = { emailState.value = it },
-                modifier = Modifier.padding(8.dp),
                 singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Email),
+                keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
                 label = {
                     Text(text = stringResource(R.string.email))
                 }
             )
 
             OutlinedTextField(
+                modifier = Modifier
+                    .padding(top = 3.dp)
+                    .fillMaxWidth(),
                 value = passwordState.value,
                 onValueChange = { passwordState.value = it },
-                modifier = Modifier.padding(8.dp),
                 singleLine = true,
                 label = {
                     Text(text = stringResource(id = R.string.password))
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                 trailingIcon = {
                     val image = if (passwordVisible)
                         Icons.Filled.Visibility
@@ -107,7 +123,75 @@ fun RegisterScreen(
                 }
             )
 
+            Row(
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = termsConditions,
+                    onCheckedChange = { termsConditions = it },
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = BlueDarkest
+                    )
+                )
+
+                TextButton(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = { navController.navigate("policy/${true}") },
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        text = stringResource(R.string.terms_conditions_),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = BlueDarkest,
+                    )
+                }
+            }
+
+            Row(
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = privacyPolicy,
+                    onCheckedChange = { privacyPolicy = it },
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = BlueDarkest
+                    )
+                )
+
+                TextButton(
+                    modifier = Modifier
+                        .weight(1f),
+                    onClick = { navController.navigate("policy/${false}") },
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        text = stringResource(R.string.privacy_policy_),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = BlueDarkest,
+                    )
+                }
+            }
+
+            //TODO Should check if terms & policy checkbox checked
             Button(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth(),
                 onClick = {
                     focusManager.clearFocus(force = true)
                     parseVM.parseRegister(
@@ -118,19 +202,21 @@ fun RegisterScreen(
                         )
                     )
                 },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .padding(top = 12.dp),
             ) {
-                Text(text = stringResource(id = R.string.register))
+                Text(
+                    text = stringResource(id = R.string.register),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                )
             }
 
+            //TODO Should pop back to login screen.
             TextButton(
                 onClick = { navigateByPop(navController, "login") },
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.Transparent,
-                    contentColor = BlueMidnight
+                    contentColor = BlueLogo
                 )
             ) {
                 Text(text = stringResource(R.string.have_acc_login))

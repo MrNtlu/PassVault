@@ -10,11 +10,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +41,6 @@ fun HomeScreen(
     homeViewModel: HomeViewModel
 ) {
     val context = LocalContext.current
-    val focusManager = LocalFocusManager.current
 
     var showInfoDialog by remember { mutableStateOf(false) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
@@ -237,17 +234,26 @@ fun HomeScreen(
                         else -> {}
                     }
                 } else {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(text = "You need to login!")
-
-                        Button(onClick = { navController.navigate("login") }) {
-                            Text(text = "Login")
-                        }
-                    }
+                    LoginScreen(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .setGradientBackground(),
+//                        horizontalAlignment = Alignment.CenterHorizontally,
+//                        verticalArrangement = Arrangement.Center
+//                    ) {
+//                        Text(
+//                            text = "You need to login!",
+//                            color = Color.White,
+//                        )
+//
+//                        Button(
+//                            onClick = { navController.navigate("login") },
+//                            colors = ButtonDefaults.buttonColors()
+//                        ) {
+//                            Text(text = "Login")
+//                        }
+//                    }
                 }
             }
         )

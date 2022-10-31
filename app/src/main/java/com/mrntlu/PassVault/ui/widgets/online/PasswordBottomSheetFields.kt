@@ -44,12 +44,12 @@ fun PasswordBottomSheetFields(
     var passwordVisible by remember { mutableStateOf(false) }
 
     OutlinedTextFieldWithErrorView(
-        value = bottomSheetVM.titleState,
-        onValueChange = { bottomSheetVM.titleState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .padding(vertical = 3.dp)
             .fillMaxWidth(),
+        value = bottomSheetVM.titleState,
+        onValueChange = { bottomSheetVM.titleState = it },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
@@ -63,7 +63,7 @@ fun PasswordBottomSheetFields(
             )
         },
         label = {
-            Text(text = "Title")
+            Text(text = stringResource(id = R.string.title))
         },
         enabled = sheetState.areFieldsEnabled(),
         isError = titleError,
@@ -71,12 +71,12 @@ fun PasswordBottomSheetFields(
     )
 
     OutlinedTextFieldWithErrorView(
-        value = bottomSheetVM.usernameState,
-        onValueChange = { bottomSheetVM.usernameState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .padding(vertical = 3.dp)
             .fillMaxWidth(),
+        value = bottomSheetVM.usernameState,
+        onValueChange = { bottomSheetVM.usernameState = it },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Email),
         keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
@@ -95,12 +95,12 @@ fun PasswordBottomSheetFields(
     )
 
     OutlinedTextFieldWithErrorView(
-        value = bottomSheetVM.passwordState,
-        onValueChange = { bottomSheetVM.passwordState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .padding(vertical = 3.dp)
             .fillMaxWidth(),
+        value = bottomSheetVM.passwordState,
+        onValueChange = { bottomSheetVM.passwordState = it },
         singleLine = true,
         label = {
             Text(text = stringResource(id = R.string.password))
@@ -134,12 +134,12 @@ fun PasswordBottomSheetFields(
     )
 
     OutlinedTextField(
-        value = bottomSheetVM.noteState,
-        onValueChange = { bottomSheetVM.noteState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .padding(vertical = 3.dp)
             .fillMaxWidth(),
+        value = bottomSheetVM.noteState,
+        onValueChange = { bottomSheetVM.noteState = it },
         leadingIcon = {
             Image(
                 painter = painterResource(id = R.drawable.ic_description_black_24dp),
