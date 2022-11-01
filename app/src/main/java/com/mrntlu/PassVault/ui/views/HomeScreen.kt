@@ -110,7 +110,11 @@ fun HomeScreen(
                             backgroundColor = BlueMidnight,
                             contentColor = Color.White,
                         ) {
-                            Icon(imageVector = Icons.Rounded.Add, contentDescription = stringResource(id = R.string.add))
+                            Icon(
+                                modifier = Modifier.size(28.dp),
+                                imageVector = Icons.Rounded.Add,
+                                contentDescription = stringResource(id = R.string.add)
+                            )
                         }
                     }
                 }
@@ -140,19 +144,21 @@ fun HomeScreen(
                             ) {
                                 BannerAdView()
 
-                                Text(
-                                    modifier = Modifier
-                                        .padding(horizontal = 4.dp)
-                                        .padding(top = 3.dp),
-                                    text = stringResource(id = R.string.list_item_info),
-                                    color = Color.White,
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight.Medium,
-                                )
-
                                 val passwords = (homeViewModel.passwords.value as Response.Success).data
 
                                 passwords?.let { list ->
+                                    if (list.isNotEmpty()) {
+                                        Text(
+                                            modifier = Modifier
+                                                .padding(horizontal = 4.dp)
+                                                .padding(top = 3.dp),
+                                            text = stringResource(id = R.string.list_item_info),
+                                            color = Color.White,
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight.Medium,
+                                        )
+                                    }
+
                                     OnlinePasswordList(
                                         passwords = list,
                                         onEditClicked = { index ->
@@ -234,26 +240,11 @@ fun HomeScreen(
                         else -> {}
                     }
                 } else {
-                    LoginScreen(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
-//                    Column(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .setGradientBackground(),
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        verticalArrangement = Arrangement.Center
-//                    ) {
-//                        Text(
-//                            text = "You need to login!",
-//                            color = Color.White,
-//                        )
-//
-//                        Button(
-//                            onClick = { navController.navigate("login") },
-//                            colors = ButtonDefaults.buttonColors()
-//                        ) {
-//                            Text(text = "Login")
-//                        }
-//                    }
+                    LoginScreen(
+                        navController = navController,
+                        firebaseVM = firebaseVM,
+                        parseVM = parseVM,
+                    )
                 }
             }
         )

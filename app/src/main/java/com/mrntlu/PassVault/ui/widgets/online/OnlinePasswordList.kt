@@ -1,6 +1,7 @@
 package com.mrntlu.PassVault.ui.widgets
 
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -17,7 +18,10 @@ fun OnlinePasswordList(
     onDeleteClicked: (Int) -> Unit,
     onItemClicked: (Int) -> Unit,
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+    ) {
         items(
             count = if (passwords.isNotEmpty()) passwords.size + 1 else 1,
         ) { index ->

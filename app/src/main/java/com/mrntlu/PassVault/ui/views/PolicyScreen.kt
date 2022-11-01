@@ -31,6 +31,7 @@ fun PolicyScreen(
 
                 movementMethod = LinkMovementMethod.getInstance()
                 isVerticalScrollBarEnabled = true
+                setTextIsSelectable(true)
             }
         }
     )

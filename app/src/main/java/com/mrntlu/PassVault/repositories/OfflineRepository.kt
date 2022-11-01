@@ -1,9 +1,9 @@
 package com.mrntlu.PassVault.repositories
 
-import com.mrntlu.PassVault.Offline.Models.AccountsObject
-import com.mrntlu.PassVault.Offline.Models.MailObject
-import com.mrntlu.PassVault.Offline.Models.OthersObject
+import com.mrntlu.PassVault.models.AccountsObject
+import com.mrntlu.PassVault.models.MailObject
 import com.mrntlu.PassVault.models.OfflinePassword
+import com.mrntlu.PassVault.models.OthersObject
 import com.mrntlu.PassVault.utils.Constants
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration

@@ -47,9 +47,15 @@ class ParseAuthViewModel @Inject constructor(): ViewModel(), ParseAuthService {
         }
     }
 
-    override fun parseRegister(userRegister: UserRegister) {
+    override fun parseRegister(userRegister: UserRegister, isPolicyChecked: Boolean, isTermsChecked: Boolean) {
         userRegister.apply {
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (!isTermsChecked) {
+                handleException(customMessage = "Please accept the Terms & Conditions.")
+                return
+            } else if (!isPolicyChecked) {
+                handleException(customMessage = "Please accept the Privacy Policy.")
+                return
+            } else if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 handleException(customMessage = "Please don't leave anything empty.")
                 return
             }

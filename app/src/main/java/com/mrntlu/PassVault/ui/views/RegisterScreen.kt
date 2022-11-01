@@ -28,10 +28,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.UserRegister
-import com.mrntlu.PassVault.ui.theme.BlueDarkest
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
-import com.mrntlu.PassVault.utils.navigateByPop
+import com.mrntlu.PassVault.utils.setGradientBackground
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
@@ -55,6 +53,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .setGradientBackground()
             .verticalScroll(rememberScrollState())
             .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,7 +76,10 @@ fun RegisterScreen(
                 keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
                 label = {
                     Text(text = stringResource(R.string.username))
-                }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    backgroundColor = Color.White,
+                ),
             )
 
             OutlinedTextField(
@@ -91,7 +93,10 @@ fun RegisterScreen(
                 keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
                 label = {
                     Text(text = stringResource(R.string.email))
-                }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    backgroundColor = Color.White,
+                ),
             )
 
             OutlinedTextField(
@@ -120,7 +125,10 @@ fun RegisterScreen(
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(imageVector = image, description)
                     }
-                }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    backgroundColor = Color.White,
+                ),
             )
 
             Row(
@@ -134,7 +142,7 @@ fun RegisterScreen(
                     checked = termsConditions,
                     onCheckedChange = { termsConditions = it },
                     colors = CheckboxDefaults.colors(
-                        checkedColor = BlueDarkest
+                        checkedColor = Color.Black
                     )
                 )
 
@@ -150,7 +158,7 @@ fun RegisterScreen(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Start,
-                        color = BlueDarkest,
+                        color = Color.White,
                     )
                 }
             }
@@ -166,7 +174,7 @@ fun RegisterScreen(
                     checked = privacyPolicy,
                     onCheckedChange = { privacyPolicy = it },
                     colors = CheckboxDefaults.colors(
-                        checkedColor = BlueDarkest
+                        checkedColor = Color.Black
                     )
                 )
 
@@ -182,12 +190,11 @@ fun RegisterScreen(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Start,
-                        color = BlueDarkest,
+                        color = Color.White,
                     )
                 }
             }
 
-            //TODO Should check if terms & policy checkbox checked
             Button(
                 modifier = Modifier
                     .padding(top = 16.dp)
@@ -199,7 +206,9 @@ fun RegisterScreen(
                             usernameState.value.text,
                             emailState.value.text,
                             passwordState.value.text
-                        )
+                        ),
+                        isPolicyChecked = privacyPolicy,
+                        isTermsChecked = termsConditions,
                     )
                 },
             ) {
@@ -211,12 +220,11 @@ fun RegisterScreen(
                 )
             }
 
-            //TODO Should pop back to login screen.
             TextButton(
-                onClick = { navigateByPop(navController, "login") },
+                onClick = { navController.popBackStack() },
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.Transparent,
-                    contentColor = BlueLogo
+                    contentColor = Color.White
                 )
             ) {
                 Text(text = stringResource(R.string.have_acc_login))
@@ -235,7 +243,7 @@ fun RegisterScreen(
 
             if (isRegistered) {
                 parseVM.isRegistered.value = false
-                navigateByPop(navController, "login")
+                navController.popBackStack()
             }
         }
     }

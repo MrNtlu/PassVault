@@ -29,11 +29,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.ui.widgets.auth.ForgotPasswordSheet
 import com.mrntlu.PassVault.utils.CheckLoggedIn
+import com.mrntlu.PassVault.utils.setGradientBackground
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import kotlinx.coroutines.launch
@@ -86,6 +86,7 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .setGradientBackground()
                 .verticalScroll(rememberScrollState())
                 .imePadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -156,10 +157,12 @@ fun LoginScreen(
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(imageVector = image, description)
                         }
-                    }
+                    },
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        backgroundColor = Color.White,
+                    ),
                 )
 
-                //TODO Check login function
                 Button(
                     modifier = Modifier
                         .padding(top = 16.dp)
@@ -184,7 +187,7 @@ fun LoginScreen(
                     onClick = { navController.navigate("register") },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent,
-                        contentColor = BlueLogo
+                        contentColor = Color.White
                     )
                 ) {
                     Text(text = stringResource(R.string.no_acc_register))

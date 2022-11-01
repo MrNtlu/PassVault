@@ -13,7 +13,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +36,6 @@ fun OfflineScreen(
     offlineViewModel: OfflineViewModel,
 ) {
     val context = LocalContext.current
-    val focusManager = LocalFocusManager.current
 
     LaunchedEffect(key1 = true) {
         offlineViewModel.getOfflinePasswords()
@@ -103,7 +101,11 @@ fun OfflineScreen(
                     backgroundColor = BlueMidnight,
                     contentColor = Color.White,
                 ) {
-                    Icon(imageVector = Icons.Rounded.Add, contentDescription = stringResource(R.string.cd_add))
+                    Icon(
+                        modifier = Modifier.size(28.dp),
+                        imageVector = Icons.Rounded.Add,
+                        contentDescription = stringResource(R.string.cd_add)
+                    )
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
@@ -116,19 +118,21 @@ fun OfflineScreen(
                 ) {
                     BannerAdView()
 
-                    Text(
-                        modifier = Modifier
-                            .padding(horizontal = 4.dp)
-                            .padding(top = 3.dp),
-                        text = stringResource(id = R.string.list_item_info),
-                        color = Color.White,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                    )
-
                     val passwords by offlineViewModel.password
 
                     passwords?.let { list ->
+                        if (list.isNotEmpty()) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(horizontal = 4.dp)
+                                    .padding(top = 3.dp),
+                                text = stringResource(id = R.string.list_item_info),
+                                color = Color.White,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Medium,
+                            )
+                        }
+
                         OfflinePasswordList(
                             passwords = list,
                             onEditClicked = { index ->

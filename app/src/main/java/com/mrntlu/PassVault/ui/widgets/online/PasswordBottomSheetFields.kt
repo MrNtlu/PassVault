@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
@@ -15,9 +17,12 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -94,11 +99,32 @@ fun PasswordBottomSheetFields(
         errorMsg = usernameErrorMessage
     )
 
-    OutlinedTextFieldWithErrorView(
-        modifier = Modifier
+    val clipboardManager = LocalClipboardManager.current
+    val context = LocalContext.current
+    val modifier = if (sheetState is SheetState.ViewItem) {
+        Modifier
             .padding(horizontal = 8.dp)
             .padding(vertical = 3.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                clipboardManager.setText(AnnotatedString(bottomSheetVM.passwordState))
+                Toast
+                    .makeText(
+                        context,
+                        "${bottomSheetVM.titleState} Coppied",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+    } else {
+        Modifier
+            .padding(horizontal = 8.dp)
+            .padding(vertical = 3.dp)
+            .fillMaxWidth()
+    }
+
+    OutlinedTextFieldWithErrorView(
+        modifier = modifier,
         value = bottomSheetVM.passwordState,
         onValueChange = { bottomSheetVM.passwordState = it },
         singleLine = true,
