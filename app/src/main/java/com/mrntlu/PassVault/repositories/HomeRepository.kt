@@ -113,6 +113,10 @@ class HomeRepository : ParseService {
         var response: Response<ArrayList<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")
 
+        if (!::user.isInitialized && ParseUser.getCurrentUser() != null) {
+            user = ParseUser.getCurrentUser()
+        }
+
         try{
             trySend(response)
 

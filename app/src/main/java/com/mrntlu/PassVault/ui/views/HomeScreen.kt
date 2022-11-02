@@ -237,6 +237,7 @@ fun HomeScreen(
                             }
                         }
 
+                        //TODO Check for no internet case, show no internet view
                         else -> {}
                     }
                 } else {

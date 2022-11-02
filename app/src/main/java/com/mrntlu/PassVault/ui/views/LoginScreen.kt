@@ -14,7 +14,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
@@ -101,9 +100,8 @@ fun LoginScreen(
             ) {
                 LottieAnimation(
                     modifier = Modifier
-                        .padding(bottom = 24.dp)
-                        .scale(1.75f, 1.75f)
-                        .height(125.dp),
+                        .padding(vertical = 6.dp)
+                        .height(185.dp),
                     composition = composition,
                     progress = { progress },
                 )
@@ -202,7 +200,8 @@ fun LoginScreen(
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent,
                         contentColor = Color.Black
-                    )
+                    ),
+                    contentPadding = PaddingValues(3.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.forgot_password_),

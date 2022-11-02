@@ -44,7 +44,7 @@ fun showInterstitial(context: Context) {
 
     if (mInterstitialAd != null && activity != null) {
         //TODO Remove later
-        //mInterstitialAd?.show(activity)
+        mInterstitialAd?.show(activity)
     }
 }
 

@@ -39,10 +39,6 @@ fun SettingsScreen(
                 .weight(1f),
             factory = {
                 AboutBuilder.with(it)
-                    .setPhoto(R.mipmap.profile_picture)
-                    .setCover(R.mipmap.profile_cover)
-                    .setName("MrNtlu")
-                    .setSubTitle("Mobile Developer")
                     .setAppIcon(R.mipmap.ic_launcher_round)
                     .setAppName(R.string.app_name)
                     .addGooglePlayStoreLink("8269784969410642250")

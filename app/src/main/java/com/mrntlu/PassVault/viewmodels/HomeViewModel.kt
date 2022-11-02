@@ -21,10 +21,6 @@ class HomeViewModel @Inject constructor(
     private var _tempPasswords: ArrayList<ParseObject>? = null
     val passwords: State<Response<List<ParseObject>>> = _passwords
 
-    init {
-        getPasswords()
-    }
-
     fun searchPassword(text: String) {
         if (_passwords.value is Response.Success) {
             if (text.isNotEmpty() && text.isNotBlank()) {

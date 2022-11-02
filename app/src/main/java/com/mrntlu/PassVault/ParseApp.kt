@@ -3,7 +3,6 @@ package com.mrntlu.PassVault;
 import android.app.Application
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
-import com.mrntlu.PassVault.utils.Constants.RealmName
 import com.parse.Parse
 import com.parse.ParseACL
 import dagger.hilt.android.HiltAndroidApp
@@ -14,10 +13,6 @@ class ParseApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        io.realm.Realm.init(this)
-        val oldRealmConfig = io.realm.RealmConfiguration.Builder().name(RealmName).build();
-        io.realm.Realm.setDefaultConfiguration(oldRealmConfig)
 
         Parse.enableLocalDatastore(this)
         Parse.initialize(Parse.Configuration.Builder(this)

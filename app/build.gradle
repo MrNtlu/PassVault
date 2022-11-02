@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'realm-android'
     id 'io.realm.kotlin'
     id "dagger.hilt.android.plugin"
 }
@@ -15,7 +14,7 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 25
+        versionCode 27
         versionName "7.0.0"
 
         multiDexEnabled true
