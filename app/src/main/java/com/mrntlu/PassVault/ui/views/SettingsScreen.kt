@@ -50,6 +50,7 @@ fun SettingsScreen(
                     .addMoreFromMeAction("MrNtlu")
                     .addFeedbackAction("mrntlu@gmail.com")
                     .setVersionNameAsAppSubTitle()
+                    .setShowDivider(false)
                     .addShareAction(R.string.app_name)
                     .setWrapScrollView(true)
                     .setLinksAnimated(true)

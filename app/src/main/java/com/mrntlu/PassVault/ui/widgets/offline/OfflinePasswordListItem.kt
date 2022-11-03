@@ -115,14 +115,27 @@ fun OfflinePasswordListItem(
                 )
             }
 
-            Column(
+            Row(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(vertical = 6.dp)
                     .padding(horizontal = 3.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
             ) {
+                IconToggleButton(
+                    modifier = Modifier
+                        .padding(end = 3.dp)
+                        .size(20.dp),
+                    checked = passwordVisiblityState,
+                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
+                ) {
+                    Icon(
+                        imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
+                        contentDescription = stringResource(id = R.string.cd_password)
+                    )
+                }
+
                 IconButton(
                     modifier = Modifier
                         .size(24.dp),
@@ -143,19 +156,14 @@ fun OfflinePasswordListItem(
                         onEditClicked = onEditClicked,
                         onDeleteClicked = onDeleteClicked,
                         onDetailsClicked = onDescriptionClicked,
-                    )
-                }
-
-                IconToggleButton(
-                    modifier = Modifier
-                        .padding(top = 3.dp)
-                        .size(20.dp),
-                    checked = passwordVisiblityState,
-                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
-                ) {
-                    Icon(
-                        imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
-                        contentDescription = stringResource(id = R.string.cd_password)
+                        onCopyClicked = {
+                            clipboardManager.setText(AnnotatedString(password.password))
+                            Toast.makeText(
+                                context,
+                                "${password.idMail} Coppied",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     )
                 }
             }

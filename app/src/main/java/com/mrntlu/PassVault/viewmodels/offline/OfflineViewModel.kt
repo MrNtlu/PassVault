@@ -8,7 +8,6 @@ import com.mrntlu.PassVault.models.OfflinePassword
 import com.mrntlu.PassVault.repositories.OfflineRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.realm.kotlin.query.RealmResults
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,12 +19,6 @@ class OfflineViewModel @Inject constructor(
     private var _passwords = mutableStateOf<RealmResults<OfflinePassword>?>(null)
     private var _tempPasswords: RealmResults<OfflinePassword>? = null
     val password: State<RealmResults<OfflinePassword>?> = _passwords
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.startMigration()
-        }
-    }
 
     fun searchPassword(text: String) {
         _passwords.value?.let {

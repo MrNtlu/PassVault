@@ -24,6 +24,11 @@ fun OnlinePasswordList(
     ) {
         items(
             count = if (passwords.isNotEmpty()) passwords.size + 1 else 1,
+            key = { index ->
+                if (passwords.isNotEmpty() && index < passwords.size) {
+                    passwords[index].objectId
+                } else ""
+            }
         ) { index ->
             if (passwords.isNotEmpty()) {
                 if (index < passwords.size) {
@@ -37,7 +42,7 @@ fun OnlinePasswordList(
                         password = password.toPasswordItem()
                     )
                 } else {
-                    Spacer(modifier = Modifier.height(75.dp)) //To prevent FAB overlap
+                    Spacer(modifier = Modifier.height(80.dp)) //To prevent FAB overlap
                 }
             } else {
                 NoItemView(modifier = Modifier.fillParentMaxSize())

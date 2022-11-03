@@ -5,5 +5,5 @@ data class PasswordItem(
     val title: String,
     val note: String?,
     val password: String,
-    var isEncrypted: Boolean?
+    var isEncrypted: Boolean?,
 )

@@ -3,6 +3,7 @@ package com.mrntlu.PassVault.ui.widgets
 import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
@@ -18,6 +19,7 @@ fun OfflineItemDropdownMenu(
     onEditClicked: (Int) -> Unit,
     onDeleteClicked: (Int) -> Unit,
     onDetailsClicked: (Int) -> Unit,
+    onCopyClicked: () -> Unit,
 ) {
     DropdownMenu(
         expanded = expanded, 
@@ -40,6 +42,14 @@ fun OfflineItemDropdownMenu(
         }
 
         Divider()
+
+        DropdownMenuItem(
+            text = stringResource(R.string.copy_str),
+            icon = Icons.Rounded.ContentCopy
+        ) {
+            onDismissRequest()
+            onCopyClicked()
+        }
 
         DropdownMenuItem(
             text = stringResource(R.string.details),

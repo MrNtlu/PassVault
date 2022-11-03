@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.ui.widgets.offline
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
@@ -15,9 +17,12 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -69,13 +74,34 @@ fun OfflineBottomSheetFields(
         errorMsg = idMailErrorMessage
     )
 
+    val clipboardManager = LocalClipboardManager.current
+    val context = LocalContext.current
+    val modifier = if (sheetState is SheetState.ViewItem) {
+        Modifier
+            .padding(horizontal = 8.dp)
+            .padding(vertical = 3.dp)
+            .fillMaxWidth()
+            .clickable {
+                clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.passwordState))
+                Toast
+                    .makeText(
+                        context,
+                        "${offlineBottomSheetVM.idMailState} Coppied",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+    } else {
+        Modifier
+            .padding(horizontal = 8.dp)
+            .padding(vertical = 3.dp)
+            .fillMaxWidth()
+    }
+
     OutlinedTextFieldWithErrorView(
         value = offlineBottomSheetVM.passwordState,
         onValueChange = { offlineBottomSheetVM.passwordState = it },
-        modifier = Modifier
-            .padding(horizontal = 8.dp)
-            .padding(vertical = 3.dp)
-            .fillMaxWidth(),
+        modifier = modifier,
         singleLine = true,
         label = {
             Text(text = stringResource(id = R.string.password))

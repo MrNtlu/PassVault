@@ -64,6 +64,7 @@ fun HomeScreen(
             modalSheetState.animateTo(ModalBottomSheetValue.Hidden)
     }
 
+    //TODO: Add Category Chip
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
@@ -147,18 +148,6 @@ fun HomeScreen(
                                 val passwords = (homeViewModel.passwords.value as Response.Success).data
 
                                 passwords?.let { list ->
-                                    if (list.isNotEmpty()) {
-                                        Text(
-                                            modifier = Modifier
-                                                .padding(horizontal = 4.dp)
-                                                .padding(top = 3.dp),
-                                            text = stringResource(id = R.string.list_item_info),
-                                            color = Color.White,
-                                            fontSize = 14.sp,
-                                            fontWeight = FontWeight.Medium,
-                                        )
-                                    }
-
                                     OnlinePasswordList(
                                         passwords = list,
                                         onEditClicked = { index ->

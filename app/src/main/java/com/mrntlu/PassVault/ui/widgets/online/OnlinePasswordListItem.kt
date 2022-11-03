@@ -5,11 +5,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.Visibility
-import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,8 +31,6 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.utils.Cryptography
-import kotlin.math.min
 
 @Composable
 fun OnlinePasswordListItem(
@@ -46,9 +46,10 @@ fun OnlinePasswordListItem(
     val color = remember { ColorGenerator.MATERIAL.randomColor }
     val drawable = remember { TextDrawable.builder().buildRound(password.title.trim { it <= ' ' }.substring(0, 1), color) }
 
-    var passwordVisiblityState by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
 
+    //TODO: More customization option
+    //TODO: Search for gmail, dropbox etc. and show icon, image like Kanma
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,7 +79,8 @@ fun OnlinePasswordListItem(
         Row(
             modifier = Modifier
                 .height(IntrinsicSize.Min)
-                .padding(start = 6.dp),
+                .padding(start = 6.dp)
+                .padding(vertical = 3.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -113,33 +115,38 @@ fun OnlinePasswordListItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-
-                val encryptedPassword = if (password.isEncrypted == true) {
-                    Cryptography(stringResource(id = R.string.crypto_key)).decrypt(password.password)
-                } else {
-                    password.password
-                }
-
-                Text(
-                    text = if (passwordVisiblityState) {
-                        encryptedPassword
-                    } else
-                        "•".repeat(min(encryptedPassword.length, 12)),
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
             }
 
-            Column(
+            Row(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(vertical = 6.dp)
                     .padding(horizontal = 3.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
             ) {
+                IconButton(
+                    modifier = Modifier
+                        .padding(end = 3.dp)
+                        .size(20.dp),
+                    onClick = {
+                        clipboardManager.setText(AnnotatedString(password.password))
+                        Toast
+                            .makeText(
+                                context,
+                                "${password.title} Coppied",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.ContentCopy,
+                        contentDescription = stringResource(R.string.cd_copy),
+                        tint = Color.Black,
+                    )
+                }
+
                 IconButton(
                     modifier = Modifier
                         .size(24.dp),
@@ -160,19 +167,6 @@ fun OnlinePasswordListItem(
                         onEditClicked = onEditClicked,
                         onDeleteClicked = onDeleteClicked,
                         onDetailsClicked = onItemClicked,
-                    )
-                }
-
-                IconToggleButton(
-                    modifier = Modifier
-                        .padding(3.dp)
-                        .size(20.dp),
-                    checked = passwordVisiblityState,
-                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
-                ) {
-                    Icon(
-                        imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
-                        contentDescription = stringResource(id = R.string.cd_password)
                     )
                 }
             }
