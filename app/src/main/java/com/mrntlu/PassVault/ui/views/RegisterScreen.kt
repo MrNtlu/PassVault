@@ -28,6 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.UserRegister
+import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.utils.setGradientBackground
 import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
@@ -211,6 +212,9 @@ fun RegisterScreen(
                         isTermsChecked = termsConditions,
                     )
                 },
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Yellow700,
+                ),
             ) {
                 Text(
                     text = stringResource(id = R.string.register),

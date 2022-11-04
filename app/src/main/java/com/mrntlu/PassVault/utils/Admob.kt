@@ -43,7 +43,6 @@ fun showInterstitial(context: Context) {
     val activity = context.findActivity()
 
     if (mInterstitialAd != null && activity != null) {
-        //TODO Remove later
         mInterstitialAd?.show(activity)
     }
 }

@@ -19,6 +19,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.mrntlu.PassVault.AppIntros.SliderIntro
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.BottomNavItem
@@ -37,11 +40,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         showSlider(applicationContext)
+        firebaseAnalytics = Firebase.analytics
 
         setContent {
             PassVaultTheme {

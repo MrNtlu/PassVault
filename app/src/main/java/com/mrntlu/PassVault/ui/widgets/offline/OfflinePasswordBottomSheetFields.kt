@@ -2,21 +2,20 @@ package com.mrntlu.PassVault.ui.widgets.offline
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -44,7 +43,10 @@ fun OfflineBottomSheetFields(
     passwordError: Boolean,
     passwordErrorMessage: String,
 ) {
+    val clipboardManager = LocalClipboardManager.current
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
+
     var passwordVisible by remember { mutableStateOf(false) }
 
     OutlinedTextFieldWithErrorView(
@@ -52,7 +54,6 @@ fun OfflineBottomSheetFields(
         onValueChange = { offlineBottomSheetVM.idMailState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .padding(vertical = 3.dp)
             .fillMaxWidth(),
         singleLine = true,
         keyboardOptions = KeyboardOptions(
@@ -66,42 +67,46 @@ fun OfflineBottomSheetFields(
                 contentDescription = stringResource(R.string.cd_mail_username)
             )
         },
+        trailingIcon = {
+            if (sheetState is SheetState.ViewItem) {
+                IconButton(
+                    onClick = {
+                        clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.idMailState))
+                        Toast
+                            .makeText(
+                                context,
+                                "${offlineBottomSheetVM.idMailState} Coppied",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.ContentCopy,
+                        contentDescription = stringResource(id = R.string.cd_copy)
+                    )
+                }
+            }
+        },
         label = {
             Text(text = stringResource(id = R.string.username_mail))
         },
         enabled = sheetState.areFieldsEnabled(),
         isError = idMailError,
-        errorMsg = idMailErrorMessage
+        errorMsg = idMailErrorMessage,
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            disabledTextColor = Color.Black,
+            disabledTrailingIconColor = Color.Black,
+            trailingIconColor = Color.Black,
+        )
     )
-
-    val clipboardManager = LocalClipboardManager.current
-    val context = LocalContext.current
-    val modifier = if (sheetState is SheetState.ViewItem) {
-        Modifier
-            .padding(horizontal = 8.dp)
-            .padding(vertical = 3.dp)
-            .fillMaxWidth()
-            .clickable {
-                clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.passwordState))
-                Toast
-                    .makeText(
-                        context,
-                        "${offlineBottomSheetVM.idMailState} Coppied",
-                        Toast.LENGTH_SHORT
-                    )
-                    .show()
-            }
-    } else {
-        Modifier
-            .padding(horizontal = 8.dp)
-            .padding(vertical = 3.dp)
-            .fillMaxWidth()
-    }
 
     OutlinedTextFieldWithErrorView(
         value = offlineBottomSheetVM.passwordState,
         onValueChange = { offlineBottomSheetVM.passwordState = it },
-        modifier = modifier,
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
+            .fillMaxWidth(),
         singleLine = true,
         label = {
             Text(text = stringResource(id = R.string.password))
@@ -125,13 +130,40 @@ fun OfflineBottomSheetFields(
             else
                 stringResource(id = R.string.show_password)
 
-            IconButton(onClick = {passwordVisible = !passwordVisible}){
-                Icon(imageVector  = image, description)
+            Row {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = image, description)
+                }
+
+                if (sheetState is SheetState.ViewItem) {
+                    IconButton(
+                        onClick = {
+                            clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.passwordState))
+                            Toast
+                                .makeText(
+                                    context,
+                                    "${offlineBottomSheetVM.idMailState} Coppied",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.ContentCopy,
+                            contentDescription = stringResource(id = R.string.cd_copy)
+                        )
+                    }
+                }
             }
         },
         enabled = sheetState.areFieldsEnabled(),
         isError = passwordError,
-        errorMsg = passwordErrorMessage
+        errorMsg = passwordErrorMessage,
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            disabledTextColor = Color.Black,
+            disabledTrailingIconColor = Color.Black,
+            trailingIconColor = Color.Black,
+        )
     )
 
     OutlinedTextField(
@@ -139,7 +171,6 @@ fun OfflineBottomSheetFields(
         onValueChange = { offlineBottomSheetVM.descriptionState = it },
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .padding(vertical = 3.dp)
             .fillMaxWidth(),
         leadingIcon = {
             Image(
@@ -147,10 +178,13 @@ fun OfflineBottomSheetFields(
                 contentDescription = stringResource(R.string.cd_description),
             )
         },
-        maxLines = 5,
+        maxLines = 3,
         enabled = sheetState.areFieldsEnabled(),
         label = {
             Text(text = stringResource(id = R.string.description))
-        }
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            disabledTextColor = Color.Black,
+        )
     )
 }

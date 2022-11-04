@@ -128,107 +128,123 @@ fun HomeScreen(
                     var showDialog by remember { mutableStateOf(false) }
                     var deleteIndex by remember { mutableStateOf(-1) }
 
-                    LaunchedEffect(key1 = true) {
-                        homeViewModel.getPasswords()
-                    }
-
-                    when(uiState) {
-                        is Response.Loading -> {
-                            LoadingView()
+                    if (context.isNetworkConnectionAvailable()) {
+                        LaunchedEffect(key1 = true) {
+                            homeViewModel.getPasswords()
                         }
 
-                        is Response.Success<List<ParseObject>> -> {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .setGradientBackground(),
-                            ) {
-                                BannerAdView()
+                        when(uiState) {
+                            is Response.Loading -> {
+                                LoadingView()
+                            }
 
-                                val passwords = (homeViewModel.passwords.value as Response.Success).data
+                            is Response.Success<List<ParseObject>> -> {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .setGradientBackground(),
+                                ) {
+                                    BannerAdView()
 
-                                passwords?.let { list ->
-                                    OnlinePasswordList(
-                                        passwords = list,
-                                        onEditClicked = { index ->
-                                            sheetState = SheetState.EditItem(list[index].toPasswordItem(), index)
+                                    val passwords = (homeViewModel.passwords.value as Response.Success).data
 
-                                            coroutineScope.launch {
-                                                if (modalSheetState.isVisible)
-                                                    modalSheetState.hide()
-                                                else
-                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                    passwords?.let { list ->
+                                        OnlinePasswordList(
+                                            passwords = list,
+                                            onEditClicked = { index ->
+                                                sheetState = SheetState.EditItem(list[index].toPasswordItem(), index)
+
+                                                coroutineScope.launch {
+                                                    if (modalSheetState.isVisible)
+                                                        modalSheetState.hide()
+                                                    else
+                                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                                }
+                                            },
+                                            onDeleteClicked = { index ->
+                                                showDialog = true
+                                                deleteIndex = index
+                                            },
+                                            onItemClicked = { index ->
+                                                if (adCount % 4 == 1) {
+                                                    loadInterstitial(context)
+                                                    showInterstitial(context)
+                                                }
+                                                adCount++
+
+                                                sheetState = SheetState.ViewItem(list[index].toPasswordItem(), index)
+                                                coroutineScope.launch {
+                                                    if (modalSheetState.isVisible)
+                                                        modalSheetState.hide()
+                                                    else
+                                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                                }
                                             }
-                                        },
-                                        onDeleteClicked = { index ->
-                                            showDialog = true
-                                            deleteIndex = index
-                                        },
-                                        onItemClicked = { index ->
-                                            if (adCount % 4 == 1) {
-                                                loadInterstitial(context)
-                                                showInterstitial(context)
-                                            }
-                                            adCount++
+                                        )
+                                    }
+                                }
 
-                                            sheetState = SheetState.ViewItem(list[index].toPasswordItem(), index)
-                                            coroutineScope.launch {
-                                                if (modalSheetState.isVisible)
-                                                    modalSheetState.hide()
-                                                else
-                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                if (showDialog) {
+                                    AYSDialog(
+                                        text = stringResource(R.string.ays_delete),
+                                        onConfirmClicked = {
+                                            showDialog = false
+                                            homeViewModel.deletePassword(deleteIndex)
+                                            deleteIndex = -1
+                                        }
+                                    ) {
+                                        showDialog = false
+                                    }
+                                }
+
+                                if (showInfoDialog) {
+                                    AlertDialog(
+                                        onDismissRequest = { showInfoDialog = false },
+                                        title = {
+                                            Text(
+                                                text = stringResource(R.string.cd_what_encryption),
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = 16.sp,
+                                                color = Color.Black
+                                            )
+                                        },
+                                        text = {
+                                            Text(
+                                                text = stringResource(id = R.string.encryption_explanation),
+                                                fontSize = 14.sp,
+                                                color = Color.Black
+                                            )
+                                        },
+                                        confirmButton = {},
+                                        dismissButton = {
+                                            Button(
+                                                onClick = { showInfoDialog = false },
+                                            ) {
+                                                Text(stringResource(R.string.ok))
                                             }
                                         }
                                     )
                                 }
                             }
 
-                            if (showDialog) {
-                                AYSDialog(
-                                    text = stringResource(R.string.ays_delete),
-                                    onConfirmClicked = {
-                                        showDialog = false
-                                        homeViewModel.deletePassword(deleteIndex)
-                                        deleteIndex = -1
-                                    }
-                                ) {
-                                    showDialog = false
-                                }
-                            }
+                            is Response.Failure -> {
+                                val error = (homeViewModel.passwords.value as Response.Failure).errorMessage
 
-                            if (showInfoDialog) {
-                                AlertDialog(
-                                    onDismissRequest = { showInfoDialog = false },
-                                    title = {
-                                        Text(
-                                            text = stringResource(R.string.cd_what_encryption),
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 16.sp,
-                                            color = Color.Black
-                                        )
-                                    },
-                                    text = {
-                                        Text(
-                                            text = stringResource(id = R.string.encryption_explanation),
-                                            fontSize = 14.sp,
-                                            color = Color.Black
-                                        )
-                                    },
-                                    confirmButton = {},
-                                    dismissButton = {
-                                        Button(
-                                            onClick = { showInfoDialog = false },
-                                        ) {
-                                            Text(stringResource(R.string.ok))
-                                        }
-                                    }
+                                ErrorView(
+                                    error = error,
+                                    lottieFile = R.raw.error
                                 )
                             }
-                        }
 
-                        //TODO Check for no internet case, show no internet view
-                        else -> {}
+                            else -> {}
+                        }
+                    } else {
+                        ErrorView(
+                            error = "No Internet Connection",
+                            lottieFile = R.raw.no_internet,
+                        )
                     }
+
                 } else {
                     LoginScreen(
                         navController = navController,

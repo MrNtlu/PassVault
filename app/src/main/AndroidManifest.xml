@@ -21,7 +21,6 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.Passvault"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"

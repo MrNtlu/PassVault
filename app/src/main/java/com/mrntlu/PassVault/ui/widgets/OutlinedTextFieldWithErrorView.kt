@@ -35,7 +35,7 @@ fun OutlinedTextFieldWithErrorView(
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     shape: Shape = MaterialTheme.shapes.small,
-    colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(),
+    colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(disabledTextColor = Color.Black),
     errorMsg : String = ""
 ){
     Column(
@@ -67,9 +67,7 @@ fun OutlinedTextFieldWithErrorView(
             maxLines = maxLines,
             interactionSource = interactionSource,
             shape = shape,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledTextColor = Color.Black,
-            )
+            colors = colors
         )
 
         if (isError){

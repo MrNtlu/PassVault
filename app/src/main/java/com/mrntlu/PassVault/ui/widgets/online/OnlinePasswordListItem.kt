@@ -53,7 +53,7 @@ fun OnlinePasswordListItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 6.dp)
+            .padding(vertical = 5.dp)
             .padding(horizontal = 4.dp)
             .pointerInput(Unit) {
                 detectTapGestures(
@@ -128,7 +128,7 @@ fun OnlinePasswordListItem(
                 IconButton(
                     modifier = Modifier
                         .padding(end = 3.dp)
-                        .size(20.dp),
+                        .size(22.dp),
                     onClick = {
                         clipboardManager.setText(AnnotatedString(password.password))
                         Toast

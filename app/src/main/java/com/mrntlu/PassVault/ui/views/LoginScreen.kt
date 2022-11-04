@@ -28,7 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.Purple500
+import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.ui.widgets.auth.ForgotPasswordSheet
 import com.mrntlu.PassVault.utils.CheckLoggedIn
@@ -170,8 +170,8 @@ fun LoginScreen(
                         parseVM.parseLogin(usernameState.value.text, passwordState.value.text)
                     },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Purple500,
-                    )
+                        backgroundColor = Yellow700,
+                    ),
                 ) {
                     Text(
                         text = stringResource(id = R.string.login),

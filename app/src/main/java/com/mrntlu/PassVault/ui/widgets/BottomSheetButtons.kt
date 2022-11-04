@@ -23,8 +23,7 @@ fun BottomSheetButtons(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
-            .padding(top = 8.dp),
+            .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Button(

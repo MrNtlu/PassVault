@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.ui.widgets
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,6 +57,7 @@ fun OfflinePasswordBottomSheet(
     ) {
         Column(
             modifier = Modifier
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 48.dp)
                 .padding(bottom = 8.dp)
                 .padding(top = 8.dp)
