@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.BlueLogo
+import com.mrntlu.PassVault.ui.theme.Grey400
 
 @Composable
 fun BottomNavigationBar(
@@ -37,13 +38,17 @@ fun BottomNavigationBar(
                 onClick = {
                     onItemClick(item)
                 },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.White,
+                selectedContentColor = Color.White,
+                unselectedContentColor = Grey400,
                 label = {
                     Text(text = item.name, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
                 },
                 icon = {
-                    Icon(imageVector = item.icon, contentDescription = item.name, modifier = Modifier.size(if(selected) 28.dp else 24.dp))
+                    Icon(
+                        modifier = Modifier.size(if (selected) 28.dp else 24.dp),
+                        imageVector = item.icon,
+                        contentDescription = item.name
+                    )
                 },
                 alwaysShowLabel = true,
             )

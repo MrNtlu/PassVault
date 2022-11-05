@@ -1,6 +1,5 @@
 package com.mrntlu.PassVault.ui.views
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -9,6 +8,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,8 +18,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.BlueDarkest
-import com.mrntlu.PassVault.ui.theme.DarkWhite
+import com.mrntlu.PassVault.utils.setGradientBackground
 import com.vansuita.materialabout.builder.AboutBuilder
 
 @Composable
@@ -30,7 +29,7 @@ fun SettingsScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .background(DarkWhite),
+            .setGradientBackground(),
         verticalArrangement = Arrangement.Center,
     ) {
         AndroidView(
@@ -72,7 +71,7 @@ fun SettingsScreen(
                 Text(
                     text = stringResource(R.string.terms_conditions_),
                     fontSize = 12.sp,
-                    color = BlueDarkest,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                 )
             }
@@ -83,7 +82,7 @@ fun SettingsScreen(
                 Text(
                     text = stringResource(R.string.privacy_policy_),
                     fontSize = 12.sp,
-                    color = BlueDarkest,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                 )
             }

@@ -22,3 +22,4 @@ val BlueMidnight = Color(0xFF2c3e50)
 val Yellow700 = Color(0xFFFBC02D)
 
 val DarkWhite = Color(0xFFdbe2ef)
+val Grey400 = Color(0xFFBDBDBD)
