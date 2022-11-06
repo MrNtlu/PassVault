@@ -11,7 +11,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.mrntlu.PassVault.ui.views.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
-import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 
@@ -19,7 +18,6 @@ import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 fun NavigationComposable(
     navController: NavHostController,
     padding: PaddingValues,
-    firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel,
     homeVM: HomeViewModel,
     offlineVM: OfflineViewModel,
@@ -29,7 +27,6 @@ fun NavigationComposable(
             HomeScreen(
                 navController = navController,
                 parseVM = parseVM,
-                firebaseVM = firebaseVM,
                 homeViewModel = homeVM,
             )
         }
@@ -37,7 +34,6 @@ fun NavigationComposable(
         composable("register") {
             RegisterScreen(
                 navController = navController,
-                firebaseVM = firebaseVM,
                 parseVM = parseVM
             )
         }
@@ -45,7 +41,6 @@ fun NavigationComposable(
         composable("login") {
             LoginScreen(
                 navController = navController,
-                firebaseVM = firebaseVM,
                 parseVM = parseVM
             )
         }

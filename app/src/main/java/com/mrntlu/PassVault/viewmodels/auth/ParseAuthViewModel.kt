@@ -21,8 +21,6 @@ class ParseAuthViewModel @Inject constructor(): ViewModel(), ParseAuthService {
         isSignedIn.value = parseUser != null
     }
 
-    //TODO: Migrate to Firebase https://firebase.google.com/support/guides/parse-android#firebase-auth
-
     override fun parseSignout() {
         isLoading.value = true
 

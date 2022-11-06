@@ -33,7 +33,6 @@ import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.ui.widgets.auth.ForgotPasswordSheet
 import com.mrntlu.PassVault.utils.CheckLoggedIn
 import com.mrntlu.PassVault.utils.setGradientBackground
-import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import kotlinx.coroutines.launch
 
@@ -41,7 +40,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     navController: NavController,
-    firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel
 ) {
     val isErrorOccured = parseVM.isErrorOccured.value
@@ -63,7 +61,7 @@ fun LoginScreen(
         skipHalfExpanded = true
     )
 
-    CheckLoggedIn(navController = navController, firebaseVM = firebaseVM, parseVM = parseVM)
+    CheckLoggedIn(navController = navController, parseVM = parseVM)
 
     BackHandler(modalSheetState.isVisible) {
         coroutineScope.launch { modalSheetState.hide() }
@@ -228,5 +226,5 @@ fun LoginScreen(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen(rememberNavController(), viewModel(), viewModel())
+    LoginScreen(rememberNavController(), viewModel())
 }

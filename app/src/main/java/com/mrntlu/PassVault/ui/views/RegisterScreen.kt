@@ -31,13 +31,11 @@ import com.mrntlu.PassVault.models.UserRegister
 import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.utils.setGradientBackground
-import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel
 ) {
     val focusManager = LocalFocusManager.current
@@ -256,5 +254,5 @@ fun RegisterScreen(
 @Preview
 @Composable
 fun RegisterScreenPreview() {
-    RegisterScreen(rememberNavController(), viewModel(), viewModel())
+    RegisterScreen(rememberNavController(), viewModel())
 }

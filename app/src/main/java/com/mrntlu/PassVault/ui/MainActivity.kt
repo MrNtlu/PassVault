@@ -31,7 +31,6 @@ import com.mrntlu.PassVault.utils.SearchWidgetState
 import com.mrntlu.PassVault.utils.addInterstitialCallbacks
 import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
-import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,7 +85,6 @@ fun MainScreen(
     navController: NavHostController
 ) {
     val focusManager = LocalFocusManager.current
-    val firebaseVM = hiltViewModel<FirebaseAuthViewModel>()
     val parseVM = hiltViewModel<ParseAuthViewModel>()
     val homeScreenVM = hiltViewModel<HomeViewModel>()
     val offlineVM = hiltViewModel<OfflineViewModel>()
@@ -111,7 +109,7 @@ fun MainScreen(
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
     val isCurrentScreenHome = navController.currentBackStackEntry?.destination?.route == "home"
     val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "offline"
-    val isAuthLoading = firebaseVM.isLoading.value || parseVM.isLoading.value
+    val isAuthLoading = parseVM.isLoading.value
 
     val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var showDialog by remember { mutableStateOf(false) }
@@ -186,7 +184,6 @@ fun MainScreen(
         NavigationComposable(
             navController = navController,
             padding = it,
-            firebaseVM = firebaseVM,
             parseVM = parseVM,
             homeVM = homeScreenVM,
             offlineVM = offlineVM

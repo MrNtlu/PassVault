@@ -27,7 +27,6 @@ import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
-import com.mrntlu.PassVault.viewmodels.auth.FirebaseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.parse.ParseObject
 import kotlinx.coroutines.launch
@@ -36,7 +35,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     navController: NavController,
-    firebaseVM: FirebaseAuthViewModel,
     parseVM: ParseAuthViewModel,
     homeViewModel: HomeViewModel
 ) {
@@ -248,7 +246,6 @@ fun HomeScreen(
                 } else {
                     LoginScreen(
                         navController = navController,
-                        firebaseVM = firebaseVM,
                         parseVM = parseVM,
                     )
                 }
@@ -260,5 +257,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel())
 }
