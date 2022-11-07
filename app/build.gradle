@@ -15,7 +15,7 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 32
+        versionCode 33
         versionName "7.0.0"
 
         multiDexEnabled true
@@ -120,6 +120,11 @@ dependencies {
     //Lottie
     def lottie_version = "5.2.0"
     implementation "com.airbnb.android:lottie-compose:$lottie_version"
+
+    //Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'com.github.paolorotolo:appintro:v5.1.0'
 }

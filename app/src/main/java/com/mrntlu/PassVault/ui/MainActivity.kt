@@ -7,12 +7,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material.icons.rounded.Cloud
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -93,12 +94,12 @@ fun MainScreen(
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_online),
             route = "home",
-            icon = Icons.Rounded.Home
+            icon = Icons.Rounded.Cloud
         ),
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_offline),
             route = "offline",
-            icon = Icons.Rounded.Lock
+            icon = ImageVector.vectorResource(id = R.drawable.ic_database)
         ),
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_settings),
