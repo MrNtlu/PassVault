@@ -1,15 +1,24 @@
 package com.mrntlu.PassVault.repositories
 
-import com.mrntlu.PassVault.services.ParseService
+import androidx.room.withTransaction
+import com.mrntlu.PassVault.services.ParseDao
+import com.mrntlu.PassVault.services.ParseDatabase
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.networkBoundResource
+import com.mrntlu.PassVault.utils.toPasswordItem
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseUser
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
-class HomeRepository : ParseService {
+class HomeRepository @Inject constructor(
+    private val parseDao: ParseDao,
+    private val parseDatabase: ParseDatabase
+) {
 
     private lateinit var user: ParseUser
 
@@ -19,7 +28,7 @@ class HomeRepository : ParseService {
     }
 
     //TODO: Implement Caching with Room & SQLite
-    override fun deletePassword(parseObject: ParseObject): Flow<Response<Boolean>> = callbackFlow {
+    fun deletePassword(parseObject: ParseObject): Flow<Response<Boolean>> = callbackFlow {
         var response: Response<Boolean> = Response.Loading
 
         try {
@@ -43,7 +52,7 @@ class HomeRepository : ParseService {
     }
 
     //TODO: Check update, if field same don't update.
-    override fun editPassword(
+    fun editPassword(
         parseObject: ParseObject, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
     ): Flow<Response<ParseObject>> = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
@@ -76,7 +85,7 @@ class HomeRepository : ParseService {
         awaitClose()
     }
 
-    override fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) = callbackFlow {
+    fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 
@@ -110,7 +119,35 @@ class HomeRepository : ParseService {
         awaitClose()
     }
 
-    override fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
+    //TODO: Finish caching
+    // https://www.youtube.com/watch?v=h9XKb4iGM-4&ab_channel=CodinginFlow
+    // https://github.com/codinginflow/SimpleCachingExample/tree/Part-4_Room-Cache/app/src/main/java/com/codinginflow/simplecachingexample
+    // https://github.com/nameisjayant/Dagger-hilt-with-RoomDatabase-and-Retrofit-in-Android/tree/master/app/src/main/java/com/example/roomwithretrofit
+    fun getPasswordsOrCache() = networkBoundResource(
+        query = {
+            parseDao.getPasswords()
+        },
+        fetch = {
+            delay(2000L)
+            val query = ParseQuery.getQuery<ParseObject>("Account")
+
+            if (!::user.isInitialized && ParseUser.getCurrentUser() != null) {
+                user = ParseUser.getCurrentUser()
+            }
+
+            query.whereEqualTo("ParseUser", user.username)
+
+            query.find()
+        },
+        saveFetchResult = { objects ->
+            parseDatabase.withTransaction {
+                parseDao.deletePasswords()
+                parseDao.addPasswords(objects.map { it.toPasswordItem() })
+            }
+        },
+    )
+
+    fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
         var response: Response<ArrayList<ParseObject>> = Response.Loading
         val query = ParseQuery.getQuery<ParseObject>("Account")
 

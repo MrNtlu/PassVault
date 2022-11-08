@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.repositories.OfflineRepository
+import com.mrntlu.PassVault.repositories.OnlineCacheRepository
 import com.mrntlu.PassVault.services.ParseDao
 import com.mrntlu.PassVault.services.ParseDatabase
+import com.mrntlu.PassVault.utils.Constants.CacheDatabaseName
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,18 +18,21 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ViewModelComponent::class)
 class HiltModule {
-    //TODO https://github.com/nameisjayant/Dagger-hilt-with-RoomDatabase-and-Retrofit-in-Android/tree/master/app/src/main/java/com/example/roomwithretrofit
     @Provides
     @Singleton
-    fun provideParseDatabase(@ApplicationContext context: Context): ParseDatabase = Room
-        .databaseBuilder(context, ParseDatabase::class.java, "parseDatabase")
-        .build()
+    fun provideParseDatabase(@ApplicationContext context: Context): ParseDatabase =
+        Room
+            .databaseBuilder(context, ParseDatabase::class.java, CacheDatabaseName)
+            .build()
 
     @Provides
     fun provideParseDao(parseDatabase: ParseDatabase): ParseDao = parseDatabase.getParseDao()
 
     @Provides
-    fun provideHomeRepository(): HomeRepository = HomeRepository()
+    fun provideOnlineCacheRepository(parseDao: ParseDao) = OnlineCacheRepository(parseDao)
+
+    @Provides
+    fun provideHomeRepository(parseDao: ParseDao, parseDatabase: ParseDatabase): HomeRepository = HomeRepository(parseDao, parseDatabase)
 
     @Provides
     fun provideOfflineRepository(): OfflineRepository = OfflineRepository()

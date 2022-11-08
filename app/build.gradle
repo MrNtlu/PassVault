@@ -15,8 +15,8 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 33
-        versionName "7.0.0"
+        versionCode 34
+        versionName "7.0.1"
 
         multiDexEnabled true
         vectorDrawables {
@@ -125,6 +125,7 @@ dependencies {
     def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 
     implementation 'com.github.paolorotolo:appintro:v5.1.0'
 }

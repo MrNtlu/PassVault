@@ -41,6 +41,7 @@ fun HomeScreen(
     val context = LocalContext.current
 
     var showInfoDialog by remember { mutableStateOf(false) }
+    var isNetworkAvailable by remember { mutableStateOf(true) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
     var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
 
@@ -85,7 +86,7 @@ fun HomeScreen(
         Scaffold(
             modifier = Modifier.setGradientBackground(),
             floatingActionButton = {
-                if (isParseLoggedIn.value) {
+                if (isParseLoggedIn.value && isNetworkAvailable) {
                     val uiState by homeViewModel.passwords
 
                     if (uiState is Response.Success) {
@@ -127,6 +128,8 @@ fun HomeScreen(
                     var deleteIndex by remember { mutableStateOf(-1) }
 
                     if (context.isNetworkConnectionAvailable()) {
+                        isNetworkAvailable = true
+
                         LaunchedEffect(key1 = true) {
                             homeViewModel.getPasswords()
                         }
@@ -237,6 +240,8 @@ fun HomeScreen(
                             else -> {}
                         }
                     } else {
+                        isNetworkAvailable = false
+
                         ErrorView(
                             error = "No Internet Connection",
                             lottieFile = R.raw.no_internet,

@@ -130,8 +130,10 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\mrntl\.g
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\40dd14726e2b56f92dec571387c0fe08\transformed\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\mrntl\.gradle\caches\transforms-3\a47d8e8a415b857984192cc85e391190\transformed\jetified-lifecycle-livedata-core-ktx-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\ff0455710f8be2c828870fd91c25d0fb\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\c3842ef5a19336f7f4be9467bc0e777c\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\8e84b41d785d505897ba599bb58a6d27\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\76477cf21fb3f93a281ed5edd5112c93\transformed\sqlite-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\mrntl\.gradle\caches\transforms-3\11592a7e1073e8b88713637a22d7ca2e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\1fac5a71eef6d85c7ea8b2f251c3d7c3\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\bfb0b9a80fb3d565f1205940f4891a7f\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -143,8 +145,6 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Us
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\mrntl\.gradle\caches\transforms-3\533c7bade6bd4b171976ac5184535317\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:15:1-41:12
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\d5cc76ee3ab6f1e059bc679ce2b3cb0d\transformed\jetified-transport-api-3.0.0\AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:firebase-encoders-json:18.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\e52286b98d893f2cacc88c529060212a\transformed\jetified-firebase-encoders-json-18.0.0\AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\0f3fcee2608c9078558059ec7a1a535e\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\ce07a94a3f78872e743b96cfea82bf90\transformed\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\d422f4876ca2ff48fe9861e4cffadfbd\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\mrntl\.gradle\caches\transforms-3\2efd43a8a0629202b22d6b79dab18be1\transformed\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.ui:ui-util:1.3.0] C:\Users\mrntl\.gradle\caches\transforms-3\cbee66c1866843a8a8c9211b66c37dc0\transformed\jetified-ui-util-1.3.0\AndroidManifest.xml:17:1-22:12
@@ -331,8 +331,8 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\mrntl\.gradle\
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\mrntl\.gradle\caches\transforms-3\198132fe42ff95d18ae6544c9c754e27\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\12396a154b25fbc724930f0542142b2e\transformed\jetified-profileinstaller-1.2.0\AndroidManifest.xml:24:5-48:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\12396a154b25fbc724930f0542142b2e\transformed\jetified-profileinstaller-1.2.0\AndroidManifest.xml:24:5-48:19
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:24:5-29:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\mrntl\.gradle\caches\transforms-3\b84fdf631d8422ced6ecb5c62816a71f\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\mrntl\.gradle\caches\transforms-3\b84fdf631d8422ced6ecb5c62816a71f\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\mrntl\.gradle\caches\transforms-3\6c1b116d497f5b0d777ebb7e47297d46\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
@@ -679,10 +679,14 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\mrnt
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\mrntl\.gradle\caches\transforms-3\a47d8e8a415b857984192cc85e391190\transformed\jetified-lifecycle-livedata-core-ktx-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\ff0455710f8be2c828870fd91c25d0fb\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\mrntl\.gradle\caches\transforms-3\ff0455710f8be2c828870fd91c25d0fb\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\c3842ef5a19336f7f4be9467bc0e777c\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\c3842ef5a19336f7f4be9467bc0e777c\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\8e84b41d785d505897ba599bb58a6d27\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\8e84b41d785d505897ba599bb58a6d27\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\76477cf21fb3f93a281ed5edd5112c93\transformed\sqlite-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\76477cf21fb3f93a281ed5edd5112c93\transformed\sqlite-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\mrntl\.gradle\caches\transforms-3\11592a7e1073e8b88713637a22d7ca2e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\mrntl\.gradle\caches\transforms-3\11592a7e1073e8b88713637a22d7ca2e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\1fac5a71eef6d85c7ea8b2f251c3d7c3\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
@@ -705,10 +709,6 @@ MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\mrnt
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\d5cc76ee3ab6f1e059bc679ce2b3cb0d\transformed\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-encoders-json:18.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\e52286b98d893f2cacc88c529060212a\transformed\jetified-firebase-encoders-json-18.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-encoders-json:18.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\e52286b98d893f2cacc88c529060212a\transformed\jetified-firebase-encoders-json-18.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\0f3fcee2608c9078558059ec7a1a535e\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\0f3fcee2608c9078558059ec7a1a535e\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\ce07a94a3f78872e743b96cfea82bf90\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\mrntl\.gradle\caches\transforms-3\ce07a94a3f78872e743b96cfea82bf90\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\d422f4876ca2ff48fe9861e4cffadfbd\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\mrntl\.gradle\caches\transforms-3\d422f4876ca2ff48fe9861e4cffadfbd\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\mrntl\.gradle\caches\transforms-3\2efd43a8a0629202b22d6b79dab18be1\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
@@ -1400,13 +1400,13 @@ ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\mrntl\.gr
 	android:name
 		ADDED from [androidx.profileinstaller:profileinstaller:1.2.0] C:\Users\mrntl\.gradle\caches\transforms-3\12396a154b25fbc724930f0542142b2e\transformed\jetified-profileinstaller-1.2.0\AndroidManifest.xml:45:25-82
 service#androidx.room.MultiInstanceInvalidationService
-ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+ADDED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:25:9-28:40
 	android:exported
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+		ADDED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:28:13-37
 	android:directBootAware
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+		ADDED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:27:13-43
 	android:name
-		ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\mrntl\.gradle\caches\transforms-3\98ac773c7b4c397e699572fd57ea7b3c\transformed\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+		ADDED from [androidx.room:room-runtime:2.4.3] C:\Users\mrntl\.gradle\caches\transforms-3\79396a451638cbf7e00c675629384918\transformed\room-runtime-2.4.3\AndroidManifest.xml:26:13-74
 service#com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
 ADDED from [com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\mrntl\.gradle\caches\transforms-3\d0758d41c984caf2d9aec670913769a2\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\mrntl\.gradle\caches\transforms-3\533c7bade6bd4b171976ac5184535317\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:36:9-38:40
