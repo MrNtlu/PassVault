@@ -13,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
+import com.mrntlu.PassVault.utils.isNetworkConnectionAvailable
 
 @Composable
 fun OnlineItemDropdownMenu(
@@ -27,27 +29,31 @@ fun OnlineItemDropdownMenu(
     onDeleteClicked: (Int) -> Unit,
     onDetailsClicked: (Int) -> Unit,
 ) {
+    val context = LocalContext.current
+
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = { onDismissRequest() },
     ) {
-        DropdownMenuItem(
-            text = stringResource(id = R.string.edit),
-            icon = Icons.Rounded.Edit
-        ) {
-            onDismissRequest()
-            onEditClicked(index)
-        }
+        if (context.isNetworkConnectionAvailable()) {
+            DropdownMenuItem(
+                text = stringResource(id = R.string.edit),
+                icon = Icons.Rounded.Edit
+            ) {
+                onDismissRequest()
+                onEditClicked(index)
+            }
 
-        DropdownMenuItem(
-            text = stringResource(id = R.string.delete),
-            icon = Icons.Rounded.Delete
-        ) {
-            onDismissRequest()
-            onDeleteClicked(index)
-        }
+            DropdownMenuItem(
+                text = stringResource(id = R.string.delete),
+                icon = Icons.Rounded.Delete
+            ) {
+                onDismissRequest()
+                onDeleteClicked(index)
+            }
 
-        Divider()
+            Divider()
+        }
 
         DropdownMenuItem(
             text = stringResource(R.string.details),

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BottomSheetButtons(
+    isConfirmButtonAvailable: Boolean = true,
     confirmBGColor: Color,
     confirmText: String,
     onConfirmClicked: () -> Unit,
@@ -26,17 +27,19 @@ fun BottomSheetButtons(
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Button(
-            modifier = Modifier.weight(1f),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = confirmBGColor
-            ),
-            onClick = onConfirmClicked,
-        ) {
-            Text(
-                text = confirmText,
-                color = Color.White,
-            )
+        if (isConfirmButtonAvailable) {
+            Button(
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = confirmBGColor
+                ),
+                onClick = onConfirmClicked,
+            ) {
+                Text(
+                    text = confirmText,
+                    color = Color.White,
+                )
+            }
         }
 
         Button(

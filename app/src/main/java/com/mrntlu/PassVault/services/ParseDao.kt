@@ -5,12 +5,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.mrntlu.PassVault.models.PasswordItem
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ParseDao {
     @Query("Select * From account")
-    fun getPasswords(): Flow<List<PasswordItem>>
+    fun getPasswords(): MutableList<PasswordItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPasswords(passwordList: List<PasswordItem>)

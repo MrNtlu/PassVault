@@ -11,5 +11,10 @@ data class PasswordItem(
     @ColumnInfo(name = "note") val note: String?,
     @ColumnInfo(name = "password") val password: String,
     @ColumnInfo(name = "is_encrypted") var isEncrypted: Boolean?,
+    @ColumnInfo(name = "parse_id") val parseID: String,
     @PrimaryKey(autoGenerate = true) val uid: Int? = null,
-)
+) {
+    constructor(username: String, title: String, note: String?, password: String, isEncrypted: Boolean?): this(
+        username, title, note, password, isEncrypted, "", null
+    )
+}

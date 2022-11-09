@@ -10,6 +10,8 @@ val Pink200 = Color(0xFFF48FB1)
 val Pink500 = Color(0xFF9C27B0)
 val Pink700 = Color(0xFF512DA8)
 
+val Red500 = Color(0xFFF44336)
+
 val Teal200 = Color(0xFF03DAC5)
 val GreenFlat = Color(0xFF16a085)
 val Green400 = Color(0xFF66BB6A)

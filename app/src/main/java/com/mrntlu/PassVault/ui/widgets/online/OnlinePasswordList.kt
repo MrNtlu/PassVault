@@ -8,12 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mrntlu.PassVault.utils.toPasswordItem
-import com.parse.ParseObject
+import com.mrntlu.PassVault.models.PasswordItem
 
 @Composable
 fun OnlinePasswordList(
-    passwords: List<ParseObject>,
+    passwords: List<PasswordItem>,
     onEditClicked: (Int) -> Unit,
     onDeleteClicked: (Int) -> Unit,
     onItemClicked: (Int) -> Unit,
@@ -26,7 +25,7 @@ fun OnlinePasswordList(
             count = if (passwords.isNotEmpty()) passwords.size + 1 else 1,
             key = { index ->
                 if (passwords.isNotEmpty() && index < passwords.size) {
-                    passwords[index].objectId
+                    passwords[index].parseID
                 } else ""
             }
         ) { index ->
@@ -39,7 +38,7 @@ fun OnlinePasswordList(
                         onEditClicked = onEditClicked,
                         onDeleteClicked = onDeleteClicked,
                         onItemClicked = onItemClicked,
-                        password = password.toPasswordItem()
+                        password = password
                     )
                 } else {
                     Spacer(modifier = Modifier.height(80.dp)) //To prevent FAB overlap
@@ -56,12 +55,13 @@ fun OnlinePasswordList(
 fun OnlinePasswordListPreview() {
     OnlinePasswordList(
         listOf(
-            ParseObject.create("Account").apply {
-                put("ParseUser", "Test Username")
-                put("Title", "Test Title")
-                put("Username", "Test Username")
-                put("Password", "Test Password")
-            }
+            PasswordItem(
+                "Test Username",
+                "Test Title",
+                null,
+                "Test Password",
+                true,
+            )
         ), {}, {}, {}
     )
 }

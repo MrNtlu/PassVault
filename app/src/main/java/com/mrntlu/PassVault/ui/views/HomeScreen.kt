@@ -4,6 +4,7 @@ package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -24,11 +25,11 @@ import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueMidnight
+import com.mrntlu.PassVault.ui.theme.Red500
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
-import com.parse.ParseObject
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -72,6 +73,7 @@ fun HomeScreen(
                 homeVM = homeViewModel,
                 sheetState = sheetState,
                 isSheetVisible = modalSheetState.isVisible,
+                isNetworkAvailable = isNetworkAvailable,
                 onEditClicked = {
                     sheetState =
                         SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
@@ -122,137 +124,145 @@ fun HomeScreen(
             floatingActionButtonPosition = FabPosition.End,
             isFloatingActionButtonDocked = false,
             content = {
+                isNetworkAvailable = context.isNetworkConnectionAvailable()
+
                 if (isParseLoggedIn.value) {
                     val uiState by homeViewModel.passwords
                     var showDialog by remember { mutableStateOf(false) }
                     var deleteIndex by remember { mutableStateOf(-1) }
 
-                    if (context.isNetworkConnectionAvailable()) {
-                        isNetworkAvailable = true
+                    LaunchedEffect(key1 = true) {
+                        homeViewModel.getPasswords()
+                    }
 
-                        LaunchedEffect(key1 = true) {
-                            homeViewModel.getPasswords()
+                    when(uiState) {
+                        is Response.Loading -> {
+                            LoadingView()
                         }
 
-                        when(uiState) {
-                            is Response.Loading -> {
-                                LoadingView()
-                            }
-
-                            is Response.Success<List<ParseObject>> -> {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .setGradientBackground(),
-                                ) {
+                        is Response.Success<List<PasswordItem>> -> {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .setGradientBackground(),
+                            ) {
+                                if (isNetworkAvailable) {
                                     BannerAdView()
+                                } else {
+                                    Text(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .background(Red500)
+                                            .padding(3.dp),
+                                        text = stringResource(R.string.no_internet),
+                                        color = Color.White,
+                                    )
+                                }
 
-                                    val passwords = (homeViewModel.passwords.value as Response.Success).data
+                                val passwords = (uiState as Response.Success).data
 
-                                    passwords?.let { list ->
-                                        OnlinePasswordList(
-                                            passwords = list,
-                                            onEditClicked = { index ->
-                                                sheetState = SheetState.EditItem(list[index].toPasswordItem(), index)
+                                passwords?.let { list ->
+                                    OnlinePasswordList(
+                                        passwords = list,
+                                        onEditClicked = { index ->
+                                            sheetState = SheetState.EditItem(list[index], index)
 
-                                                coroutineScope.launch {
-                                                    if (modalSheetState.isVisible)
-                                                        modalSheetState.hide()
-                                                    else
-                                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                                }
-                                            },
-                                            onDeleteClicked = { index ->
-                                                showDialog = true
-                                                deleteIndex = index
-                                            },
-                                            onItemClicked = { index ->
-                                                if (adCount % 4 == 1) {
-                                                    loadInterstitial(context)
-                                                    showInterstitial(context)
-                                                }
-                                                adCount++
-
-                                                sheetState = SheetState.ViewItem(list[index].toPasswordItem(), index)
-                                                coroutineScope.launch {
-                                                    if (modalSheetState.isVisible)
-                                                        modalSheetState.hide()
-                                                    else
-                                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                                }
+                                            coroutineScope.launch {
+                                                if (modalSheetState.isVisible)
+                                                    modalSheetState.hide()
+                                                else
+                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                             }
-                                        )
-                                    }
-                                }
-
-                                if (showDialog) {
-                                    AYSDialog(
-                                        text = stringResource(R.string.ays_delete),
-                                        onConfirmClicked = {
-                                            showDialog = false
-                                            homeViewModel.deletePassword(deleteIndex)
-                                            deleteIndex = -1
-                                        }
-                                    ) {
-                                        showDialog = false
-                                    }
-                                }
-
-                                if (showInfoDialog) {
-                                    AlertDialog(
-                                        onDismissRequest = { showInfoDialog = false },
-                                        title = {
-                                            Text(
-                                                text = stringResource(R.string.cd_what_encryption),
-                                                fontWeight = FontWeight.Bold,
-                                                fontSize = 16.sp,
-                                                color = Color.Black
-                                            )
                                         },
-                                        text = {
-                                            Text(
-                                                text = stringResource(id = R.string.encryption_explanation),
-                                                fontSize = 14.sp,
-                                                color = Color.Black
-                                            )
+                                        onDeleteClicked = { index ->
+                                            showDialog = true
+                                            deleteIndex = index
                                         },
-                                        confirmButton = {},
-                                        dismissButton = {
-                                            Button(
-                                                onClick = { showInfoDialog = false },
-                                            ) {
-                                                Text(stringResource(R.string.ok))
+                                        onItemClicked = { index ->
+                                            if (adCount % 4 == 1) {
+                                                loadInterstitial(context)
+                                                showInterstitial(context)
+                                            }
+                                            adCount++
+
+                                            sheetState = SheetState.ViewItem(list[index], index)
+                                            coroutineScope.launch {
+                                                if (modalSheetState.isVisible)
+                                                    modalSheetState.hide()
+                                                else
+                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                             }
                                         }
                                     )
                                 }
                             }
 
-                            is Response.Failure -> {
-                                val error = (homeViewModel.passwords.value as Response.Failure).errorMessage
-
-                                ErrorView(
-                                    error = error,
-                                    lottieFile = R.raw.error
-                                )
+                            if (showDialog) {
+                                AYSDialog(
+                                    text = stringResource(R.string.ays_delete),
+                                    onConfirmClicked = {
+                                        showDialog = false
+                                        homeViewModel.deletePassword(deleteIndex)
+                                        deleteIndex = -1
+                                    }
+                                ) {
+                                    showDialog = false
+                                }
                             }
 
-                            else -> {}
+                            if (showInfoDialog) {
+                                AlertDialog(
+                                    onDismissRequest = { showInfoDialog = false },
+                                    title = {
+                                        Text(
+                                            text = stringResource(R.string.cd_what_encryption),
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 16.sp,
+                                            color = Color.Black
+                                        )
+                                    },
+                                    text = {
+                                        Text(
+                                            text = stringResource(id = R.string.encryption_explanation),
+                                            fontSize = 14.sp,
+                                            color = Color.Black
+                                        )
+                                    },
+                                    confirmButton = {},
+                                    dismissButton = {
+                                        Button(
+                                            onClick = { showInfoDialog = false },
+                                        ) {
+                                            Text(stringResource(R.string.ok))
+                                        }
+                                    }
+                                )
+                            }
                         }
-                    } else {
-                        isNetworkAvailable = false
 
+                        is Response.Failure -> {
+                            val error = (uiState as Response.Failure).errorMessage
+
+                            ErrorView(
+                                error = error,
+                                lottieFile = R.raw.error
+                            )
+                        }
+
+                        else -> {}
+                    }
+                } else {
+                    if (isNetworkAvailable) {
+                        LoginScreen(
+                            navController = navController,
+                            parseVM = parseVM,
+                        )
+                    } else {
                         ErrorView(
                             error = "No Internet Connection",
                             lottieFile = R.raw.no_internet,
                         )
                     }
-
-                } else {
-                    LoginScreen(
-                        navController = navController,
-                        parseVM = parseVM,
-                    )
                 }
             }
         )

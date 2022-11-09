@@ -4,11 +4,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.utils.Response
 import com.mrntlu.PassVault.utils.toPasswordItem
-import com.parse.ParseObject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,20 +18,20 @@ class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ): ViewModel() {
 
-    private val _passwords = mutableStateOf<Response<ArrayList<ParseObject>>>(Response.Loading)
-    private var _tempPasswords: ArrayList<ParseObject>? = null
-    val passwords: State<Response<List<ParseObject>>> = _passwords
+    private val _passwords = mutableStateOf<Response<MutableList<PasswordItem>>>(Response.Loading)
+    private var _tempPasswords: MutableList<PasswordItem>? = null
+    val passwords: State<Response<List<PasswordItem>>> = _passwords
 
     fun searchPassword(text: String) {
         if (_passwords.value is Response.Success) {
             if (text.isNotEmpty() && text.isNotBlank()) {
-                _tempPasswords = (_passwords.value as Response.Success<ArrayList<ParseObject>>).data
+                _tempPasswords = (_passwords.value as Response.Success<MutableList<PasswordItem>>).data
 
                 _passwords.value = Response.Success(
-                    (_passwords.value as Response.Success<ArrayList<ParseObject>>).data?.filter {
-                        it.toPasswordItem().title.startsWith(prefix = text, ignoreCase = true)
-                                || it.toPasswordItem().title.endsWith(suffix = text, ignoreCase = true)
-                                || it.toPasswordItem().title.contains(text, ignoreCase = true)
+                    (_passwords.value as Response.Success<MutableList<PasswordItem>>).data?.filter {
+                        it.title.startsWith(prefix = text, ignoreCase = true)
+                                || it.title.endsWith(suffix = text, ignoreCase = true)
+                                || it.title.contains(text, ignoreCase = true)
                     }?.let {
                         ArrayList(
                             it
@@ -53,9 +54,9 @@ class HomeViewModel @Inject constructor(
     fun deletePassword(position: Int) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
-            val parseObject = passwordList?.get(position)
+            val passwordItem = passwordList?.get(position)
 
-            parseObject?.let {
+            passwordItem?.let {
                 homeRepository.deletePassword(it).collect { response ->
                     when(response) {
                         is Response.Loading -> _passwords.value = response
@@ -64,7 +65,7 @@ class HomeViewModel @Inject constructor(
                         is Response.Success -> {
                             response.data?.let { isDeleted ->
                                 if (isDeleted) {
-                                    passwordList.remove(parseObject)
+                                    passwordList.remove(passwordItem)
 
                                     _passwords.value = Response.Success(passwordList)
                                 }
@@ -91,7 +92,7 @@ class HomeViewModel @Inject constructor(
                         is Response.Idle -> _passwords.value = response
                         is Response.Success -> {
                             response.data?.let { data ->
-                                passwordList[position] = data
+                                passwordList[position] = data.toPasswordItem()
 
                                 _passwords.value = Response.Success(passwordList)
                             }
@@ -113,7 +114,7 @@ class HomeViewModel @Inject constructor(
                     is Response.Idle -> _passwords.value = it
                     is Response.Success -> {
                         it.data?.let { data ->
-                            passwordList?.add(data)
+                            passwordList?.add(data.toPasswordItem())
 
                             _passwords.value = Response.Success(passwordList)
                         }
@@ -124,8 +125,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getPasswords() {
-        viewModelScope.launch {
-            homeRepository.getPasswords().collect {
+        viewModelScope.launch(Dispatchers.IO) {
+            homeRepository.getPasswordsOrCache().collect {
                 _passwords.value = it
             }
         }

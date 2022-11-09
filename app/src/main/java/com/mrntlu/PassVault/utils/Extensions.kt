@@ -56,6 +56,7 @@ fun ParseObject.toPasswordItem() = PasswordItem(
     getString("Note"),
     getString("Password") ?: "",
     getBoolean("IsEncrypted"),
+    parseID = objectId
 )
 
 fun <T> SheetState<T>.getItem(): T? = when(this) {

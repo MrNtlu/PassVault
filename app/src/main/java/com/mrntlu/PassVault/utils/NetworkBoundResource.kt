@@ -1,27 +1,33 @@
 package com.mrntlu.PassVault.utils
 
-import kotlinx.coroutines.flow.*
+import com.parse.ParseQuery
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 
 inline fun <ResultType, RequestType> networkBoundResource(
-    crossinline query: () -> Flow<ResultType>,
-    crossinline fetch: suspend () -> RequestType,
-    crossinline saveFetchResult: suspend (RequestType) -> Unit,
+    crossinline query: () -> ResultType,
+    crossinline fetch: () -> Pair<RequestType, ParseQuery<*>>,
+    crossinline saveFetchResult: suspend (RequestType) -> ResultType,
     crossinline shouldFetch: (ResultType) -> Boolean = { true }
-) = flow {
-    val data = query().first()
+) = callbackFlow<Response<ResultType>> {
+    val data = query()
 
     val flow = if (shouldFetch(data)) {
-        emit(Response.Loading)
+        trySend(Response.Loading)
 
         try {
-            saveFetchResult(fetch())
-            query().map { Response.Success(it) }
+            Response.Success(saveFetchResult(fetch().first))
         } catch (throwable: Throwable) {
-            query().map { Response.Failure(throwable.message ?: throwable.toString()) }
+            Response.Success(data)
+//            Response.Failure(throwable.message ?: throwable.toString())
         }
     } else {
-        query().map { Response.Success(it) }
+        Response.Success(data)
     }
 
-    emitAll(flow)
+    trySend(flow)
+
+    awaitClose {
+        fetch().second.cancel()
+    }
 }

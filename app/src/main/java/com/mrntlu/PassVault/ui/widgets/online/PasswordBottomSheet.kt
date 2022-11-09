@@ -32,6 +32,7 @@ fun PasswordBottomSheet(
     homeVM: HomeViewModel,
     sheetState: SheetState<PasswordItem>,
     isSheetVisible: Boolean,
+    isNetworkAvailable: Boolean,
     onEditClicked: () -> Unit,
     onInfoDialogClicked: () -> Unit,
     onCancel: () -> Unit,
@@ -65,7 +66,7 @@ fun PasswordBottomSheet(
     }
 
     Box(
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier
@@ -122,6 +123,7 @@ fun PasswordBottomSheet(
             val cryptoKey = stringResource(id = R.string.crypto_key)
 
             BottomSheetButtons(
+                isConfirmButtonAvailable = isNetworkAvailable,
                 confirmBGColor = when (sheetState) {
                     is SheetState.AddItem -> BlueLogo
                     is SheetState.EditItem -> BlueLogo
@@ -220,5 +222,11 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {})
+    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = true)
+}
+
+@Preview
+@Composable
+fun PasswordBottomSheetOfflinePreview() {
+    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = false)
 }
