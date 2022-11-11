@@ -1,11 +1,14 @@
 package com.mrntlu.PassVault.utils
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Patterns
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -48,6 +51,19 @@ fun Context.isNetworkConnectionAvailable(): Boolean {
         }
     }
     return false
+}
+
+fun Context.sendMail(to: String) {
+    try {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "message/rfc822"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
+        startActivity(intent)
+    } catch (e: ActivityNotFoundException) {
+        Toast.makeText(this, "No mail app found", Toast.LENGTH_SHORT).show()
+    } catch (t: Throwable) {
+        Toast.makeText(this, "$t", Toast.LENGTH_SHORT).show()
+    }
 }
 
 fun ParseObject.toPasswordItem() = PasswordItem(

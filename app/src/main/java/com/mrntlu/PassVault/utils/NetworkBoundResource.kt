@@ -18,8 +18,11 @@ inline fun <ResultType, RequestType> networkBoundResource(
         try {
             Response.Success(saveFetchResult(fetch().first))
         } catch (throwable: Throwable) {
-            Response.Success(data)
-//            Response.Failure(throwable.message ?: throwable.toString())
+            if (throwable.message != null && throwable.message!! == "i/o failure") {
+                Response.Success(data)
+            } else {
+                Response.Failure(throwable.message ?: throwable.toString())
+            }
         }
     } else {
         Response.Success(data)

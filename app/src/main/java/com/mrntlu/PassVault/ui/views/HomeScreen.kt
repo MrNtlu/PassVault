@@ -49,9 +49,7 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = {
-            it != ModalBottomSheetValue.Expanded
-        },
+        confirmStateChange = { false },
         skipHalfExpanded = true
     )
 
@@ -153,9 +151,11 @@ fun HomeScreen(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .background(Red500)
-                                            .padding(3.dp),
+                                            .padding(horizontal = 3.dp)
+                                            .padding(vertical = 1.dp),
                                         text = stringResource(R.string.no_internet),
                                         color = Color.White,
+                                        fontSize = 13.sp,
                                     )
                                 }
 

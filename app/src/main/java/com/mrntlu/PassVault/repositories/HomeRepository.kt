@@ -70,7 +70,6 @@ class HomeRepository @Inject constructor(
         awaitClose()
     }
 
-    //TODO: Check update, if field same don't update.
     fun editPassword(
         passwordItem: PasswordItem, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
     ): Flow<Response<ParseObject>> = callbackFlow {
@@ -146,10 +145,6 @@ class HomeRepository @Inject constructor(
         awaitClose()
     }
 
-    //TODO: Finish caching
-    // https://www.youtube.com/watch?v=h9XKb4iGM-4&ab_channel=CodinginFlow
-    // https://github.com/codinginflow/SimpleCachingExample/tree/Part-4_Room-Cache/app/src/main/java/com/codinginflow/simplecachingexample
-    // https://github.com/nameisjayant/Dagger-hilt-with-RoomDatabase-and-Retrofit-in-Android/tree/master/app/src/main/java/com/example/roomwithretrofit
     fun getPasswordsOrCache() = networkBoundResource(
         query = {
             parseDao.getPasswords()
@@ -173,36 +168,4 @@ class HomeRepository @Inject constructor(
             }
         }
     )
-
-    fun getPasswords(): Flow<Response<ArrayList<ParseObject>>> = callbackFlow {
-        var response: Response<ArrayList<ParseObject>> = Response.Loading
-        val query = ParseQuery.getQuery<ParseObject>("Account")
-
-        if (!::user.isInitialized && ParseUser.getCurrentUser() != null) {
-            user = ParseUser.getCurrentUser()
-        }
-
-        try{
-            trySend(response)
-
-            query.whereEqualTo("ParseUser", user.username)
-
-            query.findInBackground { objects, error ->
-                response = if (error == null) {
-                    Response.Success(ArrayList(objects))
-                } else {
-                    Response.Failure(error.message ?: error.toString())
-                }
-
-                trySend(response)
-            }
-        } catch (error: Exception) {
-            response = Response.Failure(error.message ?: error.toString())
-            trySend(response)
-        }
-
-        awaitClose {
-            query.cancel()
-        }
-    }
 }

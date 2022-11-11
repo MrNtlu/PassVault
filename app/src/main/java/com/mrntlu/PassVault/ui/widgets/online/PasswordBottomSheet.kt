@@ -1,6 +1,7 @@
 package com.mrntlu.PassVault.ui.widgets
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -65,6 +66,7 @@ fun PasswordBottomSheet(
         }
     }
 
+    //TODO: Add Color Picker
     Box(
         contentAlignment = Alignment.Center,
     ) {
@@ -118,6 +120,22 @@ fun PasswordBottomSheet(
                     )
                 }
             }
+
+            //TODO: Implement
+            LazyRow(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                content = {
+                    items(
+                        count = 7,
+                        key = { index ->
+
+                        },
+                    ) { index ->
+
+                    }
+                }
+            )
 
             val textfieldError = stringResource(R.string.textfield_error)
             val cryptoKey = stringResource(id = R.string.crypto_key)

@@ -47,9 +47,7 @@ fun OfflineScreen(
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = {
-            it != ModalBottomSheetValue.Expanded
-        },
+        confirmStateChange = { false },
         skipHalfExpanded = true
     )
 
