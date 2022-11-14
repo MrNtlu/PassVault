@@ -1,9 +1,9 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
@@ -19,9 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.BlueLogo
-import com.mrntlu.PassVault.ui.theme.Purple500
-import com.mrntlu.PassVault.ui.theme.Yellow700
+import com.mrntlu.PassVault.ui.theme.*
 import com.mrntlu.PassVault.utils.Cryptography
 import com.mrntlu.PassVault.utils.SheetState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
@@ -121,18 +119,53 @@ fun PasswordBottomSheet(
                 }
             }
 
-            //TODO: Implement
+            val colorPickerList = listOf(
+                Red500,
+                Red700,
+                Purple500,
+                Purple700,
+                Blue500,
+                Blue700,
+                Green500,
+                Green700,
+                Yellow500,
+                Yellow700,
+                Orange500,
+                Orange700,
+                Brown500,
+                Brown700
+            )
+            //TODO Implement Selection and hold it in mutablestate
             LazyRow(
-                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .imePadding()
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(3.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 content = {
                     items(
-                        count = 7,
+                        count = colorPickerList.size,
                         key = { index ->
-
+                            colorPickerList[index].toString()
                         },
                     ) { index ->
+                        val color = colorPickerList[index]
 
+                        Box(
+                            modifier = Modifier
+                                .size(28.dp)
+                                .border(BorderStroke(2.dp, Yellow600), shape = CircleShape),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Canvas(
+                                modifier = Modifier
+                                    .size(19.dp),
+                                onDraw = {
+                                    drawCircle(color = color)
+                                }
+                            )
+                        }
                     }
                 }
             )
