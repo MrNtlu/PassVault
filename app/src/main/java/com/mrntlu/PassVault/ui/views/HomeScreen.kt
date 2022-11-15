@@ -28,8 +28,8 @@ import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.theme.Red500
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
-import com.mrntlu.PassVault.viewmodels.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
+import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -84,7 +84,8 @@ fun HomeScreen(
         },
     ) {
         Scaffold(
-            modifier = Modifier.setGradientBackground(),
+            modifier = Modifier
+                .setGradientBackground(),
             floatingActionButton = {
                 if (isParseLoggedIn.value && isNetworkAvailable) {
                     val uiState by homeViewModel.passwords
@@ -98,14 +99,15 @@ fun HomeScreen(
                                 }
                                 adCount++
 
-                                coroutineScope.launch {
-                                    sheetState = SheetState.AddItem
-
-                                    if (modalSheetState.isVisible)
-                                        modalSheetState.hide()
-                                    else
-                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                }
+//                                coroutineScope.launch {
+//                                    sheetState = SheetState.AddItem
+//
+//                                    if (modalSheetState.isVisible)
+//                                        modalSheetState.hide()
+//                                    else
+//                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+//                                }
+                                navController.navigate("online")
                             },
                             backgroundColor = BlueMidnight,
                             contentColor = Color.White,

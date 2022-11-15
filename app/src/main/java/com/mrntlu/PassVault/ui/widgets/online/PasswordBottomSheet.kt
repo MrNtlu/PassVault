@@ -1,9 +1,8 @@
 package com.mrntlu.PassVault.ui.widgets
 
-import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
@@ -19,12 +18,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.*
+import com.mrntlu.PassVault.ui.theme.BlueLogo
+import com.mrntlu.PassVault.ui.theme.Purple500
+import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.utils.Cryptography
 import com.mrntlu.PassVault.utils.SheetState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
-import com.mrntlu.PassVault.viewmodels.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 
 @Composable
 fun PasswordBottomSheet(
@@ -64,7 +65,6 @@ fun PasswordBottomSheet(
         }
     }
 
-    //TODO: Add Color Picker
     Box(
         contentAlignment = Alignment.Center,
     ) {
@@ -73,12 +73,18 @@ fun PasswordBottomSheet(
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 48.dp)
                 .padding(bottom = 8.dp)
-                .padding(top = 8.dp)
+                .padding(top = 16.dp)
                 .imePadding()
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            if (sheetState !is SheetState.ViewItem) {
+                ColorPickerRow(
+                    bottomSheetVM = bottomSheetVM,
+                )
+            }
+
             PasswordBottomSheetFields(
                 bottomSheetVM = bottomSheetVM,
                 sheetState = sheetState,
@@ -118,57 +124,6 @@ fun PasswordBottomSheet(
                     )
                 }
             }
-
-            val colorPickerList = listOf(
-                Red500,
-                Red700,
-                Purple500,
-                Purple700,
-                Blue500,
-                Blue700,
-                Green500,
-                Green700,
-                Yellow500,
-                Yellow700,
-                Orange500,
-                Orange700,
-                Brown500,
-                Brown700
-            )
-            //TODO Implement Selection and hold it in mutablestate
-            LazyRow(
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
-                    .imePadding()
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(3.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                content = {
-                    items(
-                        count = colorPickerList.size,
-                        key = { index ->
-                            colorPickerList[index].toString()
-                        },
-                    ) { index ->
-                        val color = colorPickerList[index]
-
-                        Box(
-                            modifier = Modifier
-                                .size(28.dp)
-                                .border(BorderStroke(2.dp, Yellow600), shape = CircleShape),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Canvas(
-                                modifier = Modifier
-                                    .size(19.dp),
-                                onDraw = {
-                                    drawCircle(color = color)
-                                }
-                            )
-                        }
-                    }
-                }
-            )
 
             val textfieldError = stringResource(R.string.textfield_error)
             val cryptoKey = stringResource(id = R.string.crypto_key)

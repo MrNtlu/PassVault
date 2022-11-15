@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.ContentCopy
+import androidx.compose.material.icons.rounded.Password
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -137,7 +138,7 @@ fun PasswordBottomSheetFields(
         },
         leadingIcon = {
             Image(
-                painter = painterResource(id = R.drawable.ic_padlock_pass),
+                imageVector = Icons.Rounded.Password,
                 contentDescription = stringResource(id = R.string.cd_password)
             )
         },

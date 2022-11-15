@@ -40,3 +40,5 @@ val Orange700 = Color(0xFFF57C00)
 
 val DarkWhite = Color(0xFFdbe2ef)
 val Grey400 = Color(0xFFBDBDBD)
+val Grey500 = Color(0xFF9E9E9E)
+val Grey700 = Color(0xFF616161)
