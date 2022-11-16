@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.mrntlu.PassVault.models.OfflinePassword
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.getItem
 
 class OfflineBottomSheetViewModel: ViewModel() {
@@ -14,8 +14,8 @@ class OfflineBottomSheetViewModel: ViewModel() {
     var passwordState by mutableStateOf("")
     var descriptionState by mutableStateOf("")
 
-    fun setStateValues(sheetState: SheetState<OfflinePassword>) {
-        sheetState.getItem().let {
+    fun setStateValues(uiState: UIState<OfflinePassword>) {
+        uiState.getItem().let {
             idMailState = it?.idMail ?: ""
             passwordState = it?.password ?: ""
             descriptionState = it?.description ?: ""

@@ -30,6 +30,7 @@ import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -37,14 +38,15 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     navController: NavController,
     parseVM: ParseAuthViewModel,
-    homeViewModel: HomeViewModel
+    homeViewModel: HomeViewModel,
+    sharedViewModel: OnlinePasswordViewModel,
 ) {
     val context = LocalContext.current
 
     var showInfoDialog by remember { mutableStateOf(false) }
     var isNetworkAvailable by remember { mutableStateOf(true) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
-    var sheetState by remember { mutableStateOf<SheetState<PasswordItem>>(SheetState.AddItem) }
+    var uiState by remember { mutableStateOf<UIState<PasswordItem>>(UIState.AddItem) }
 
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
@@ -69,12 +71,11 @@ fun HomeScreen(
         sheetContent = {
             PasswordBottomSheet(
                 homeVM = homeViewModel,
-                sheetState = sheetState,
+                uiState = uiState,
                 isSheetVisible = modalSheetState.isVisible,
                 isNetworkAvailable = isNetworkAvailable,
                 onEditClicked = {
-                    sheetState =
-                        SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
+                    uiState = UIState.EditItem(uiState.getItem()!!, uiState.getPosition()!!)
                 },
                 onInfoDialogClicked = { showInfoDialog = true },
                 onCancel = {
@@ -88,9 +89,9 @@ fun HomeScreen(
                 .setGradientBackground(),
             floatingActionButton = {
                 if (isParseLoggedIn.value && isNetworkAvailable) {
-                    val uiState by homeViewModel.passwords
+                    val passwords by homeViewModel.passwords
 
-                    if (uiState is Response.Success) {
+                    if (passwords is Response.Success) {
                         FloatingActionButton(
                             onClick = {
                                 if (adCount % 4 == 1) {
@@ -99,14 +100,8 @@ fun HomeScreen(
                                 }
                                 adCount++
 
-//                                coroutineScope.launch {
-//                                    sheetState = SheetState.AddItem
-//
-//                                    if (modalSheetState.isVisible)
-//                                        modalSheetState.hide()
-//                                    else
-//                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-//                                }
+                                //TODO: Move to function
+                                sharedViewModel.changeState(UIState.AddItem)
                                 navController.navigate("online")
                             },
                             backgroundColor = BlueMidnight,
@@ -127,7 +122,7 @@ fun HomeScreen(
                 isNetworkAvailable = context.isNetworkConnectionAvailable()
 
                 if (isParseLoggedIn.value) {
-                    val uiState by homeViewModel.passwords
+                    val passwordsState by homeViewModel.passwords
                     var showDialog by remember { mutableStateOf(false) }
                     var deleteIndex by remember { mutableStateOf(-1) }
 
@@ -135,7 +130,7 @@ fun HomeScreen(
                         homeViewModel.getPasswords()
                     }
 
-                    when(uiState) {
+                    when(passwordsState) {
                         is Response.Loading -> {
                             LoadingView()
                         }
@@ -161,20 +156,22 @@ fun HomeScreen(
                                     )
                                 }
 
-                                val passwords = (uiState as Response.Success).data
+                                val passwords = (passwordsState as Response.Success).data
 
                                 passwords?.let { list ->
                                     OnlinePasswordList(
                                         passwords = list,
                                         onEditClicked = { index ->
-                                            sheetState = SheetState.EditItem(list[index], index)
+                                            uiState = UIState.EditItem(list[index], index)
 
-                                            coroutineScope.launch {
-                                                if (modalSheetState.isVisible)
-                                                    modalSheetState.hide()
-                                                else
-                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                            }
+//                                            coroutineScope.launch {
+//                                                if (modalSheetState.isVisible)
+//                                                    modalSheetState.hide()
+//                                                else
+//                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+//                                            }
+                                            sharedViewModel.changeState(uiState)
+                                            navController.navigate("online")
                                         },
                                         onDeleteClicked = { index ->
                                             showDialog = true
@@ -187,13 +184,16 @@ fun HomeScreen(
                                             }
                                             adCount++
 
-                                            sheetState = SheetState.ViewItem(list[index], index)
-                                            coroutineScope.launch {
-                                                if (modalSheetState.isVisible)
-                                                    modalSheetState.hide()
-                                                else
-                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                            }
+                                            uiState = UIState.ViewItem(list[index], index)
+
+                                            sharedViewModel.changeState(uiState)
+                                            navController.navigate("online")
+//                                            coroutineScope.launch {
+//                                                if (modalSheetState.isVisible)
+//                                                    modalSheetState.hide()
+//                                                else
+//                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+//                                            }
                                         }
                                     )
                                 }
@@ -274,5 +274,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel())
 }

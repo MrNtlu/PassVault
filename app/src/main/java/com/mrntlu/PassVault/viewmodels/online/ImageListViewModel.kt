@@ -16,7 +16,7 @@ class ImageListViewModel @Inject constructor(
     private val repository: ImageListRepository,
 ): ViewModel() {
 
-    private val _imageList = mutableStateOf<Response<List<ImageListItem>>>(Response.Loading)
+    private val _imageList = mutableStateOf<Response<List<ImageListItem>>>(Response.Idle)
     val imageList: State<Response<List<ImageListItem>>> = _imageList
 
     fun getImageList(query: String) = viewModelScope.launch {

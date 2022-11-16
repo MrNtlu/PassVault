@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -26,28 +32,35 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
+import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.BottomSheetButtons
 import com.mrntlu.PassVault.ui.widgets.ColorPickerRow
 import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheetFields
 import com.mrntlu.PassVault.ui.widgets.online.ImageSelectionSheet
-import com.mrntlu.PassVault.utils.Constants
-import com.mrntlu.PassVault.utils.SheetState
-import com.mrntlu.PassVault.utils.areFieldsEnabled
-import com.mrntlu.PassVault.utils.setGradientBackground
+import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
+import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.ImageSelectionViewModel
+import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun OnlinePasswordScreen(
-
+    navController: NavController,
+    homeViewModel: HomeViewModel,
+    sharedViewModel: OnlinePasswordViewModel,
 ) {
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
     val imageSize = 52.dp
 
+    val imageSelectionVM = hiltViewModel<ImageSelectionViewModel>()
+
     val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
+    var showInfoDialog by remember { mutableStateOf(false) }
+    var isImageLoading by remember { mutableStateOf(false) }
 
     var titleError by remember { mutableStateOf(false) }
     var titleErrorMessage by remember { mutableStateOf("") }
@@ -58,7 +71,7 @@ fun OnlinePasswordScreen(
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
 
-    var selectedImage: String? by remember { mutableStateOf(null) }
+    var selectedImage by imageSelectionVM.selectedImage
 
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
@@ -75,12 +88,16 @@ fun OnlinePasswordScreen(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
         sheetContent = {
-            ImageSelectionSheet()
+            ImageSelectionSheet(
+                isSheetVisible = modalSheetState.isVisible,
+                imageSelectionVM = imageSelectionVM,
+                onCancel = {
+                    coroutineScope.launch { modalSheetState.hide() }
+                }
+            )
         }
     ) {
         Scaffold(
-            modifier = Modifier
-                .setGradientBackground(),
             content = {
                 Column(
                     modifier = Modifier
@@ -119,20 +136,35 @@ fun OnlinePasswordScreen(
                             modifier = Modifier
                                 .size(imageSize)
                                 .border(
-                                    BorderStroke(3.dp, bottomSheetVM.selectedColor),
+                                    BorderStroke(2.dp, bottomSheetVM.selectedColor),
                                     shape = CircleShape
                                 ),
                             contentAlignment = Alignment.Center,
                         ) {
                             AsyncImage(
                                 modifier = Modifier
-                                    .size(imageSize.minus(10.dp))
+                                    .size(imageSize.minus(8.dp))
                                     .clip(CircleShape),
                                 model = ImageRequest.Builder(context)
                                     .data(Constants.ImageEndpoint + selectedImage)
+                                    .listener(
+                                        onStart = {
+                                            isImageLoading = true
+                                        },
+                                        onSuccess = { _, _ ->
+                                            isImageLoading = false
+                                        },
+                                        onError = { _, _ ->
+                                            isImageLoading = false
+                                        }
+                                    )
                                     .build(),
                                 contentDescription = stringResource(id = R.string.cd_image),
                             )
+
+                            if (isImageLoading) {
+                                CircularProgressIndicator(color = Color.Black)
+                            }
                         }
                     }
 
@@ -154,7 +186,6 @@ fun OnlinePasswordScreen(
                                     else
                                         modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                 }
-//                                selectedImage = "netflix.com"
                             },
                         ) {
                             Text(
@@ -187,7 +218,7 @@ fun OnlinePasswordScreen(
 
                     PasswordBottomSheetFields(
                         bottomSheetVM = bottomSheetVM,
-                        sheetState = SheetState.AddItem,
+                        uiState = UIState.AddItem,
                         titleError,
                         titleErrorMessage,
                         usernameError,
@@ -205,7 +236,7 @@ fun OnlinePasswordScreen(
                         Checkbox(
                             checked = bottomSheetVM.isEncrypted,
                             onCheckedChange = { bottomSheetVM.isEncrypted = it },
-                            enabled = SheetState.AddItem.areFieldsEnabled(),
+                            enabled = UIState.AddItem.areFieldsEnabled(),
                             colors = CheckboxDefaults.colors(
                                 checkedColor = BlueLogo
                             )
@@ -217,33 +248,145 @@ fun OnlinePasswordScreen(
                             fontWeight = FontWeight.Medium
                         )
 
-                        //                    IconButton(
-                        //                        onClick = onInfoDialogClicked,
-                        //                    ) {
-                        //                        Icon(
-                        //                            modifier = Modifier
-                        //                                .size(20.dp),
-                        //                            imageVector = Icons.Rounded.Info,
-                        //                            contentDescription = stringResource(com.mrntlu.PassVault.R.string.cd_what_encryption),
-                        //                            tint = Purple500,
-                        //                        )
-                        //                    }
+                        IconButton(
+                            onClick = { showInfoDialog = true },
+                        ) {
+                            Icon(
+                                modifier = Modifier
+                                    .size(20.dp),
+                                imageVector = Icons.Rounded.Info,
+                                contentDescription = stringResource(R.string.cd_what_encryption),
+                                tint = Purple500,
+                            )
+                        }
                     }
 
                     val textfieldError = stringResource(R.string.textfield_error)
                     val cryptoKey = stringResource(id = R.string.crypto_key)
 
                     BottomSheetButtons(
-                        isConfirmButtonAvailable = true,
-                        confirmBGColor = BlueLogo,
-                        confirmText = stringResource(id = R.string.save),
+                        isConfirmButtonAvailable = context.isNetworkConnectionAvailable(),
+                        confirmBGColor = when (sharedViewModel.state) {
+                            is UIState.AddItem -> BlueLogo
+                            is UIState.EditItem -> BlueLogo
+                            is UIState.ViewItem -> Yellow700
+                        },
+                        confirmText = when(sharedViewModel.state) {
+                            is UIState.AddItem -> stringResource(id = R.string.save)
+                            is UIState.EditItem -> stringResource(id = R.string.update)
+                            is UIState.ViewItem -> stringResource(id = R.string.edit)
+                        },
                         onConfirmClicked = {
                             focusManager.clearFocus(force = true)
 
+                            if (sharedViewModel.state is UIState.ViewItem) {
+                                sharedViewModel.changeState(
+                                    UIState.EditItem(
+                                        sharedViewModel.state.getItem()!!, sharedViewModel.state.getPosition()!!
+                                    )
+                                )
+                            } else {
+                                bottomSheetVM.titleState.apply {
+                                    val isTitleEmpty = isEmpty() || isBlank()
+                                    titleError = isTitleEmpty
+
+                                    if (isTitleEmpty) {
+                                        titleErrorMessage = textfieldError
+                                    }
+                                }
+
+                                bottomSheetVM.usernameState.apply {
+                                    val isUsernameEmpty = isEmpty() || isBlank()
+                                    usernameError = isUsernameEmpty
+
+                                    if (isUsernameEmpty) {
+                                        usernameErrorMessage = textfieldError
+                                    }
+                                }
+
+                                bottomSheetVM.passwordState.apply {
+                                    val isPasswordEmpty = isEmpty() || isBlank()
+                                    passwordError = isPasswordEmpty
+
+                                    if (isPasswordEmpty) {
+                                        passwordErrorMessage = textfieldError
+                                    }
+                                }
+
+                                if (!(titleError || usernameError || passwordError)) {
+//                                when(sheetState) {
+//                                    is UIState.AddItem -> {
+//                                        onCancel()
+//
+//                                        val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+//                                            Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+//                                        } else null
+//
+//                                        homeViewModel.addPassword(
+//                                            bottomSheetVM.titleState,
+//                                            bottomSheetVM.usernameState,
+//                                            encryptedPassword ?: bottomSheetVM.passwordState,
+//                                            bottomSheetVM.noteState,
+//                                            bottomSheetVM.isEncrypted
+//                                        )
+//                                    }
+//                                    is UIState.EditItem -> {
+//                                        onCancel()
+//
+//                                        val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+//                                            Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+//                                        } else null
+//
+//                                        homeViewModel.editPassword(
+//                                            sheetState.position,
+//                                            bottomSheetVM.titleState,
+//                                            bottomSheetVM.usernameState,
+//                                            encryptedPassword ?: bottomSheetVM.passwordState,
+//                                            bottomSheetVM.noteState,
+//                                            bottomSheetVM.isEncrypted
+//                                        )
+//                                    }
+//                                }
+                                }
+                            }
                         },
-                        dismissText = stringResource(id = R.string.cancel),
+                        dismissText = when(sharedViewModel.state) {
+                            is UIState.AddItem -> stringResource(id = R.string.cancel)
+                            is UIState.EditItem -> stringResource(id = R.string.cancel)
+                            is UIState.ViewItem -> stringResource(id = R.string.close)
+                        },
                         onDismissClicked = {
                             focusManager.clearFocus(force = true)
+                            navController.popBackStack()
+                        }
+                    )
+                }
+
+                if (showInfoDialog) {
+                    AlertDialog(
+                        onDismissRequest = { showInfoDialog = false },
+                        title = {
+                            Text(
+                                text = stringResource(R.string.cd_what_encryption),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = Color.Black
+                            )
+                        },
+                        text = {
+                            Text(
+                                text = stringResource(id = R.string.encryption_explanation),
+                                fontSize = 14.sp,
+                                color = Color.Black
+                            )
+                        },
+                        confirmButton = {},
+                        dismissButton = {
+                            Button(
+                                onClick = { showInfoDialog = false },
+                            ) {
+                                Text(stringResource(R.string.ok))
+                            }
                         }
                     )
                 }
@@ -255,5 +398,5 @@ fun OnlinePasswordScreen(
 @Preview
 @Composable
 fun OnlinePasswordScreenPreview() {
-    OnlinePasswordScreen()
+    OnlinePasswordScreen(rememberNavController(), viewModel(), viewModel())
 }

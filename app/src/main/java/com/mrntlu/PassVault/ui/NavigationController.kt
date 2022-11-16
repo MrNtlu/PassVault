@@ -10,9 +10,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.mrntlu.PassVault.ui.views.*
-import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
+import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 
 @Composable
 fun NavigationComposable(
@@ -21,6 +22,7 @@ fun NavigationComposable(
     parseVM: ParseAuthViewModel,
     homeVM: HomeViewModel,
     offlineVM: OfflineViewModel,
+    onlinePasswordVM: OnlinePasswordViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
@@ -28,12 +30,15 @@ fun NavigationComposable(
                 navController = navController,
                 parseVM = parseVM,
                 homeViewModel = homeVM,
+                sharedViewModel = onlinePasswordVM,
             )
         }
 
         composable("online") {
             OnlinePasswordScreen(
-
+                navController = navController,
+                homeViewModel = homeVM,
+                sharedViewModel = onlinePasswordVM,
             )
         }
 

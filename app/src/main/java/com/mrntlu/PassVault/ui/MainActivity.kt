@@ -34,6 +34,7 @@ import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,6 +90,7 @@ fun MainScreen(
     val parseVM = hiltViewModel<ParseAuthViewModel>()
     val homeScreenVM = hiltViewModel<HomeViewModel>()
     val offlineVM = hiltViewModel<OfflineViewModel>()
+    val onlinePasswordVM = hiltViewModel<OnlinePasswordViewModel>()
 
     val bottomBarItems = listOf(
         BottomNavItem(
@@ -187,7 +189,8 @@ fun MainScreen(
             padding = it,
             parseVM = parseVM,
             homeVM = homeScreenVM,
-            offlineVM = offlineVM
+            offlineVM = offlineVM,
+            onlinePasswordVM = onlinePasswordVM
         )
 
         if (showDialog) {

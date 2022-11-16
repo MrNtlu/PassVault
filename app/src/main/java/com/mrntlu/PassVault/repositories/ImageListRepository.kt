@@ -17,11 +17,6 @@ class ImageListRepository @Inject constructor(
             emit(Response.Loading)
 
             emit(Response.Success(imageApiService.getImageList(query)))
-//                .catch { err ->
-//                emit(Response.Failure(err.message ?: err.toString()))
-//            }.collect() {
-//                emit(Response.Success(it))
-//            }
         } catch (error: Exception) {
             emit(Response.Failure(error.message ?: error.toString()))
         }

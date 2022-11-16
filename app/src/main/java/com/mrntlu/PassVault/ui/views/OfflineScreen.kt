@@ -42,7 +42,7 @@ fun OfflineScreen(
     var showDialog by remember { mutableStateOf(false) }
     var deleteIndex by remember { mutableStateOf(-1) }
 
-    var sheetState by remember { mutableStateOf<SheetState<OfflinePassword>>(SheetState.AddItem) }
+    var uiState by remember { mutableStateOf<UIState<OfflinePassword>>(UIState.AddItem) }
 
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
@@ -61,10 +61,10 @@ fun OfflineScreen(
         sheetContent = {
             OfflinePasswordBottomSheet(
                 offlineVM = offlineViewModel,
-                sheetState = sheetState,
+                uiState = uiState,
                 isSheetVisible = modalSheetState.isVisible,
                 onEditClicked = {
-                    sheetState = SheetState.EditItem(sheetState.getItem()!!, sheetState.getPosition()!!)
+                    uiState = UIState.EditItem(uiState.getItem()!!, uiState.getPosition()!!)
                 },
                 onCancel = {
                     coroutineScope.launch { modalSheetState.hide() }
@@ -86,7 +86,7 @@ fun OfflineScreen(
                         adCount++
 
                         coroutineScope.launch {
-                            sheetState = SheetState.AddItem
+                            uiState = UIState.AddItem
 
                             if (modalSheetState.isVisible)
                                 modalSheetState.hide()
@@ -120,7 +120,7 @@ fun OfflineScreen(
                         OfflinePasswordList(
                             passwords = list,
                             onEditClicked = { index ->
-                                sheetState = SheetState.EditItem(list[index], index)
+                                uiState = UIState.EditItem(list[index], index)
 
                                 coroutineScope.launch {
                                     if (modalSheetState.isVisible)
@@ -134,7 +134,7 @@ fun OfflineScreen(
                                 deleteIndex = index
                             },
                             onDescriptionClicked = { index ->
-                                sheetState = SheetState.ViewItem(list[index], index)
+                                uiState = UIState.ViewItem(list[index], index)
 
                                 coroutineScope.launch {
                                     if (modalSheetState.isVisible)

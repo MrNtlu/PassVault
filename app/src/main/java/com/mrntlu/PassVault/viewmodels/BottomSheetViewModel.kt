@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.Red500
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.getItem
 
 class BottomSheetViewModel: ViewModel() {
@@ -18,13 +18,13 @@ class BottomSheetViewModel: ViewModel() {
     var isEncrypted by  mutableStateOf(true)
     var selectedColor by  mutableStateOf(Red500)
 
-    fun setStateValues(sheetState: SheetState<PasswordItem>) {
-        sheetState.getItem().let {
+    fun setStateValues(uiState: UIState<PasswordItem>) {
+        uiState.getItem().let {
             titleState = it?.title ?: ""
             usernameState = it?.username ?: ""
             passwordState = it?.password ?: ""
             noteState = it?.note ?: ""
-            isEncrypted = if (it?.isEncrypted != null) it.isEncrypted!! else sheetState is SheetState.AddItem
+            isEncrypted = if (it?.isEncrypted != null) it.isEncrypted!! else uiState is UIState.AddItem
         }
     }
 

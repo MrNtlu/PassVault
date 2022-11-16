@@ -75,20 +75,20 @@ fun ParseObject.toPasswordItem() = PasswordItem(
     parseID = objectId
 )
 
-fun <T> SheetState<T>.getItem(): T? = when(this) {
-    is SheetState.EditItem -> item
-    is SheetState.ViewItem -> item
-    is SheetState.AddItem -> null
+fun <T> UIState<T>.getItem(): T? = when(this) {
+    is UIState.EditItem -> item
+    is UIState.ViewItem -> item
+    is UIState.AddItem -> null
 }
 
-fun <T> SheetState<T>.getPosition(): Int? = when(this) {
-    is SheetState.EditItem -> position
-    is SheetState.ViewItem -> position
-    is SheetState.AddItem -> null
+fun <T> UIState<T>.getPosition(): Int? = when(this) {
+    is UIState.EditItem -> position
+    is UIState.ViewItem -> position
+    is UIState.AddItem -> null
 }
 
-fun <T> SheetState<T>.areFieldsEnabled(): Boolean = when(this) {
-    is SheetState.EditItem -> true
-    is SheetState.ViewItem -> false
-    is SheetState.AddItem -> true
+fun <T> UIState<T>.areFieldsEnabled(): Boolean = when(this) {
+    is UIState.EditItem -> true
+    is UIState.ViewItem -> false
+    is UIState.AddItem -> true
 }

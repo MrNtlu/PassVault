@@ -31,14 +31,14 @@ import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.OfflinePassword
 import com.mrntlu.PassVault.ui.widgets.OutlinedTextFieldWithErrorView
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.offline.OfflineBottomSheetViewModel
 
 @Composable
 fun OfflineBottomSheetFields(
     offlineBottomSheetVM: OfflineBottomSheetViewModel,
-    sheetState: SheetState<OfflinePassword>,
+    uiState: UIState<OfflinePassword>,
     idMailError: Boolean,
     idMailErrorMessage: String,
     passwordError: Boolean,
@@ -69,7 +69,7 @@ fun OfflineBottomSheetFields(
             )
         },
         trailingIcon = {
-            if (sheetState is SheetState.ViewItem) {
+            if (uiState is UIState.ViewItem) {
                 IconButton(
                     onClick = {
                         clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.idMailState))
@@ -92,7 +92,7 @@ fun OfflineBottomSheetFields(
         label = {
             Text(text = stringResource(id = R.string.username_mail))
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         isError = idMailError,
         errorMsg = idMailErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -136,7 +136,7 @@ fun OfflineBottomSheetFields(
                     Icon(imageVector = image, description)
                 }
 
-                if (sheetState is SheetState.ViewItem) {
+                if (uiState is UIState.ViewItem) {
                     IconButton(
                         onClick = {
                             clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.passwordState))
@@ -157,7 +157,7 @@ fun OfflineBottomSheetFields(
                 }
             }
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         isError = passwordError,
         errorMsg = passwordErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -180,7 +180,7 @@ fun OfflineBottomSheetFields(
             )
         },
         maxLines = 3,
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         label = {
             Text(text = stringResource(id = R.string.description))
         },

@@ -13,6 +13,7 @@
   <li> Firebase Crashlytics & Analytics
   <li> Parse SDK
   <li> Room - SQLite Caching
+  <li> Retrofit
 </ul>
 
 &nbsp;

@@ -30,14 +30,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
 
 @Composable
 fun PasswordBottomSheetFields(
     bottomSheetVM: BottomSheetViewModel,
-    sheetState: SheetState<PasswordItem>,
+    uiState: UIState<PasswordItem>,
     titleError: Boolean,
     titleErrorMessage: String,
     usernameError: Boolean,
@@ -72,7 +72,7 @@ fun PasswordBottomSheetFields(
         label = {
             Text(text = stringResource(id = R.string.title))
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         isError = titleError,
         errorMsg = titleErrorMessage
     )
@@ -93,7 +93,7 @@ fun PasswordBottomSheetFields(
             )
         },
         trailingIcon = {
-            if (sheetState is SheetState.ViewItem) {
+            if (uiState is UIState.ViewItem) {
                 IconButton(
                     onClick = {
                         clipboardManager.setText(AnnotatedString(bottomSheetVM.usernameState))
@@ -116,7 +116,7 @@ fun PasswordBottomSheetFields(
         label = {
             Text(text = stringResource(id = R.string.username_mail))
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         isError = usernameError,
         errorMsg = usernameErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -160,7 +160,7 @@ fun PasswordBottomSheetFields(
                     Icon(imageVector = image, description)
                 }
 
-                if (sheetState is SheetState.ViewItem) {
+                if (uiState is UIState.ViewItem) {
                     IconButton(
                         onClick = {
                             clipboardManager.setText(AnnotatedString(bottomSheetVM.passwordState))
@@ -181,7 +181,7 @@ fun PasswordBottomSheetFields(
                 }
             }
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         isError = passwordError,
         errorMsg = passwordErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -203,7 +203,7 @@ fun PasswordBottomSheetFields(
                 contentDescription = stringResource(R.string.cd_note)
             )
         },
-        enabled = sheetState.areFieldsEnabled(),
+        enabled = uiState.areFieldsEnabled(),
         label = {
             Text(text = stringResource(id = R.string.notes))
         },

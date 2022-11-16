@@ -22,7 +22,7 @@ import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
 import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.utils.Cryptography
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
 import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
@@ -30,7 +30,7 @@ import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 @Composable
 fun PasswordBottomSheet(
     homeVM: HomeViewModel,
-    sheetState: SheetState<PasswordItem>,
+    uiState: UIState<PasswordItem>,
     isSheetVisible: Boolean,
     isNetworkAvailable: Boolean,
     onEditClicked: () -> Unit,
@@ -49,12 +49,12 @@ fun PasswordBottomSheet(
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
 
-    LaunchedEffect(key1 = sheetState) {
-        bottomSheetVM.setStateValues(sheetState)
+    LaunchedEffect(key1 = uiState) {
+        bottomSheetVM.setStateValues(uiState)
     }
 
     LaunchedEffect(key1 = isSheetVisible) {
-        if (!isSheetVisible && sheetState is SheetState.AddItem) {
+        if (!isSheetVisible && uiState is UIState.AddItem) {
             focusManager.clearFocus(force = true)
 
             titleError = false
@@ -79,7 +79,7 @@ fun PasswordBottomSheet(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            if (sheetState !is SheetState.ViewItem) {
+            if (uiState !is UIState.ViewItem) {
                 ColorPickerRow(
                     bottomSheetVM = bottomSheetVM,
                 )
@@ -87,7 +87,7 @@ fun PasswordBottomSheet(
 
             PasswordBottomSheetFields(
                 bottomSheetVM = bottomSheetVM,
-                sheetState = sheetState,
+                uiState = uiState,
                 titleError, titleErrorMessage, usernameError, usernameErrorMessage, passwordError, passwordErrorMessage
             )
 
@@ -100,7 +100,7 @@ fun PasswordBottomSheet(
                 Checkbox(
                     checked = bottomSheetVM.isEncrypted,
                     onCheckedChange = { bottomSheetVM.isEncrypted = it },
-                    enabled = sheetState.areFieldsEnabled(),
+                    enabled = uiState.areFieldsEnabled(),
                     colors = CheckboxDefaults.colors(
                         checkedColor = BlueLogo
                     )
@@ -130,20 +130,20 @@ fun PasswordBottomSheet(
 
             BottomSheetButtons(
                 isConfirmButtonAvailable = isNetworkAvailable,
-                confirmBGColor = when (sheetState) {
-                    is SheetState.AddItem -> BlueLogo
-                    is SheetState.EditItem -> BlueLogo
-                    is SheetState.ViewItem -> Yellow700
+                confirmBGColor = when (uiState) {
+                    is UIState.AddItem -> BlueLogo
+                    is UIState.EditItem -> BlueLogo
+                    is UIState.ViewItem -> Yellow700
                 },
-                confirmText = when(sheetState) {
-                    is SheetState.AddItem -> stringResource(id = R.string.save)
-                    is SheetState.EditItem -> stringResource(id = R.string.update)
-                    is SheetState.ViewItem -> stringResource(id = R.string.edit)
+                confirmText = when(uiState) {
+                    is UIState.AddItem -> stringResource(id = R.string.save)
+                    is UIState.EditItem -> stringResource(id = R.string.update)
+                    is UIState.ViewItem -> stringResource(id = R.string.edit)
                 },
                 onConfirmClicked = {
                     focusManager.clearFocus(force = true)
 
-                    if (sheetState is SheetState.ViewItem) {
+                    if (uiState is UIState.ViewItem) {
                         onEditClicked()
                     } else {
                         bottomSheetVM.titleState.apply {
@@ -174,8 +174,8 @@ fun PasswordBottomSheet(
                         }
 
                         if (!(titleError || usernameError || passwordError)) {
-                            when(sheetState) {
-                                is SheetState.AddItem -> {
+                            when(uiState) {
+                                is UIState.AddItem -> {
                                     onCancel()
 
                                     val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
@@ -190,7 +190,7 @@ fun PasswordBottomSheet(
                                         bottomSheetVM.isEncrypted
                                     )
                                 }
-                                is SheetState.EditItem -> {
+                                is UIState.EditItem -> {
                                     onCancel()
 
                                     val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
@@ -198,7 +198,7 @@ fun PasswordBottomSheet(
                                     } else null
 
                                     homeVM.editPassword(
-                                        sheetState.position,
+                                        uiState.position,
                                         bottomSheetVM.titleState,
                                         bottomSheetVM.usernameState,
                                         encryptedPassword ?: bottomSheetVM.passwordState,
@@ -211,10 +211,10 @@ fun PasswordBottomSheet(
                         }
                     }
                 },
-                dismissText = when(sheetState) {
-                    is SheetState.AddItem -> stringResource(id = R.string.cancel)
-                    is SheetState.EditItem -> stringResource(id = R.string.cancel)
-                    is SheetState.ViewItem -> stringResource(id = R.string.close)
+                dismissText = when(uiState) {
+                    is UIState.AddItem -> stringResource(id = R.string.cancel)
+                    is UIState.EditItem -> stringResource(id = R.string.cancel)
+                    is UIState.ViewItem -> stringResource(id = R.string.close)
                 },
                 onDismissClicked = {
                     focusManager.clearFocus(force = true)
@@ -228,11 +228,11 @@ fun PasswordBottomSheet(
 @Preview
 @Composable
 fun PasswordBottomSheetPreview() {
-    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = true)
+    PasswordBottomSheet(homeVM = viewModel(), uiState = UIState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = true)
 }
 
 @Preview
 @Composable
 fun PasswordBottomSheetOfflinePreview() {
-    PasswordBottomSheet(homeVM = viewModel(), sheetState = SheetState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = false)
+    PasswordBottomSheet(homeVM = viewModel(), uiState = UIState.AddItem, isSheetVisible = true, onEditClicked = {}, onInfoDialogClicked = {}, onCancel = {}, isNetworkAvailable = false)
 }

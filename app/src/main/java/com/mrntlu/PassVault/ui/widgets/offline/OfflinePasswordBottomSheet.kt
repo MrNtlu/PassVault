@@ -16,14 +16,14 @@ import com.mrntlu.PassVault.models.OfflinePassword
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.offline.OfflineBottomSheetFields
-import com.mrntlu.PassVault.utils.SheetState
+import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.viewmodels.offline.OfflineBottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 
 @Composable
 fun OfflinePasswordBottomSheet(
     offlineVM: OfflineViewModel,
-    sheetState: SheetState<OfflinePassword>,
+    uiState: UIState<OfflinePassword>,
     isSheetVisible: Boolean,
     onEditClicked: () -> Unit,
     onCancel: () -> Unit,
@@ -37,12 +37,12 @@ fun OfflinePasswordBottomSheet(
     var passwordError by remember { mutableStateOf(false) }
     var passwordErrorMessage by remember { mutableStateOf("") }
 
-    LaunchedEffect(key1 = sheetState) {
-        offlineBottomSheetVM.setStateValues(sheetState)
+    LaunchedEffect(key1 = uiState) {
+        offlineBottomSheetVM.setStateValues(uiState)
     }
 
     LaunchedEffect(key1 = isSheetVisible) {
-        if (!isSheetVisible && sheetState is SheetState.AddItem) {
+        if (!isSheetVisible && uiState is UIState.AddItem) {
             focusManager.clearFocus(force = true)
 
             idMailError = false
@@ -68,27 +68,27 @@ fun OfflinePasswordBottomSheet(
         ) {
             OfflineBottomSheetFields(
                 offlineBottomSheetVM = offlineBottomSheetVM,
-                sheetState = sheetState,
+                uiState = uiState,
                 idMailError, idMailErrorMessage, passwordError, passwordErrorMessage
             )
 
             val textfieldError = stringResource(R.string.textfield_error)
 
             BottomSheetButtons(
-                confirmBGColor = when (sheetState) {
-                    is SheetState.AddItem -> BlueLogo
-                    is SheetState.EditItem -> BlueLogo
-                    is SheetState.ViewItem -> Yellow700
+                confirmBGColor = when (uiState) {
+                    is UIState.AddItem -> BlueLogo
+                    is UIState.EditItem -> BlueLogo
+                    is UIState.ViewItem -> Yellow700
                 },
-                confirmText = when (sheetState) {
-                    is SheetState.AddItem -> stringResource(R.string.save)
-                    is SheetState.EditItem -> stringResource(R.string.update)
-                    is SheetState.ViewItem -> stringResource(R.string.edit)
+                confirmText = when (uiState) {
+                    is UIState.AddItem -> stringResource(R.string.save)
+                    is UIState.EditItem -> stringResource(R.string.update)
+                    is UIState.ViewItem -> stringResource(R.string.edit)
                 },
                 onConfirmClicked = {
                     focusManager.clearFocus(force = true)
 
-                    if (sheetState is SheetState.ViewItem) {
+                    if (uiState is UIState.ViewItem) {
                         onEditClicked()
                     } else {
                         offlineBottomSheetVM.idMailState.apply {
@@ -110,8 +110,8 @@ fun OfflinePasswordBottomSheet(
                         }
 
                         if (!(idMailError || passwordError)) {
-                            when (sheetState) {
-                                is SheetState.AddItem -> {
+                            when (uiState) {
+                                is UIState.AddItem -> {
                                     onCancel()
 
                                     offlineVM.addPassword(
@@ -120,11 +120,11 @@ fun OfflinePasswordBottomSheet(
                                         offlineBottomSheetVM.descriptionState,
                                     )
                                 }
-                                is SheetState.EditItem -> {
+                                is UIState.EditItem -> {
                                     onCancel()
 
                                     offlineVM.editPassword(
-                                        sheetState.position,
+                                        uiState.position,
                                         offlineBottomSheetVM.idMailState,
                                         offlineBottomSheetVM.passwordState,
                                         offlineBottomSheetVM.descriptionState,
@@ -135,10 +135,10 @@ fun OfflinePasswordBottomSheet(
                         }
                     }
                 },
-                dismissText = when (sheetState) {
-                    is SheetState.AddItem -> stringResource(id = R.string.cancel)
-                    is SheetState.EditItem -> stringResource(id = R.string.cancel)
-                    is SheetState.ViewItem -> stringResource(id = R.string.close)
+                dismissText = when (uiState) {
+                    is UIState.AddItem -> stringResource(id = R.string.cancel)
+                    is UIState.EditItem -> stringResource(id = R.string.cancel)
+                    is UIState.ViewItem -> stringResource(id = R.string.close)
                 },
                 onDismissClicked = {
                     focusManager.clearFocus(force = true)
@@ -153,6 +153,6 @@ fun OfflinePasswordBottomSheet(
 @Composable
 fun OfflinePasswordBottomSheetPreview() {
     OfflinePasswordBottomSheet(
-        viewModel(), SheetState.AddItem, true, {}, {}
+        viewModel(), UIState.AddItem, true, {}, {}
     )
 }
