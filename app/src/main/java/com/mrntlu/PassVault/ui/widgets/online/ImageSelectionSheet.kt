@@ -33,7 +33,6 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.widgets.LoadingView
 import com.mrntlu.PassVault.ui.widgets.NoItemView
 import com.mrntlu.PassVault.utils.Response
-import com.mrntlu.PassVault.utils.printLog
 import com.mrntlu.PassVault.viewmodels.online.ImageListViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ImageSelectionViewModel
 
@@ -165,17 +164,6 @@ fun ImageSelectionSheet(
                                                 .clip(CircleShape),
                                             model = ImageRequest.Builder(context)
                                                 .data(image.logo)
-                                                .listener(
-                                                    onStart = {
-                                                        printLog("Called onStart")
-                                                    },
-                                                    onSuccess = { request, result ->
-                                                        printLog("OnSuccess $request $result")
-                                                    },
-                                                    onError = { request, result ->
-                                                        printLog("OnError $request $result")
-                                                    }
-                                                )
                                                 .build(),
                                             contentDescription = stringResource(id = R.string.cd_image),
                                         )

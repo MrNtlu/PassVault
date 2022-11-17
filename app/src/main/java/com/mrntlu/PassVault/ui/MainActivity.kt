@@ -157,7 +157,7 @@ fun MainScreen(
                         focusManager.clearFocus(force = true)
                     }
                 )
-            } else {
+            } else if (navController.currentBackStackEntry?.destination?.route != "online") {
                 DefaultAppBar(
                     navController = navController,
                     isAuthLoading = isAuthLoading,

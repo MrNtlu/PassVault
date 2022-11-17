@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -54,7 +55,7 @@ fun OnlinePasswordScreen(
 ) {
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
-    val imageSize = 52.dp
+    val imageSize = 64.dp
 
     val imageSelectionVM = hiltViewModel<ImageSelectionViewModel>()
 
@@ -72,6 +73,7 @@ fun OnlinePasswordScreen(
     var passwordErrorMessage by remember { mutableStateOf("") }
 
     var selectedImage by imageSelectionVM.selectedImage
+    val uiState = sharedViewModel.state
 
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
@@ -79,6 +81,10 @@ fun OnlinePasswordScreen(
         confirmStateChange = { false },
         skipHalfExpanded = true
     )
+
+    LaunchedEffect(key1 = sharedViewModel.state) {
+        bottomSheetVM.setStateValues(sharedViewModel.state)
+    }
 
     BackHandler(modalSheetState.isVisible) {
         coroutineScope.launch { modalSheetState.hide() }
@@ -98,6 +104,55 @@ fun OnlinePasswordScreen(
         }
     ) {
         Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        if (uiState !is UIState.ViewItem) {
+                            Text(
+                                text = if (uiState is UIState.AddItem) "Create" else "Edit",
+                                color = Color.White
+                            )
+                        } else {
+                            val drawable = TextDrawable.builder().buildRound(
+                                if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
+                                    .substring(0, 1)
+                                else "",
+                                bottomSheetVM.selectedColor.hashCode()
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Image(
+                                    modifier = Modifier
+                                        .size(48.dp),
+                                    painter = rememberAsyncImagePainter(model = drawable),
+                                    contentDescription = stringResource(id = R.string.cd_image),
+                                )
+                            }
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.cd_back),
+                                tint = Color.White
+                            )
+                        }
+                    },
+                    actions = {
+                        TextButton(
+                            enabled = false,
+                            onClick = {},
+                            content = {}
+                        )
+                    },
+                    elevation = 8.dp,
+                    backgroundColor = BlueLogo,
+                )
+            },
             content = {
                 Column(
                     modifier = Modifier
@@ -124,13 +179,15 @@ fun OnlinePasswordScreen(
                             contentDescription = stringResource(id = R.string.cd_image),
                         )
 
-                        Text(
-                            modifier = Modifier
-                                .padding(top = 8.dp),
-                            text = "or",
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black,
-                        )
+                        if (uiState !is UIState.ViewItem) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(top = 8.dp),
+                                text = stringResource(R.string.or),
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                            )
+                        }
                     } else {
                         Box(
                             modifier = Modifier
@@ -143,7 +200,7 @@ fun OnlinePasswordScreen(
                         ) {
                             AsyncImage(
                                 modifier = Modifier
-                                    .size(imageSize.minus(8.dp))
+                                    .size(imageSize.minus(7.dp))
                                     .clip(CircleShape),
                                 model = ImageRequest.Builder(context)
                                     .data(Constants.ImageEndpoint + selectedImage)
@@ -168,31 +225,33 @@ fun OnlinePasswordScreen(
                         }
                     }
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 6.dp)
-                            .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        TextButton(
+                    if (uiState !is UIState.ViewItem){
+                        Row(
                             modifier = Modifier
-                                .padding(horizontal = 3.dp),
-                            onClick = {
-                                coroutineScope.launch {
-                                    if (modalSheetState.isVisible)
-                                        modalSheetState.hide()
-                                    else
-                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                }
-                            },
+                                .fillMaxWidth()
+                                .padding(bottom = 6.dp)
+                                .padding(horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = if (selectedImage == null) "Select Image" else "Change Image",
-                                color = Purple500,
-                                fontWeight = FontWeight.SemiBold,
-                            )
+                            TextButton(
+                                modifier = Modifier
+                                    .padding(horizontal = 3.dp),
+                                onClick = {
+                                    coroutineScope.launch {
+                                        if (modalSheetState.isVisible)
+                                            modalSheetState.hide()
+                                        else
+                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                    }
+                                },
+                            ) {
+                                Text(
+                                    text = if (selectedImage == null) "Select Image" else "Change Image",
+                                    color = Purple500,
+                                    fontWeight = FontWeight.SemiBold,
+                                )
+                            }
                         }
 
                         if (selectedImage != null) {
@@ -212,13 +271,15 @@ fun OnlinePasswordScreen(
                         }
                     }
 
-                    ColorPickerRow(
-                        bottomSheetVM = bottomSheetVM,
-                    )
+                    if (uiState !is UIState.ViewItem) {
+                        ColorPickerRow(
+                            bottomSheetVM = bottomSheetVM,
+                        )
+                    }
 
                     PasswordBottomSheetFields(
                         bottomSheetVM = bottomSheetVM,
-                        uiState = UIState.AddItem,
+                        uiState = uiState,
                         titleError,
                         titleErrorMessage,
                         usernameError,
@@ -236,7 +297,7 @@ fun OnlinePasswordScreen(
                         Checkbox(
                             checked = bottomSheetVM.isEncrypted,
                             onCheckedChange = { bottomSheetVM.isEncrypted = it },
-                            enabled = UIState.AddItem.areFieldsEnabled(),
+                            enabled = uiState.areFieldsEnabled(),
                             colors = CheckboxDefaults.colors(
                                 checkedColor = BlueLogo
                             )
