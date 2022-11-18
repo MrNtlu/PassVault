@@ -32,18 +32,12 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
-import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 
 @Composable
 fun PasswordBottomSheetFields(
     bottomSheetVM: BottomSheetViewModel,
     uiState: UIState<PasswordItem>,
-    titleError: Boolean,
-    titleErrorMessage: String,
-    usernameError: Boolean,
-    usernameErrorMessage: String,
-    passwordError: Boolean,
-    passwordErrorMessage: String,
 ) {
     val clipboardManager = LocalClipboardManager.current
     val focusManager = LocalFocusManager.current
@@ -73,8 +67,8 @@ fun PasswordBottomSheetFields(
             Text(text = stringResource(id = R.string.title))
         },
         enabled = uiState.areFieldsEnabled(),
-        isError = titleError,
-        errorMsg = titleErrorMessage
+        isError = bottomSheetVM.titleError,
+        errorMsg = bottomSheetVM.titleErrorMessage
     )
 
     OutlinedTextFieldWithErrorView(
@@ -117,8 +111,8 @@ fun PasswordBottomSheetFields(
             Text(text = stringResource(id = R.string.username_mail))
         },
         enabled = uiState.areFieldsEnabled(),
-        isError = usernameError,
-        errorMsg = usernameErrorMessage,
+        isError = bottomSheetVM.usernameError,
+        errorMsg = bottomSheetVM.usernameErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             disabledTextColor = Color.Black,
             disabledTrailingIconColor = Color.Black,
@@ -182,8 +176,8 @@ fun PasswordBottomSheetFields(
             }
         },
         enabled = uiState.areFieldsEnabled(),
-        isError = passwordError,
-        errorMsg = passwordErrorMessage,
+        isError = bottomSheetVM.passwordError,
+        errorMsg = bottomSheetVM.passwordErrorMessage,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             disabledTextColor = Color.Black,
             disabledTrailingIconColor = Color.Black,

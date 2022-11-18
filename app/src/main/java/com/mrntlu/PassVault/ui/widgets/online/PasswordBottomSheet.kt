@@ -20,11 +20,13 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
+import com.mrntlu.PassVault.ui.theme.Red500
 import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.utils.Cryptography
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
-import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
+import com.mrntlu.PassVault.utils.getAsString
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 
 @Composable
@@ -37,17 +39,9 @@ fun PasswordBottomSheet(
     onInfoDialogClicked: () -> Unit,
     onCancel: () -> Unit,
 ) {
+    //TODO: Test & remove
     val focusManager = LocalFocusManager.current
     val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
-
-    var titleError by remember { mutableStateOf(false) }
-    var titleErrorMessage by remember { mutableStateOf("") }
-
-    var usernameError by remember { mutableStateOf(false) }
-    var usernameErrorMessage by remember { mutableStateOf("") }
-
-    var passwordError by remember { mutableStateOf(false) }
-    var passwordErrorMessage by remember { mutableStateOf("") }
 
     LaunchedEffect(key1 = uiState) {
         bottomSheetVM.setStateValues(uiState)
@@ -56,10 +50,6 @@ fun PasswordBottomSheet(
     LaunchedEffect(key1 = isSheetVisible) {
         if (!isSheetVisible && uiState is UIState.AddItem) {
             focusManager.clearFocus(force = true)
-
-            titleError = false
-            usernameError = false
-            passwordError = false
 
             bottomSheetVM.resetValues()
         }
@@ -88,7 +78,6 @@ fun PasswordBottomSheet(
             PasswordBottomSheetFields(
                 bottomSheetVM = bottomSheetVM,
                 uiState = uiState,
-                titleError, titleErrorMessage, usernameError, usernameErrorMessage, passwordError, passwordErrorMessage
             )
 
             Row(
@@ -148,32 +137,32 @@ fun PasswordBottomSheet(
                     } else {
                         bottomSheetVM.titleState.apply {
                             val isTitleEmpty = isEmpty() || isBlank()
-                            titleError = isTitleEmpty
+                            bottomSheetVM.titleError = isTitleEmpty
 
                             if (isTitleEmpty) {
-                                titleErrorMessage = textfieldError
+                                bottomSheetVM.titleErrorMessage = textfieldError
                             }
                         }
 
                         bottomSheetVM.usernameState.apply {
                             val isUsernameEmpty = isEmpty() || isBlank()
-                            usernameError = isUsernameEmpty
+                            bottomSheetVM.usernameError = isUsernameEmpty
 
                             if (isUsernameEmpty) {
-                                usernameErrorMessage = textfieldError
+                                bottomSheetVM.usernameErrorMessage = textfieldError
                             }
                         }
 
                         bottomSheetVM.passwordState.apply {
                             val isPasswordEmpty = isEmpty() || isBlank()
-                            passwordError = isPasswordEmpty
+                            bottomSheetVM.passwordError = isPasswordEmpty
 
                             if (isPasswordEmpty) {
-                                passwordErrorMessage = textfieldError
+                                bottomSheetVM.passwordErrorMessage = textfieldError
                             }
                         }
 
-                        if (!(titleError || usernameError || passwordError)) {
+                        if (!(bottomSheetVM.titleError || bottomSheetVM.usernameError || bottomSheetVM.passwordError)) {
                             when(uiState) {
                                 is UIState.AddItem -> {
                                     onCancel()
@@ -187,7 +176,9 @@ fun PasswordBottomSheet(
                                         bottomSheetVM.usernameState,
                                         encryptedPassword ?: bottomSheetVM.passwordState,
                                         bottomSheetVM.noteState,
-                                        bottomSheetVM.isEncrypted
+                                        bottomSheetVM.isEncrypted,
+                                        null,
+                                        Red500.getAsString(),
                                     )
                                 }
                                 is UIState.EditItem -> {
@@ -203,7 +194,9 @@ fun PasswordBottomSheet(
                                         bottomSheetVM.usernameState,
                                         encryptedPassword ?: bottomSheetVM.passwordState,
                                         bottomSheetVM.noteState,
-                                        bottomSheetVM.isEncrypted
+                                        bottomSheetVM.isEncrypted,
+                                        null,
+                                        Red500.getAsString(),
                                     )
                                 }
                                 else -> {}

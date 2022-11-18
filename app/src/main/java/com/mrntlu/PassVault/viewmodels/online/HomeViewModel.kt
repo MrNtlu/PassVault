@@ -22,6 +22,9 @@ class HomeViewModel @Inject constructor(
     private var _tempPasswords: MutableList<PasswordItem>? = null
     val passwords: State<Response<List<PasswordItem>>> = _passwords
 
+    private val _uiResponse = mutableStateOf<Response<Nothing>>(Response.Idle)
+    val uiResponse: State<Response<Nothing>> = _uiResponse
+
     fun searchPassword(text: String) {
         if (_passwords.value is Response.Success) {
             if (text.isNotEmpty() && text.isNotBlank()) {
@@ -78,24 +81,29 @@ class HomeViewModel @Inject constructor(
     }
 
     fun editPassword(
-        position: Int, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
+        position: Int, title: String, username: String, password: String,
+        note: String?, isEncrypted: Boolean, imageUri: String?, imageColor: String,
     ) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
             val parseObject = passwordList?.get(position)
 
             parseObject?.let {
-                homeRepository.editPassword(it, title, username, password, note, isEncrypted).collect { response ->
+                homeRepository.editPassword(
+                    it, title, username, password,
+                    note, isEncrypted, imageUri, imageColor,
+                ).collect { response ->
                     when(response) {
-                        is Response.Loading -> _passwords.value = response
-                        is Response.Failure -> _passwords.value = response
-                        is Response.Idle -> _passwords.value = response
+                        is Response.Loading -> _uiResponse.value = response
+                        is Response.Failure -> _uiResponse.value = response
+                        is Response.Idle -> _uiResponse.value = response
                         is Response.Success -> {
                             response.data?.let { data ->
                                 passwordList[position] = data.toPasswordItem()
 
                                 _passwords.value = Response.Success(passwordList)
                             }
+                            _uiResponse.value = Response.Success(null)
                         }
                     }
                 }
@@ -103,21 +111,29 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) {
+    fun addPassword(
+        title: String, username: String, password: String,
+        note: String?, isEncrypted: Boolean, imageUri: String?,
+        imageColor: String,
+    ) {
         viewModelScope.launch {
             val passwordList = (_passwords.value as Response.Success).data
 
-            homeRepository.addPassword(title, username, password, note, isEncrypted).collect {
+            homeRepository.addPassword(
+                title, username, password, note,
+                isEncrypted, imageUri, imageColor,
+            ).collect {
                 when(it) {
-                    is Response.Loading -> _passwords.value = it
-                    is Response.Failure -> _passwords.value = it
-                    is Response.Idle -> _passwords.value = it
+                    is Response.Loading -> _uiResponse.value = it
+                    is Response.Failure -> _uiResponse.value = it
+                    is Response.Idle -> _uiResponse.value = it
                     is Response.Success -> {
                         it.data?.let { data ->
                             passwordList?.add(data.toPasswordItem())
 
                             _passwords.value = Response.Success(passwordList)
                         }
+                        _uiResponse.value = Response.Success(null)
                     }
                 }
             }
@@ -130,5 +146,9 @@ class HomeViewModel @Inject constructor(
                 _passwords.value = it
             }
         }
+    }
+
+    fun resetUIResponse() {
+        _uiResponse.value = Response.Idle
     }
 }

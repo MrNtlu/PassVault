@@ -1,12 +1,8 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -31,7 +27,6 @@ import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -46,229 +41,176 @@ fun HomeScreen(
     var showInfoDialog by remember { mutableStateOf(false) }
     var isNetworkAvailable by remember { mutableStateOf(true) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
-    var uiState by remember { mutableStateOf<UIState<PasswordItem>>(UIState.AddItem) }
-
-    val coroutineScope = rememberCoroutineScope()
-    val modalSheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-        confirmStateChange = { false },
-        skipHalfExpanded = true
-    )
-
-    BackHandler(modalSheetState.isVisible) {
-        coroutineScope.launch { modalSheetState.hide() }
-    }
-
-    LaunchedEffect(key1 = isParseLoggedIn.value) {
-        if (modalSheetState.isVisible)
-            modalSheetState.animateTo(ModalBottomSheetValue.Hidden)
-    }
 
     //TODO: Add Category Chip
-    ModalBottomSheetLayout(
-        sheetState = modalSheetState,
-        sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
-        sheetContent = {
-            PasswordBottomSheet(
-                homeVM = homeViewModel,
-                uiState = uiState,
-                isSheetVisible = modalSheetState.isVisible,
-                isNetworkAvailable = isNetworkAvailable,
-                onEditClicked = {
-                    uiState = UIState.EditItem(uiState.getItem()!!, uiState.getPosition()!!)
-                },
-                onInfoDialogClicked = { showInfoDialog = true },
-                onCancel = {
-                    coroutineScope.launch { modalSheetState.hide() }
+    Scaffold(
+        modifier = Modifier
+            .setGradientBackground(),
+        floatingActionButton = {
+            if (isParseLoggedIn.value && isNetworkAvailable) {
+                val passwords by homeViewModel.passwords
+
+                if (passwords is Response.Success) {
+                    FloatingActionButton(
+                        onClick = {
+                            if (adCount % 4 == 1) {
+                                loadInterstitial(context)
+                                showInterstitial(context)
+                            }
+                            adCount++
+
+                            //TODO: Move to function
+                            sharedViewModel.changeState(UIState.AddItem)
+                            navController.navigate("online")
+                        },
+                        backgroundColor = BlueMidnight,
+                        contentColor = Color.White,
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(28.dp),
+                            imageVector = Icons.Rounded.Add,
+                            contentDescription = stringResource(id = R.string.add)
+                        )
+                    }
                 }
-            )
+            }
         },
-    ) {
-        Scaffold(
-            modifier = Modifier
-                .setGradientBackground(),
-            floatingActionButton = {
-                if (isParseLoggedIn.value && isNetworkAvailable) {
-                    val passwords by homeViewModel.passwords
+        floatingActionButtonPosition = FabPosition.End,
+        isFloatingActionButtonDocked = false,
+        content = {
+            isNetworkAvailable = context.isNetworkConnectionAvailable()
 
-                    if (passwords is Response.Success) {
-                        FloatingActionButton(
-                            onClick = {
-                                if (adCount % 4 == 1) {
-                                    loadInterstitial(context)
-                                    showInterstitial(context)
-                                }
-                                adCount++
+            if (isParseLoggedIn.value) {
+                val passwordsState by homeViewModel.passwords
+                var showDialog by remember { mutableStateOf(false) }
+                var deleteIndex by remember { mutableStateOf(-1) }
 
-                                //TODO: Move to function
-                                sharedViewModel.changeState(UIState.AddItem)
-                                navController.navigate("online")
-                            },
-                            backgroundColor = BlueMidnight,
-                            contentColor = Color.White,
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(28.dp),
-                                imageVector = Icons.Rounded.Add,
-                                contentDescription = stringResource(id = R.string.add)
-                            )
-                        }
-                    }
+                LaunchedEffect(key1 = true) {
+                    homeViewModel.getPasswords()
                 }
-            },
-            floatingActionButtonPosition = FabPosition.End,
-            isFloatingActionButtonDocked = false,
-            content = {
-                isNetworkAvailable = context.isNetworkConnectionAvailable()
 
-                if (isParseLoggedIn.value) {
-                    val passwordsState by homeViewModel.passwords
-                    var showDialog by remember { mutableStateOf(false) }
-                    var deleteIndex by remember { mutableStateOf(-1) }
-
-                    LaunchedEffect(key1 = true) {
-                        homeViewModel.getPasswords()
+                when(passwordsState) {
+                    is Response.Loading -> {
+                        LoadingView()
                     }
 
-                    when(passwordsState) {
-                        is Response.Loading -> {
-                            LoadingView()
-                        }
-
-                        is Response.Success<List<PasswordItem>> -> {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .setGradientBackground(),
-                            ) {
-                                if (isNetworkAvailable) {
-                                    BannerAdView()
-                                } else {
-                                    Text(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .background(Red500)
-                                            .padding(horizontal = 3.dp)
-                                            .padding(vertical = 1.dp),
-                                        text = stringResource(R.string.no_internet),
-                                        color = Color.White,
-                                        fontSize = 13.sp,
-                                    )
-                                }
-
-                                val passwords = (passwordsState as Response.Success).data
-
-                                passwords?.let { list ->
-                                    OnlinePasswordList(
-                                        passwords = list,
-                                        onEditClicked = { index ->
-                                            uiState = UIState.EditItem(list[index], index)
-
-//                                            coroutineScope.launch {
-//                                                if (modalSheetState.isVisible)
-//                                                    modalSheetState.hide()
-//                                                else
-//                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-//                                            }
-                                            sharedViewModel.changeState(uiState)
-                                            navController.navigate("online")
-                                        },
-                                        onDeleteClicked = { index ->
-                                            showDialog = true
-                                            deleteIndex = index
-                                        },
-                                        onItemClicked = { index ->
-                                            if (adCount % 4 == 1) {
-                                                loadInterstitial(context)
-                                                showInterstitial(context)
-                                            }
-                                            adCount++
-
-                                            uiState = UIState.ViewItem(list[index], index)
-
-                                            sharedViewModel.changeState(uiState)
-                                            navController.navigate("online")
-//                                            coroutineScope.launch {
-//                                                if (modalSheetState.isVisible)
-//                                                    modalSheetState.hide()
-//                                                else
-//                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-//                                            }
-                                        }
-                                    )
-                                }
+                    is Response.Success<List<PasswordItem>> -> {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .setGradientBackground(),
+                        ) {
+                            if (isNetworkAvailable) {
+                                BannerAdView()
+                            } else {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Red500)
+                                        .padding(horizontal = 3.dp)
+                                        .padding(vertical = 1.dp),
+                                    text = stringResource(R.string.no_internet),
+                                    color = Color.White,
+                                    fontSize = 13.sp,
+                                )
                             }
 
-                            if (showDialog) {
-                                AYSDialog(
-                                    text = stringResource(R.string.ays_delete),
-                                    onConfirmClicked = {
-                                        showDialog = false
-                                        homeViewModel.deletePassword(deleteIndex)
-                                        deleteIndex = -1
-                                    }
-                                ) {
-                                    showDialog = false
-                                }
-                            }
+                            val passwords = (passwordsState as Response.Success).data
 
-                            if (showInfoDialog) {
-                                AlertDialog(
-                                    onDismissRequest = { showInfoDialog = false },
-                                    title = {
-                                        Text(
-                                            text = stringResource(R.string.cd_what_encryption),
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 16.sp,
-                                            color = Color.Black
-                                        )
+                            passwords?.let { list ->
+                                OnlinePasswordList(
+                                    passwords = list,
+                                    onEditClicked = { index ->
+                                        sharedViewModel.changeState(UIState.EditItem(list[index], index))
+                                        navController.navigate("online")
                                     },
-                                    text = {
-                                        Text(
-                                            text = stringResource(id = R.string.encryption_explanation),
-                                            fontSize = 14.sp,
-                                            color = Color.Black
-                                        )
+                                    onDeleteClicked = { index ->
+                                        showDialog = true
+                                        deleteIndex = index
                                     },
-                                    confirmButton = {},
-                                    dismissButton = {
-                                        Button(
-                                            onClick = { showInfoDialog = false },
-                                        ) {
-                                            Text(stringResource(R.string.ok))
+                                    onItemClicked = { index ->
+                                        if (adCount % 4 == 1) {
+                                            loadInterstitial(context)
+                                            showInterstitial(context)
                                         }
+                                        adCount++
+
+                                        sharedViewModel.changeState(UIState.ViewItem(list[index], index))
+                                        navController.navigate("online")
                                     }
                                 )
                             }
                         }
 
-                        is Response.Failure -> {
-                            val error = (uiState as Response.Failure).errorMessage
-
-                            ErrorView(
-                                error = error,
-                                lottieFile = R.raw.error
-                            )
+                        if (showDialog) {
+                            AYSDialog(
+                                text = stringResource(R.string.ays_delete),
+                                onConfirmClicked = {
+                                    showDialog = false
+                                    homeViewModel.deletePassword(deleteIndex)
+                                    deleteIndex = -1
+                                }
+                            ) {
+                                showDialog = false
+                            }
                         }
 
-                        else -> {}
+                        if (showInfoDialog) {
+                            AlertDialog(
+                                onDismissRequest = { showInfoDialog = false },
+                                title = {
+                                    Text(
+                                        text = stringResource(R.string.cd_what_encryption),
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 16.sp,
+                                        color = Color.Black
+                                    )
+                                },
+                                text = {
+                                    Text(
+                                        text = stringResource(id = R.string.encryption_explanation),
+                                        fontSize = 14.sp,
+                                        color = Color.Black
+                                    )
+                                },
+                                confirmButton = {},
+                                dismissButton = {
+                                    Button(
+                                        onClick = { showInfoDialog = false },
+                                    ) {
+                                        Text(stringResource(R.string.ok))
+                                    }
+                                }
+                            )
+                        }
                     }
-                } else {
-                    if (isNetworkAvailable) {
-                        LoginScreen(
-                            navController = navController,
-                            parseVM = parseVM,
-                        )
-                    } else {
+
+                    is Response.Failure -> {
+                        val error = (passwordsState as Response.Failure).errorMessage
+
                         ErrorView(
-                            error = "No Internet Connection",
-                            lottieFile = R.raw.no_internet,
+                            error = error,
+                            lottieFile = R.raw.error
                         )
                     }
+
+                    else -> {}
+                }
+            } else {
+                if (isNetworkAvailable) {
+                    LoginScreen(
+                        navController = navController,
+                        parseVM = parseVM,
+                    )
+                } else {
+                    ErrorView(
+                        error = "No Internet Connection",
+                        lottieFile = R.raw.no_internet,
+                    )
                 }
             }
-        )
-    }
+        }
+    )
 }
 
 @Preview

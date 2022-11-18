@@ -10,25 +10,17 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.mrntlu.PassVault.ui.theme.*
-import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
+import com.mrntlu.PassVault.ui.theme.Yellow600
+import com.mrntlu.PassVault.utils.Constants.ColorPickerList
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 
 @Composable
 fun ColorPickerRow(
     bottomSheetVM: BottomSheetViewModel
 ) {
-    val colorPickerList = listOf(
-        Red500, Red700, Purple500, Purple700,
-        Pink500, Pink700, Blue500, Blue700,
-        Green500, Green700, Yellow500, Yellow700,
-        Orange500, Orange700, Brown500, Brown700,
-        Grey500, Grey700, Color.Black
-    )
-
     LazyRow(
         modifier = Modifier
             .padding(horizontal = 18.dp)
@@ -39,12 +31,12 @@ fun ColorPickerRow(
         verticalAlignment = Alignment.CenterVertically,
         content = {
             items(
-                count = colorPickerList.size,
+                count = ColorPickerList.size,
                 key = { index ->
-                    colorPickerList[index].toString()
+                    ColorPickerList[index].toString()
                 },
             ) { index ->
-                val color = colorPickerList[index]
+                val color = ColorPickerList[index]
 
                 val modifier = if (bottomSheetVM.selectedColor == color) {
                     Modifier

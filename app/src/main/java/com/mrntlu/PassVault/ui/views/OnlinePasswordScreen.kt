@@ -4,16 +4,13 @@ import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -26,20 +23,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import com.amulyakhare.textdrawable.TextDrawable
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.ui.theme.Purple500
 import com.mrntlu.PassVault.ui.theme.Yellow700
-import com.mrntlu.PassVault.ui.widgets.BottomSheetButtons
-import com.mrntlu.PassVault.ui.widgets.ColorPickerRow
-import com.mrntlu.PassVault.ui.widgets.PasswordBottomSheetFields
+import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.ui.widgets.online.ImageSelectionSheet
+import com.mrntlu.PassVault.ui.widgets.online.OnlinePasswordAppBar
+import com.mrntlu.PassVault.ui.widgets.online.PasswordSelectedImageView
 import com.mrntlu.PassVault.utils.*
-import com.mrntlu.PassVault.viewmodels.BottomSheetViewModel
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ImageSelectionViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
@@ -56,22 +49,16 @@ fun OnlinePasswordScreen(
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
     val imageSize = 64.dp
+    val topBarImageSize = 48.dp
 
     val imageSelectionVM = hiltViewModel<ImageSelectionViewModel>()
 
     val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
+
     var showInfoDialog by remember { mutableStateOf(false) }
-    var isImageLoading by remember { mutableStateOf(false) }
+    var showFailureDialog by remember { mutableStateOf(false) }
 
-    var titleError by remember { mutableStateOf(false) }
-    var titleErrorMessage by remember { mutableStateOf("") }
-
-    var usernameError by remember { mutableStateOf(false) }
-    var usernameErrorMessage by remember { mutableStateOf("") }
-
-    var passwordError by remember { mutableStateOf(false) }
-    var passwordErrorMessage by remember { mutableStateOf("") }
-
+    val uiResponse by homeViewModel.uiResponse
     var selectedImage by imageSelectionVM.selectedImage
     val uiState = sharedViewModel.state
 
@@ -82,8 +69,21 @@ fun OnlinePasswordScreen(
         skipHalfExpanded = true
     )
 
+    LaunchedEffect(key1 = uiResponse) {
+        if (uiResponse is Response.Failure) {
+            showFailureDialog = true
+        } else if (uiResponse is Response.Success) {
+            navController.popBackStack()
+            homeViewModel.resetUIResponse()
+        }
+    }
+
     LaunchedEffect(key1 = sharedViewModel.state) {
         bottomSheetVM.setStateValues(sharedViewModel.state)
+
+        if (sharedViewModel.state.getItem() != null) {
+            selectedImage = sharedViewModel.state.getItem()!!.imageUri
+        }
     }
 
     BackHandler(modalSheetState.isVisible) {
@@ -105,52 +105,17 @@ fun OnlinePasswordScreen(
     ) {
         Scaffold(
             topBar = {
-                TopAppBar(
-                    title = {
-                        if (uiState !is UIState.ViewItem) {
-                            Text(
-                                text = if (uiState is UIState.AddItem) "Create" else "Edit",
-                                color = Color.White
-                            )
-                        } else {
-                            val drawable = TextDrawable.builder().buildRound(
-                                if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
-                                    .substring(0, 1)
-                                else "",
-                                bottomSheetVM.selectedColor.hashCode()
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Image(
-                                    modifier = Modifier
-                                        .size(48.dp),
-                                    painter = rememberAsyncImagePainter(model = drawable),
-                                    contentDescription = stringResource(id = R.string.cd_image),
-                                )
-                            }
-                        }
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = { navController.navigateUp() }) {
-                            Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = stringResource(R.string.cd_back),
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    actions = {
-                        TextButton(
-                            enabled = false,
-                            onClick = {},
-                            content = {}
-                        )
-                    },
-                    elevation = 8.dp,
-                    backgroundColor = BlueLogo,
+
+                OnlinePasswordAppBar(
+                    selectedImage = selectedImage,
+                    topBarImageSize = topBarImageSize,
+                    uiState = uiState,
+                    uiResponse = uiResponse,
+                    bottomSheetVM = bottomSheetVM,
+                    onNavigationClicked = {
+                        homeViewModel.resetUIResponse()
+                        navController.popBackStack()
+                    }
                 )
             },
             content = {
@@ -165,67 +130,14 @@ fun OnlinePasswordScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    if (selectedImage == null) {
-                        val drawable = TextDrawable.builder().buildRound(
-                            if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
-                                .substring(0, 1)
-                            else "",
-                            bottomSheetVM.selectedColor.hashCode()
-                        )
-                        Image(
-                            modifier = Modifier
-                                .size(imageSize),
-                            painter = rememberAsyncImagePainter(model = drawable),
-                            contentDescription = stringResource(id = R.string.cd_image),
-                        )
-
-                        if (uiState !is UIState.ViewItem) {
-                            Text(
-                                modifier = Modifier
-                                    .padding(top = 8.dp),
-                                text = stringResource(R.string.or),
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black,
-                            )
-                        }
-                    } else {
-                        Box(
-                            modifier = Modifier
-                                .size(imageSize)
-                                .border(
-                                    BorderStroke(2.dp, bottomSheetVM.selectedColor),
-                                    shape = CircleShape
-                                ),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            AsyncImage(
-                                modifier = Modifier
-                                    .size(imageSize.minus(7.dp))
-                                    .clip(CircleShape),
-                                model = ImageRequest.Builder(context)
-                                    .data(Constants.ImageEndpoint + selectedImage)
-                                    .listener(
-                                        onStart = {
-                                            isImageLoading = true
-                                        },
-                                        onSuccess = { _, _ ->
-                                            isImageLoading = false
-                                        },
-                                        onError = { _, _ ->
-                                            isImageLoading = false
-                                        }
-                                    )
-                                    .build(),
-                                contentDescription = stringResource(id = R.string.cd_image),
-                            )
-
-                            if (isImageLoading) {
-                                CircularProgressIndicator(color = Color.Black)
-                            }
-                        }
-                    }
-
                     if (uiState !is UIState.ViewItem){
+                        PasswordSelectedImageView(
+                            selectedImage = selectedImage,
+                            imageSize = imageSize,
+                            uiState = uiState,
+                            bottomSheetVM = bottomSheetVM,
+                        )
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -252,26 +164,24 @@ fun OnlinePasswordScreen(
                                     fontWeight = FontWeight.SemiBold,
                                 )
                             }
-                        }
 
-                        if (selectedImage != null) {
-                            TextButton(
-                                modifier = Modifier
-                                    .padding(horizontal = 3.dp),
-                                onClick = {
-                                    selectedImage = null
+                            if (selectedImage != null) {
+                                TextButton(
+                                    modifier = Modifier
+                                        .padding(horizontal = 3.dp),
+                                    onClick = {
+                                        selectedImage = null
+                                    }
+                                ) {
+                                    Text(
+                                        text = "Remove Image",
+                                        color = Purple500,
+                                        fontWeight = FontWeight.SemiBold,
+                                    )
                                 }
-                            ) {
-                                Text(
-                                    text = "Remove Image",
-                                    color = Purple500,
-                                    fontWeight = FontWeight.SemiBold,
-                                )
                             }
                         }
-                    }
 
-                    if (uiState !is UIState.ViewItem) {
                         ColorPickerRow(
                             bottomSheetVM = bottomSheetVM,
                         )
@@ -280,12 +190,6 @@ fun OnlinePasswordScreen(
                     PasswordBottomSheetFields(
                         bottomSheetVM = bottomSheetVM,
                         uiState = uiState,
-                        titleError,
-                        titleErrorMessage,
-                        usernameError,
-                        usernameErrorMessage,
-                        passwordError,
-                        passwordErrorMessage
                     )
 
                     Row(
@@ -349,65 +253,66 @@ fun OnlinePasswordScreen(
                             } else {
                                 bottomSheetVM.titleState.apply {
                                     val isTitleEmpty = isEmpty() || isBlank()
-                                    titleError = isTitleEmpty
+                                    bottomSheetVM.titleError = isTitleEmpty
 
                                     if (isTitleEmpty) {
-                                        titleErrorMessage = textfieldError
+                                        bottomSheetVM.titleErrorMessage = textfieldError
                                     }
                                 }
 
                                 bottomSheetVM.usernameState.apply {
                                     val isUsernameEmpty = isEmpty() || isBlank()
-                                    usernameError = isUsernameEmpty
+                                    bottomSheetVM.usernameError = isUsernameEmpty
 
                                     if (isUsernameEmpty) {
-                                        usernameErrorMessage = textfieldError
+                                        bottomSheetVM.usernameErrorMessage = textfieldError
                                     }
                                 }
 
                                 bottomSheetVM.passwordState.apply {
                                     val isPasswordEmpty = isEmpty() || isBlank()
-                                    passwordError = isPasswordEmpty
+                                    bottomSheetVM.passwordError = isPasswordEmpty
 
                                     if (isPasswordEmpty) {
-                                        passwordErrorMessage = textfieldError
+                                        bottomSheetVM.passwordErrorMessage = textfieldError
                                     }
                                 }
 
-                                if (!(titleError || usernameError || passwordError)) {
-//                                when(sheetState) {
-//                                    is UIState.AddItem -> {
-//                                        onCancel()
-//
-//                                        val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-//                                            Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
-//                                        } else null
-//
-//                                        homeViewModel.addPassword(
-//                                            bottomSheetVM.titleState,
-//                                            bottomSheetVM.usernameState,
-//                                            encryptedPassword ?: bottomSheetVM.passwordState,
-//                                            bottomSheetVM.noteState,
-//                                            bottomSheetVM.isEncrypted
-//                                        )
-//                                    }
-//                                    is UIState.EditItem -> {
-//                                        onCancel()
-//
-//                                        val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-//                                            Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
-//                                        } else null
-//
-//                                        homeViewModel.editPassword(
-//                                            sheetState.position,
-//                                            bottomSheetVM.titleState,
-//                                            bottomSheetVM.usernameState,
-//                                            encryptedPassword ?: bottomSheetVM.passwordState,
-//                                            bottomSheetVM.noteState,
-//                                            bottomSheetVM.isEncrypted
-//                                        )
-//                                    }
-//                                }
+                                if (!(bottomSheetVM.titleError || bottomSheetVM.usernameError || bottomSheetVM.passwordError)) {
+                                    when(uiState) {
+                                        is UIState.AddItem -> {
+                                            val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+                                                Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                            } else null
+
+                                            homeViewModel.addPassword(
+                                                bottomSheetVM.titleState,
+                                                bottomSheetVM.usernameState,
+                                                encryptedPassword ?: bottomSheetVM.passwordState,
+                                                bottomSheetVM.noteState,
+                                                bottomSheetVM.isEncrypted,
+                                                selectedImage,
+                                                bottomSheetVM.selectedColor.getAsString(),
+                                            )
+                                        }
+                                        is UIState.EditItem -> {
+                                            val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
+                                                Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                            } else null
+
+                                            homeViewModel.editPassword(
+                                                uiState.position,
+                                                bottomSheetVM.titleState,
+                                                bottomSheetVM.usernameState,
+                                                encryptedPassword ?: bottomSheetVM.passwordState,
+                                                bottomSheetVM.noteState,
+                                                bottomSheetVM.isEncrypted,
+                                                selectedImage,
+                                                bottomSheetVM.selectedColor.getAsString(),
+                                            )
+                                        }
+                                        else -> {}
+                                    }
                                 }
                             }
                         },
@@ -450,6 +355,21 @@ fun OnlinePasswordScreen(
                             }
                         }
                     )
+                }
+
+                if (showFailureDialog && uiResponse is Response.Failure) {
+                    val error = (uiResponse as Response.Failure).errorMessage
+
+                    ErrorDialog(
+                        error = error,
+                        onDismissClicked = {
+                            showFailureDialog = false
+                        }
+                    )
+                }
+
+                if (uiResponse is Response.Loading) {
+                    LoadingView()
                 }
             }
         )

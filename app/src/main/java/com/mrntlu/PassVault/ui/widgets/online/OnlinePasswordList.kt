@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.models.PasswordItem
+import com.mrntlu.PassVault.ui.theme.Red500
+import com.mrntlu.PassVault.utils.getAsString
 
 @Composable
 fun OnlinePasswordList(
@@ -60,6 +62,7 @@ fun OnlinePasswordListPreview() {
                 "Test Title",
                 null,
                 "Test Password",
+                Red500.getAsString(),
                 true,
             )
         ), {}, {}, {}

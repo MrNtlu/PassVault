@@ -14,6 +14,7 @@ import com.parse.ParseUser
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import org.json.JSONObject
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
@@ -71,7 +72,9 @@ class HomeRepository @Inject constructor(
     }
 
     fun editPassword(
-        passwordItem: PasswordItem, title: String, username: String, password: String, note: String?, isEncrypted: Boolean
+        passwordItem: PasswordItem, title: String, username: String,
+        password: String, note: String?, isEncrypted: Boolean,
+        imageUri: String?, imageColor: String,
     ): Flow<Response<ParseObject>> = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
 
@@ -85,8 +88,10 @@ class HomeRepository @Inject constructor(
                         put("Title", title)
                         put("Username", username)
                         put("Password", password)
-                        put("Note", note ?: "")
+                        put("Note", note ?: JSONObject.NULL)
                         put("IsEncrypted", isEncrypted)
+                        put("ImageUri", imageUri ?: JSONObject.NULL)
+                        put("ImageColor", imageColor)
                     }
 
                     it.saveInBackground { err ->
@@ -111,7 +116,11 @@ class HomeRepository @Inject constructor(
         awaitClose()
     }
 
-    fun addPassword(title: String, username: String, password: String, note: String?, isEncrypted: Boolean) = callbackFlow {
+    fun addPassword(
+        title: String, username: String, password: String,
+        note: String?, isEncrypted: Boolean, imageUri: String?,
+        imageColor: String,
+    ) = callbackFlow {
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 
@@ -123,6 +132,9 @@ class HomeRepository @Inject constructor(
             if (note != null)
                 put("Note", note)
             put("IsEncrypted", isEncrypted)
+            if (imageUri != null)
+                put("ImageUri", imageUri)
+            put("ImageColor", imageColor)
         }
 
         try {

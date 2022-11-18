@@ -12,15 +12,19 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.theme.BlueDark
 import com.mrntlu.PassVault.ui.theme.BlueDarkest
 import com.mrntlu.PassVault.ui.theme.BlueLogo
+import com.mrntlu.PassVault.utils.Constants.ColorPickerList
 import com.parse.ParseObject
 
 fun String.isValidEmail(): Boolean {
     return trim().isNotBlank() && trim().isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
+
+fun Color.getAsString() = value.toString()
 
 fun Modifier.setGradientBackground(): Modifier = background(
     brush = Brush.verticalGradient(
@@ -72,6 +76,8 @@ fun ParseObject.toPasswordItem() = PasswordItem(
     getString("Note"),
     getString("Password") ?: "",
     getBoolean("IsEncrypted"),
+    imageUri = getString("ImageUri"),
+    imageColor = getString("ImageColor") ?: ColorPickerList[(ColorPickerList.indices).random()].getAsString(),
     parseID = objectId
 )
 
