@@ -32,6 +32,8 @@ class SingletonModule {
     fun provideParseDatabase(@ApplicationContext context: Context): ParseDatabase =
         Room
             .databaseBuilder(context, ParseDatabase::class.java, Constants.CacheDatabaseName)
+            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_2_3)
             .build()
 
     @Singleton

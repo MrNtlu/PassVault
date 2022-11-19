@@ -21,14 +21,8 @@ class HomeRepository @Inject constructor(
     private val parseDao: ParseDao,
     private val parseDatabase: ParseDatabase
 ) {
-
-    private lateinit var user: ParseUser
     private val parseQuery = ParseQuery.getQuery<ParseObject>("Account")
 
-    init {
-        if (ParseUser.getCurrentUser() != null)
-            user = ParseUser.getCurrentUser()
-    }
 
     private fun getParseObjectFromPasswordItem(parseID: String, onParseObjectRetrieved: (ParseObject) -> Unit, onError: (ParseException) -> Unit) {
         parseQuery.getInBackground(parseID) { parseObject, error ->
@@ -125,7 +119,7 @@ class HomeRepository @Inject constructor(
         val parseObject = ParseObject.create("Account")
 
         parseObject.apply {
-            put("ParseUser", user.username)
+            put("ParseUser", ParseUser.getCurrentUser().username)
             put("Title", title)
             put("Username", username)
             put("Password", password)
@@ -157,18 +151,13 @@ class HomeRepository @Inject constructor(
         awaitClose()
     }
 
-    fun getPasswordsOrCache() = networkBoundResource(
+    fun getPasswordsOrCache(isNetworkAvailable: Boolean) = networkBoundResource(
         query = {
             parseDao.getPasswords()
         },
         fetch = {
             val query = ParseQuery.getQuery<ParseObject>("Account")
-
-            if (!::user.isInitialized && ParseUser.getCurrentUser() != null) {
-                user = ParseUser.getCurrentUser()
-            }
-
-            query.whereEqualTo("ParseUser", user.username)
+            query.whereEqualTo("ParseUser", ParseUser.getCurrentUser().username)
 
             Pair(query.find(), query)
         },
@@ -178,6 +167,7 @@ class HomeRepository @Inject constructor(
                 parseDao.addPasswords(objects.map { it.toPasswordItem() })
                 parseDao.getPasswords()
             }
-        }
+        },
+        shouldFetch = { isNetworkAvailable }
     )
 }

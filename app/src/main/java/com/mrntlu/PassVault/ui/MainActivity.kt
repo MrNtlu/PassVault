@@ -88,7 +88,7 @@ fun MainScreen(
 ) {
     val focusManager = LocalFocusManager.current
     val parseVM = hiltViewModel<ParseAuthViewModel>()
-    val homeScreenVM = hiltViewModel<HomeViewModel>()
+    val homeVM = hiltViewModel<HomeViewModel>()
     val offlineVM = hiltViewModel<OfflineViewModel>()
     val onlinePasswordVM = hiltViewModel<OnlinePasswordViewModel>()
 
@@ -143,7 +143,7 @@ fun MainScreen(
                     text = searchTextState,
                     onResetSearch = {
                         if (isCurrentScreenHome)
-                            homeScreenVM.resetPassword()
+                            homeVM.resetPassword()
                         else
                             offlineVM.resetPassword()
                     },
@@ -151,7 +151,7 @@ fun MainScreen(
                     onCloseClicked = { searchWidgetState = SearchWidgetState.CLOSED },
                     onSearchClicked = {
                         if (isCurrentScreenHome)
-                            homeScreenVM.searchPassword(it)
+                            homeVM.searchPassword(it)
                         else
                             offlineVM.searchPassword(it)
                         focusManager.clearFocus(force = true)
@@ -188,7 +188,7 @@ fun MainScreen(
             navController = navController,
             padding = it,
             parseVM = parseVM,
-            homeVM = homeScreenVM,
+            homeVM = homeVM,
             offlineVM = offlineVM,
             onlinePasswordVM = onlinePasswordVM
         )

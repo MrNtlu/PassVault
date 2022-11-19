@@ -15,6 +15,7 @@ import com.mrntlu.PassVault.ui.MainActivity;
 
 public class SliderIntro extends AppIntro {
 
+    //TODO Write in Composeable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

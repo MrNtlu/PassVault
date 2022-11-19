@@ -26,6 +26,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.utils.Constants
 import com.mrntlu.PassVault.utils.UIState
+import com.mrntlu.PassVault.utils.isNetworkConnectionAvailable
 import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 
 @Composable
@@ -38,7 +39,7 @@ fun PasswordSelectedImageView(
     val context = LocalContext.current
     var isImageLoading by remember { mutableStateOf(false) }
 
-    if (selectedImage == null) {
+    if (selectedImage == null || !context.isNetworkConnectionAvailable()) {
         val drawable = TextDrawable.builder().buildRound(
             if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
                 .substring(0, 1)

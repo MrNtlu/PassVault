@@ -187,7 +187,7 @@ fun ImageSelectionSheet(
                     }
                 }
             } else {
-                NoItemView(modifier = Modifier)
+                NoItemView(modifier = Modifier.weight(1f))
             }
 
             Button(

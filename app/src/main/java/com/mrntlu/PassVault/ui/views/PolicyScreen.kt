@@ -32,6 +32,7 @@ fun PolicyScreen(
                 movementMethod = LinkMovementMethod.getInstance()
                 isVerticalScrollBarEnabled = true
                 setTextIsSelectable(true)
+                setTextColor(android.graphics.Color.parseColor("#000000"))
             }
         }
     )

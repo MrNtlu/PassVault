@@ -49,7 +49,6 @@ fun OnlinePasswordListItem(
     var expanded by remember { mutableStateOf(false) }
 
     //TODO: More customization option
-    //TODO: Search for gmail, dropbox etc. and show icon, image like Kanma
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -171,7 +170,7 @@ fun OnlinePasswordListItem(
                         .padding(end = 3.dp)
                         .size(22.dp),
                     onClick = {
-                        clipboardManager.setText(AnnotatedString(password.password))
+                        clipboardManager.setText(AnnotatedString(password.getDecryptedPassword()))
                         Toast
                             .makeText(
                                 context,

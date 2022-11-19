@@ -86,7 +86,7 @@ fun HomeScreen(
                 var deleteIndex by remember { mutableStateOf(-1) }
 
                 LaunchedEffect(key1 = true) {
-                    homeViewModel.getPasswords()
+                    homeViewModel.getPasswords(context.isNetworkConnectionAvailable())
                 }
 
                 when(passwordsState) {

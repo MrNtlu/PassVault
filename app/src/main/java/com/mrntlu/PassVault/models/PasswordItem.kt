@@ -3,6 +3,7 @@ package com.mrntlu.PassVault.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.mrntlu.PassVault.utils.Cryptography
 
 @Entity(tableName = "account")
 data class PasswordItem(
@@ -22,4 +23,10 @@ data class PasswordItem(
     ): this(
         username, title, note, password, isEncrypted, "", null, imageColor,
     )
+
+    fun getDecryptedPassword() = if (isEncrypted == true) {
+        Cryptography().decrypt(password)
+    } else {
+        password
+    }
 }

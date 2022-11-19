@@ -31,7 +31,7 @@ class BottomSheetViewModel: ViewModel() {
         uiState.getItem().let {
             titleState = it?.title ?: ""
             usernameState = it?.username ?: ""
-            passwordState = it?.password ?: ""
+            passwordState = it?.getDecryptedPassword() ?: ""
             noteState = it?.note ?: ""
             isEncrypted = if (it?.isEncrypted != null) it.isEncrypted!! else uiState is UIState.AddItem
             if (it != null)

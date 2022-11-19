@@ -140,9 +140,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getPasswords() {
+    fun getPasswords(isNetworkAvailable: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            homeRepository.getPasswordsOrCache().collect {
+            homeRepository.getPasswordsOrCache(isNetworkAvailable).collect {
                 _passwords.value = it
             }
         }

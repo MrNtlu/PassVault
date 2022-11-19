@@ -66,7 +66,7 @@ fun OnlinePasswordScreen(
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         confirmStateChange = { false },
-        skipHalfExpanded = true
+        skipHalfExpanded = true,
     )
 
     LaunchedEffect(key1 = uiResponse) {
@@ -105,7 +105,6 @@ fun OnlinePasswordScreen(
     ) {
         Scaffold(
             topBar = {
-
                 OnlinePasswordAppBar(
                     selectedImage = selectedImage,
                     topBarImageSize = topBarImageSize,
@@ -122,7 +121,7 @@ fun OnlinePasswordScreen(
                 Column(
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
-                        .padding(horizontal = 36.dp)
+                        .padding(horizontal = 24.dp)
                         .padding(bottom = 8.dp)
                         .padding(top = 16.dp)
                         .imePadding()
@@ -150,6 +149,8 @@ fun OnlinePasswordScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 3.dp),
                                 onClick = {
+                                    focusManager.clearFocus(force = true)
+
                                     coroutineScope.launch {
                                         if (modalSheetState.isVisible)
                                             modalSheetState.hide()
@@ -227,7 +228,6 @@ fun OnlinePasswordScreen(
                     }
 
                     val textfieldError = stringResource(R.string.textfield_error)
-                    val cryptoKey = stringResource(id = R.string.crypto_key)
 
                     BottomSheetButtons(
                         isConfirmButtonAvailable = context.isNetworkConnectionAvailable(),
@@ -282,7 +282,7 @@ fun OnlinePasswordScreen(
                                     when(uiState) {
                                         is UIState.AddItem -> {
                                             val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-                                                Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                                Cryptography().encrypt(bottomSheetVM.passwordState)
                                             } else null
 
                                             homeViewModel.addPassword(
@@ -297,7 +297,7 @@ fun OnlinePasswordScreen(
                                         }
                                         is UIState.EditItem -> {
                                             val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-                                                Cryptography(cryptoKey).encrypt(bottomSheetVM.passwordState)
+                                                Cryptography().encrypt(bottomSheetVM.passwordState)
                                             } else null
 
                                             homeViewModel.editPassword(
