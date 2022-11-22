@@ -48,13 +48,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7421130457283934~8206592692" />
-
-        <activity
-            android:name=".AppIntros.SliderIntro"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Passvault"
-            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

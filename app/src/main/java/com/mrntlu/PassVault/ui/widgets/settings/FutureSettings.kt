@@ -55,7 +55,19 @@ fun FutureSettings(
         ReviewManagerFactory.create(localContext)
     }
 
-    val reviewInfo = rememberReviewTask(reviewManager)
+    fun openReviewIntent() {
+        val playIntent = Intent().apply {
+            action = Intent.ACTION_VIEW
+
+            data = Uri.parse("https://play.google.com/store/apps/details?id=com.mrntlu.PassVault")
+
+        }
+        try {
+            localContext.startActivity(playIntent)
+        } catch (e: Exception) {
+            printLog("$e")
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -114,20 +126,18 @@ fun FutureSettings(
                     subTitle = "Please take a moment to rate it in Play Store.",
                     icon = Icons.Rounded.RateReview,
                     onClick = {
-                        if (reviewInfo != null) {
-                            reviewManager.launchReviewFlow(localContext as Activity, reviewInfo)
-                        } else {
-                            val playIntent = Intent().apply {
-                                action = Intent.ACTION_VIEW
-
-                                data = Uri.parse("https://play.google.com/store/apps/details?id=com.mrntlu.PassVault")
-
+                        try {
+                            val request = reviewManager.requestReviewFlow()
+                            request.addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    val reviewInfo = it.result
+                                    reviewManager.launchReviewFlow(localContext as Activity, reviewInfo)
+                                } else {
+                                    openReviewIntent()
+                                }
                             }
-                            try {
-                                localContext.startActivity(playIntent)
-                            } catch (e: Exception) {
-                                printLog("$e")
-                            }
+                        } catch (_: Error) {
+                            openReviewIntent()
                         }
                     }
                 )

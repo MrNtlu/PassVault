@@ -134,7 +134,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    implementation 'com.github.paolorotolo:appintro:v5.1.0'
     implementation 'com.google.android.play:review-ktx:2.0.1'
 }
 apply plugin: 'com.google.gms.google-services'

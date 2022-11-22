@@ -1,7 +1,5 @@
 package com.mrntlu.PassVault.ui
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,11 +17,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-import com.mrntlu.PassVault.AppIntros.SliderIntro
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
@@ -46,7 +42,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        showSlider(applicationContext)
         firebaseAnalytics = Firebase.analytics
 
         setContent {
@@ -60,25 +55,6 @@ class MainActivity : ComponentActivity() {
         // Interstitial Init & Callbacks
         loadInterstitial(this)
         addInterstitialCallbacks(this)
-    }
-
-    private fun showSlider(context: Context) {
-        val thread = Thread {
-            val getPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val isFirstStart = getPrefs.getBoolean("should_show_intro", true)
-            if (isFirstStart) {
-                startActivity(Intent(context, SliderIntro::class.java))
-                val e = getPrefs.edit()
-                e.putBoolean("should_show_intro", false)
-                e.apply()
-            }
-        }
-        try {
-            thread.start()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return
-        }
     }
 }
 
