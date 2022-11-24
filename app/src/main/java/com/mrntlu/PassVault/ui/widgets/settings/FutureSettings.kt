@@ -4,15 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -22,8 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.NavController
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.utils.printLog
@@ -72,6 +72,7 @@ fun FutureSettings(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
+            .background(MaterialTheme.colorScheme.background)
             .fillMaxSize(),
     ) {
         ContextCompat.getDrawable(LocalContext.current, R.mipmap.ic_launcher_round)?.let {
@@ -113,7 +114,7 @@ fun FutureSettings(
                 .padding(bottom = 8.dp),
             text = stringResource(id = R.string.settings),
             fontWeight = FontWeight.Bold,
-            color = Color.DarkGray,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         Column(
@@ -177,17 +178,4 @@ fun FutureSettings(
             )
         }
     }
-}
-
-@Composable
-fun rememberReviewTask(reviewManager: ReviewManager): ReviewInfo? {
-    var reviewInfo: ReviewInfo? by remember { mutableStateOf(null) }
-
-    reviewManager.requestReviewFlow().addOnCompleteListener {
-        if (it.isSuccessful) {
-            reviewInfo = it.result
-        }
-    }
-
-    return reviewInfo
 }

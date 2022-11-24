@@ -1,5 +1,6 @@
 package com.mrntlu.PassVault.ui.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
@@ -9,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -28,9 +30,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.UserRegister
-import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
-import com.mrntlu.PassVault.utils.setGradientBackground
+import com.mrntlu.PassVault.utils.setTextfieldTheme
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
 @Composable
@@ -52,7 +53,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .setGradientBackground()
+            .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
             .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -60,7 +61,7 @@ fun RegisterScreen(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 48.dp)
+                .padding(horizontal = 36.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -76,9 +77,7 @@ fun RegisterScreen(
                 label = {
                     Text(text = stringResource(R.string.username))
                 },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    backgroundColor = Color.White,
-                ),
+                colors = TextFieldDefaults.setTextfieldTheme(),
             )
 
             OutlinedTextField(
@@ -93,9 +92,7 @@ fun RegisterScreen(
                 label = {
                     Text(text = stringResource(R.string.email))
                 },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    backgroundColor = Color.White,
-                ),
+                colors = TextFieldDefaults.setTextfieldTheme(),
             )
 
             OutlinedTextField(
@@ -122,12 +119,14 @@ fun RegisterScreen(
                         stringResource(id = R.string.show_password)
 
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Icon(imageVector = image, description)
+                        Icon(
+                            imageVector = image,
+                            description,
+                            tint = MaterialTheme.colorScheme.onBackground,
+                        )
                     }
                 },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    backgroundColor = Color.White,
-                ),
+                colors = TextFieldDefaults.setTextfieldTheme(),
             )
 
             Row(
@@ -141,8 +140,9 @@ fun RegisterScreen(
                     checked = termsConditions,
                     onCheckedChange = { termsConditions = it },
                     colors = CheckboxDefaults.colors(
-                        checkedColor = Color.Black
-                    )
+                        checkedColor = MaterialTheme.colorScheme.primary,
+                        uncheckedColor = MaterialTheme.colorScheme.outline,
+                    ),
                 )
 
                 TextButton(
@@ -157,7 +157,7 @@ fun RegisterScreen(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Start,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
             }
@@ -173,8 +173,9 @@ fun RegisterScreen(
                     checked = privacyPolicy,
                     onCheckedChange = { privacyPolicy = it },
                     colors = CheckboxDefaults.colors(
-                        checkedColor = Color.Black
-                    )
+                        checkedColor = MaterialTheme.colorScheme.primary,
+                        uncheckedColor = MaterialTheme.colorScheme.outline,
+                    ),
                 )
 
                 TextButton(
@@ -189,7 +190,7 @@ fun RegisterScreen(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Start,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
             }
@@ -211,14 +212,14 @@ fun RegisterScreen(
                     )
                 },
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Yellow700,
+                    backgroundColor = MaterialTheme.colorScheme.primaryContainer,
                 ),
             ) {
                 Text(
                     text = stringResource(id = R.string.register),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
 
@@ -226,7 +227,7 @@ fun RegisterScreen(
                 onClick = { navController.popBackStack() },
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.Transparent,
-                    contentColor = Color.White
+                    contentColor = MaterialTheme.colorScheme.primary,
                 )
             ) {
                 Text(text = stringResource(R.string.have_acc_login))

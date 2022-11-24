@@ -10,6 +10,9 @@ import android.net.NetworkCapabilities
 import android.util.Patterns
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -34,6 +37,16 @@ fun Modifier.setGradientBackground(): Modifier = background(
             BlueDarkest
         )
     )
+)
+
+@Composable
+fun TextFieldDefaults.setTextfieldTheme() = outlinedTextFieldColors(
+    backgroundColor = MaterialTheme.colorScheme.background,
+    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+    unfocusedLabelColor = MaterialTheme.colorScheme.outline,
+    focusedBorderColor = MaterialTheme.colorScheme.primary,
+    focusedLabelColor = MaterialTheme.colorScheme.primary,
+    textColor = MaterialTheme.colorScheme.onBackground,
 )
 
 fun Context.findActivity(): Activity? = when (this) {

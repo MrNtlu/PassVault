@@ -9,10 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.RateReview
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +25,7 @@ fun SettingsClickTile(
     Row(
         modifier = Modifier
             .height(65.dp)
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .clickable {
                 settingsClickTileModel.onClick()
             },
@@ -38,7 +38,7 @@ fun SettingsClickTile(
                 .size(24.dp),
             imageVector = settingsClickTileModel.icon,
             contentDescription = "",
-            tint = Color.Black,
+            tint = MaterialTheme.colorScheme.onBackground,
         )
 
         Column(
@@ -51,14 +51,14 @@ fun SettingsClickTile(
                 text = settingsClickTileModel.title,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground,
             )
 
             settingsClickTileModel.subTitle?.let {
                 Text(
                     text = it,
                     fontSize = 13.sp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }
@@ -69,10 +69,11 @@ fun SettingsClickTile(
                 .size(28.dp),
             imageVector = Icons.Rounded.KeyboardArrowRight,
             contentDescription = "",
+            tint = MaterialTheme.colorScheme.onBackground,
         )
     }
 
-    Divider()
+    Divider(color = MaterialTheme.colorScheme.onBackground)
 }
 
 @Preview

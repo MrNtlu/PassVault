@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -21,7 +22,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 
 @Composable
 fun SearchAppBar(
@@ -42,7 +42,7 @@ fun SearchAppBar(
             .fillMaxWidth()
             .height(56.dp),
         elevation = 8.dp,
-        color = BlueLogo
+        color = MaterialTheme.colorScheme.primary,
     ) {
         TextField(
             modifier = Modifier

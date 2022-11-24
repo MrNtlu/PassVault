@@ -1,19 +1,19 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.*
-import com.mrntlu.PassVault.utils.setGradientBackground
 
 @Composable
 fun ErrorView(
@@ -23,11 +23,10 @@ fun ErrorView(
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(lottieFile))
     val progress by animateLottieCompositionAsState(composition = composition, iterations = LottieConstants.IterateForever)
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .setGradientBackground(),
+            .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -36,7 +35,7 @@ fun ErrorView(
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         LottieAnimation(

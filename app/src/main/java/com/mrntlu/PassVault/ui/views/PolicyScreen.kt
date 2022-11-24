@@ -4,9 +4,10 @@ import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -17,11 +18,14 @@ import com.mrntlu.PassVault.R
 fun PolicyScreen(
     isTerms: Boolean
 ) {
+    val textColor = MaterialTheme.colorScheme.onBackground
+
     AndroidView(
         modifier = Modifier
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(6.dp),
         factory = {
+
             TextView(it).apply {
                 text = if (isTerms) {
                     HtmlCompat.fromHtml(it.getString(R.string.terms_conditions), HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -32,7 +36,7 @@ fun PolicyScreen(
                 movementMethod = LinkMovementMethod.getInstance()
                 isVerticalScrollBarEnabled = true
                 setTextIsSelectable(true)
-                setTextColor(android.graphics.Color.parseColor("#000000"))
+                setTextColor(textColor.toArgb())
             }
         }
     )

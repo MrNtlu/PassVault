@@ -14,7 +14,7 @@ import com.mrntlu.PassVault.utils.getAsString
 
 @Composable
 fun OnlinePasswordList(
-    passwords: List<PasswordItem>,
+    passwords: List<PasswordItem>?,
     onEditClicked: (Int) -> Unit,
     onDeleteClicked: (Int) -> Unit,
     onItemClicked: (Int) -> Unit,
@@ -24,14 +24,14 @@ fun OnlinePasswordList(
             .fillMaxSize(),
     ) {
         items(
-            count = if (passwords.isNotEmpty()) passwords.size + 1 else 1,
+            count = if (passwords != null && passwords.isNotEmpty()) passwords.size + 1 else 1,
             key = { index ->
-                if (passwords.isNotEmpty() && index < passwords.size) {
+                if (passwords != null && passwords.isNotEmpty() && index < passwords.size) {
                     passwords[index].parseID
                 } else ""
             }
         ) { index ->
-            if (passwords.isNotEmpty()) {
+            if (passwords != null && passwords.isNotEmpty()) {
                 if (index < passwords.size) {
                     val password = passwords[index]
 

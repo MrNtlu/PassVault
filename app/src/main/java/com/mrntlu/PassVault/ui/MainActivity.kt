@@ -7,7 +7,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cloud
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -47,6 +49,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             PassVaultTheme {
                 navController = rememberNavController()
+                //TODO: Apply dark/light theme
+                window.statusBarColor = MaterialTheme.colorScheme.primary.toArgb()
 
                 MainScreen(navController = navController)
             }
@@ -72,7 +76,7 @@ fun MainScreen(
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_online),
             route = "home",
-            icon = Icons.Rounded.Cloud
+            icon = Icons.Rounded.Cloud,
         ),
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_offline),
@@ -82,7 +86,7 @@ fun MainScreen(
         BottomNavItem(
             name = stringResource(R.string.bottom_nav_settings),
             route = "settings",
-            icon = Icons.Rounded.Settings
+            icon = Icons.Rounded.Settings,
         )
     )
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
@@ -155,7 +159,7 @@ fun MainScreen(
                     navController = navController,
                     onItemClick = {
                         navController.navigate(it.route)
-                    }
+                    },
                 )
             }
         }

@@ -59,9 +59,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:21.3.0'
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
-    implementation 'com.google.android.material:material:1.8.0-alpha02'
     implementation 'com.github.alirezaafkar:TextDrawable:2.0.0'
-    implementation 'com.github.jrvansuita:MaterialAbout:0.3.0'
+
+    implementation "androidx.compose.material3:material3:1.0.1"
+    implementation 'com.google.android.material:material:1.8.0-alpha02'
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

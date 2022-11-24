@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +21,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.theme.Red500
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
@@ -44,8 +44,6 @@ fun HomeScreen(
 
     //TODO: Add Category Chip
     Scaffold(
-        modifier = Modifier
-            .setGradientBackground(),
         floatingActionButton = {
             if (isParseLoggedIn.value && isNetworkAvailable) {
                 val passwords by homeViewModel.passwords
@@ -59,17 +57,16 @@ fun HomeScreen(
                             }
                             adCount++
 
-                            //TODO: Move to function
                             sharedViewModel.changeState(UIState.AddItem)
                             navController.navigate("online")
                         },
-                        backgroundColor = BlueMidnight,
-                        contentColor = Color.White,
+                        backgroundColor = MaterialTheme.colorScheme.onBackground,
+                        contentColor = MaterialTheme.colorScheme.background,
                     ) {
                         Icon(
                             modifier = Modifier.size(28.dp),
                             imageVector = Icons.Rounded.Add,
-                            contentDescription = stringResource(id = R.string.add)
+                            contentDescription = stringResource(id = R.string.add),
                         )
                     }
                 }
@@ -98,7 +95,7 @@ fun HomeScreen(
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .setGradientBackground(),
+                                .background(MaterialTheme.colorScheme.background),
                         ) {
                             if (isNetworkAvailable) {
                                 BannerAdView()
@@ -117,18 +114,20 @@ fun HomeScreen(
 
                             val passwords = (passwordsState as Response.Success).data
 
-                            passwords?.let { list ->
-                                OnlinePasswordList(
-                                    passwords = list,
-                                    onEditClicked = { index ->
+                            OnlinePasswordList(
+                                passwords = passwords,
+                                onEditClicked = { index ->
+                                    passwords?.let { list ->
                                         sharedViewModel.changeState(UIState.EditItem(list[index], index))
                                         navController.navigate("online")
-                                    },
-                                    onDeleteClicked = { index ->
-                                        showDialog = true
-                                        deleteIndex = index
-                                    },
-                                    onItemClicked = { index ->
+                                    }
+                                },
+                                onDeleteClicked = { index ->
+                                    showDialog = true
+                                    deleteIndex = index
+                                },
+                                onItemClicked = { index ->
+                                    passwords?.let { list ->
                                         if (adCount % 4 == 1) {
                                             loadInterstitial(context)
                                             showInterstitial(context)
@@ -138,8 +137,9 @@ fun HomeScreen(
                                         sharedViewModel.changeState(UIState.ViewItem(list[index], index))
                                         navController.navigate("online")
                                     }
-                                )
-                            }
+                                }
+                            )
+
                         }
 
                         if (showDialog) {

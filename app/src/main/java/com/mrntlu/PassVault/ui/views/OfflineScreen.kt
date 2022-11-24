@@ -4,14 +4,15 @@ package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.OfflinePassword
-import com.mrntlu.PassVault.ui.theme.BlueMidnight
 import com.mrntlu.PassVault.ui.widgets.AYSDialog
 import com.mrntlu.PassVault.ui.widgets.BannerAdView
 import com.mrntlu.PassVault.ui.widgets.OfflinePasswordBottomSheet
@@ -73,9 +73,6 @@ fun OfflineScreen(
         }
     ) {
         Scaffold(
-            modifier = Modifier
-                .fillMaxSize()
-                .setGradientBackground(),
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
@@ -94,13 +91,13 @@ fun OfflineScreen(
                                 modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                         }
                     },
-                    backgroundColor = BlueMidnight,
-                    contentColor = Color.White,
+                    backgroundColor = MaterialTheme.colorScheme.onBackground,
+                    contentColor = MaterialTheme.colorScheme.background,
                 ) {
                     Icon(
                         modifier = Modifier.size(28.dp),
                         imageVector = Icons.Rounded.Add,
-                        contentDescription = stringResource(R.string.cd_add)
+                        contentDescription = stringResource(R.string.cd_add),
                     )
                 }
             },
@@ -110,16 +107,16 @@ fun OfflineScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .setGradientBackground()
+                        .background(color = MaterialTheme.colorScheme.background),
                 ) {
                     BannerAdView()
 
                     val passwords by offlineViewModel.password
 
-                    passwords?.let { list ->
-                        OfflinePasswordList(
-                            passwords = list,
-                            onEditClicked = { index ->
+                    OfflinePasswordList(
+                        passwords = passwords,
+                        onEditClicked = { index ->
+                            passwords?.let { list ->
                                 uiState = UIState.EditItem(list[index], index)
 
                                 coroutineScope.launch {
@@ -128,12 +125,14 @@ fun OfflineScreen(
                                     else
                                         modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                 }
-                            },
-                            onDeleteClicked = { index ->
-                                showDialog = true
-                                deleteIndex = index
-                            },
-                            onDescriptionClicked = { index ->
+                            }
+                        },
+                        onDeleteClicked = { index ->
+                            showDialog = true
+                            deleteIndex = index
+                        },
+                        onDescriptionClicked = { index ->
+                            passwords?.let { list ->
                                 uiState = UIState.ViewItem(list[index], index)
 
                                 coroutineScope.launch {
@@ -143,8 +142,8 @@ fun OfflineScreen(
                                         modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                                 }
                             }
-                        )
-                    }
+                        }
+                    )
 
                     if (showDialog) {
                         AYSDialog(

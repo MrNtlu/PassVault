@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Logout
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -16,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 
 @Composable
 fun DefaultAppBar(
@@ -32,16 +32,14 @@ fun DefaultAppBar(
     TopAppBar(
         title = {
             Text(
-                text = when(navController.currentDestination?.route) {
-                    "login" -> {
-                        stringResource(id = R.string.login)
-                    }
-                    "register" -> {
-                        stringResource(id = R.string.register)
-                    }
-                    else -> ""
+                text = if (navController.currentDestination?.route == "register") {
+                    stringResource(id = R.string.register)
+                } else if (navController.currentDestination?.route == "home" && !isUserLoggedIn) {
+                    stringResource(id = R.string.login)
+                } else {
+                    ""
                 },
-                color = Color.White
+                color = Color.White,
             )
         },
         navigationIcon = {
@@ -50,7 +48,7 @@ fun DefaultAppBar(
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.cd_back),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }
@@ -60,7 +58,7 @@ fun DefaultAppBar(
                     Icon(
                         imageVector = Icons.Filled.Search,
                         contentDescription = stringResource(R.string.cd_search),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }
@@ -73,13 +71,13 @@ fun DefaultAppBar(
                     Icon(
                         imageVector = Icons.Rounded.Logout,
                         contentDescription = stringResource(R.string.cd_log_out),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }
         },
         elevation = 8.dp,
-        backgroundColor = BlueLogo
+        backgroundColor = MaterialTheme.colorScheme.primary,
     )
 }
 

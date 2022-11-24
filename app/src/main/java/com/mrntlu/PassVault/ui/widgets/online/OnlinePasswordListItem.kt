@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -72,7 +73,7 @@ fun OnlinePasswordListItem(
                 )
             },
         elevation = 4.dp,
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colorScheme.secondaryContainer,
         shape = RoundedCornerShape(10.dp),
     ) {
         Row(
@@ -145,15 +146,15 @@ fun OnlinePasswordListItem(
                     text = password.title,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
 
                 Text(
                     text = password.username,
-                    color = Color.Black,
                     fontSize = 16.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
             }
 
@@ -183,7 +184,7 @@ fun OnlinePasswordListItem(
                     Icon(
                         imageVector = Icons.Rounded.ContentCopy,
                         contentDescription = stringResource(R.string.cd_copy),
-                        tint = Color.Black,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
                 }
 
@@ -197,7 +198,7 @@ fun OnlinePasswordListItem(
                     Icon(
                         imageVector = Icons.Rounded.MoreVert,
                         contentDescription = stringResource(id = R.string.cd_item_menu),
-                        tint = Color.Black,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
 
                     OnlineItemDropdownMenu(

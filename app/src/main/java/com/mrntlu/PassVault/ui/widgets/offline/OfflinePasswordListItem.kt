@@ -10,10 +10,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
@@ -69,7 +69,7 @@ fun OfflinePasswordListItem(
                 )
             },
         elevation = 4.dp,
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colorScheme.secondaryContainer,
         shape = RoundedCornerShape(10.dp),
     ) {
         Row(
@@ -100,7 +100,7 @@ fun OfflinePasswordListItem(
                     text = password.idMail,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
 
                 Text(
@@ -108,10 +108,10 @@ fun OfflinePasswordListItem(
                         password.password
                     else
                         "•".repeat(min(password.password.length, 12)),
-                    color = Color.Black,
                     fontSize = 16.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
             }
 
@@ -128,11 +128,12 @@ fun OfflinePasswordListItem(
                         .padding(end = 3.dp)
                         .size(20.dp),
                     checked = passwordVisiblityState,
-                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState }
+                    onCheckedChange = { passwordVisiblityState = !passwordVisiblityState },
                 ) {
                     Icon(
                         imageVector = if (passwordVisiblityState) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
-                        contentDescription = stringResource(id = R.string.cd_password)
+                        contentDescription = stringResource(id = R.string.cd_password),
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
                 }
 
@@ -146,7 +147,7 @@ fun OfflinePasswordListItem(
                     Icon(
                         imageVector = Icons.Rounded.MoreVert,
                         contentDescription = stringResource(R.string.cd_item_menu),
-                        tint = Color.Black,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
 
                     OfflineItemDropdownMenu(

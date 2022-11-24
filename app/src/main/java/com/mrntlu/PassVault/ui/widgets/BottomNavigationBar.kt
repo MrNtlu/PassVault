@@ -1,20 +1,16 @@
 package com.mrntlu.PassVault.ui.widgets
 
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.mrntlu.PassVault.models.BottomNavItem
-import com.mrntlu.PassVault.ui.theme.BlueLogo
-import com.mrntlu.PassVault.ui.theme.Grey400
 
 @Composable
 fun BottomNavigationBar(
@@ -25,29 +21,30 @@ fun BottomNavigationBar(
 ) {
     val backStackEntry = navController.currentBackStackEntryAsState()
 
-    BottomNavigation(
+    NavigationBar(
         modifier = modifier,
-        backgroundColor = BlueLogo,
-        elevation = 8.dp,
+        containerColor = MaterialTheme.colorScheme.primary,
     ) {
         items.forEach { item ->
             val selected = item.route == backStackEntry.value?.destination?.route
 
-            BottomNavigationItem(
+            NavigationBarItem(
                 selected = selected,
                 onClick = {
                     onItemClick(item)
                 },
-                selectedContentColor = Color.White,
-                unselectedContentColor = Grey400,
                 label = {
-                    Text(text = item.name, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
+                    Text(
+                        text = item.name,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        fontWeight = FontWeight.SemiBold,
+                    )
                 },
                 icon = {
                     Icon(
-                        modifier = Modifier.size(if (selected) 28.dp else 24.dp),
                         imageVector = item.icon,
-                        contentDescription = item.name
+                        contentDescription = item.name,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                 },
                 alwaysShowLabel = true,

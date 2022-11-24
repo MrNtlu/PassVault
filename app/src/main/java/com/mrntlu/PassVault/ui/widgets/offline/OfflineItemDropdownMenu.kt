@@ -1,5 +1,6 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import androidx.compose.foundation.background
 import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.icons.Icons
@@ -7,7 +8,9 @@ import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.mrntlu.PassVault.R
 
@@ -22,12 +25,14 @@ fun OfflineItemDropdownMenu(
     onCopyClicked: () -> Unit,
 ) {
     DropdownMenu(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.background),
         expanded = expanded, 
-        onDismissRequest = { onDismissRequest() }
+        onDismissRequest = { onDismissRequest() },
     ) {
         DropdownMenuItem(
             text = stringResource(id = R.string.edit),
-            icon = Icons.Rounded.Edit
+            icon = Icons.Rounded.Edit,
         ) {
             onDismissRequest()
             onEditClicked(index)
@@ -35,7 +40,7 @@ fun OfflineItemDropdownMenu(
 
         DropdownMenuItem(
             text = stringResource(id = R.string.delete),
-            icon = Icons.Rounded.Delete
+            icon = Icons.Rounded.Delete,
         ) {
             onDismissRequest()
             onDeleteClicked(index)
@@ -45,7 +50,7 @@ fun OfflineItemDropdownMenu(
 
         DropdownMenuItem(
             text = stringResource(R.string.copy_str),
-            icon = Icons.Rounded.ContentCopy
+            icon = Icons.Rounded.ContentCopy,
         ) {
             onDismissRequest()
             onCopyClicked()
@@ -53,7 +58,7 @@ fun OfflineItemDropdownMenu(
 
         DropdownMenuItem(
             text = stringResource(R.string.details),
-            icon = Icons.Rounded.Info
+            icon = Icons.Rounded.Info,
         ) {
             onDismissRequest()
             onDetailsClicked(index)

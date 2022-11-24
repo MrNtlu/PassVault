@@ -49,13 +49,6 @@ fun NavigationComposable(
             )
         }
 
-        composable("login") {
-            LoginScreen(
-                navController = navController,
-                parseVM = parseVM
-            )
-        }
-
         composable("offline") {
             OfflineScreen(
                 offlineViewModel = offlineVM

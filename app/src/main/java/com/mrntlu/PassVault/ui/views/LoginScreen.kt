@@ -1,6 +1,7 @@
 package com.mrntlu.PassVault.ui.views
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,11 +30,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.ErrorDialog
 import com.mrntlu.PassVault.ui.widgets.auth.ForgotPasswordSheet
 import com.mrntlu.PassVault.utils.CheckLoggedIn
-import com.mrntlu.PassVault.utils.setGradientBackground
+import com.mrntlu.PassVault.utils.setTextfieldTheme
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import kotlinx.coroutines.launch
 
@@ -83,7 +84,7 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .setGradientBackground()
+                .background(MaterialTheme.colorScheme.background)
                 .verticalScroll(rememberScrollState())
                 .imePadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -91,15 +92,15 @@ fun LoginScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 48.dp)
+                    .padding(horizontal = 36.dp)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
                 LottieAnimation(
                     modifier = Modifier
-                        .padding(vertical = 6.dp)
-                        .height(185.dp),
+                        .padding(vertical = 4.dp)
+                        .height(195.dp),
                     composition = composition,
                     progress = { progress },
                 )
@@ -122,9 +123,7 @@ fun LoginScreen(
                     label = {
                         Text(text = stringResource(id = R.string.username_mail))
                     },
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        backgroundColor = Color.White,
-                    ),
+                    colors = TextFieldDefaults.setTextfieldTheme(),
                 )
 
                 OutlinedTextField(
@@ -151,12 +150,14 @@ fun LoginScreen(
                             stringResource(R.string.show_password)
 
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(imageVector = image, description)
+                            Icon(
+                                imageVector = image,
+                                description,
+                                tint = MaterialTheme.colorScheme.onBackground,
+                            )
                         }
                     },
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        backgroundColor = Color.White,
-                    ),
+                    colors = TextFieldDefaults.setTextfieldTheme(),
                 )
 
                 Button(
@@ -168,14 +169,14 @@ fun LoginScreen(
                         parseVM.parseLogin(usernameState.value.text, passwordState.value.text)
                     },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Yellow700,
+                        backgroundColor = MaterialTheme.colorScheme.primaryContainer,
                     ),
                 ) {
                     Text(
                         text = stringResource(id = R.string.login),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                 }
 
@@ -183,10 +184,12 @@ fun LoginScreen(
                     onClick = { navController.navigate("register") },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent,
-                        contentColor = Color.White
+                        contentColor = MaterialTheme.colorScheme.primary,
                     )
                 ) {
-                    Text(text = stringResource(R.string.no_acc_register))
+                    Text(
+                        text = stringResource(R.string.no_acc_register),
+                    )
                 }
 
                 TextButton(
@@ -197,14 +200,14 @@ fun LoginScreen(
                     },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent,
-                        contentColor = Color.Black
+                        contentColor = MaterialTheme.colorScheme.outline,
                     ),
-                    contentPadding = PaddingValues(3.dp),
+                    contentPadding = PaddingValues(2.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.forgot_password_),
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
                     )
                 }
 

@@ -12,7 +12,7 @@ import com.mrntlu.PassVault.models.OfflinePassword
 
 @Composable
 fun OfflinePasswordList(
-    passwords: List<OfflinePassword>,
+    passwords: List<OfflinePassword>?,
     onEditClicked: (Int) -> Unit,
     onDeleteClicked: (Int) -> Unit,
     onDescriptionClicked: (Int) -> Unit,
@@ -22,9 +22,9 @@ fun OfflinePasswordList(
             .fillMaxSize(),
     ) {
         items(
-            count = if (passwords.isNotEmpty()) passwords.size + 1 else 1,
+            count = if (passwords != null && passwords.isNotEmpty()) passwords.size + 1 else 1,
         ) { index ->
-            if (passwords.isNotEmpty()) {
+            if (passwords != null && passwords.isNotEmpty()) {
                 if (index < passwords.size) {
                     val password = passwords[index]
 
