@@ -1,23 +1,28 @@
 package com.mrntlu.PassVault.ui.widgets.online
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -33,6 +38,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.widgets.LoadingView
 import com.mrntlu.PassVault.ui.widgets.NoItemView
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.setTextfieldTheme
 import com.mrntlu.PassVault.viewmodels.online.ImageListViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ImageSelectionViewModel
 
@@ -67,17 +73,18 @@ fun ImageSelectionSheet(
 
     Box(
         modifier = Modifier
-            .height((screenHeight * 3) / 5),
+            .height((screenHeight * 3) / 5)
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 18.dp)
+                .padding(horizontal = 12.dp)
                 .padding(top = 16.dp)
                 .imePadding()
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Row(
                 modifier = Modifier
@@ -107,17 +114,19 @@ fun ImageSelectionSheet(
                             contentDescription = stringResource(id = R.string.cd_search)
                         )
                     },
+                    colors = TextFieldDefaults.setTextfieldTheme(),
                 )
 
                 TextButton(
                     modifier = Modifier
-                        .padding(horizontal = 6.dp),
+                        .padding(start = 12.dp),
                     onClick = { onSearchClicked() },
                 ) {
                     Text(
                         text = stringResource(id = R.string.search),
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 }
             }
@@ -146,6 +155,7 @@ fun ImageSelectionSheet(
                                         .fillMaxWidth()
                                         .padding(horizontal = 8.dp)
                                         .padding(vertical = 3.dp)
+                                        .background(MaterialTheme.colorScheme.background)
                                         .clickable {
                                             imageSelectionVM.setImage(image.logo)
 
@@ -154,7 +164,7 @@ fun ImageSelectionSheet(
                                 ) {
                                     Row(
                                         modifier = Modifier
-                                            .padding(vertical = 6.dp),
+                                            .padding(vertical = 4.dp),
                                         verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.Center,
                                     ) {
@@ -171,14 +181,17 @@ fun ImageSelectionSheet(
                                         Text(
                                             modifier = Modifier
                                                 .weight(1f)
-                                                .padding(start = 8.dp),
+                                                .padding(start = 12.dp),
                                             text = image.name,
                                             fontSize = 16.sp,
-                                            color = Color.Black,
+                                            color = MaterialTheme.colorScheme.onBackground,
                                         )
                                     }
 
-                                    Divider()
+                                    Divider(
+                                        modifier = Modifier
+                                            .padding(top = 4.dp)
+                                    )
                                 }
                             } else {
                                 NoItemView(modifier = Modifier.fillParentMaxSize())
@@ -192,15 +205,17 @@ fun ImageSelectionSheet(
 
             Button(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(bottom = 6.dp),
                 onClick = onCancel,
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.DarkGray,
-                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
             ) {
                 Text(
-                    text = stringResource(id = R.string.cancel)
+                    text = stringResource(id = R.string.cancel),
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }

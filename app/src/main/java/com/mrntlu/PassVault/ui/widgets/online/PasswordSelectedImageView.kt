@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -59,7 +60,7 @@ fun PasswordSelectedImageView(
                     .padding(top = 8.dp),
                 text = stringResource(R.string.or),
                 fontWeight = FontWeight.Bold,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
     } else {

@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -91,13 +92,14 @@ fun OfflineScreen(
                                 modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                         }
                     },
-                    backgroundColor = MaterialTheme.colorScheme.onBackground,
-                    contentColor = MaterialTheme.colorScheme.background,
+                    containerColor = MaterialTheme.colorScheme.onBackground,
+                    shape = RoundedCornerShape(16.dp),
                 ) {
                     Icon(
                         modifier = Modifier.size(28.dp),
                         imageVector = Icons.Rounded.Add,
                         contentDescription = stringResource(R.string.cd_add),
+                        tint = MaterialTheme.colorScheme.background,
                     )
                 }
             },

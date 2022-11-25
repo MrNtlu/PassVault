@@ -1,8 +1,10 @@
 package com.mrntlu.PassVault.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cloud
@@ -16,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -27,12 +30,14 @@ import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.SearchWidgetState
+import com.mrntlu.PassVault.utils.StoreTheme
 import com.mrntlu.PassVault.utils.addInterstitialCallbacks
 import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
+import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,18 +46,34 @@ class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
+    private val themeViewModel: ThemeViewModel by viewModels()
+    private var storeTheme: StoreTheme? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         firebaseAnalytics = Firebase.analytics
+        storeTheme = StoreTheme(applicationContext)
+
+        val systemTheme = when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> { true }
+            Configuration.UI_MODE_NIGHT_NO -> { false }
+            else -> { false }
+        }
 
         setContent {
-            PassVaultTheme {
+            val theme = storeTheme?.getTheme(systemTheme)?.collectAsState(initial = systemTheme)
+
+            PassVaultTheme(
+                darkTheme = theme?.value ?: false,
+            ) {
                 navController = rememberNavController()
-                //TODO: Apply dark/light theme
                 window.statusBarColor = MaterialTheme.colorScheme.primary.toArgb()
 
-                MainScreen(navController = navController)
+                MainScreen(
+                    themeViewModel = themeViewModel,
+                    navController = navController,
+                )
             }
         }
 
@@ -60,11 +81,17 @@ class MainActivity : ComponentActivity() {
         loadInterstitial(this)
         addInterstitialCallbacks(this)
     }
+
+    override fun onDestroy() {
+        storeTheme = null
+        super.onDestroy()
+    }
 }
 
 @Composable
 fun MainScreen(
-    navController: NavHostController
+    themeViewModel: ThemeViewModel,
+    navController: NavHostController,
 ) {
     val focusManager = LocalFocusManager.current
     val parseVM = hiltViewModel<ParseAuthViewModel>()
@@ -113,6 +140,7 @@ fun MainScreen(
         }
     }
 
+    //TODO Create sharedview model to handle topappbar and remove unnecessary scaffolds
     Scaffold(
         topBar = {
             if (
@@ -170,7 +198,8 @@ fun MainScreen(
             parseVM = parseVM,
             homeVM = homeVM,
             offlineVM = offlineVM,
-            onlinePasswordVM = onlinePasswordVM
+            onlinePasswordVM = onlinePasswordVM,
+            themeViewModel = themeViewModel,
         )
 
         if (showDialog) {
@@ -194,7 +223,7 @@ fun MainScreen(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    PassVaultTheme {
-        MainScreen(rememberNavController())
+    PassVaultTheme(true) {
+        MainScreen(viewModel(), rememberNavController())
     }
 }

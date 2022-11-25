@@ -12,12 +12,14 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -169,7 +171,7 @@ fun LoginScreen(
                         parseVM.parseLogin(usernameState.value.text, passwordState.value.text)
                     },
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = MaterialTheme.colorScheme.primaryContainer,
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
                     ),
                 ) {
                     Text(
@@ -182,13 +184,12 @@ fun LoginScreen(
 
                 TextButton(
                     onClick = { navController.navigate("register") },
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Transparent,
-                        contentColor = MaterialTheme.colorScheme.primary,
-                    )
                 ) {
                     Text(
                         text = stringResource(R.string.no_acc_register),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 }
 
@@ -198,16 +199,13 @@ fun LoginScreen(
                             modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Transparent,
-                        contentColor = MaterialTheme.colorScheme.outline,
-                    ),
                     contentPadding = PaddingValues(2.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.forgot_password_),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Normal,
+                        color = MaterialTheme.colorScheme.outline,
                     )
                 }
 

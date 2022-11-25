@@ -5,11 +5,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.IconToggleButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -52,7 +57,7 @@ fun OfflinePasswordListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 5.dp)
-            .padding(horizontal = 4.dp)
+            .padding(horizontal = 6.dp)
             .pointerInput(Unit) {
                 detectTapGestures (
                     onLongPress = {
@@ -68,8 +73,9 @@ fun OfflinePasswordListItem(
                     }
                 )
             },
-        elevation = 4.dp,
-        backgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
+        ),
         shape = RoundedCornerShape(10.dp),
     ) {
         Row(

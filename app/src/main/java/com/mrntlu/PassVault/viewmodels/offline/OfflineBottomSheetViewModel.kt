@@ -14,6 +14,12 @@ class OfflineBottomSheetViewModel: ViewModel() {
     var passwordState by mutableStateOf("")
     var descriptionState by mutableStateOf("")
 
+    var idMailError by mutableStateOf(false)
+    var idMailErrorMessage by mutableStateOf("")
+
+    var passwordError by mutableStateOf(false)
+    var passwordErrorMessage by mutableStateOf("")
+
     fun setStateValues(uiState: UIState<OfflinePassword>) {
         uiState.getItem().let {
             idMailState = it?.idMail ?: ""
@@ -26,5 +32,11 @@ class OfflineBottomSheetViewModel: ViewModel() {
         idMailState = ""
         passwordState = ""
         descriptionState = ""
+
+        idMailError = false
+        idMailErrorMessage = ""
+
+        passwordError = false
+        passwordErrorMessage = ""
     }
 }

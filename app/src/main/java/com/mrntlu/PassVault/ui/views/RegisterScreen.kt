@@ -10,13 +10,15 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -212,7 +214,7 @@ fun RegisterScreen(
                     )
                 },
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = MaterialTheme.colorScheme.primaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
                 ),
             ) {
                 Text(
@@ -225,12 +227,13 @@ fun RegisterScreen(
 
             TextButton(
                 onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.Transparent,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                )
             ) {
-                Text(text = stringResource(R.string.have_acc_login))
+                Text(
+                    text = stringResource(R.string.have_acc_login),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
 
             if(isErrorOccured != null) {

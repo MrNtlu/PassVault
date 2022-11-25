@@ -3,12 +3,12 @@ package com.mrntlu.PassVault.ui.widgets.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.RateReview
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -73,7 +73,7 @@ fun SettingsClickTile(
         )
     }
 
-    Divider(color = MaterialTheme.colorScheme.onBackground)
+    Divider()
 }
 
 @Preview

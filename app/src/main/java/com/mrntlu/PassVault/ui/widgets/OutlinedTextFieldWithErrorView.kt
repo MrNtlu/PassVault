@@ -9,7 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
@@ -35,7 +34,9 @@ fun OutlinedTextFieldWithErrorView(
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     shape: Shape = MaterialTheme.shapes.small,
-    colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(disabledTextColor = Color.Black),
+    colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(
+        disabledTextColor = androidx.compose.material3.MaterialTheme.colorScheme.onBackground
+    ),
     errorMsg : String = ""
 ){
     Column(
@@ -73,7 +74,7 @@ fun OutlinedTextFieldWithErrorView(
         if (isError){
             Text(
                 text = errorMsg,
-                color = MaterialTheme.colors.error,
+                color = androidx.compose.material3.MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(start = 16.dp)
             )

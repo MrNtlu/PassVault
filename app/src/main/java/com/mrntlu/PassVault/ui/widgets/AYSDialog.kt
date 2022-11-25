@@ -1,7 +1,11 @@
 package com.mrntlu.PassVault.ui.widgets
 
-import androidx.compose.material.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,7 +40,7 @@ fun AYSDialog(
             ) {
                 Text(
                     stringResource(R.string.yes),
-                    color = MaterialTheme.colorScheme.errorContainer,
+                    color = MaterialTheme.colorScheme.onError,
                 )
             }
         },
@@ -44,7 +48,7 @@ fun AYSDialog(
             Button(
                 onClick = onDismissClicked,
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = MaterialTheme.colorScheme.errorContainer,
+                    containerColor = MaterialTheme.colorScheme.errorContainer,
                     contentColor = MaterialTheme.colorScheme.onErrorContainer,
                 )
             ) {

@@ -3,16 +3,16 @@ package com.mrntlu.PassVault.ui.views
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,7 +21,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.Red500
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
@@ -38,7 +37,6 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
 
-    var showInfoDialog by remember { mutableStateOf(false) }
     var isNetworkAvailable by remember { mutableStateOf(true) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
 
@@ -60,13 +58,14 @@ fun HomeScreen(
                             sharedViewModel.changeState(UIState.AddItem)
                             navController.navigate("online")
                         },
-                        backgroundColor = MaterialTheme.colorScheme.onBackground,
-                        contentColor = MaterialTheme.colorScheme.background,
+                        containerColor = MaterialTheme.colorScheme.onBackground,
+                        shape = RoundedCornerShape(16.dp),
                     ) {
                         Icon(
                             modifier = Modifier.size(28.dp),
                             imageVector = Icons.Rounded.Add,
                             contentDescription = stringResource(id = R.string.add),
+                            tint = MaterialTheme.colorScheme.background,
                         )
                     }
                 }
@@ -103,11 +102,11 @@ fun HomeScreen(
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Red500)
+                                        .background(MaterialTheme.colorScheme.error)
                                         .padding(horizontal = 3.dp)
                                         .padding(vertical = 1.dp),
                                     text = stringResource(R.string.no_internet),
-                                    color = Color.White,
+                                    color = MaterialTheme.colorScheme.onError,
                                     fontSize = 13.sp,
                                 )
                             }
@@ -153,35 +152,6 @@ fun HomeScreen(
                             ) {
                                 showDialog = false
                             }
-                        }
-
-                        if (showInfoDialog) {
-                            AlertDialog(
-                                onDismissRequest = { showInfoDialog = false },
-                                title = {
-                                    Text(
-                                        text = stringResource(R.string.cd_what_encryption),
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 16.sp,
-                                        color = Color.Black
-                                    )
-                                },
-                                text = {
-                                    Text(
-                                        text = stringResource(id = R.string.encryption_explanation),
-                                        fontSize = 14.sp,
-                                        color = Color.Black
-                                    )
-                                },
-                                confirmButton = {},
-                                dismissButton = {
-                                    Button(
-                                        onClick = { showInfoDialog = false },
-                                    ) {
-                                        Text(stringResource(R.string.ok))
-                                    }
-                                }
-                            )
                         }
                     }
 

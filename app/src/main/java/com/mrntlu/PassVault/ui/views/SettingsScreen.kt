@@ -7,13 +7,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.ui.widgets.settings.FutureSettings
+import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 
 @Composable
 fun SettingsScreen(
-    navController: NavController
+    themeViewModel: ThemeViewModel,
+    navController: NavController,
 ) {
     Box(
         modifier = Modifier
@@ -21,6 +24,7 @@ fun SettingsScreen(
             .fillMaxSize(),
         content = {
             FutureSettings(
+                themeViewModel = themeViewModel,
                 navController = navController,
             )
         }
@@ -50,5 +54,5 @@ fun SettingsScreen(
 @Preview
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen(rememberNavController())
+    SettingsScreen(viewModel(), rememberNavController())
 }

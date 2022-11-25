@@ -9,17 +9,11 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Patterns
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.BlueDark
-import com.mrntlu.PassVault.ui.theme.BlueDarkest
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.utils.Constants.ColorPickerList
 import com.parse.ParseObject
 
@@ -29,16 +23,6 @@ fun String.isValidEmail(): Boolean {
 
 fun Color.getAsString() = value.toString()
 
-fun Modifier.setGradientBackground(): Modifier = background(
-    brush = Brush.verticalGradient(
-        colors = listOf(
-            BlueLogo,
-            BlueDark,
-            BlueDarkest
-        )
-    )
-)
-
 @Composable
 fun TextFieldDefaults.setTextfieldTheme() = outlinedTextFieldColors(
     backgroundColor = MaterialTheme.colorScheme.background,
@@ -47,6 +31,16 @@ fun TextFieldDefaults.setTextfieldTheme() = outlinedTextFieldColors(
     focusedBorderColor = MaterialTheme.colorScheme.primary,
     focusedLabelColor = MaterialTheme.colorScheme.primary,
     textColor = MaterialTheme.colorScheme.onBackground,
+    disabledTextColor = MaterialTheme.colorScheme.onBackground,
+    disabledTrailingIconColor = MaterialTheme.colorScheme.onBackground,
+    trailingIconColor = MaterialTheme.colorScheme.onBackground,
+    leadingIconColor = MaterialTheme.colorScheme.onBackground,
+    disabledLeadingIconColor = MaterialTheme.colorScheme.onBackground,
+    errorBorderColor = MaterialTheme.colorScheme.error,
+    errorLabelColor = MaterialTheme.colorScheme.error,
+    errorTrailingIconColor = MaterialTheme.colorScheme.error,
+    errorCursorColor = MaterialTheme.colorScheme.error,
+    cursorColor = MaterialTheme.colorScheme.primary,
 )
 
 fun Context.findActivity(): Activity? = when (this) {

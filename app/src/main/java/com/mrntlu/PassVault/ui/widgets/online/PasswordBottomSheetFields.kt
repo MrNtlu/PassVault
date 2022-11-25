@@ -1,7 +1,6 @@
 package com.mrntlu.PassVault.ui.widgets
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,7 +15,6 @@ import androidx.compose.material.icons.rounded.Password
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -32,6 +30,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
+import com.mrntlu.PassVault.utils.setTextfieldTheme
 import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 
 @Composable
@@ -48,6 +47,7 @@ fun PasswordBottomSheetFields(
     OutlinedTextFieldWithErrorView(
         modifier = Modifier
             .padding(horizontal = 8.dp)
+            .padding(top = 3.dp)
             .fillMaxWidth(),
         value = bottomSheetVM.titleState,
         onValueChange = { bottomSheetVM.titleState = it },
@@ -58,7 +58,7 @@ fun PasswordBottomSheetFields(
         ),
         keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
         leadingIcon = {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_turned_in_black_24dp),
                 contentDescription = stringResource(R.string.cd_title)
             )
@@ -68,12 +68,14 @@ fun PasswordBottomSheetFields(
         },
         enabled = uiState.areFieldsEnabled(),
         isError = bottomSheetVM.titleError,
-        errorMsg = bottomSheetVM.titleErrorMessage
+        errorMsg = bottomSheetVM.titleErrorMessage,
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 
     OutlinedTextFieldWithErrorView(
         modifier = Modifier
             .padding(horizontal = 8.dp)
+            .padding(top = 3.dp)
             .fillMaxWidth(),
         value = bottomSheetVM.usernameState,
         onValueChange = { bottomSheetVM.usernameState = it },
@@ -81,9 +83,9 @@ fun PasswordBottomSheetFields(
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next, keyboardType = KeyboardType.Email),
         keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
         leadingIcon = {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_account_circle_black_24dp),
-                contentDescription = stringResource(R.string.cd_account)
+                contentDescription = stringResource(R.string.cd_account),
             )
         },
         trailingIcon = {
@@ -102,7 +104,7 @@ fun PasswordBottomSheetFields(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.ContentCopy,
-                        contentDescription = stringResource(id = R.string.cd_copy)
+                        contentDescription = stringResource(id = R.string.cd_copy),
                     )
                 }
             }
@@ -113,16 +115,13 @@ fun PasswordBottomSheetFields(
         enabled = uiState.areFieldsEnabled(),
         isError = bottomSheetVM.usernameError,
         errorMsg = bottomSheetVM.usernameErrorMessage,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-            disabledTrailingIconColor = Color.Black,
-            trailingIconColor = Color.Black,
-        )
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 
     OutlinedTextFieldWithErrorView(
         modifier = Modifier
             .padding(horizontal = 8.dp)
+            .padding(top = 3.dp)
             .fillMaxWidth(),
         value = bottomSheetVM.passwordState,
         onValueChange = { bottomSheetVM.passwordState = it },
@@ -131,9 +130,9 @@ fun PasswordBottomSheetFields(
             Text(text = stringResource(id = R.string.password))
         },
         leadingIcon = {
-            Image(
+            Icon(
                 imageVector = Icons.Rounded.Password,
-                contentDescription = stringResource(id = R.string.cd_password)
+                contentDescription = stringResource(id = R.string.cd_password),
             )
         },
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -178,23 +177,20 @@ fun PasswordBottomSheetFields(
         enabled = uiState.areFieldsEnabled(),
         isError = bottomSheetVM.passwordError,
         errorMsg = bottomSheetVM.passwordErrorMessage,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-            disabledTrailingIconColor = Color.Black,
-            trailingIconColor = Color.Black,
-        ),
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 
     OutlinedTextField(
         modifier = Modifier
             .padding(horizontal = 8.dp)
+            .padding(top = 3.dp)
             .fillMaxWidth(),
         value = bottomSheetVM.noteState,
         onValueChange = { bottomSheetVM.noteState = it },
         leadingIcon = {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_description_black_24dp),
-                contentDescription = stringResource(R.string.cd_note)
+                contentDescription = stringResource(R.string.cd_note),
             )
         },
         enabled = uiState.areFieldsEnabled(),
@@ -202,8 +198,6 @@ fun PasswordBottomSheetFields(
             Text(text = stringResource(id = R.string.notes))
         },
         maxLines = 3,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-        )
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 }

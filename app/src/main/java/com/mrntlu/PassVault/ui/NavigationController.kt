@@ -14,6 +14,7 @@ import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
+import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 
 @Composable
 fun NavigationComposable(
@@ -23,6 +24,7 @@ fun NavigationComposable(
     homeVM: HomeViewModel,
     offlineVM: OfflineViewModel,
     onlinePasswordVM: OnlinePasswordViewModel,
+    themeViewModel: ThemeViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
@@ -57,7 +59,8 @@ fun NavigationComposable(
 
         composable("settings") {
             SettingsScreen(
-                navController = navController
+                themeViewModel = themeViewModel,
+                navController = navController,
             )
         }
 

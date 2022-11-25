@@ -39,7 +39,7 @@ class BottomSheetViewModel: ViewModel() {
         }
     }
 
-    fun resetValues() {
+    private fun resetValues() {
         titleState = ""
         usernameState = ""
         passwordState = ""
@@ -55,5 +55,10 @@ class BottomSheetViewModel: ViewModel() {
 
         passwordError = false
         passwordErrorMessage = ""
+    }
+
+    override fun onCleared() {
+        resetValues()
+        super.onCleared()
     }
 }

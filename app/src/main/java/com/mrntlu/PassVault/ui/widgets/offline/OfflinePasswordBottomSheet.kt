@@ -1,8 +1,10 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,8 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.OfflinePassword
-import com.mrntlu.PassVault.ui.theme.BlueLogo
-import com.mrntlu.PassVault.ui.theme.Yellow700
 import com.mrntlu.PassVault.ui.widgets.offline.OfflineBottomSheetFields
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.viewmodels.offline.OfflineBottomSheetViewModel
@@ -31,12 +31,6 @@ fun OfflinePasswordBottomSheet(
     val focusManager = LocalFocusManager.current
     val offlineBottomSheetVM by remember { mutableStateOf(OfflineBottomSheetViewModel()) }
 
-    var idMailError by remember { mutableStateOf(false) }
-    var idMailErrorMessage by remember { mutableStateOf("") }
-
-    var passwordError by remember { mutableStateOf(false) }
-    var passwordErrorMessage by remember { mutableStateOf("") }
-
     LaunchedEffect(key1 = uiState) {
         offlineBottomSheetVM.setStateValues(uiState)
     }
@@ -44,15 +38,13 @@ fun OfflinePasswordBottomSheet(
     LaunchedEffect(key1 = isSheetVisible) {
         if (!isSheetVisible && uiState is UIState.AddItem) {
             focusManager.clearFocus(force = true)
-
-            idMailError = false
-            passwordError = false
-
             offlineBottomSheetVM.resetValues()
         }
     }
 
     Box(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center,
     ) {
         Column(
@@ -69,21 +61,25 @@ fun OfflinePasswordBottomSheet(
             OfflineBottomSheetFields(
                 offlineBottomSheetVM = offlineBottomSheetVM,
                 uiState = uiState,
-                idMailError, idMailErrorMessage, passwordError, passwordErrorMessage
             )
 
             val textfieldError = stringResource(R.string.textfield_error)
 
             BottomSheetButtons(
                 confirmBGColor = when (uiState) {
-                    is UIState.AddItem -> BlueLogo
-                    is UIState.EditItem -> BlueLogo
-                    is UIState.ViewItem -> Yellow700
+                    is UIState.AddItem -> MaterialTheme.colorScheme.primary
+                    is UIState.EditItem -> MaterialTheme.colorScheme.primary
+                    is UIState.ViewItem -> MaterialTheme.colorScheme.primaryContainer
                 },
                 confirmText = when (uiState) {
                     is UIState.AddItem -> stringResource(R.string.save)
                     is UIState.EditItem -> stringResource(R.string.update)
                     is UIState.ViewItem -> stringResource(R.string.edit)
+                },
+                confirmTextColor = when (uiState) {
+                    is UIState.AddItem -> MaterialTheme.colorScheme.onPrimary
+                    is UIState.EditItem -> MaterialTheme.colorScheme.onPrimary
+                    is UIState.ViewItem -> MaterialTheme.colorScheme.onPrimaryContainer
                 },
                 onConfirmClicked = {
                     focusManager.clearFocus(force = true)
@@ -93,23 +89,23 @@ fun OfflinePasswordBottomSheet(
                     } else {
                         offlineBottomSheetVM.idMailState.apply {
                             val isIDMailEmpty = isEmpty() || isBlank()
-                            idMailError = isIDMailEmpty
+                            offlineBottomSheetVM.idMailError = isIDMailEmpty
 
                             if (isIDMailEmpty) {
-                                idMailErrorMessage = textfieldError
+                                offlineBottomSheetVM.idMailErrorMessage = textfieldError
                             }
                         }
 
                         offlineBottomSheetVM.passwordState.apply {
                             val isPasswordEmpty = isEmpty() || isBlank()
-                            passwordError = isPasswordEmpty
+                            offlineBottomSheetVM.passwordError = isPasswordEmpty
 
                             if (isPasswordEmpty) {
-                                passwordErrorMessage = textfieldError
+                                offlineBottomSheetVM.passwordErrorMessage = textfieldError
                             }
                         }
 
-                        if (!(idMailError || passwordError)) {
+                        if (!(offlineBottomSheetVM.idMailError || offlineBottomSheetVM.passwordError)) {
                             when (uiState) {
                                 is UIState.AddItem -> {
                                     onCancel()

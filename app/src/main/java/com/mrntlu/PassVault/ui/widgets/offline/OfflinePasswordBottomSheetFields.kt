@@ -1,7 +1,6 @@
 package com.mrntlu.PassVault.ui.widgets.offline
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,7 +15,6 @@ import androidx.compose.material.icons.rounded.Password
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -33,16 +31,13 @@ import com.mrntlu.PassVault.models.OfflinePassword
 import com.mrntlu.PassVault.ui.widgets.OutlinedTextFieldWithErrorView
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.areFieldsEnabled
+import com.mrntlu.PassVault.utils.setTextfieldTheme
 import com.mrntlu.PassVault.viewmodels.offline.OfflineBottomSheetViewModel
 
 @Composable
 fun OfflineBottomSheetFields(
     offlineBottomSheetVM: OfflineBottomSheetViewModel,
     uiState: UIState<OfflinePassword>,
-    idMailError: Boolean,
-    idMailErrorMessage: String,
-    passwordError: Boolean,
-    passwordErrorMessage: String,
 ) {
     val clipboardManager = LocalClipboardManager.current
     val focusManager = LocalFocusManager.current
@@ -63,7 +58,7 @@ fun OfflineBottomSheetFields(
         ),
         keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
         leadingIcon = {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_user),
                 contentDescription = stringResource(R.string.cd_mail_username)
             )
@@ -93,13 +88,9 @@ fun OfflineBottomSheetFields(
             Text(text = stringResource(id = R.string.username_mail))
         },
         enabled = uiState.areFieldsEnabled(),
-        isError = idMailError,
-        errorMsg = idMailErrorMessage,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-            disabledTrailingIconColor = Color.Black,
-            trailingIconColor = Color.Black,
-        )
+        isError = offlineBottomSheetVM.idMailError,
+        errorMsg = offlineBottomSheetVM.idMailErrorMessage,
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 
     OutlinedTextFieldWithErrorView(
@@ -113,7 +104,7 @@ fun OfflineBottomSheetFields(
             Text(text = stringResource(id = R.string.password))
         },
         leadingIcon = {
-            Image(
+            Icon(
                 imageVector = Icons.Rounded.Password,
                 contentDescription = stringResource(R.string.cd_password)
             )
@@ -151,20 +142,16 @@ fun OfflineBottomSheetFields(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.ContentCopy,
-                            contentDescription = stringResource(id = R.string.cd_copy)
+                            contentDescription = stringResource(id = R.string.cd_copy),
                         )
                     }
                 }
             }
         },
         enabled = uiState.areFieldsEnabled(),
-        isError = passwordError,
-        errorMsg = passwordErrorMessage,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-            disabledTrailingIconColor = Color.Black,
-            trailingIconColor = Color.Black,
-        )
+        isError = offlineBottomSheetVM.passwordError,
+        errorMsg = offlineBottomSheetVM.passwordErrorMessage,
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 
     OutlinedTextField(
@@ -174,7 +161,7 @@ fun OfflineBottomSheetFields(
             .padding(horizontal = 8.dp)
             .fillMaxWidth(),
         leadingIcon = {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_description_black_24dp),
                 contentDescription = stringResource(R.string.cd_description),
             )
@@ -184,8 +171,6 @@ fun OfflineBottomSheetFields(
         label = {
             Text(text = stringResource(id = R.string.description))
         },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            disabledTextColor = Color.Black,
-        )
+        colors = TextFieldDefaults.setTextfieldTheme(),
     )
 }
