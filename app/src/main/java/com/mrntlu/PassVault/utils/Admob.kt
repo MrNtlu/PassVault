@@ -42,8 +42,8 @@ fun addInterstitialCallbacks(context: Context) {
 fun showInterstitial(context: Context) {
     val activity = context.findActivity()
 
-    if (mInterstitialAd != null && activity != null) {
-        mInterstitialAd?.show(activity)
-    }
+//    if (mInterstitialAd != null && activity != null) {
+//        mInterstitialAd?.show(activity)
+//    }
 }
 

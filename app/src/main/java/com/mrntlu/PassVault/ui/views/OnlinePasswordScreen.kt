@@ -54,6 +54,7 @@ fun OnlinePasswordScreen(
 
     var showInfoDialog by remember { mutableStateOf(false) }
     var showFailureDialog by remember { mutableStateOf(false) }
+    var isActionCompleted by remember { mutableStateOf(false) }
 
     val uiResponse by homeViewModel.uiResponse
     var selectedImage by imageSelectionVM.selectedImage
@@ -67,11 +68,12 @@ fun OnlinePasswordScreen(
     )
 
     LaunchedEffect(key1 = uiResponse) {
-        if (uiResponse is Response.Failure) {
-            showFailureDialog = true
-        } else if (uiResponse is Response.Success) {
-            navController.popBackStack()
+        if (uiResponse is Response.Success) {
+            isActionCompleted = true
             homeViewModel.resetUIResponse()
+            navController.popBackStack()
+        } else if (uiResponse is Response.Failure) {
+            showFailureDialog = true
         }
     }
 
@@ -109,8 +111,8 @@ fun OnlinePasswordScreen(
                     uiResponse = uiResponse,
                     bottomSheetVM = bottomSheetVM,
                     onNavigationClicked = {
-                        homeViewModel.resetUIResponse()
                         navController.popBackStack()
+                        homeViewModel.resetUIResponse()
                     }
                 )
             },
@@ -387,7 +389,7 @@ fun OnlinePasswordScreen(
                     )
                 }
 
-                if (uiResponse is Response.Loading) {
+                if (uiResponse is Response.Loading || uiResponse is Response.Success || isActionCompleted) {
                     LoadingView()
                 }
             }

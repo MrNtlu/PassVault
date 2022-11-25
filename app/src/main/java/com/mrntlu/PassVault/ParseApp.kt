@@ -6,7 +6,6 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.parse.Parse
 import com.parse.ParseACL
 import dagger.hilt.android.HiltAndroidApp
-import java.util.*
 
 @HiltAndroidApp
 class ParseApp: Application() {
@@ -33,7 +32,7 @@ class ParseApp: Application() {
         MobileAds.initialize(this)
         val configuration = RequestConfiguration.Builder()
 //            .setTestDeviceIds(Collections.singletonList("802C7F4DE708805637B2A1EF202B75C9"))
-            .setTestDeviceIds(Collections.singletonList("802C7F4DE708805637B2A1EF202B75C9"))
+//            .setTestDeviceIds(Collections.singletonList("802C7F4DE708805637B2A1EF202B75C9"))
             .build()
         MobileAds.setRequestConfiguration(configuration)
     }

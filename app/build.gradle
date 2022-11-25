@@ -15,8 +15,8 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 39
-        versionName "7.0.6"
+        versionCode 40
+        versionName "7.0.7"
 
         multiDexEnabled true
         vectorDrawables {
