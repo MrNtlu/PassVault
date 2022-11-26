@@ -1,10 +1,10 @@
 package com.mrntlu.PassVault.ui.widgets.online
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
@@ -40,35 +40,42 @@ fun PasswordSelectedImageView(
     val context = LocalContext.current
     var isImageLoading by remember { mutableStateOf(false) }
 
-    if (selectedImage == null || !context.isNetworkConnectionAvailable()) {
-        val drawable = TextDrawable.builder().buildRound(
-            if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
-                .substring(0, 1)
-            else "",
-            bottomSheetVM.selectedColor.hashCode()
-        )
-        Image(
-            modifier = Modifier
-                .size(imageSize),
-            painter = rememberAsyncImagePainter(model = drawable),
-            contentDescription = stringResource(id = R.string.cd_image),
-        )
-
-        if (uiState !is UIState.ViewItem) {
-            Text(
-                modifier = Modifier
-                    .padding(top = 8.dp),
-                text = stringResource(R.string.or),
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground,
+    AnimatedVisibility (selectedImage == null || !context.isNetworkConnectionAvailable()) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            val drawable = TextDrawable.builder().buildRound(
+                if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
+                    .substring(0, 1)
+                else "",
+                bottomSheetVM.selectedColor.hashCode()
             )
+            Image(
+                modifier = Modifier
+                    .size(imageSize),
+                painter = rememberAsyncImagePainter(model = drawable),
+                contentDescription = stringResource(id = R.string.cd_image),
+            )
+
+            if (uiState !is UIState.ViewItem) {
+                Text(
+                    modifier = Modifier
+                        .padding(top = 8.dp),
+                    text = stringResource(R.string.or),
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+            }
         }
-    } else {
+    }
+
+    AnimatedVisibility(visible = selectedImage != null && context.isNetworkConnectionAvailable()) {
         Box(
             modifier = Modifier
                 .size(imageSize)
                 .clip(CircleShape)
-                .background(bottomSheetVM.selectedColor),
+                .background(animateColorAsState(bottomSheetVM.selectedColor).value),
             contentAlignment = Alignment.Center,
         ) {
             AsyncImage(
@@ -97,4 +104,5 @@ fun PasswordSelectedImageView(
             }
         }
     }
+    
 }

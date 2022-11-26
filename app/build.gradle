@@ -16,7 +16,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 33
         versionCode 40
-        versionName "7.0.7"
+        versionName "7.1.0"
 
         multiDexEnabled true
         vectorDrawables {
@@ -118,7 +118,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     // Realm
-    def realm_version = "1.4.0"
+    def realm_version = "1.5.0"
     implementation "io.realm.kotlin:library-base:$realm_version"
 
     //Lottie

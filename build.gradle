@@ -19,7 +19,7 @@ buildscript {
     }
 }
 plugins {
-    id 'io.realm.kotlin' version '1.4.0' apply false
+    id 'io.realm.kotlin' version '1.5.0' apply false
 }
 
 allprojects {

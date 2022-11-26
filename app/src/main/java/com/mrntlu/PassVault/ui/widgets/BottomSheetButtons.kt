@@ -48,10 +48,10 @@ fun BottomSheetButtons(
 
         Button(
             modifier = Modifier.weight(1f),
-            onClick = onDismissClicked,
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            ),
+            onClick = onDismissClicked,
         ) {
             Text(
                 text = dismissText,

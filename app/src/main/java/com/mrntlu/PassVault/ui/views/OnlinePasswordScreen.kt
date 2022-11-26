@@ -2,6 +2,7 @@ package com.mrntlu.PassVault.ui.views
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -98,7 +99,7 @@ fun OnlinePasswordScreen(
                 imageSelectionVM = imageSelectionVM,
                 onCancel = {
                     coroutineScope.launch { modalSheetState.hide() }
-                }
+                },
             )
         }
     ) {
@@ -132,65 +133,70 @@ fun OnlinePasswordScreen(
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.background),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
-                        if (uiState !is UIState.ViewItem) {
-                            PasswordSelectedImageView(
-                                selectedImage = selectedImage,
-                                imageSize = imageSize,
-                                uiState = uiState,
-                                bottomSheetVM = bottomSheetVM,
-                            )
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(bottom = 6.dp)
-                                    .padding(horizontal = 8.dp),
-                                horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically
+                        AnimatedVisibility (uiState !is UIState.ViewItem) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center,
                             ) {
-                                TextButton(
+                                PasswordSelectedImageView(
+                                    selectedImage = selectedImage,
+                                    imageSize = imageSize,
+                                    uiState = uiState,
+                                    bottomSheetVM = bottomSheetVM,
+                                )
+
+                                Row(
                                     modifier = Modifier
-                                        .padding(horizontal = 3.dp),
-                                    onClick = {
-                                        focusManager.clearFocus(force = true)
-
-                                        coroutineScope.launch {
-                                            if (modalSheetState.isVisible)
-                                                modalSheetState.hide()
-                                            else
-                                                modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                        }
-                                    },
+                                        .fillMaxWidth()
+                                        .padding(bottom = 6.dp)
+                                        .padding(horizontal = 8.dp),
+                                    horizontalArrangement = Arrangement.Center,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(
-                                        text = if (selectedImage == null) "Select Image" else "Change Image",
-                                        color = MaterialTheme.colorScheme.primary,
-                                        fontWeight = FontWeight.SemiBold,
-                                    )
-                                }
-
-                                if (selectedImage != null) {
                                     TextButton(
                                         modifier = Modifier
                                             .padding(horizontal = 3.dp),
                                         onClick = {
-                                            selectedImage = null
-                                        }
+                                            focusManager.clearFocus(force = true)
+
+                                            coroutineScope.launch {
+                                                if (modalSheetState.isVisible)
+                                                    modalSheetState.hide()
+                                                else
+                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                            }
+                                        },
                                     ) {
                                         Text(
-                                            text = "Remove Image",
+                                            text = if (selectedImage == null) stringResource(R.string.select_image) else stringResource(R.string.change_image),
                                             color = MaterialTheme.colorScheme.primary,
                                             fontWeight = FontWeight.SemiBold,
                                         )
                                     }
-                                }
-                            }
 
-                            ColorPickerRow(
-                                bottomSheetVM = bottomSheetVM,
-                            )
+                                    AnimatedVisibility (selectedImage != null) {
+                                        TextButton(
+                                            modifier = Modifier
+                                                .padding(horizontal = 3.dp),
+                                            onClick = {
+                                                selectedImage = null
+                                            }
+                                        ) {
+                                            Text(
+                                                text = stringResource(R.string.remove_image),
+                                                color = MaterialTheme.colorScheme.primary,
+                                                fontWeight = FontWeight.SemiBold,
+                                            )
+                                        }
+                                    }
+                                }
+
+                                ColorPickerRow(
+                                    bottomSheetVM = bottomSheetVM,
+                                )
+                            }
                         }
 
                         PasswordBottomSheetFields(

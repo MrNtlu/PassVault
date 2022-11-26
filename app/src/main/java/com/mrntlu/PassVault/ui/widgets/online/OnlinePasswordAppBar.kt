@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,7 +16,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
-import com.mrntlu.PassVault.ui.theme.BlueLogo
 import com.mrntlu.PassVault.utils.Response
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
@@ -62,7 +62,7 @@ fun OnlinePasswordAppBar(
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.cd_back),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }
@@ -75,7 +75,7 @@ fun OnlinePasswordAppBar(
             )
         },
         elevation = 8.dp,
-        backgroundColor = BlueLogo,
+        backgroundColor = MaterialTheme.colorScheme.primary,
     )
 }
 

@@ -1,6 +1,8 @@
 package com.mrntlu.PassVault.ui.widgets
 
 import android.widget.Toast
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -36,6 +38,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.OfflinePassword
 import kotlin.math.min
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun OfflinePasswordListItem(
     index: Int,
@@ -59,14 +62,16 @@ fun OfflinePasswordListItem(
             .padding(vertical = 5.dp)
             .padding(horizontal = 6.dp)
             .pointerInput(Unit) {
-                detectTapGestures (
+                detectTapGestures(
                     onLongPress = {
                         clipboardManager.setText(AnnotatedString(password.password))
-                        Toast.makeText(
-                            context,
-                            "${password.idMail} Coppied",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast
+                            .makeText(
+                                context,
+                                "${password.idMail} Coppied",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
                     },
                     onTap = {
                         onDescriptionClicked(index)
@@ -109,16 +114,20 @@ fun OfflinePasswordListItem(
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
 
-                Text(
-                    text = if (passwordVisiblityState)
-                        password.password
-                    else
-                        "•".repeat(min(password.password.length, 12)),
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                )
+                AnimatedContent(
+                    targetState = passwordVisiblityState,
+                ) { isPasswordVisible ->
+                    Text(
+                        text = if (isPasswordVisible)
+                            password.password
+                        else
+                            "•".repeat(min(password.password.length, 12)),
+                        fontSize = 16.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    )
+                }
             }
 
             Row(

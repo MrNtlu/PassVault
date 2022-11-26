@@ -9,9 +9,14 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Patterns
 import android.widget.Toast
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.utils.Constants.ColorPickerList
@@ -42,6 +47,8 @@ fun TextFieldDefaults.setTextfieldTheme() = outlinedTextFieldColors(
     errorCursorColor = MaterialTheme.colorScheme.error,
     cursorColor = MaterialTheme.colorScheme.primary,
 )
+
+fun Modifier.nonRippleClickable(onClick: () -> Unit = {}) = composed { clickable(indication = null, interactionSource = remember { MutableInteractionSource() }) { onClick() } }
 
 fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this
