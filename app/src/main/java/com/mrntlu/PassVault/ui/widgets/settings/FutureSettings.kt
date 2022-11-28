@@ -3,32 +3,35 @@ package com.mrntlu.PassVault.ui.widgets.settings
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.NavController
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.utils.StoreTheme
+import com.mrntlu.PassVault.utils.findActivity
 import com.mrntlu.PassVault.utils.printLog
 import com.mrntlu.PassVault.utils.sendMail
+import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.revenuecat.purchases.Purchases
+import com.revenuecat.purchases.purchasePackageWith
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 data class SettingsClickTileModel(
@@ -50,15 +53,20 @@ data class SettingsSwitchTileModel(
 @Composable
 fun FutureSettings(
     themeViewModel: ThemeViewModel,
+    billingViewModel: BillingViewModel,
     navController: NavController,
 ) {
-    val localContext = LocalContext.current
-    val storeTheme = remember { StoreTheme(localContext) }
+    val context = LocalContext.current
+    val storeTheme = remember { StoreTheme(context) }
     val coroutineScope = rememberCoroutineScope()
     val systemTheme = isSystemInDarkTheme()
 
+    val isErrorOccured by billingViewModel.isErrorOccured
+    val errorMessage by billingViewModel.errorMessage
+
+
     val reviewManager = remember {
-        ReviewManagerFactory.create(localContext)
+        ReviewManagerFactory.create(context)
     }
 
     LaunchedEffect(key1 = true) {
@@ -66,6 +74,15 @@ fun FutureSettings(
             storeTheme.getTheme(systemTheme).collect {
                 themeViewModel.setTheme(it)
             }
+        }
+
+        billingViewModel.resetError()
+    }
+
+    LaunchedEffect(key1 = isErrorOccured) {
+        if (isErrorOccured) {
+            delay(4000L)
+            billingViewModel.resetError()
         }
     }
 
@@ -77,7 +94,7 @@ fun FutureSettings(
 
         }
         try {
-            localContext.startActivity(playIntent)
+            context.startActivity(playIntent)
         } catch (e: Exception) {
             printLog("$e")
         }
@@ -89,14 +106,59 @@ fun FutureSettings(
             .background(MaterialTheme.colorScheme.background)
             .fillMaxSize(),
     ) {
-        ContextCompat.getDrawable(LocalContext.current, R.mipmap.ic_launcher_round)?.let {
-            Image(
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .height(64.dp)
-                    .fillMaxWidth(),
-                bitmap = it.toBitmap().asImageBitmap(),
-                contentDescription = null
+        AnimatedVisibility(visible = isErrorOccured) {
+            ErrorTopSnackbar(error = errorMessage ?: "") {
+                billingViewModel.resetError()
+            }
+        }
+
+        Text(
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .padding(horizontal = 12.dp)
+                .padding(bottom = 8.dp),
+            text = "In-App Purchases",
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+
+        Column(
+            modifier = Modifier
+                .height(IntrinsicSize.Min),
+        ) {
+            billingViewModel.productList?.forEach { product ->
+                SettingsClickTile(
+                    settingsClickTileModel = SettingsClickTileModel(
+                        title = product.product.title.split("(")[0],
+                        subTitle = product.product.description,
+                        icon = Icons.Rounded.ShoppingCart,
+                        onClick = {
+                            if (context.findActivity() != null) {
+                                Purchases.sharedInstance.purchasePackageWith(
+                                    context.findActivity()!!,
+                                    product,
+                                    onError = { error, _ ->
+                                        billingViewModel.onPurchaseError(error)
+                                    },
+                                    onSuccess = { purchase, customerInfo ->
+                                        billingViewModel.onPurchaseSuccess(purchase, customerInfo)
+                                    }
+                                )
+                            }
+                        }
+                    )
+                )
+            }
+
+            SettingsClickTile(
+                settingsClickTileModel = SettingsClickTileModel(
+                    title = "Restore Purchase",
+                    subTitle = "Restore your previous purchase.",
+                    icon = Icons.Rounded.Restore,
+                    onClick = {
+                        billingViewModel.restorePurchase()
+                    }
+                )
             )
         }
 
@@ -143,7 +205,7 @@ fun FutureSettings(
                             request.addOnCompleteListener {
                                 if (it.isSuccessful) {
                                     val reviewInfo = it.result
-                                    reviewManager.launchReviewFlow(localContext as Activity, reviewInfo)
+                                    reviewManager.launchReviewFlow(context as Activity, reviewInfo)
                                 } else {
                                     openReviewIntent()
                                 }
@@ -161,7 +223,7 @@ fun FutureSettings(
                     subTitle = "You can send email to mrntlu@gmail.com",
                     icon = Icons.Rounded.Feedback,
                     onClick = {
-                        localContext.sendMail("mrntlu@gmail.com")
+                        context.sendMail("mrntlu@gmail.com")
                     }
                 )
             )

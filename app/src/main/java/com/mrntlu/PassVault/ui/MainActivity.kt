@@ -36,8 +36,10 @@ import com.mrntlu.PassVault.utils.loadInterstitial
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -98,6 +100,7 @@ fun MainScreen(
     val homeVM = hiltViewModel<HomeViewModel>()
     val offlineVM = hiltViewModel<OfflineViewModel>()
     val onlinePasswordVM = hiltViewModel<OnlinePasswordViewModel>()
+    val billingVM = hiltViewModel<BillingViewModel>()
 
     val bottomBarItems = listOf(
         BottomNavItem(
@@ -137,6 +140,14 @@ fun MainScreen(
         if (!isCurrentScreenOffline && searchWidgetState == SearchWidgetState.OPENED) {
             searchWidgetState = SearchWidgetState.CLOSED
             searchTextState = ""
+        }
+    }
+
+    LaunchedEffect(key1 = isUserLoggedIn) {
+        if (isUserLoggedIn.value) {
+            billingVM.loginUser(ParseUser.getCurrentUser().objectId)
+        } else {
+            billingVM.logoutUser()
         }
     }
 
@@ -200,6 +211,7 @@ fun MainScreen(
             offlineVM = offlineVM,
             onlinePasswordVM = onlinePasswordVM,
             themeViewModel = themeViewModel,
+            billingViewModel = billingVM,
         )
 
         if (showDialog) {

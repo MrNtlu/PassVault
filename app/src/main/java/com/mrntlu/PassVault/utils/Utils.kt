@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 
-fun printLog(message:String, tag: String = "Test") = Log.d(tag,message)
+fun printLog(message:String, tag: String = "TestLog") = Log.d(tag,message)
 
 fun navigateByPop(navController: NavController, route: String) {
     navController.navigate(route) {

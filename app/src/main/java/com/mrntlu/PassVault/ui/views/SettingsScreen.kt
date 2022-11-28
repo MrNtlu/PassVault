@@ -11,11 +11,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.ui.widgets.settings.FutureSettings
+import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 
 @Composable
 fun SettingsScreen(
     themeViewModel: ThemeViewModel,
+    billingViewModel: BillingViewModel,
     navController: NavController,
 ) {
     Box(
@@ -25,6 +27,7 @@ fun SettingsScreen(
         content = {
             FutureSettings(
                 themeViewModel = themeViewModel,
+                billingViewModel = billingViewModel,
                 navController = navController,
             )
         }
@@ -54,5 +57,5 @@ fun SettingsScreen(
 @Preview
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen(viewModel(), rememberNavController())
+    SettingsScreen(viewModel(), viewModel(), rememberNavController())
 }
