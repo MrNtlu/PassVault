@@ -23,10 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.utils.StoreTheme
-import com.mrntlu.PassVault.utils.findActivity
-import com.mrntlu.PassVault.utils.printLog
-import com.mrntlu.PassVault.utils.sendMail
+import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 import com.revenuecat.purchases.Purchases
@@ -61,9 +58,10 @@ fun FutureSettings(
     val coroutineScope = rememberCoroutineScope()
     val systemTheme = isSystemInDarkTheme()
 
-    val isErrorOccured by billingViewModel.isErrorOccured
-    val errorMessage by billingViewModel.errorMessage
-
+    val isErrorOccured by remember { billingViewModel.isErrorOccured }
+    val errorMessage by remember { billingViewModel.errorMessage }
+    val message by remember { billingViewModel.message }
+    val isPurchased by remember { billingViewModel.isPurchased }
 
     val reviewManager = remember {
         ReviewManagerFactory.create(context)
@@ -77,12 +75,22 @@ fun FutureSettings(
         }
 
         billingViewModel.resetError()
+        billingViewModel.resetMessage()
     }
 
     LaunchedEffect(key1 = isErrorOccured) {
         if (isErrorOccured) {
+            billingViewModel.resetMessage()
             delay(4000L)
             billingViewModel.resetError()
+        }
+    }
+
+    LaunchedEffect(key1 = message) {
+        if (message != null) {
+            billingViewModel.resetError()
+            delay(4000L)
+            billingViewModel.resetMessage()
         }
     }
 
@@ -107,59 +115,75 @@ fun FutureSettings(
             .fillMaxSize(),
     ) {
         AnimatedVisibility(visible = isErrorOccured) {
-            ErrorTopSnackbar(error = errorMessage ?: "") {
+            TopSnackbar(
+                isError = true,
+                message = errorMessage ?: ""
+            ) {
                 billingViewModel.resetError()
             }
         }
 
-        Text(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 8.dp),
-            text = "In-App Purchases",
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        AnimatedVisibility(visible = message != null) {
+            TopSnackbar(
+                isError = false,
+                message = message ?: ""
+            ) {
+                billingViewModel.resetMessage()
+            }
+        }
 
-        Column(
-            modifier = Modifier
-                .height(IntrinsicSize.Min),
-        ) {
-            billingViewModel.productList?.forEach { product ->
+        if(context.isNetworkConnectionAvailable()) {
+            Column(
+                modifier = Modifier
+                    .height(IntrinsicSize.Min),
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 8.dp),
+                    text = "In-App Purchases",
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+
+                if(!isPurchased) {
+                    billingViewModel.productList?.forEach { product ->
+                        SettingsClickTile(
+                            settingsClickTileModel = SettingsClickTileModel(
+                                title = product.product.title.split("(")[0],
+                                subTitle = product.product.description,
+                                icon = Icons.Rounded.ShoppingCart,
+                                onClick = {
+                                    if (context.findActivity() != null) {
+                                        Purchases.sharedInstance.purchasePackageWith(
+                                            context.findActivity()!!,
+                                            product,
+                                            onError = { error, _ ->
+                                                billingViewModel.onPurchaseError(error)
+                                            },
+                                            onSuccess = { _, customerInfo ->
+                                                billingViewModel.onPurchaseSuccess(customerInfo)
+                                            }
+                                        )
+                                    }
+                                }
+                            )
+                        )
+                    }
+                }
+
                 SettingsClickTile(
                     settingsClickTileModel = SettingsClickTileModel(
-                        title = product.product.title.split("(")[0],
-                        subTitle = product.product.description,
-                        icon = Icons.Rounded.ShoppingCart,
+                        title = "Restore Purchase",
+                        subTitle = "Restore your previous purchase.",
+                        icon = Icons.Rounded.Restore,
                         onClick = {
-                            if (context.findActivity() != null) {
-                                Purchases.sharedInstance.purchasePackageWith(
-                                    context.findActivity()!!,
-                                    product,
-                                    onError = { error, _ ->
-                                        billingViewModel.onPurchaseError(error)
-                                    },
-                                    onSuccess = { purchase, customerInfo ->
-                                        billingViewModel.onPurchaseSuccess(purchase, customerInfo)
-                                    }
-                                )
-                            }
+                            billingViewModel.restorePurchase()
                         }
                     )
                 )
             }
-
-            SettingsClickTile(
-                settingsClickTileModel = SettingsClickTileModel(
-                    title = "Restore Purchase",
-                    subTitle = "Restore your previous purchase.",
-                    icon = Icons.Rounded.Restore,
-                    onClick = {
-                        billingViewModel.restorePurchase()
-                    }
-                )
-            )
         }
 
         Text(

@@ -47,3 +47,8 @@ fun showInterstitial(context: Context) {
     }
 }
 
+fun removeInterstitial() {
+    mInterstitialAd = null
+    mInterstitialAd?.fullScreenContentCallback = null
+}
+

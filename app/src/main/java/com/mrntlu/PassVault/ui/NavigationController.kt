@@ -35,6 +35,7 @@ fun NavigationComposable(
                 parseVM = parseVM,
                 homeViewModel = homeVM,
                 sharedViewModel = onlinePasswordVM,
+                billingViewModel = billingViewModel,
             )
         }
 
@@ -55,7 +56,8 @@ fun NavigationComposable(
 
         composable("offline") {
             OfflineScreen(
-                offlineViewModel = offlineVM
+                offlineViewModel = offlineVM,
+                billingViewModel = billingViewModel,
             )
         }
 

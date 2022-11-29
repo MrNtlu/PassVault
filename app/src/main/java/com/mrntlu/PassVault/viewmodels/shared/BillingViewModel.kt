@@ -3,9 +3,7 @@ package com.mrntlu.PassVault.viewmodels.shared
 import android.app.Application
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
-import com.mrntlu.PassVault.utils.printLog
 import com.revenuecat.purchases.*
-import com.revenuecat.purchases.models.StoreTransaction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,6 +12,7 @@ class BillingViewModel @Inject constructor(application: Application): AndroidVie
 
     var isErrorOccured = mutableStateOf(false)
     var errorMessage = mutableStateOf<String?>(null)
+    var message = mutableStateOf<String?>(null)
 
     var isPurchased = mutableStateOf(false)
         private set
@@ -28,13 +27,11 @@ class BillingViewModel @Inject constructor(application: Application): AndroidVie
         Purchases.sharedInstance.logInWith(
             userID,
             onError = {
-                printLog("OnError $it")
-                isErrorOccured.value = true
-                errorMessage.value = it.message
+                setError(it.message)
             },
             onSuccess = { customerInfo, _ ->
                 resetError()
-                printLog("LoginUser $customerInfo")
+                checkUserPurchase(customerInfo)
             }
         )
     }
@@ -43,19 +40,17 @@ class BillingViewModel @Inject constructor(application: Application): AndroidVie
         Purchases.sharedInstance.logOut()
     }
 
-    fun getProductList() {
+    private fun getProductList() {
         Purchases.sharedInstance.getOfferingsWith(
             onError = { error ->
-                isErrorOccured.value = true
-                errorMessage.value = error.message
+                setError(error.message)
             },
             onSuccess = { offerings ->
                 if (offerings.current != null) {
                     resetError()
                     productList = offerings.current!!.availablePackages
                 } else {
-                    isErrorOccured.value = true
-                    errorMessage.value = "No offer found."
+                    setError("No offer found.")
                 }
             }
         )
@@ -64,37 +59,45 @@ class BillingViewModel @Inject constructor(application: Application): AndroidVie
     fun restorePurchase() {
         Purchases.sharedInstance.restorePurchasesWith(
             onError = {
-                printLog("Restore Error $it")
-                isErrorOccured.value = true
-                errorMessage.value = it.message
+                setError(it.message)
             },
             onSuccess = {
-                if (checkUserPurchase(it)) {
+                checkUserPurchase(it)
+                if (isPurchased.value) {
+                    message.value = "Successfully restored."
                     resetError()
-                    isPurchased.value = checkUserPurchase(it)
                 } else {
-                    isErrorOccured.value = true
-                    errorMessage.value = "Couldn't find any purchase."
+                    setError("Couldn't find any purchase.")
                 }
             },
         )
     }
 
     fun onPurchaseError(error: PurchasesError) {
-        printLog("OnError $error")
-        isErrorOccured.value = true
-        errorMessage.value = error.message
+        setError(error.message)
     }
 
-    fun onPurchaseSuccess(purchase: StoreTransaction, customerInfo: CustomerInfo) {
-        printLog("OnSuccess $purchase $customerInfo")
+    fun onPurchaseSuccess(customerInfo: CustomerInfo) {
+        message.value = "Successfully purchased."
         resetError()
+        checkUserPurchase(customerInfo)
     }
 
-    private fun checkUserPurchase(customerInfo: CustomerInfo): Boolean = customerInfo.entitlements["ads"]?.isActive ?: false
+    private fun checkUserPurchase(customerInfo: CustomerInfo){
+        isPurchased.value = customerInfo.entitlements["ads"]?.isActive ?: false
+    }
+
+    private fun setError(error: String) {
+        isErrorOccured.value = true
+        errorMessage.value = error
+    }
 
     fun resetError() {
         isErrorOccured.value = false
         errorMessage.value = null
+    }
+
+    fun resetMessage() {
+        message.value = null
     }
 }

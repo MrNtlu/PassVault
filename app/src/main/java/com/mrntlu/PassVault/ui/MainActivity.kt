@@ -29,10 +29,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
 import com.mrntlu.PassVault.ui.widgets.*
-import com.mrntlu.PassVault.utils.SearchWidgetState
-import com.mrntlu.PassVault.utils.StoreTheme
-import com.mrntlu.PassVault.utils.addInterstitialCallbacks
-import com.mrntlu.PassVault.utils.loadInterstitial
+import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
@@ -86,6 +83,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         storeTheme = null
+        removeInterstitial()
         super.onDestroy()
     }
 }

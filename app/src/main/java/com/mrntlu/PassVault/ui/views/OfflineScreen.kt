@@ -27,12 +27,14 @@ import com.mrntlu.PassVault.ui.widgets.OfflinePasswordBottomSheet
 import com.mrntlu.PassVault.ui.widgets.OfflinePasswordList
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
+import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun OfflineScreen(
     offlineViewModel: OfflineViewModel,
+    billingViewModel: BillingViewModel,
 ) {
     val context = LocalContext.current
 
@@ -42,6 +44,7 @@ fun OfflineScreen(
 
     var showDialog by remember { mutableStateOf(false) }
     var deleteIndex by remember { mutableStateOf(-1) }
+    val isPurchased by remember { billingViewModel.isPurchased }
 
     var uiState by remember { mutableStateOf<UIState<OfflinePassword>>(UIState.AddItem) }
 
@@ -54,6 +57,16 @@ fun OfflineScreen(
 
     BackHandler(modalSheetState.isVisible) {
         coroutineScope.launch { modalSheetState.hide() }
+    }
+
+    fun interstitialAdsHandler() {
+        if (!isPurchased) {
+            if (adCount % 4 == 1) {
+                loadInterstitial(context)
+                showInterstitial(context)
+            }
+            adCount++
+        }
     }
 
     ModalBottomSheetLayout(
@@ -77,11 +90,7 @@ fun OfflineScreen(
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                        if (adCount % 4 == 1) {
-                            loadInterstitial(context)
-                            showInterstitial(context)
-                        }
-                        adCount++
+                        interstitialAdsHandler()
 
                         coroutineScope.launch {
                             uiState = UIState.AddItem
@@ -111,7 +120,9 @@ fun OfflineScreen(
                         .fillMaxSize()
                         .background(color = MaterialTheme.colorScheme.background),
                 ) {
-                    BannerAdView()
+                    if (context.isNetworkConnectionAvailable() && !isPurchased) {
+                        BannerAdView()
+                    }
 
                     val passwords by offlineViewModel.password
 
@@ -119,6 +130,8 @@ fun OfflineScreen(
                         passwords = passwords,
                         onEditClicked = { index ->
                             passwords?.let { list ->
+                                interstitialAdsHandler()
+
                                 uiState = UIState.EditItem(list[index], index)
 
                                 coroutineScope.launch {
@@ -135,6 +148,8 @@ fun OfflineScreen(
                         },
                         onDescriptionClicked = { index ->
                             passwords?.let { list ->
+                                interstitialAdsHandler()
+
                                 uiState = UIState.ViewItem(list[index], index)
 
                                 coroutineScope.launch {
@@ -168,5 +183,5 @@ fun OfflineScreen(
 @Preview
 @Composable
 fun OfflineScreenPreview() {
-    OfflineScreen(viewModel())
+    OfflineScreen(viewModel(), viewModel())
 }

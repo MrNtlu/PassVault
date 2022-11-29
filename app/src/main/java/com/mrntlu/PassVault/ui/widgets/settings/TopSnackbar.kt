@@ -11,22 +11,26 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrntlu.PassVault.R
+import com.mrntlu.PassVault.ui.theme.Green700
 
 @Composable
-fun ErrorTopSnackbar(
-    error: String,
+fun TopSnackbar(
+    isError: Boolean,
+    message: String,
     onClick: () -> Unit,
 ) {
-    //TODO Add isError boolean, if not error show gree and message
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.error),
+            .background(
+                if (isError) MaterialTheme.colorScheme.error
+                else Green700
+            ),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -36,8 +40,8 @@ fun ErrorTopSnackbar(
                 .padding(start = 5.dp)
                 .padding(end = 3.dp)
                 .weight(1f),
-            text = error,
-            color = MaterialTheme.colorScheme.onError,
+            text = message,
+            color = if (isError) MaterialTheme.colorScheme.onError else Color.White,
         )
 
         TextButton(
@@ -45,7 +49,7 @@ fun ErrorTopSnackbar(
         ) {
             Text(
                 text = stringResource(id = R.string.ok),
-                color = MaterialTheme.colorScheme.errorContainer,
+                color = if (isError) MaterialTheme.colorScheme.errorContainer else Color.White,
             )
         }
     }
@@ -54,7 +58,16 @@ fun ErrorTopSnackbar(
 @Preview
 @Composable
 fun ErrorTopSnackbarPreview() {
-    ErrorTopSnackbar(
+    TopSnackbar(
+        true,
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac diam semper, hendrerit odio nec, convallis mauris. Nam non ipsum eu massa aliquam rhoncus vitae eu mauris"
+    ) {}
+}
+@Preview
+@Composable
+fun TopSnackbarPreview() {
+    TopSnackbar(
+        false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac diam semper, hendrerit odio nec, convallis mauris. Nam non ipsum eu massa aliquam rhoncus vitae eu mauris"
     ) {}
 }

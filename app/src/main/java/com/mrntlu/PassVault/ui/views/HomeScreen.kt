@@ -25,6 +25,7 @@ import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -34,11 +35,23 @@ fun HomeScreen(
     parseVM: ParseAuthViewModel,
     homeViewModel: HomeViewModel,
     sharedViewModel: OnlinePasswordViewModel,
+    billingViewModel: BillingViewModel,
 ) {
     val context = LocalContext.current
 
     var isNetworkAvailable by remember { mutableStateOf(true) }
     val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
+    val isPurchased by remember { billingViewModel.isPurchased }
+
+    fun interstitialAdsHandler() {
+        if (!isPurchased) {
+            if (adCount % 4 == 1) {
+                loadInterstitial(context)
+                showInterstitial(context)
+            }
+            adCount++
+        }
+    }
 
     //TODO: Add Category Chip
     Scaffold(
@@ -49,11 +62,7 @@ fun HomeScreen(
                 if (passwords is Response.Success) {
                     FloatingActionButton(
                         onClick = {
-                            if (adCount % 4 == 1) {
-                                loadInterstitial(context)
-                                showInterstitial(context)
-                            }
-                            adCount++
+                            interstitialAdsHandler()
 
                             sharedViewModel.changeState(UIState.AddItem)
                             navController.navigate("online")
@@ -82,7 +91,7 @@ fun HomeScreen(
                 var deleteIndex by remember { mutableStateOf(-1) }
 
                 LaunchedEffect(key1 = true) {
-                    homeViewModel.getPasswords(context.isNetworkConnectionAvailable())
+                    homeViewModel.getPasswords(isNetworkAvailable)
                 }
 
                 when(passwordsState) {
@@ -96,9 +105,9 @@ fun HomeScreen(
                                 .fillMaxSize()
                                 .background(MaterialTheme.colorScheme.background),
                         ) {
-                            if (isNetworkAvailable) {
+                            if (isNetworkAvailable && !isPurchased) {
                                 BannerAdView()
-                            } else {
+                            } else if (!isNetworkAvailable) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -117,6 +126,8 @@ fun HomeScreen(
                                 passwords = passwords,
                                 onEditClicked = { index ->
                                     passwords?.let { list ->
+                                        interstitialAdsHandler()
+
                                         sharedViewModel.changeState(UIState.EditItem(list[index], index))
                                         navController.navigate("online")
                                     }
@@ -127,11 +138,7 @@ fun HomeScreen(
                                 },
                                 onItemClicked = { index ->
                                     passwords?.let { list ->
-                                        if (adCount % 4 == 1) {
-                                            loadInterstitial(context)
-                                            showInterstitial(context)
-                                        }
-                                        adCount++
+                                        interstitialAdsHandler()
 
                                         sharedViewModel.changeState(UIState.ViewItem(list[index], index))
                                         navController.navigate("online")
@@ -186,5 +193,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel())
 }

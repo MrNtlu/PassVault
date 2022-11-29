@@ -139,7 +139,7 @@ fun ImageSelectionSheet(
                             .padding(top = 8.dp),
                     ) {
                         items(
-                            count = data.size,
+                            count = if (data.isNotEmpty()) data.size else 1,
                             key = { index ->
                                 if (data.isNotEmpty())
                                     data[index].domain
