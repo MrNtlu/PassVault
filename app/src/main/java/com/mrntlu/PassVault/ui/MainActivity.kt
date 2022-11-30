@@ -122,7 +122,7 @@ fun MainScreen(
     val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "offline"
     val isAuthLoading = parseVM.isLoading.value
 
-    val isUserLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
+    val isUserLoggedIn by remember { parseVM.isSignedIn }
     var showDialog by remember { mutableStateOf(false) }
     var searchWidgetState by remember{ mutableStateOf(SearchWidgetState.CLOSED) }
     var searchTextState by remember { mutableStateOf("") }
@@ -142,19 +142,18 @@ fun MainScreen(
     }
 
     LaunchedEffect(key1 = isUserLoggedIn) {
-        if (isUserLoggedIn.value) {
+        if (isUserLoggedIn) {
             billingVM.loginUser(ParseUser.getCurrentUser().objectId)
         } else {
             billingVM.logoutUser()
         }
     }
 
-    //TODO Create sharedview model to handle topappbar and remove unnecessary scaffolds
     Scaffold(
         topBar = {
             if (
                 (isCurrentScreenOffline && searchWidgetState == SearchWidgetState.OPENED) ||
-                (isCurrentScreenHome && isUserLoggedIn.value && searchWidgetState == SearchWidgetState.OPENED)
+                (isCurrentScreenHome && isUserLoggedIn && searchWidgetState == SearchWidgetState.OPENED)
             ) {
                 SearchAppBar(
                     text = searchTextState,
@@ -178,7 +177,7 @@ fun MainScreen(
                 DefaultAppBar(
                     navController = navController,
                     isAuthLoading = isAuthLoading,
-                    isUserLoggedIn = isUserLoggedIn.value,
+                    isUserLoggedIn = isUserLoggedIn,
                     showBottomBar = showBottomBar,
                     isCurrentScreenHome = isCurrentScreenHome,
                     isCurrentScreenOffline = isCurrentScreenOffline,

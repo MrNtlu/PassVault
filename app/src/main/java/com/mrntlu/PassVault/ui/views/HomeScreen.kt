@@ -40,7 +40,7 @@ fun HomeScreen(
     val context = LocalContext.current
 
     var isNetworkAvailable by remember { mutableStateOf(true) }
-    val isParseLoggedIn by remember { mutableStateOf(parseVM.isSignedIn) }
+    val isUserLoggedIn by remember { parseVM.isSignedIn }
     val isPurchased by remember { billingViewModel.isPurchased }
 
     fun interstitialAdsHandler() {
@@ -56,7 +56,7 @@ fun HomeScreen(
     //TODO: Add Category Chip
     Scaffold(
         floatingActionButton = {
-            if (isParseLoggedIn.value && isNetworkAvailable) {
+            if (isUserLoggedIn && isNetworkAvailable) {
                 val passwords by homeViewModel.passwords
 
                 if (passwords is Response.Success) {
@@ -85,7 +85,7 @@ fun HomeScreen(
         content = {
             isNetworkAvailable = context.isNetworkConnectionAvailable()
 
-            if (isParseLoggedIn.value) {
+            if (isUserLoggedIn) {
                 val passwordsState by homeViewModel.passwords
                 var showDialog by remember { mutableStateOf(false) }
                 var deleteIndex by remember { mutableStateOf(-1) }

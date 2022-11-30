@@ -26,6 +26,7 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.parse.ParseUser
 import com.revenuecat.purchases.Purchases
 import com.revenuecat.purchases.purchasePackageWith
 import kotlinx.coroutines.delay
@@ -58,6 +59,7 @@ fun FutureSettings(
     val coroutineScope = rememberCoroutineScope()
     val systemTheme = isSystemInDarkTheme()
 
+    var settingsErrorDialog by remember { mutableStateOf<String?>(null) }
     val isErrorOccured by remember { billingViewModel.isErrorOccured }
     val errorMessage by remember { billingViewModel.errorMessage }
     val message by remember { billingViewModel.message }
@@ -155,7 +157,7 @@ fun FutureSettings(
                                 subTitle = product.product.description,
                                 icon = Icons.Rounded.ShoppingCart,
                                 onClick = {
-                                    if (context.findActivity() != null) {
+                                    if (context.findActivity() != null && ParseUser.getCurrentUser() != null) {
                                         Purchases.sharedInstance.purchasePackageWith(
                                             context.findActivity()!!,
                                             product,
@@ -166,6 +168,8 @@ fun FutureSettings(
                                                 billingViewModel.onPurchaseSuccess(customerInfo)
                                             }
                                         )
+                                    } else if (ParseUser.getCurrentUser() == null) {
+                                        settingsErrorDialog = "You need to be logged in to remove ads."
                                     }
                                 }
                             )
@@ -272,6 +276,21 @@ fun FutureSettings(
                         navController.navigate("policy/${false}")
                     }
                 )
+            )
+        }
+    }
+
+    if (settingsErrorDialog != null) {
+        var showDialog by remember { mutableStateOf(true) }
+
+        if (showDialog) {
+            SettingsErrorDialog(
+                text = settingsErrorDialog ?: "",
+                onConfirmClicked = { navController.navigate("home") },
+                onDismissClicked = {
+                    showDialog = false
+                    settingsErrorDialog = null
+                }
             )
         }
     }
