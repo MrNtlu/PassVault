@@ -144,7 +144,7 @@ fun FutureSettings(
                         .padding(top = 16.dp)
                         .padding(horizontal = 12.dp)
                         .padding(bottom = 8.dp),
-                    text = "In-App Purchases",
+                    text = stringResource(R.string.in_app_purchases),
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -175,18 +175,24 @@ fun FutureSettings(
                             )
                         )
                     }
-                }
 
-                SettingsClickTile(
-                    settingsClickTileModel = SettingsClickTileModel(
-                        title = "Restore Purchase",
-                        subTitle = "Restore your previous purchase.",
-                        icon = Icons.Rounded.Restore,
-                        onClick = {
-                            billingViewModel.restorePurchase()
-                        }
+                    SettingsClickTile(
+                        settingsClickTileModel = SettingsClickTileModel(
+                            title = stringResource(R.string.restore_purchase),
+                            subTitle = stringResource(R.string.restore_desc),
+                            icon = Icons.Rounded.Restore,
+                            onClick = {
+                                if (ParseUser.getCurrentUser() != null) {
+                                    billingViewModel.restorePurchase()
+                                } else {
+                                    settingsErrorDialog = "You need to be logged in to restore your purchase."
+                                }
+                            }
+                        )
                     )
-                )
+                } else {
+                    SettingsSuccessTile()
+                }
             }
         }
 
@@ -207,9 +213,9 @@ fun FutureSettings(
             SettingsSwitchTile(
                 themeViewModel = themeViewModel,
                 settingsSwitchTileModel = SettingsSwitchTileModel(
-                    onTitle = "Dark Theme",
-                    offTitle = "Light Theme",
-                    subTitle = "You can change the application theme.",
+                    onTitle = stringResource(R.string.dark_theme),
+                    offTitle = stringResource(R.string.light_theme),
+                    subTitle = stringResource(R.string.theme_desc),
                     onIcon = Icons.Rounded.DarkMode,
                     offIcon = Icons.Rounded.LightMode,
                     onSwitchChange = {
@@ -224,8 +230,8 @@ fun FutureSettings(
 
             SettingsClickTile(
                 settingsClickTileModel = SettingsClickTileModel(
-                    title = "Rate & Review",
-                    subTitle = "Please take a moment to rate it in Play Store.",
+                    title = stringResource(R.string.rate_review),
+                    subTitle = stringResource(R.string.rate_review_desc),
                     icon = Icons.Rounded.RateReview,
                     onClick = {
                         try {
@@ -247,8 +253,8 @@ fun FutureSettings(
 
             SettingsClickTile(
                 settingsClickTileModel = SettingsClickTileModel(
-                    title = "Feedback & Suggestion",
-                    subTitle = "You can send email to mrntlu@gmail.com",
+                    title = stringResource(R.string.feedback_suggestion),
+                    subTitle = stringResource(R.string.feedback_desc),
                     icon = Icons.Rounded.Feedback,
                     onClick = {
                         context.sendMail("mrntlu@gmail.com")

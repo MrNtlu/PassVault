@@ -23,7 +23,7 @@ fun SettingsErrorDialog(
         onDismissRequest = onDismissClicked,
         title = {
             Text(
-                text = stringResource(R.string.ays),
+                text = stringResource(R.string.error),
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onError,
             )

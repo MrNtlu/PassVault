@@ -39,6 +39,13 @@ fun PasswordSelectedImageView(
 ) {
     val context = LocalContext.current
     var isImageLoading by remember { mutableStateOf(false) }
+    val drawableText = remember {
+        derivedStateOf {
+            if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
+                .substring(0, 1)
+            else ""
+        }
+    }
 
     AnimatedVisibility (selectedImage == null || !context.isNetworkConnectionAvailable()) {
         Column(
@@ -46,9 +53,7 @@ fun PasswordSelectedImageView(
             verticalArrangement = Arrangement.Center,
         ) {
             val drawable = TextDrawable.builder().buildRound(
-                if (bottomSheetVM.titleState.isNotEmpty()) bottomSheetVM.titleState.trim { it <= ' ' }
-                    .substring(0, 1)
-                else "",
+                drawableText.value,
                 bottomSheetVM.selectedColor.hashCode()
             )
             Image(

@@ -1,5 +1,11 @@
 package com.mrntlu.PassVault.ui.widgets
 
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
+import android.os.Build
+import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,10 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,8 +53,8 @@ fun OnlinePasswordListItem(
     onItemClicked: (Int) -> Unit,
     password: PasswordItem
 ) {
-    val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -63,14 +67,26 @@ fun OnlinePasswordListItem(
             .pointerInput(Unit) {
                 detectTapGestures(
                     onLongPress = {
-                        clipboardManager.setText(AnnotatedString(password.password))
-                        Toast
-                            .makeText(
-                                context,
-                                "${password.title} Coppied",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
+                        val clipData = ClipData.newPlainText("Password", password.getDecryptedPassword())
+
+                        clipData.description.extras = PersistableBundle().apply {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                            } else {
+                                putBoolean("android.content.extra.IS_SENSITIVE", true)
+                            }
+                        }
+                        clipboard.setPrimaryClip(clipData)
+
+                        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                            Toast
+                                .makeText(
+                                    context,
+                                    "${password.title} Copied",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                        }
                     },
                     onTap = {
                         onItemClicked(index)
@@ -177,14 +193,26 @@ fun OnlinePasswordListItem(
                         .padding(end = 3.dp)
                         .size(22.dp),
                     onClick = {
-                        clipboardManager.setText(AnnotatedString(password.getDecryptedPassword()))
-                        Toast
-                            .makeText(
-                                context,
-                                "${password.title} Coppied",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
+                        val clipData = ClipData.newPlainText("Password", password.getDecryptedPassword())
+
+                        clipData.description.extras = PersistableBundle().apply {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                            } else {
+                                putBoolean("android.content.extra.IS_SENSITIVE", true)
+                            }
+                        }
+                        clipboard.setPrimaryClip(clipData)
+
+                        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                            Toast
+                                .makeText(
+                                    context,
+                                    "${password.title} Copied",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                        }
                     }
                 ) {
                     Icon(

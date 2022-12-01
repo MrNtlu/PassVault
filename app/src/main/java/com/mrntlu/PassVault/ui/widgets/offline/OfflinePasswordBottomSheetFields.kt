@@ -1,5 +1,11 @@
 package com.mrntlu.PassVault.ui.widgets.offline
 
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
+import android.os.Build
+import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,13 +74,17 @@ fun OfflineBottomSheetFields(
                 IconButton(
                     onClick = {
                         clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.idMailState))
-                        Toast
-                            .makeText(
-                                context,
-                                "${offlineBottomSheetVM.idMailState} Coppied",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
+
+                        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                            Toast
+                                .makeText(
+                                    context,
+                                    "${offlineBottomSheetVM.idMailState} Copied",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                        }
+
                     }
                 ) {
                     Icon(
@@ -130,14 +140,27 @@ fun OfflineBottomSheetFields(
                 if (uiState is UIState.ViewItem) {
                     IconButton(
                         onClick = {
-                            clipboardManager.setText(AnnotatedString(offlineBottomSheetVM.passwordState))
-                            Toast
-                                .makeText(
-                                    context,
-                                    "${offlineBottomSheetVM.idMailState} Coppied",
-                                    Toast.LENGTH_SHORT
-                                )
-                                .show()
+                            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                            val clipData = ClipData.newPlainText("Password", offlineBottomSheetVM.passwordState)
+
+                            clipData.description.extras = PersistableBundle().apply {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                    putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                                } else {
+                                    putBoolean("android.content.extra.IS_SENSITIVE", true)
+                                }
+                            }
+                            clipboard.setPrimaryClip(clipData)
+
+                            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                                Toast
+                                    .makeText(
+                                        context,
+                                        "${offlineBottomSheetVM.idMailState} Copied",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
                         }
                     ) {
                         Icon(
