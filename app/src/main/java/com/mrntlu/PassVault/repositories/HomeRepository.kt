@@ -168,6 +168,6 @@ class HomeRepository @Inject constructor(
                 parseDao.getPasswords()
             }
         },
-        shouldFetch = { isNetworkAvailable }
+        shouldFetch = { isNetworkAvailable && ParseUser.getCurrentUser() != null }
     )
 }

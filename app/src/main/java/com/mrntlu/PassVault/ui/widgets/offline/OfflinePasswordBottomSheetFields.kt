@@ -60,12 +60,12 @@ fun OfflineBottomSheetFields(
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Text
+            keyboardType = KeyboardType.Text,
         ),
         keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(FocusDirection.Down) }),
         leadingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.ic_user),
+                painter = painterResource(id = R.drawable.ic_turned_in_black_24dp),
                 contentDescription = stringResource(R.string.cd_mail_username)
             )
         },
@@ -95,7 +95,7 @@ fun OfflineBottomSheetFields(
             }
         },
         label = {
-            Text(text = stringResource(id = R.string.username_mail))
+            Text(text = stringResource(R.string.title_username_email))
         },
         enabled = uiState.areFieldsEnabled(),
         isError = offlineBottomSheetVM.idMailError,

@@ -30,7 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +57,7 @@ fun OfflinePasswordListItem(
     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
     val color = remember { ColorGenerator.MATERIAL.randomColor }
-    val drawable = remember { TextDrawable.builder().buildRound(password.idMail.trim { it <= ' ' }.substring(0, 1), color) }
+    val drawable = remember { TextDrawable.builder().buildRound(password.idMail.trim { it <= ' ' }.substring(0, 1).capitalize(Locale.current), color) }
 
     var passwordVisiblityState by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
