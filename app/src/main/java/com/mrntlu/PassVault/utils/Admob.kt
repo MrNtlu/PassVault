@@ -1,6 +1,7 @@
 package com.mrntlu.PassVault.utils
 
 import android.content.Context
+import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
@@ -29,26 +30,28 @@ fun loadInterstitial(context: Context) {
     )
 }
 
-fun addInterstitialCallbacks(context: Context) {
-    mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-        override fun onAdShowedFullScreenContent() {
-            mInterstitialAd = null
-
-            loadInterstitial(context)
-        }
-    }
-}
-
-fun showInterstitial(context: Context) {
+fun showInterstitial(context: Context, onAdDismissed: () -> Unit) {
     val activity = context.findActivity()
 
     if (mInterstitialAd != null && activity != null) {
+        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdFailedToShowFullScreenContent(e: AdError) {
+                mInterstitialAd = null
+            }
+
+            override fun onAdDismissedFullScreenContent() {
+                mInterstitialAd = null
+
+                loadInterstitial(context)
+                onAdDismissed()
+            }
+        }
         mInterstitialAd?.show(activity)
     }
 }
 
 fun removeInterstitial() {
-    mInterstitialAd = null
     mInterstitialAd?.fullScreenContentCallback = null
+    mInterstitialAd = null
 }
 

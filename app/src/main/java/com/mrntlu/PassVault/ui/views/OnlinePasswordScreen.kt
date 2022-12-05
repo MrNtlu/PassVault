@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 fun OnlinePasswordScreen(
     navController: NavController,
     homeViewModel: HomeViewModel,
-    sharedViewModel: OnlinePasswordViewModel,
+    onlineSharedViewModel: OnlinePasswordViewModel,
 ) {
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
@@ -59,7 +59,7 @@ fun OnlinePasswordScreen(
 
     val uiResponse by homeViewModel.uiResponse
     var selectedImage by imageSelectionVM.selectedImage
-    val uiState = sharedViewModel.state
+    val uiState = onlineSharedViewModel.state
 
     val coroutineScope = rememberCoroutineScope()
     val modalSheetState = rememberModalBottomSheetState(
@@ -78,11 +78,11 @@ fun OnlinePasswordScreen(
         }
     }
 
-    LaunchedEffect(key1 = sharedViewModel.state) {
-        bottomSheetVM.setStateValues(sharedViewModel.state)
+    LaunchedEffect(key1 = onlineSharedViewModel.state) {
+        bottomSheetVM.setStateValues(onlineSharedViewModel.state)
 
-        if (sharedViewModel.state.getItem() != null) {
-            selectedImage = sharedViewModel.state.getItem()!!.imageUri
+        if (onlineSharedViewModel.state.getItem() != null) {
+            selectedImage = onlineSharedViewModel.state.getItem()!!.imageUri
         }
     }
 
@@ -245,17 +245,17 @@ fun OnlinePasswordScreen(
 
                         BottomSheetButtons(
                             isConfirmButtonAvailable = context.isNetworkConnectionAvailable(),
-                            confirmBGColor = when (sharedViewModel.state) {
+                            confirmBGColor = when (onlineSharedViewModel.state) {
                                 is UIState.AddItem -> MaterialTheme.colorScheme.primary
                                 is UIState.EditItem -> MaterialTheme.colorScheme.primary
                                 is UIState.ViewItem -> MaterialTheme.colorScheme.primaryContainer
                             },
-                            confirmText = when(sharedViewModel.state) {
+                            confirmText = when(onlineSharedViewModel.state) {
                                 is UIState.AddItem -> stringResource(id = R.string.save)
                                 is UIState.EditItem -> stringResource(id = R.string.update)
                                 is UIState.ViewItem -> stringResource(id = R.string.edit)
                             },
-                            confirmTextColor = when (sharedViewModel.state) {
+                            confirmTextColor = when (onlineSharedViewModel.state) {
                                 is UIState.AddItem -> MaterialTheme.colorScheme.onPrimary
                                 is UIState.EditItem -> MaterialTheme.colorScheme.onPrimary
                                 is UIState.ViewItem -> MaterialTheme.colorScheme.onPrimaryContainer
@@ -263,10 +263,10 @@ fun OnlinePasswordScreen(
                             onConfirmClicked = {
                                 focusManager.clearFocus(force = true)
 
-                                if (sharedViewModel.state is UIState.ViewItem) {
-                                    sharedViewModel.changeState(
+                                if (onlineSharedViewModel.state is UIState.ViewItem) {
+                                    onlineSharedViewModel.changeState(
                                         UIState.EditItem(
-                                            sharedViewModel.state.getItem()!!, sharedViewModel.state.getPosition()!!
+                                            onlineSharedViewModel.state.getItem()!!, onlineSharedViewModel.state.getPosition()!!
                                         )
                                     )
                                 } else {
@@ -335,7 +335,7 @@ fun OnlinePasswordScreen(
                                     }
                                 }
                             },
-                            dismissText = when(sharedViewModel.state) {
+                            dismissText = when(onlineSharedViewModel.state) {
                                 is UIState.AddItem -> stringResource(id = R.string.cancel)
                                 is UIState.EditItem -> stringResource(id = R.string.cancel)
                                 is UIState.ViewItem -> stringResource(id = R.string.close)
@@ -349,38 +349,20 @@ fun OnlinePasswordScreen(
                 }
 
                 if (showInfoDialog) {
-                    AlertDialog(
-                        backgroundColor = MaterialTheme.colorScheme.background,
-                        onDismissRequest = { showInfoDialog = false },
-                        title = {
-                            Text(
-                                text = stringResource(R.string.cd_what_encryption),
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                color = MaterialTheme.colorScheme.onBackground,
-                            )
-                        },
+                    CustomDialog(
+                        isConfirmButtonVisible = false,
+                        title = stringResource(R.string.cd_what_encryption),
                         text = {
                             Text(
                                 text = stringResource(id = R.string.encryption_explanation),
-                                fontSize = 14.sp,
+                                style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onBackground,
                             )
                         },
-                        confirmButton = {},
-                        dismissButton = {
-                            Button(
-                                onClick = { showInfoDialog = false },
-                                colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = MaterialTheme.colorScheme.primaryContainer,
-                                )
-                            ) {
-                                Text(
-                                    stringResource(R.string.ok),
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                )
-                            }
-                        }
+                        onConfirmClicked = {},
+                        dismissContainerColor = MaterialTheme.colorScheme.background,
+                        dismissTextColor = MaterialTheme.colorScheme.onBackground,
+                        onDismissClicked = { showInfoDialog = false },
                     )
                 }
 

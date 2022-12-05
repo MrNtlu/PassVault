@@ -55,7 +55,7 @@ fun FutureSettings(
     navController: NavController,
 ) {
     val context = LocalContext.current
-    val storeTheme = remember { StoreTheme(context) }
+    val preferenceStore = remember { PreferenceStore(context) }
     val coroutineScope = rememberCoroutineScope()
     val systemTheme = isSystemInDarkTheme()
 
@@ -71,7 +71,7 @@ fun FutureSettings(
 
     LaunchedEffect(key1 = true) {
         coroutineScope.launch {
-            storeTheme.getTheme(systemTheme).collect {
+            preferenceStore.getTheme(systemTheme).collect {
                 themeViewModel.setTheme(it)
             }
         }
@@ -222,7 +222,7 @@ fun FutureSettings(
                         themeViewModel.setTheme(it)
 
                         coroutineScope.launch {
-                            storeTheme.saveTheme(it)
+                            preferenceStore.saveTheme(it)
                         }
                     }
                 )

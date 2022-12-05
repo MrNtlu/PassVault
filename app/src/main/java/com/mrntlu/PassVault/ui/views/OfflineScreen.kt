@@ -21,13 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.OfflinePassword
-import com.mrntlu.PassVault.ui.widgets.AYSDialog
 import com.mrntlu.PassVault.ui.widgets.BannerAdView
+import com.mrntlu.PassVault.ui.widgets.CautionDialog
 import com.mrntlu.PassVault.ui.widgets.OfflinePasswordBottomSheet
 import com.mrntlu.PassVault.ui.widgets.OfflinePasswordList
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
+import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -35,6 +36,7 @@ import kotlinx.coroutines.launch
 fun OfflineScreen(
     offlineViewModel: OfflineViewModel,
     billingViewModel: BillingViewModel,
+    sharedViewModel: MainActivitySharedViewModel,
 ) {
     val context = LocalContext.current
 
@@ -61,9 +63,10 @@ fun OfflineScreen(
 
     fun interstitialAdsHandler() {
         if (!isPurchased) {
-            if (adCount % 4 == 1) {
-                loadInterstitial(context)
-                showInterstitial(context)
+            if (adCount % 3 == 0) {
+                showInterstitial(context) {
+                    sharedViewModel.shouldShowDialog(true)
+                }
             }
             adCount++
         }
@@ -163,7 +166,7 @@ fun OfflineScreen(
                     )
 
                     if (showDialog) {
-                        AYSDialog(
+                        CautionDialog(
                             text = stringResource(id = R.string.ays_delete),
                             onConfirmClicked = {
                                 showDialog = false
@@ -183,5 +186,5 @@ fun OfflineScreen(
 @Preview
 @Composable
 fun OfflineScreenPreview() {
-    OfflineScreen(viewModel(), viewModel())
+    OfflineScreen(viewModel(), viewModel(), viewModel())
 }

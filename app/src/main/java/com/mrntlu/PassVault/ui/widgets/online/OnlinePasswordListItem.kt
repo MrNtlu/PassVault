@@ -58,7 +58,6 @@ fun OnlinePasswordListItem(
 
     var expanded by remember { mutableStateOf(false) }
 
-    //TODO: More customization option
     Card(
         modifier = Modifier
             .fillMaxWidth()

@@ -14,6 +14,7 @@ import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
+import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 
@@ -21,43 +22,46 @@ import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 fun NavigationComposable(
     navController: NavHostController,
     padding: PaddingValues,
-    parseVM: ParseAuthViewModel,
-    homeVM: HomeViewModel,
-    offlineVM: OfflineViewModel,
-    onlinePasswordVM: OnlinePasswordViewModel,
+    parseViewModel: ParseAuthViewModel,
+    homeViewModel: HomeViewModel,
+    offlineViewModel: OfflineViewModel,
+    onlinePasswordViewModel: OnlinePasswordViewModel,
     themeViewModel: ThemeViewModel,
     billingViewModel: BillingViewModel,
+    sharedViewModel: MainActivitySharedViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
             HomeScreen(
                 navController = navController,
-                parseVM = parseVM,
-                homeViewModel = homeVM,
-                sharedViewModel = onlinePasswordVM,
+                parseVM = parseViewModel,
+                homeViewModel = homeViewModel,
+                onlineSharedViewModel = onlinePasswordViewModel,
                 billingViewModel = billingViewModel,
+                mainActivitySharedViewModel = sharedViewModel,
             )
         }
 
         composable("online") {
             OnlinePasswordScreen(
                 navController = navController,
-                homeViewModel = homeVM,
-                sharedViewModel = onlinePasswordVM,
+                homeViewModel = homeViewModel,
+                onlineSharedViewModel = onlinePasswordViewModel,
             )
         }
 
         composable("register") {
             RegisterScreen(
                 navController = navController,
-                parseVM = parseVM
+                parseVM = parseViewModel
             )
         }
 
         composable("offline") {
             OfflineScreen(
-                offlineViewModel = offlineVM,
+                offlineViewModel = offlineViewModel,
                 billingViewModel = billingViewModel,
+                sharedViewModel = sharedViewModel,
             )
         }
 

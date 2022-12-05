@@ -26,6 +26,7 @@ import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
+import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -34,8 +35,9 @@ fun HomeScreen(
     navController: NavController,
     parseVM: ParseAuthViewModel,
     homeViewModel: HomeViewModel,
-    sharedViewModel: OnlinePasswordViewModel,
+    onlineSharedViewModel: OnlinePasswordViewModel,
     billingViewModel: BillingViewModel,
+    mainActivitySharedViewModel: MainActivitySharedViewModel,
 ) {
     val context = LocalContext.current
 
@@ -45,9 +47,10 @@ fun HomeScreen(
 
     fun interstitialAdsHandler() {
         if (!isPurchased) {
-            if (adCount % 4 == 1) {
-                loadInterstitial(context)
-                showInterstitial(context)
+            if (adCount % 3 == 0) {
+                showInterstitial(context) {
+                    mainActivitySharedViewModel.shouldShowDialog(true)
+                }
             }
             adCount++
         }
@@ -64,7 +67,7 @@ fun HomeScreen(
                         onClick = {
                             interstitialAdsHandler()
 
-                            sharedViewModel.changeState(UIState.AddItem)
+                            onlineSharedViewModel.changeState(UIState.AddItem)
                             navController.navigate("online")
                         },
                         containerColor = MaterialTheme.colorScheme.onBackground,
@@ -128,7 +131,7 @@ fun HomeScreen(
                                     passwords?.let { list ->
                                         interstitialAdsHandler()
 
-                                        sharedViewModel.changeState(UIState.EditItem(list[index], index))
+                                        onlineSharedViewModel.changeState(UIState.EditItem(list[index], index))
                                         navController.navigate("online")
                                     }
                                 },
@@ -140,7 +143,7 @@ fun HomeScreen(
                                     passwords?.let { list ->
                                         interstitialAdsHandler()
 
-                                        sharedViewModel.changeState(UIState.ViewItem(list[index], index))
+                                        onlineSharedViewModel.changeState(UIState.ViewItem(list[index], index))
                                         navController.navigate("online")
                                     }
                                 }
@@ -149,7 +152,7 @@ fun HomeScreen(
                         }
 
                         if (showDialog) {
-                            AYSDialog(
+                            CautionDialog(
                                 text = stringResource(R.string.ays_delete),
                                 onConfirmClicked = {
                                     showDialog = false
@@ -193,5 +196,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel(), viewModel())
 }
