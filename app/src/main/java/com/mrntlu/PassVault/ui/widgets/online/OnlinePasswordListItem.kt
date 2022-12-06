@@ -137,7 +137,7 @@ fun OnlinePasswordListItem(
                     )
 
                     if (isImageLoading) {
-                        CircularProgressIndicator(color = Color.Black)
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                     }
                 }
             } else {

@@ -32,6 +32,7 @@ fun SettingsErrorDialog(
         confirmText = stringResource(R.string.login),
         confirmTextColor = MaterialTheme.colorScheme.onError,
         onConfirmClicked = onConfirmClicked,
+        dismissText = stringResource(id = R.string.ok),
         dismissTextColor = MaterialTheme.colorScheme.onErrorContainer,
         dismissContainerColor = MaterialTheme.colorScheme.errorContainer,
         onDismissClicked = onDismissClicked,
