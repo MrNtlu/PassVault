@@ -118,20 +118,20 @@ class HomeRepository @Inject constructor(
         var response: Response<ParseObject> = Response.Loading
         val parseObject = ParseObject.create("Account")
 
-        parseObject.apply {
-            put("ParseUser", ParseUser.getCurrentUser().username)
-            put("Title", title)
-            put("Username", username)
-            put("Password", password)
-            if (note != null)
-                put("Note", note)
-            put("IsEncrypted", isEncrypted)
-            if (imageUri != null)
-                put("ImageUri", imageUri)
-            put("ImageColor", imageColor)
-        }
-
         try {
+            parseObject.apply {
+                put("ParseUser", ParseUser.getCurrentUser().username)
+                put("Title", title)
+                put("Username", username)
+                put("Password", password)
+                if (note != null)
+                    put("Note", note)
+                put("IsEncrypted", isEncrypted)
+                if (imageUri != null)
+                    put("ImageUri", imageUri)
+                put("ImageColor", imageColor)
+            }
+
             trySend(response)
 
             parseObject.saveInBackground { error ->

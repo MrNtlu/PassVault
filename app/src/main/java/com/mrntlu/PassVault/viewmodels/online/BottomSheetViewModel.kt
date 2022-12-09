@@ -8,8 +8,11 @@ import androidx.lifecycle.ViewModel
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.utils.UIState
 import com.mrntlu.PassVault.utils.getItem
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BottomSheetViewModel: ViewModel() {
+@HiltViewModel
+class BottomSheetViewModel @Inject constructor(): ViewModel() {
 
     var titleState by mutableStateOf("")
     var usernameState by mutableStateOf("")

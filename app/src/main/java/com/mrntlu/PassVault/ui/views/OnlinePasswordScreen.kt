@@ -20,14 +20,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.ui.widgets.*
 import com.mrntlu.PassVault.ui.widgets.online.ImageSelectionSheet
-import com.mrntlu.PassVault.ui.widgets.online.OnlinePasswordAppBar
 import com.mrntlu.PassVault.ui.widgets.online.PasswordSelectedImageView
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
@@ -43,22 +41,19 @@ fun OnlinePasswordScreen(
     navController: NavController,
     homeViewModel: HomeViewModel,
     onlineSharedViewModel: OnlinePasswordViewModel,
+    imageSelectionViewModel: ImageSelectionViewModel,
+    bottomSheetViewModel: BottomSheetViewModel,
 ) {
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
     val imageSize = 64.dp
-    val topBarImageSize = 48.dp
-
-    val imageSelectionVM = hiltViewModel<ImageSelectionViewModel>()
-
-    val bottomSheetVM by remember { mutableStateOf(BottomSheetViewModel()) }
 
     var showInfoDialog by remember { mutableStateOf(false) }
     var showFailureDialog by remember { mutableStateOf(false) }
     var isActionCompleted by remember { mutableStateOf(false) }
 
     val uiResponse by homeViewModel.uiResponse
-    var selectedImage by imageSelectionVM.selectedImage
+    var selectedImage by imageSelectionViewModel.selectedImage
     val uiState = onlineSharedViewModel.state
 
     val coroutineScope = rememberCoroutineScope()
@@ -79,11 +74,12 @@ fun OnlinePasswordScreen(
     }
 
     LaunchedEffect(key1 = onlineSharedViewModel.state) {
-        bottomSheetVM.setStateValues(onlineSharedViewModel.state)
+        bottomSheetViewModel.setStateValues(onlineSharedViewModel.state)
 
-        if (onlineSharedViewModel.state.getItem() != null) {
-            selectedImage = onlineSharedViewModel.state.getItem()!!.imageUri
-        }
+        selectedImage = if (onlineSharedViewModel.state.getItem() != null)
+            onlineSharedViewModel.state.getItem()!!.imageUri
+        else
+            null
     }
 
     BackHandler(modalSheetState.isVisible) {
@@ -96,297 +92,280 @@ fun OnlinePasswordScreen(
         sheetContent = {
             ImageSelectionSheet(
                 isSheetVisible = modalSheetState.isVisible,
-                imageSelectionVM = imageSelectionVM,
+                imageSelectionVM = imageSelectionViewModel,
                 onCancel = {
                     coroutineScope.launch { modalSheetState.hide() }
                 },
             )
         }
     ) {
-        Scaffold(
-            topBar = {
-                OnlinePasswordAppBar(
-                    selectedImage = selectedImage,
-                    topBarImageSize = topBarImageSize,
-                    uiState = uiState,
-                    uiResponse = uiResponse,
-                    bottomSheetVM = bottomSheetVM,
-                    onNavigationClicked = {
-                        navController.popBackStack()
-                        homeViewModel.resetUIResponse()
-                    }
-                )
-            },
-            content = {
-                Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .fillMaxSize(),
-                ) {
+        Box(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
+                .fillMaxSize(),
+        ) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp)
+                    .padding(bottom = 8.dp)
+                    .padding(top = 16.dp)
+                    .imePadding()
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                AnimatedVisibility (visible = uiState !is UIState.ViewItem) {
                     Column(
-                        modifier = Modifier
-                            .verticalScroll(rememberScrollState())
-                            .padding(horizontal = 24.dp)
-                            .padding(bottom = 8.dp)
-                            .padding(top = 16.dp)
-                            .imePadding()
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                     ) {
-                        AnimatedVisibility (uiState !is UIState.ViewItem) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center,
-                            ) {
-                                PasswordSelectedImageView(
-                                    selectedImage = selectedImage,
-                                    imageSize = imageSize,
-                                    uiState = uiState,
-                                    bottomSheetVM = bottomSheetVM,
-                                )
-
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(bottom = 6.dp)
-                                        .padding(horizontal = 8.dp),
-                                    horizontalArrangement = Arrangement.Center,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    TextButton(
-                                        modifier = Modifier
-                                            .padding(horizontal = 3.dp),
-                                        onClick = {
-                                            focusManager.clearFocus(force = true)
-
-                                            coroutineScope.launch {
-                                                if (modalSheetState.isVisible)
-                                                    modalSheetState.hide()
-                                                else
-                                                    modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                            }
-                                        },
-                                    ) {
-                                        Text(
-                                            text = if (selectedImage == null) stringResource(R.string.select_image) else stringResource(R.string.change_image),
-                                            color = MaterialTheme.colorScheme.primary,
-                                            fontWeight = FontWeight.SemiBold,
-                                        )
-                                    }
-
-                                    AnimatedVisibility (selectedImage != null) {
-                                        TextButton(
-                                            modifier = Modifier
-                                                .padding(horizontal = 3.dp),
-                                            onClick = {
-                                                selectedImage = null
-                                            }
-                                        ) {
-                                            Text(
-                                                text = stringResource(R.string.remove_image),
-                                                color = MaterialTheme.colorScheme.primary,
-                                                fontWeight = FontWeight.SemiBold,
-                                            )
-                                        }
-                                    }
-                                }
-
-                                ColorPickerRow(
-                                    bottomSheetVM = bottomSheetVM,
-                                )
-                            }
-                        }
-
-                        PasswordBottomSheetFields(
-                            bottomSheetVM = bottomSheetVM,
+                        PasswordSelectedImageView(
+                            selectedImage = selectedImage,
+                            imageSize = imageSize,
                             uiState = uiState,
+                            bottomSheetVM = bottomSheetViewModel,
                         )
 
                         Row(
                             modifier = Modifier
-                                .padding(top = 4.dp),
+                                .fillMaxWidth()
+                                .padding(bottom = 6.dp)
+                                .padding(horizontal = 8.dp),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Checkbox(
-                                checked = bottomSheetVM.isEncrypted,
-                                onCheckedChange = { bottomSheetVM.isEncrypted = it },
-                                enabled = uiState.areFieldsEnabled(),
-                                colors = CheckboxDefaults.colors(
-                                    checkedColor = MaterialTheme.colorScheme.primary,
-                                    uncheckedColor = MaterialTheme.colorScheme.outline,
-                                    disabledColor = MaterialTheme.colorScheme.primary,
-                                )
-                            )
+                            TextButton(
+                                modifier = Modifier
+                                    .padding(horizontal = 3.dp),
+                                onClick = {
+                                    focusManager.clearFocus(force = true)
 
-                            Text(
-                                text = stringResource(R.string.encryption_info),
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = MaterialTheme.colorScheme.onBackground,
-                            )
-
-                            IconButton(
-                                onClick = { showInfoDialog = true },
+                                    coroutineScope.launch {
+                                        if (modalSheetState.isVisible)
+                                            modalSheetState.hide()
+                                        else
+                                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                                    }
+                                },
                             ) {
-                                Icon(
-                                    modifier = Modifier
-                                        .size(20.dp),
-                                    imageVector = Icons.Rounded.Info,
-                                    contentDescription = stringResource(R.string.cd_what_encryption),
-                                    tint = MaterialTheme.colorScheme.primary,
+                                Text(
+                                    text = if (selectedImage == null) stringResource(R.string.select_image) else stringResource(R.string.change_image),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.SemiBold,
                                 )
+                            }
+
+                            AnimatedVisibility (visible = selectedImage != null) {
+                                TextButton(
+                                    modifier = Modifier
+                                        .padding(horizontal = 3.dp),
+                                    onClick = {
+                                        selectedImage = null
+                                    }
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.remove_image),
+                                        color = MaterialTheme.colorScheme.primary,
+                                        fontWeight = FontWeight.SemiBold,
+                                    )
+                                }
                             }
                         }
 
-                        val textfieldError = stringResource(R.string.textfield_error)
-
-                        BottomSheetButtons(
-                            isConfirmButtonAvailable = context.isNetworkConnectionAvailable(),
-                            confirmBGColor = when (onlineSharedViewModel.state) {
-                                is UIState.AddItem -> MaterialTheme.colorScheme.primary
-                                is UIState.EditItem -> MaterialTheme.colorScheme.primary
-                                is UIState.ViewItem -> MaterialTheme.colorScheme.primaryContainer
-                            },
-                            confirmText = when(onlineSharedViewModel.state) {
-                                is UIState.AddItem -> stringResource(id = R.string.save)
-                                is UIState.EditItem -> stringResource(id = R.string.update)
-                                is UIState.ViewItem -> stringResource(id = R.string.edit)
-                            },
-                            confirmTextColor = when (onlineSharedViewModel.state) {
-                                is UIState.AddItem -> MaterialTheme.colorScheme.onPrimary
-                                is UIState.EditItem -> MaterialTheme.colorScheme.onPrimary
-                                is UIState.ViewItem -> MaterialTheme.colorScheme.onPrimaryContainer
-                            },
-                            onConfirmClicked = {
-                                focusManager.clearFocus(force = true)
-
-                                if (onlineSharedViewModel.state is UIState.ViewItem) {
-                                    onlineSharedViewModel.changeState(
-                                        UIState.EditItem(
-                                            onlineSharedViewModel.state.getItem()!!, onlineSharedViewModel.state.getPosition()!!
-                                        )
-                                    )
-                                } else {
-                                    bottomSheetVM.titleState.apply {
-                                        val isTitleEmpty = isEmpty() || isBlank()
-                                        bottomSheetVM.titleError = isTitleEmpty
-
-                                        if (isTitleEmpty) {
-                                            bottomSheetVM.titleErrorMessage = textfieldError
-                                        }
-                                    }
-
-                                    bottomSheetVM.usernameState.apply {
-                                        val isUsernameEmpty = isEmpty() || isBlank()
-                                        bottomSheetVM.usernameError = isUsernameEmpty
-
-                                        if (isUsernameEmpty) {
-                                            bottomSheetVM.usernameErrorMessage = textfieldError
-                                        }
-                                    }
-
-                                    bottomSheetVM.passwordState.apply {
-                                        val isPasswordEmpty = isEmpty() || isBlank()
-                                        bottomSheetVM.passwordError = isPasswordEmpty
-
-                                        if (isPasswordEmpty) {
-                                            bottomSheetVM.passwordErrorMessage = textfieldError
-                                        }
-                                    }
-
-                                    if (!(bottomSheetVM.titleError || bottomSheetVM.usernameError || bottomSheetVM.passwordError)) {
-                                        when(uiState) {
-                                            is UIState.AddItem -> {
-                                                val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-                                                    Cryptography().encrypt(bottomSheetVM.passwordState)
-                                                } else null
-
-                                                homeViewModel.addPassword(
-                                                    bottomSheetVM.titleState,
-                                                    bottomSheetVM.usernameState,
-                                                    encryptedPassword ?: bottomSheetVM.passwordState,
-                                                    bottomSheetVM.noteState,
-                                                    bottomSheetVM.isEncrypted,
-                                                    selectedImage,
-                                                    bottomSheetVM.selectedColor.getAsString(),
-                                                )
-                                            }
-                                            is UIState.EditItem -> {
-                                                val encryptedPassword: String? = if (bottomSheetVM.isEncrypted) {
-                                                    Cryptography().encrypt(bottomSheetVM.passwordState)
-                                                } else null
-
-                                                homeViewModel.editPassword(
-                                                    uiState.position,
-                                                    bottomSheetVM.titleState,
-                                                    bottomSheetVM.usernameState,
-                                                    encryptedPassword ?: bottomSheetVM.passwordState,
-                                                    bottomSheetVM.noteState,
-                                                    bottomSheetVM.isEncrypted,
-                                                    selectedImage,
-                                                    bottomSheetVM.selectedColor.getAsString(),
-                                                )
-                                            }
-                                            else -> {}
-                                        }
-                                    }
-                                }
-                            },
-                            dismissText = when(onlineSharedViewModel.state) {
-                                is UIState.AddItem -> stringResource(id = R.string.cancel)
-                                is UIState.EditItem -> stringResource(id = R.string.cancel)
-                                is UIState.ViewItem -> stringResource(id = R.string.close)
-                            },
-                            onDismissClicked = {
-                                focusManager.clearFocus(force = true)
-                                navController.popBackStack()
-                            }
+                        ColorPickerRow(
+                            bottomSheetVM = bottomSheetViewModel,
                         )
                     }
                 }
 
-                if (showInfoDialog) {
-                    CustomDialog(
-                        isConfirmButtonVisible = false,
-                        title = stringResource(R.string.cd_what_encryption),
-                        text = {
-                            Text(
-                                text = stringResource(id = R.string.encryption_explanation),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onBackground,
+                PasswordBottomSheetFields(
+                    bottomSheetVM = bottomSheetViewModel,
+                    uiState = uiState,
+                )
+
+                Row(
+                    modifier = Modifier
+                        .padding(top = 4.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(
+                        checked = bottomSheetViewModel.isEncrypted,
+                        onCheckedChange = { bottomSheetViewModel.isEncrypted = it },
+                        enabled = uiState.areFieldsEnabled(),
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = MaterialTheme.colorScheme.primary,
+                            uncheckedColor = MaterialTheme.colorScheme.outline,
+                            disabledColor = MaterialTheme.colorScheme.primary,
+                        )
+                    )
+
+                    Text(
+                        text = stringResource(R.string.encryption_info),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
+
+                    IconButton(
+                        onClick = { showInfoDialog = true },
+                    ) {
+                        Icon(
+                            modifier = Modifier
+                                .size(20.dp),
+                            imageVector = Icons.Rounded.Info,
+                            contentDescription = stringResource(R.string.cd_what_encryption),
+                            tint = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                }
+
+                val textfieldError = stringResource(R.string.textfield_error)
+
+                BottomSheetButtons(
+                    isConfirmButtonAvailable = context.isNetworkConnectionAvailable(),
+                    confirmBGColor = when (onlineSharedViewModel.state) {
+                        is UIState.AddItem -> MaterialTheme.colorScheme.primary
+                        is UIState.EditItem -> MaterialTheme.colorScheme.primary
+                        is UIState.ViewItem -> MaterialTheme.colorScheme.primaryContainer
+                    },
+                    confirmText = when(onlineSharedViewModel.state) {
+                        is UIState.AddItem -> stringResource(id = R.string.save)
+                        is UIState.EditItem -> stringResource(id = R.string.update)
+                        is UIState.ViewItem -> stringResource(id = R.string.edit)
+                    },
+                    confirmTextColor = when (onlineSharedViewModel.state) {
+                        is UIState.AddItem -> MaterialTheme.colorScheme.onPrimary
+                        is UIState.EditItem -> MaterialTheme.colorScheme.onPrimary
+                        is UIState.ViewItem -> MaterialTheme.colorScheme.onPrimaryContainer
+                    },
+                    onConfirmClicked = {
+                        focusManager.clearFocus(force = true)
+
+                        if (onlineSharedViewModel.state is UIState.ViewItem) {
+                            onlineSharedViewModel.changeState(
+                                UIState.EditItem(
+                                    onlineSharedViewModel.state.getItem()!!, onlineSharedViewModel.state.getPosition()!!
+                                )
                             )
-                        },
-                        onConfirmClicked = {},
-                        dismissContainerColor = MaterialTheme.colorScheme.background,
-                        dismissTextColor = MaterialTheme.colorScheme.onBackground,
-                        onDismissClicked = { showInfoDialog = false },
-                    )
-                }
+                        } else {
+                            bottomSheetViewModel.titleState.apply {
+                                val isTitleEmpty = isEmpty() || isBlank()
+                                bottomSheetViewModel.titleError = isTitleEmpty
 
-                if (showFailureDialog && uiResponse is Response.Failure) {
-                    val error = (uiResponse as Response.Failure).errorMessage
+                                if (isTitleEmpty) {
+                                    bottomSheetViewModel.titleErrorMessage = textfieldError
+                                }
+                            }
 
-                    ErrorDialog(
-                        error = error,
-                        onDismissClicked = {
-                            showFailureDialog = false
+                            bottomSheetViewModel.usernameState.apply {
+                                val isUsernameEmpty = isEmpty() || isBlank()
+                                bottomSheetViewModel.usernameError = isUsernameEmpty
+
+                                if (isUsernameEmpty) {
+                                    bottomSheetViewModel.usernameErrorMessage = textfieldError
+                                }
+                            }
+
+                            bottomSheetViewModel.passwordState.apply {
+                                val isPasswordEmpty = isEmpty() || isBlank()
+                                bottomSheetViewModel.passwordError = isPasswordEmpty
+
+                                if (isPasswordEmpty) {
+                                    bottomSheetViewModel.passwordErrorMessage = textfieldError
+                                }
+                            }
+
+                            if (!(bottomSheetViewModel.titleError || bottomSheetViewModel.usernameError || bottomSheetViewModel.passwordError)) {
+                                when(uiState) {
+                                    is UIState.AddItem -> {
+                                        val encryptedPassword: String? = if (bottomSheetViewModel.isEncrypted) {
+                                            Cryptography().encrypt(bottomSheetViewModel.passwordState)
+                                        } else null
+
+                                        homeViewModel.addPassword(
+                                            bottomSheetViewModel.titleState,
+                                            bottomSheetViewModel.usernameState,
+                                            encryptedPassword ?: bottomSheetViewModel.passwordState,
+                                            bottomSheetViewModel.noteState,
+                                            bottomSheetViewModel.isEncrypted,
+                                            selectedImage,
+                                            bottomSheetViewModel.selectedColor.getAsString(),
+                                        )
+                                    }
+                                    is UIState.EditItem -> {
+                                        val encryptedPassword: String? = if (bottomSheetViewModel.isEncrypted) {
+                                            Cryptography().encrypt(bottomSheetViewModel.passwordState)
+                                        } else null
+
+                                        homeViewModel.editPassword(
+                                            uiState.position,
+                                            bottomSheetViewModel.titleState,
+                                            bottomSheetViewModel.usernameState,
+                                            encryptedPassword ?: bottomSheetViewModel.passwordState,
+                                            bottomSheetViewModel.noteState,
+                                            bottomSheetViewModel.isEncrypted,
+                                            selectedImage,
+                                            bottomSheetViewModel.selectedColor.getAsString(),
+                                        )
+                                    }
+                                    else -> {}
+                                }
+                            }
                         }
-                    )
-                }
-
-                if (uiResponse is Response.Loading || uiResponse is Response.Success || isActionCompleted) {
-                    LoadingView()
-                }
+                    },
+                    dismissText = when(onlineSharedViewModel.state) {
+                        is UIState.AddItem -> stringResource(id = R.string.cancel)
+                        is UIState.EditItem -> stringResource(id = R.string.cancel)
+                        is UIState.ViewItem -> stringResource(id = R.string.close)
+                    },
+                    onDismissClicked = {
+                        focusManager.clearFocus(force = true)
+                        navController.popBackStack()
+                    }
+                )
             }
-        )
+        }
+
+        if (showInfoDialog) {
+            CustomDialog(
+                isConfirmButtonVisible = false,
+                title = stringResource(R.string.cd_what_encryption),
+                text = {
+                    Text(
+                        text = stringResource(id = R.string.encryption_explanation),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
+                },
+                onConfirmClicked = {},
+                dismissContainerColor = MaterialTheme.colorScheme.background,
+                dismissTextColor = MaterialTheme.colorScheme.onBackground,
+                onDismissClicked = { showInfoDialog = false },
+            )
+        }
+
+        if (showFailureDialog && uiResponse is Response.Failure) {
+            val error = (uiResponse as Response.Failure).errorMessage
+
+            ErrorDialog(
+                error = error,
+                onDismissClicked = {
+                    showFailureDialog = false
+                }
+            )
+        }
+
+        if (uiResponse is Response.Loading || uiResponse is Response.Success || isActionCompleted) {
+            LoadingView()
+        }
     }
 }
 
 @Preview
 @Composable
 fun OnlinePasswordScreenPreview() {
-    OnlinePasswordScreen(rememberNavController(), viewModel(), viewModel())
+    OnlinePasswordScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel())
 }

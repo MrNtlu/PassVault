@@ -12,11 +12,9 @@ import androidx.navigation.navArgument
 import com.mrntlu.PassVault.ui.views.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
-import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
-import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
-import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
-import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.*
 
 @Composable
 fun NavigationComposable(
@@ -29,6 +27,8 @@ fun NavigationComposable(
     themeViewModel: ThemeViewModel,
     billingViewModel: BillingViewModel,
     sharedViewModel: MainActivitySharedViewModel,
+    imageSelectionViewModel: ImageSelectionViewModel,
+    bottomSheetViewModel: BottomSheetViewModel,
 ) {
     NavHost(navController = navController, startDestination = "home", modifier = Modifier.padding(padding)) {
         composable("home") {
@@ -47,6 +47,8 @@ fun NavigationComposable(
                 navController = navController,
                 homeViewModel = homeViewModel,
                 onlineSharedViewModel = onlinePasswordViewModel,
+                imageSelectionViewModel = imageSelectionViewModel,
+                bottomSheetViewModel = bottomSheetViewModel,
             )
         }
 

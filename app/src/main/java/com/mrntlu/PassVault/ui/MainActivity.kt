@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
 package com.mrntlu.PassVault.ui
 
 import android.content.res.Configuration
@@ -5,13 +7,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Cloud
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -24,6 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -35,17 +48,13 @@ import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.BottomNavItem
 import com.mrntlu.PassVault.ui.theme.PassVaultTheme
 import com.mrntlu.PassVault.ui.widgets.*
-import com.mrntlu.PassVault.utils.PreferenceStore
-import com.mrntlu.PassVault.utils.SearchWidgetState
-import com.mrntlu.PassVault.utils.loadInterstitial
-import com.mrntlu.PassVault.utils.removeInterstitial
+import com.mrntlu.PassVault.ui.widgets.online.OnlinePasswordAppBar
+import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.offline.OfflineViewModel
+import com.mrntlu.PassVault.viewmodels.online.BottomSheetViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
-import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
-import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
-import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
-import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.mrntlu.PassVault.viewmodels.shared.*
 import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -107,13 +116,16 @@ fun MainScreen(
     navController: NavHostController,
 ) {
     val focusManager = LocalFocusManager.current
-    val preferenceStore = PreferenceStore(LocalContext.current)
+    val context = LocalContext.current
+    val preferenceStore = PreferenceStore(context)
 
     val parseViewModel = hiltViewModel<ParseAuthViewModel>()
     val homeViewModel = hiltViewModel<HomeViewModel>()
     val offlineViewModel = hiltViewModel<OfflineViewModel>()
     val onlinePasswordViewModel = hiltViewModel<OnlinePasswordViewModel>()
     val billingViewModel = hiltViewModel<BillingViewModel>()
+    val imageSelectionViewModel = hiltViewModel<ImageSelectionViewModel>()
+    val bottomSheetViewModel = hiltViewModel<BottomSheetViewModel>()
 
     val bottomBarItems = listOf(
         BottomNavItem(
@@ -135,6 +147,7 @@ fun MainScreen(
     val showBottomBar = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarItems.map { it.route }
     val isCurrentScreenHome = navController.currentBackStackEntry?.destination?.route == "home"
     val isCurrentScreenOffline = navController.currentBackStackEntry?.destination?.route == "offline"
+    val isCurrentScreenOnline = navController.currentBackStackEntry?.destination?.route == "online"
     val isAuthLoading = parseViewModel.isLoading.value
 
     val coroutineScope = rememberCoroutineScope()
@@ -142,7 +155,7 @@ fun MainScreen(
 
     val isUserLoggedIn by remember { parseViewModel.isSignedIn }
     var showDialog by remember { mutableStateOf(false) }
-    var searchWidgetState by remember{ mutableStateOf(SearchWidgetState.CLOSED) }
+    var searchWidgetState by remember { mutableStateOf(SearchWidgetState.CLOSED) }
     var searchTextState by remember { mutableStateOf("") }
     val showAdsDialog by remember { sharedViewModel.shouldShowRemoveAdsDialog }
 
@@ -192,7 +205,7 @@ fun MainScreen(
                         focusManager.clearFocus(force = true)
                     }
                 )
-            } else if (navController.currentBackStackEntry?.destination?.route != "online") {
+            } else if (!isCurrentScreenOnline) {
                 DefaultAppBar(
                     navController = navController,
                     isAuthLoading = isAuthLoading,
@@ -203,6 +216,18 @@ fun MainScreen(
                     onSearchClicked = { searchWidgetState = SearchWidgetState.OPENED },
                     onLogOutClicked = {
                         showDialog = true
+                    }
+                )
+            } else {
+                OnlinePasswordAppBar(
+                    selectedImage = imageSelectionViewModel.selectedImage.value,
+                    topBarImageSize = 48.dp,
+                    uiState = onlinePasswordViewModel.state,
+                    uiResponse = homeViewModel.uiResponse.value,
+                    bottomSheetVM = bottomSheetViewModel,
+                    onNavigationClicked = {
+                        navController.popBackStack()
+                        homeViewModel.resetUIResponse()
                     }
                 )
             }
@@ -217,7 +242,35 @@ fun MainScreen(
                     },
                 )
             }
-        }
+        },
+        floatingActionButton = {
+            val isNetworkAvailable = context.isNetworkConnectionAvailable()
+            val isHomeScreenFabConditionsMet = isCurrentScreenHome && isUserLoggedIn
+                    && isNetworkAvailable && (homeViewModel.passwords.value is Response.Success)
+            val isOfflineScreenFabConditionsMet = isCurrentScreenOffline && sharedViewModel.shouldShowFABonOfflineScreen.value
+
+            AnimatedVisibility(
+                visible = isHomeScreenFabConditionsMet || isOfflineScreenFabConditionsMet,
+                enter = scaleIn(),
+                exit = scaleOut(),
+            ) {
+                FloatingActionButton(
+                    onClick = {
+                        sharedViewModel.fabOnClick.value.invoke()
+                    },
+                    containerColor = MaterialTheme.colorScheme.onBackground,
+                    shape = RoundedCornerShape(16.dp),
+                ) {
+                    Icon(
+                        modifier = Modifier.size(28.dp),
+                        imageVector = Icons.Rounded.Add,
+                        contentDescription = stringResource(id = R.string.add),
+                        tint = MaterialTheme.colorScheme.background,
+                    )
+                }
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End,
     ) {
         NavigationComposable(
             navController = navController,
@@ -229,6 +282,8 @@ fun MainScreen(
             themeViewModel = themeViewModel,
             billingViewModel = billingViewModel,
             sharedViewModel = sharedViewModel,
+            imageSelectionViewModel = imageSelectionViewModel,
+            bottomSheetViewModel = bottomSheetViewModel,
         )
 
         if (showDialog) {

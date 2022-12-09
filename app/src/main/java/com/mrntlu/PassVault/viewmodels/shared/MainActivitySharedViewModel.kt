@@ -8,6 +8,9 @@ import javax.inject.Inject
 @ViewModelScoped
 class MainActivitySharedViewModel @Inject constructor(): ViewModel() {
 
+    var fabOnClick = mutableStateOf({})
+    var shouldShowFABonOfflineScreen = mutableStateOf(true)
+
     var shouldShowRemoveAdsDialog = mutableStateOf(false)
         private set
 

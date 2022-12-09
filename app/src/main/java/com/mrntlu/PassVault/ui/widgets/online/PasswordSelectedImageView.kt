@@ -1,7 +1,8 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
 package com.mrntlu.PassVault.ui.widgets.online
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -47,7 +48,11 @@ fun PasswordSelectedImageView(
         }
     }
 
-    AnimatedVisibility (selectedImage == null || !context.isNetworkConnectionAvailable()) {
+    AnimatedVisibility (
+        visible = selectedImage == null || !context.isNetworkConnectionAvailable(),
+        enter = scaleIn(),
+        exit = scaleOut(),
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -75,7 +80,11 @@ fun PasswordSelectedImageView(
         }
     }
 
-    AnimatedVisibility(visible = selectedImage != null && context.isNetworkConnectionAvailable()) {
+    AnimatedVisibility(
+        visible = selectedImage != null && context.isNetworkConnectionAvailable(),
+        enter = scaleIn(),
+        exit = scaleOut(),
+    ) {
         Box(
             modifier = Modifier
                 .size(imageSize)

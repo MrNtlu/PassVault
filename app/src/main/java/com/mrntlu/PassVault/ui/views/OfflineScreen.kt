@@ -8,9 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -40,10 +37,6 @@ fun OfflineScreen(
 ) {
     val context = LocalContext.current
 
-    LaunchedEffect(key1 = true) {
-        offlineViewModel.getOfflinePasswords()
-    }
-
     var showDialog by remember { mutableStateOf(false) }
     var deleteIndex by remember { mutableStateOf(-1) }
     val isPurchased by remember { billingViewModel.isPurchased }
@@ -57,10 +50,6 @@ fun OfflineScreen(
         skipHalfExpanded = true
     )
 
-    BackHandler(modalSheetState.isVisible) {
-        coroutineScope.launch { modalSheetState.hide() }
-    }
-
     fun interstitialAdsHandler() {
         if (!isPurchased) {
             if (adCount % 3 == 0) {
@@ -69,6 +58,38 @@ fun OfflineScreen(
                 }
             }
             adCount++
+        }
+    }
+
+    fun toggleBottomSheet(state: UIState<OfflinePassword>) {
+        sharedViewModel.shouldShowFABonOfflineScreen.value = modalSheetState.isVisible
+        uiState = state
+
+        coroutineScope.launch {
+            if (modalSheetState.isVisible)
+                modalSheetState.hide()
+            else
+                modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+        }
+    }
+
+    fun hideBottomSheet() {
+        sharedViewModel.shouldShowFABonOfflineScreen.value = true
+        coroutineScope.launch { modalSheetState.hide() }
+    }
+
+    BackHandler(modalSheetState.isVisible) {
+        hideBottomSheet()
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        sharedViewModel.shouldShowFABonOfflineScreen.value = true
+        offlineViewModel.getOfflinePasswords()
+
+        sharedViewModel.fabOnClick.value = {
+            interstitialAdsHandler()
+
+            toggleBottomSheet(UIState.AddItem)
         }
     }
 
@@ -84,102 +105,57 @@ fun OfflineScreen(
                     uiState = UIState.EditItem(uiState.getItem()!!, uiState.getPosition()!!)
                 },
                 onCancel = {
-                    coroutineScope.launch { modalSheetState.hide() }
+                    hideBottomSheet()
                 }
             )
         }
     ) {
-        Scaffold(
-            floatingActionButton = {
-                FloatingActionButton(
-                    onClick = {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background),
+        ) {
+            if (context.isNetworkConnectionAvailable() && !isPurchased) {
+                BannerAdView()
+            }
+
+            val passwords by offlineViewModel.password
+
+            OfflinePasswordList(
+                passwords = passwords,
+                onEditClicked = { index ->
+                    passwords?.let { list ->
                         interstitialAdsHandler()
 
-                        coroutineScope.launch {
-                            uiState = UIState.AddItem
+                        toggleBottomSheet(UIState.EditItem(list[index], index))
+                    }
+                },
+                onDeleteClicked = { index ->
+                    showDialog = true
+                    deleteIndex = index
+                },
+                onDescriptionClicked = { index ->
+                    passwords?.let { list ->
+                        interstitialAdsHandler()
 
-                            if (modalSheetState.isVisible)
-                                modalSheetState.hide()
-                            else
-                                modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                        }
-                    },
-                    containerColor = MaterialTheme.colorScheme.onBackground,
-                    shape = RoundedCornerShape(16.dp),
-                ) {
-                    Icon(
-                        modifier = Modifier.size(28.dp),
-                        imageVector = Icons.Rounded.Add,
-                        contentDescription = stringResource(R.string.cd_add),
-                        tint = MaterialTheme.colorScheme.background,
-                    )
+                        toggleBottomSheet(UIState.ViewItem(list[index], index))
+                    }
                 }
-            },
-            floatingActionButtonPosition = FabPosition.End,
-            isFloatingActionButtonDocked = false,
-            content = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = MaterialTheme.colorScheme.background),
+            )
+
+            if (showDialog) {
+                CautionDialog(
+                    text = stringResource(id = R.string.ays_delete),
+                    onConfirmClicked = {
+                        showDialog = false
+                        offlineViewModel.deletePassword(deleteIndex)
+                        deleteIndex = -1
+                    }
                 ) {
-                    if (context.isNetworkConnectionAvailable() && !isPurchased) {
-                        BannerAdView()
-                    }
-
-                    val passwords by offlineViewModel.password
-
-                    OfflinePasswordList(
-                        passwords = passwords,
-                        onEditClicked = { index ->
-                            passwords?.let { list ->
-                                interstitialAdsHandler()
-
-                                uiState = UIState.EditItem(list[index], index)
-
-                                coroutineScope.launch {
-                                    if (modalSheetState.isVisible)
-                                        modalSheetState.hide()
-                                    else
-                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                }
-                            }
-                        },
-                        onDeleteClicked = { index ->
-                            showDialog = true
-                            deleteIndex = index
-                        },
-                        onDescriptionClicked = { index ->
-                            passwords?.let { list ->
-                                interstitialAdsHandler()
-
-                                uiState = UIState.ViewItem(list[index], index)
-
-                                coroutineScope.launch {
-                                    if (modalSheetState.isVisible)
-                                        modalSheetState.hide()
-                                    else
-                                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
-                                }
-                            }
-                        }
-                    )
-
-                    if (showDialog) {
-                        CautionDialog(
-                            text = stringResource(id = R.string.ays_delete),
-                            onConfirmClicked = {
-                                showDialog = false
-                                offlineViewModel.deletePassword(deleteIndex)
-                                deleteIndex = -1
-                            }
-                        ) {
-                            showDialog = false
-                        }
-                    }
+                    showDialog = false
                 }
             }
-        )
+        }
     }
 }
 
