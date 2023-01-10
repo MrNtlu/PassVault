@@ -155,6 +155,7 @@ fun MainScreen(
 
     val isUserLoggedIn by remember { parseViewModel.isSignedIn }
     var showDialog by remember { mutableStateOf(false) }
+    var dropdownExpanded by remember { mutableStateOf(false) }
     var searchWidgetState by remember { mutableStateOf(SearchWidgetState.CLOSED) }
     var searchTextState by remember { mutableStateOf("") }
     val showAdsDialog by remember { sharedViewModel.shouldShowRemoveAdsDialog }
@@ -216,7 +217,18 @@ fun MainScreen(
                     onSearchClicked = { searchWidgetState = SearchWidgetState.OPENED },
                     onLogOutClicked = {
                         showDialog = true
-                    }
+                    },
+                    isItemsLoading = homeViewModel.passwords.value is Response.Loading,
+                    dropdownExpanded = dropdownExpanded,
+                    onDropdownDismiss = { dropdownExpanded = false },
+                    sortType = homeViewModel.sortType.value,
+                    onSortTypeChanged = {
+                        homeViewModel.sortType.value = it
+                        homeViewModel.sortPasswords()
+                    },
+                    onSortClicked = {
+                        dropdownExpanded = true
+                    },
                 )
             } else {
                 OnlinePasswordAppBar(

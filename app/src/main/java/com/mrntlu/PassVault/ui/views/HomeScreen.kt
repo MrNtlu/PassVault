@@ -18,12 +18,14 @@ import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.ui.widgets.*
+import com.mrntlu.PassVault.ui.widgets.online.OnlinePasswordLoading
 import com.mrntlu.PassVault.utils.*
 import com.mrntlu.PassVault.viewmodels.auth.ParseAuthViewModel
 import com.mrntlu.PassVault.viewmodels.online.HomeViewModel
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
+import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -34,12 +36,14 @@ fun HomeScreen(
     onlineSharedViewModel: OnlinePasswordViewModel,
     billingViewModel: BillingViewModel,
     mainActivitySharedViewModel: MainActivitySharedViewModel,
+    themeViewModel: ThemeViewModel,
 ) {
     val context = LocalContext.current
 
     val isNetworkAvailable = context.isNetworkConnectionAvailable()
     val isUserLoggedIn by remember { parseVM.isSignedIn }
     val isPurchased by remember { billingViewModel.isPurchased }
+    val isDarkThemeEnabled by themeViewModel.isDarkThemeEnabled
 
     fun interstitialAdsHandler() {
         if (!isPurchased) {
@@ -73,7 +77,9 @@ fun HomeScreen(
 
         when(passwordsState) {
             is Response.Loading -> {
-                LoadingView()
+                OnlinePasswordLoading(
+                    isDarkThemeEnabled = isDarkThemeEnabled
+                )
             }
 
             is Response.Success<List<PasswordItem>> -> {
@@ -168,5 +174,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel(), viewModel())
+    HomeScreen(rememberNavController(), viewModel(), viewModel(), viewModel(), viewModel(), viewModel(), viewModel())
 }

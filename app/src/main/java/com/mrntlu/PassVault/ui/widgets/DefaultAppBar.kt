@@ -12,11 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.mrntlu.PassVault.R
+import com.mrntlu.PassVault.utils.SortType
 
 @Composable
 fun DefaultAppBar(
@@ -28,6 +27,12 @@ fun DefaultAppBar(
     isCurrentScreenOffline: Boolean,
     onSearchClicked: () -> Unit,
     onLogOutClicked: () -> Unit,
+    isItemsLoading: Boolean,
+    dropdownExpanded: Boolean,
+    onDropdownDismiss: () -> Unit,
+    sortType: SortType,
+    onSortTypeChanged: (SortType) -> Unit,
+    onSortClicked: () -> Unit,
 ) {
     TopAppBar(
         title = {
@@ -65,9 +70,19 @@ fun DefaultAppBar(
         },
         actions = {
             if (isCurrentScreenHome && isUserLoggedIn) {
+                if (!isItemsLoading) {
+                    DefaultAppBarSortDropDownMenu(
+                        dropdownExpanded = dropdownExpanded,
+                        onDropdownDismiss = onDropdownDismiss,
+                        sortType = sortType,
+                        onSortTypeChanged = onSortTypeChanged,
+                        onSortClicked = onSortClicked
+                    )
+                }
+
                 IconButton(
                     onClick = onLogOutClicked
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Rounded.Logout,
                         contentDescription = stringResource(R.string.cd_log_out),
@@ -79,10 +94,4 @@ fun DefaultAppBar(
         elevation = 8.dp,
         backgroundColor = MaterialTheme.colorScheme.primary,
     )
-}
-
-@Preview
-@Composable
-fun DefaultAppBarPreview() {
-    DefaultAppBar(navController = rememberNavController(), isUserLoggedIn = true, isAuthLoading = false, showBottomBar = true, isCurrentScreenHome = true, isCurrentScreenOffline = false, onLogOutClicked = {}, onSearchClicked = {})
 }

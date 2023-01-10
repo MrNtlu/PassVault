@@ -29,7 +29,7 @@ fun SettingsSwitchTile(
     themeViewModel: ThemeViewModel,
     settingsSwitchTileModel: SettingsSwitchTileModel,
 ) {
-    var switchState by remember {themeViewModel.isDarkThemeEnabled }
+    var switchState by remember { themeViewModel.isDarkThemeEnabled }
 
     Row(
         modifier = Modifier

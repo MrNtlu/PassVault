@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.repositories.HomeRepository
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.SortType
 import com.mrntlu.PassVault.utils.toPasswordItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +26,8 @@ class HomeViewModel @Inject constructor(
 
     private val _uiResponse = mutableStateOf<Response<Nothing>>(Response.Idle)
     val uiResponse: State<Response<Nothing>> = _uiResponse
+
+    val sortType = mutableStateOf(SortType.Default)
 
     fun searchPassword(text: String) {
         if (_passwords.value is Response.Success) {
@@ -140,10 +144,21 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun sortPasswords() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val sortedListResponse = homeRepository.getSortedPasswords(sortType.value)
+            withContext(Dispatchers.Main) {
+                _passwords.value = sortedListResponse
+            }
+        }
+    }
+
     fun getPasswords(isNetworkAvailable: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            homeRepository.getPasswordsOrCache(isNetworkAvailable).collect {
-                _passwords.value = it
+            homeRepository.getPasswordsOrCache(isNetworkAvailable, sortType.value).collect {
+                withContext(Dispatchers.Main) {
+                    _passwords.value = it
+                }
             }
         }
     }

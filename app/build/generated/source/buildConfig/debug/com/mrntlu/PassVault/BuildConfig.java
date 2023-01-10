@@ -7,6 +7,6 @@ public final class BuildConfig {
   public static final boolean DEBUG = Boolean.parseBoolean("true");
   public static final String APPLICATION_ID = "com.mrntlu.PassVault";
   public static final String BUILD_TYPE = "debug";
-  public static final int VERSION_CODE = 46;
-  public static final String VERSION_NAME = "7.1.4";
+  public static final int VERSION_CODE = 48;
+  public static final String VERSION_NAME = "7.2.0";
 }

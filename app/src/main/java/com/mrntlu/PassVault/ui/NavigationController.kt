@@ -39,6 +39,7 @@ fun NavigationComposable(
                 onlineSharedViewModel = onlinePasswordViewModel,
                 billingViewModel = billingViewModel,
                 mainActivitySharedViewModel = sharedViewModel,
+                themeViewModel = themeViewModel,
             )
         }
 

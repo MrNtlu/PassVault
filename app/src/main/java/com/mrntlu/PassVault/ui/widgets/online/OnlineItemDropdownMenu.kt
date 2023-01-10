@@ -41,7 +41,7 @@ fun OnlineItemDropdownMenu(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background),
         expanded = expanded,
-        onDismissRequest = { onDismissRequest() },
+        onDismissRequest = onDismissRequest,
     ) {
         if (context.isNetworkConnectionAvailable()) {
             DropdownMenuItem(

@@ -5,6 +5,7 @@ import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.services.ParseDao
 import com.mrntlu.PassVault.services.ParseDatabase
 import com.mrntlu.PassVault.utils.Response
+import com.mrntlu.PassVault.utils.SortType
 import com.mrntlu.PassVault.utils.networkBoundResource
 import com.mrntlu.PassVault.utils.toPasswordItem
 import com.parse.ParseException
@@ -23,8 +24,11 @@ class HomeRepository @Inject constructor(
 ) {
     private val parseQuery = ParseQuery.getQuery<ParseObject>("Account")
 
-
-    private fun getParseObjectFromPasswordItem(parseID: String, onParseObjectRetrieved: (ParseObject) -> Unit, onError: (ParseException) -> Unit) {
+    private fun getParseObjectFromPasswordItem(
+        parseID: String,
+        onParseObjectRetrieved: (ParseObject) -> Unit,
+        onError: (ParseException) -> Unit
+    ) {
         parseQuery.getInBackground(parseID) { parseObject, error ->
             if (error == null) {
                 onParseObjectRetrieved(parseObject)
@@ -151,9 +155,21 @@ class HomeRepository @Inject constructor(
         awaitClose()
     }
 
-    fun getPasswordsOrCache(isNetworkAvailable: Boolean) = networkBoundResource(
-        query = {
+    private fun getSortedPasswordsFromCache(sortType: SortType): MutableList<PasswordItem> {
+        return if (sortType != SortType.Default) {
+            parseDao.getPasswordsSorted(sortType.sort!!, sortType.isDescending)
+        } else {
             parseDao.getPasswords()
+        }
+    }
+
+    fun getSortedPasswords(sortType: SortType): Response.Success<MutableList<PasswordItem>> {
+        return Response.Success(getSortedPasswordsFromCache(sortType))
+    }
+
+    fun getPasswordsOrCache(isNetworkAvailable: Boolean, sortType: SortType) = networkBoundResource(
+        query = {
+            getSortedPasswordsFromCache(sortType)
         },
         fetch = {
             val query = ParseQuery.getQuery<ParseObject>("Account")
@@ -162,10 +178,10 @@ class HomeRepository @Inject constructor(
             Pair(query.find(), query)
         },
         saveFetchResult = { objects ->
-             parseDatabase.withTransaction {
+            parseDatabase.withTransaction {
                 parseDao.deletePasswords()
                 parseDao.addPasswords(objects.map { it.toPasswordItem() })
-                parseDao.getPasswords()
+                getSortedPasswordsFromCache(sortType)
             }
         },
         shouldFetch = { isNetworkAvailable && ParseUser.getCurrentUser() != null }
