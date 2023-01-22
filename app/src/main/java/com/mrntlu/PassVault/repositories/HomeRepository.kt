@@ -172,8 +172,14 @@ class HomeRepository @Inject constructor(
             getSortedPasswordsFromCache(sortType)
         },
         fetch = {
+            val username = try {
+                ParseUser.getCurrentUser().username
+            } catch (exception: Throwable) {
+                throw exception
+            }
+
             val query = ParseQuery.getQuery<ParseObject>("Account")
-            query.whereEqualTo("ParseUser", ParseUser.getCurrentUser().username)
+            query.whereEqualTo("ParseUser", username)
 
             Pair(query.find(), query)
         },

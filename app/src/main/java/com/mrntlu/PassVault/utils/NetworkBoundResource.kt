@@ -10,25 +10,29 @@ inline fun <ResultType, RequestType> networkBoundResource(
     crossinline saveFetchResult: suspend (RequestType) -> ResultType,
     crossinline shouldFetch: (ResultType) -> Boolean = { true }
 ) = callbackFlow<Response<ResultType>> {
-    val data = query()
+    try {
+        val data = query()
 
-    val flow = if (shouldFetch(data)) {
-        trySend(Response.Loading)
+        val flow = if (shouldFetch(data)) {
+            trySend(Response.Loading)
 
-        try {
-            Response.Success(saveFetchResult(fetch().first))
-        } catch (throwable: Throwable) {
-            if (throwable.message != null && throwable.message!! == "i/o failure") {
-                Response.Success(data)
-            } else {
-                Response.Failure(throwable.message ?: throwable.toString())
+            try {
+                Response.Success(saveFetchResult(fetch().first))
+            } catch (throwable: Throwable) {
+                if (throwable.message != null && throwable.message!! == "i/o failure") {
+                    Response.Success(data)
+                } else {
+                    Response.Failure(throwable.message ?: throwable.toString())
+                }
             }
+        } else {
+            Response.Success(data)
         }
-    } else {
-        Response.Success(data)
-    }
 
-    trySend(flow)
+        trySend(flow)
+    } catch (throwable: Throwable) {
+        trySend(Response.Failure(throwable.message ?: throwable.toString()))
+    }
 
     awaitClose {
         fetch().second.cancel()
