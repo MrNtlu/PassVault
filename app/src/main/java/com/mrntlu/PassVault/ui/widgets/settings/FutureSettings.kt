@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mrntlu.PassVault.R
-import com.mrntlu.PassVault.utils.*
+import com.mrntlu.PassVault.utils.PreferenceStore
+import com.mrntlu.PassVault.utils.findActivity
+import com.mrntlu.PassVault.utils.isNetworkConnectionAvailable
+import com.mrntlu.PassVault.utils.sendMail
 import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
 import com.parse.ParseUser
@@ -105,9 +108,7 @@ fun FutureSettings(
         }
         try {
             context.startActivity(playIntent)
-        } catch (e: Exception) {
-            printLog("$e")
-        }
+        } catch (_: Exception) {}
     }
 
     Column(
@@ -157,18 +158,22 @@ fun FutureSettings(
                                 subTitle = product.product.description,
                                 icon = Icons.Rounded.ShoppingCart,
                                 onClick = {
-                                    if (context.findActivity() != null && ParseUser.getCurrentUser() != null) {
-                                        Purchases.sharedInstance.purchasePackageWith(
-                                            context.findActivity()!!,
-                                            product,
-                                            onError = { error, _ ->
-                                                billingViewModel.onPurchaseError(error)
-                                            },
-                                            onSuccess = { _, customerInfo ->
-                                                billingViewModel.onPurchaseSuccess(customerInfo)
-                                            }
-                                        )
-                                    } else if (ParseUser.getCurrentUser() == null) {
+                                    try {
+                                        if (context.findActivity() != null && ParseUser.getCurrentUser() != null) {
+                                            Purchases.sharedInstance.purchasePackageWith(
+                                                context.findActivity()!!,
+                                                product,
+                                                onError = { error, _ ->
+                                                    billingViewModel.onPurchaseError(error)
+                                                },
+                                                onSuccess = { _, customerInfo ->
+                                                    billingViewModel.onPurchaseSuccess(customerInfo)
+                                                }
+                                            )
+                                        } else if (ParseUser.getCurrentUser() == null) {
+                                            settingsErrorDialog = "You need to be logged in to remove ads."
+                                        }
+                                    } catch (_: Exception) {
                                         settingsErrorDialog = "You need to be logged in to remove ads."
                                     }
                                 }

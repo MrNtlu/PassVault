@@ -15,8 +15,8 @@ android {
         applicationId "com.mrntlu.PassVault"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 49
-        versionName "7.2.1"
+        versionCode 50
+        versionName "7.2.2"
 
         multiDexEnabled true
         vectorDrawables {
@@ -53,9 +53,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
     implementation 'com.github.alirezaafkar:TextDrawable:2.0.0'
 
@@ -117,7 +117,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     // Realm
-    def realm_version = "1.5.0"
+    def realm_version = "1.5.2"
     implementation "io.realm.kotlin:library-base:$realm_version"
 
     //Lottie

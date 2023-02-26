@@ -1,6 +1,7 @@
 package com.mrntlu.PassVault.repositories
 
 import androidx.room.withTransaction
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.mrntlu.PassVault.models.PasswordItem
 import com.mrntlu.PassVault.services.ParseDao
 import com.mrntlu.PassVault.services.ParseDatabase
@@ -175,6 +176,8 @@ class HomeRepository @Inject constructor(
             val username = try {
                 ParseUser.getCurrentUser().username
             } catch (exception: Throwable) {
+                FirebaseCrashlytics.getInstance().log("Username ${ParseUser.getCurrentUser()?.username}")
+                FirebaseCrashlytics.getInstance().log("Email ${ParseUser.getCurrentUser()?.username}")
                 throw exception
             }
 
