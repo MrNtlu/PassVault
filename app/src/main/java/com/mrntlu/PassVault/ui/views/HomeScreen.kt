@@ -65,7 +65,6 @@ fun HomeScreen(
         }
     }
 
-    //TODO: Add Category Chip
     if (isUserLoggedIn) {
         val passwordsState by homeViewModel.passwords
         var showDialog by remember { mutableStateOf(false) }
@@ -148,10 +147,14 @@ fun HomeScreen(
             is Response.Failure -> {
                 val error = (passwordsState as Response.Failure).errorMessage
 
-                ErrorView(
-                    error = error,
-                    lottieFile = R.raw.error
-                )
+                if (error == "Invalid session token") {
+                    parseVM.parseSignout()
+                } else {
+                    ErrorView(
+                        error = error,
+                        lottieFile = R.raw.error
+                    )
+                }
             }
 
             else -> {}

@@ -55,7 +55,7 @@ class ParseAuthViewModel @Inject constructor(): ViewModel(), ParseAuthService {
             } else if (!isPolicyChecked) {
                 handleException(customMessage = "Please accept the Privacy Policy.")
                 return
-            } else if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            } else if (username.isEmpty() || email.isEmpty() || password.isEmpty() || username.isBlank() || email.isBlank() || password.isEmpty()) {
                 handleException(customMessage = "Please don't leave anything empty.")
                 return
             }

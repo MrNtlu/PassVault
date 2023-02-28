@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val parseDao: ParseDao,
-    private val parseDatabase: ParseDatabase
+    private val parseDatabase: ParseDatabase,
 ) {
     private val parseQuery = ParseQuery.getQuery<ParseObject>("Account")
 
@@ -176,8 +176,9 @@ class HomeRepository @Inject constructor(
             val username = try {
                 ParseUser.getCurrentUser().username
             } catch (exception: Throwable) {
+                FirebaseCrashlytics.getInstance().log("Throwable $exception")
+                FirebaseCrashlytics.getInstance().log("Email ${ParseUser.getCurrentUser()?.email}")
                 FirebaseCrashlytics.getInstance().log("Username ${ParseUser.getCurrentUser()?.username}")
-                FirebaseCrashlytics.getInstance().log("Email ${ParseUser.getCurrentUser()?.username}")
                 throw exception
             }
 
