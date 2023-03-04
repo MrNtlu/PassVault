@@ -26,6 +26,7 @@ import com.mrntlu.PassVault.viewmodels.shared.BillingViewModel
 import com.mrntlu.PassVault.viewmodels.shared.MainActivitySharedViewModel
 import com.mrntlu.PassVault.viewmodels.shared.OnlinePasswordViewModel
 import com.mrntlu.PassVault.viewmodels.shared.ThemeViewModel
+import com.parse.ParseUser
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -71,7 +72,13 @@ fun HomeScreen(
         var deleteIndex by remember { mutableStateOf(-1) }
 
         LaunchedEffect(key1 = Unit) {
-            homeViewModel.getPasswords(isNetworkAvailable)
+            try {
+                if (ParseUser.getCurrentUser().username != null && ParseUser.getCurrentUser().email != null) {
+                    homeViewModel.getPasswords(isNetworkAvailable)
+                }
+            } catch (_: Exception) {
+                parseVM.parseSignout()
+            }
         }
 
         when(passwordsState) {
